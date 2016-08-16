@@ -5,96 +5,145 @@
  */
 package co.edu.uniandes.rest.cities.mocks;
 
+import co.edu.uniandes.rest.cities.dtos.CitaDTO;
+import co.edu.uniandes.rest.cities.dtos.CityDTO;
+import co.edu.uniandes.rest.cities.exceptions.CitaException;
+import co.edu.uniandes.rest.cities.exceptions.CityLogicException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author jc.useche10
  */
 public class CitaMock {
+   
+   // objeto para presentar logs de las operaciones
+   private final static Logger logger = Logger.getLogger(CitaMock.class.getName());
+   // listado de citas
+   private static ArrayList<CitaDTO> citas;
+   
+    /**
+     * Constructor. Crea los datos de ejemplo.
+     */
+    public CitaMock() {
+
+        
+    	// indica que se muestren todos los mensajes
+    	logger.setLevel(Level.INFO);
+    	
+    	// muestra información 
+    	logger.info("Inicializa la lista de citas");
+    	logger.info("citas" + citas );
+    }   
     
-    //fecha para la cual esta programada la cita
-    private Date fecha;
     
-    //tiempo de la cita
-    private double duracionMins;
-    
-    //indica si la cita ya ha sido completada o no
-    private boolean completada;
-    
-    //indica si existe una cita
-    private boolean hayCita;
+	/**
+	 * Obtiene el listado de personas. 
+	 * @return lista de ciudades
+	 * @throws CityLogicException cuando no existe la lista en memoria  
+	 */    
+    public List<CitaDTO> getCities() throws CitaException {
+    	if (citas == null) {
+    		logger.severe("Error interno: lista de ciudades no existe.");
+    		throw new CitaException("Error interno: lista de ciudades no existe.");    		
+    	}
+    	
+    	logger.info("retornando todas las ciudades");
+    	return citas;
+    }
     
      /**
-     * Constructor. Crea una nueva cita.
+     * Agrega una cita la lista.
+     * @param newCita ciudad a adicionar
+     * @throws CitaException cuando ya existe una cita con el id suministrado
+     * @return cita agregada
      */
-    public CitaMock(Date pFecha) 
-    {
-        fecha = pFecha;
-        duracionMins = 0.0;
-        completada = false;
-        hayCita = true;
-    }
-    /**
-    * obtiene la fecha para la cual esta programada la cita
-    * @returnfecha
-    */
-    public Date getFecha()
-    {
-        return fecha;
+    public CitaDTO createCita(CitaDTO newCita) throws CitaException {
+    	logger.info("recibiendo solicitud de agregar cita " + newCita);
+    	
+    	// la nueva cita tiene id ?
+    	if ( newCita.getId() != 0 ) {
+	    	// busca la cita con el id suministrado
+	        for (CitaDTO cita : citas) {
+	        	// si existe una cita con ese id
+	            if (Objects.equals(cita.getId(), newCita.getId())){
+	            	logger.severe("Ya existe una cita con ese id");
+	                throw new CitaException("Ya existe una cita con ese id");
+	            }
+	        }
+	        
+	    // la nueva cita no tiene id ? 
+    	} else {
+
+    		// genera un id para la ciudad
+    		logger.info("Generando id paa la nueva cita");
+    		long newId = 1;
+	        for (CitaDTO cita : citas) {
+	            if (newId <= cita.getId()){
+	                newId =  cita.getId() + 1;
+	            }
+	        }
+	        newCita.setId(newId);
+    	}
+    	
+        // agrega la ciudad
+    	logger.info("agregando ciudad " + newCita);
+        citas.add(newCita);
+        return newCita;
     }
     
-    /**
-     * obtiene la duracion que tuvo la cita
-     * @return duracionMins
-     */
-    public double getDuracionMins()
+    public CitaDTO updateCita(long id, CitaDTO pCita)
     {
-        return duracionMins;
+        CitaDTO cita = null;
+        boolean encontrado = false;
+        for(int i = 0; i<citas.size()&& !encontrado;i++)
+        {
+           if(citas.get(i).getId()==id)
+           {
+               citas.get(i).setFecha(pCita.getFecha());
+               citas.get(i).setDuracionMins(pCita.getDuracionMins());
+               citas.get(i).setFueCompletada(pCita.getFueCompletada());
+               citas.get(i).setHayCita(pCita.getHayCita());
+               
+               cita = citas.get(i);
+               encontrado = true;
+           }
+        }
+        return cita;
     }
-    
-    /**
-     * informa si una cita ya fue completada o no
-     * @return true si ya fue completada, false de lo contrario
-     */
-    public boolean getFueCompletada()
+
+    public CitaDTO getCita(long id) 
     {
-        return completada;
+        CitaDTO cita = null;
+        boolean encontrado = false;
+        for(int i = 0; i<citas.size()&& !encontrado;i++)
+        {
+           if(citas.get(i).getId()==id)
+           {
+               cita= citas.get(i);
+               encontrado = true;
+           }
+        }
+        return cita;
     }
-    
-    /**
-     * informa si hay una cita
-     * @return true si hay una cita, false de lo contrario
-     */
-    public boolean getHayCita()
+
+    public void deleteCita(long id) 
     {
-        return hayCita;
-    }
-    /**
-     * cambia la fecha de una cita
-     * @param pNuevaFecha  nueva fecha para la cita
-     */
-    public void setFecha(Date pNuevaFecha)
-    {
-        fecha = pNuevaFecha;
-    }
-    
-    /**
-     * establece la duracion de una cita
-     * @param pDuracion 
-     */
-    public void setDuracionMins(double pDuracion)
-    {
-        duracionMins = pDuracion;
-    }
-    
-    public void setFueCompletada(boolean pCompletada)
-    {
-        completada = pCompletada;
-    }
-    
-    public void setHayCita(boolean pHayCita)
-    {
-        hayCita = pHayCita;
+        CitaDTO ciudad = null;
+        boolean encontrado = false;
+        for(int i = 0; i<citas.size()&& !encontrado;i++)
+        {
+           if(citas.get(i).getId()==id)
+           {
+               ciudad = citas.get(i);
+               encontrado = true;
+           }
+        }
+        citas.remove(ciudad);
     }
 }
