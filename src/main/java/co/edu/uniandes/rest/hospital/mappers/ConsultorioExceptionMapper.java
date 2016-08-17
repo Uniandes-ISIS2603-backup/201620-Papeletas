@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.rest.cities.mappers;
+package co.edu.uniandes.rest.hospital.mappers;
 
-import co.edu.uniandes.rest.cities.exceptions.CityLogicException;
 import co.edu.uniandes.rest.cities.exceptions.ConsultorioException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;

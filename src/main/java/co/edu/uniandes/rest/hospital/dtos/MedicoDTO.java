@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.rest.cities.dtos;
+package co.edu.uniandes.rest.hospital.dtos;
 
-import co.edu.uniandes.rest.cities.mocks.EspecializacionMock;
 import java.util.ArrayList;
 import java.util.Date;
 

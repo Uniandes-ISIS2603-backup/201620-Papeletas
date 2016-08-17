@@ -3,12 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.rest.cities.mocks;
+package co.edu.uniandes.rest.hospital.mocks;
 
-import co.edu.uniandes.rest.cities.dtos.ConsultorioDTO;
-import co.edu.uniandes.rest.cities.dtos.MedicoDTO;
-import co.edu.uniandes.rest.cities.exceptions.ConsultorioException;
-import co.edu.uniandes.rest.cities.exceptions.MedicoException;
+import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
+import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
