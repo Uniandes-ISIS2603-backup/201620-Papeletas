@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.rest.cities.mocks;
+package co.edu.uniandes.rest.hospital.mocks;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 
 
-import co.edu.uniandes.rest.cities.dtos.PacienteDTO;
+import co.edu.uniandes.rest.hospital.dtos.PacienteDTO;
 import co.edu.uniandes.rest.cities.exceptions.HospitalLogicException;
 /**
  *
