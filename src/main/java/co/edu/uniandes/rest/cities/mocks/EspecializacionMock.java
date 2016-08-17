@@ -1,59 +1,49 @@
 package co.edu.uniandes.rest.cities.mocks;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.logging.Logger;
+
+import co.edu.uniandes.rest.cities.dtos.EspecializacionDTO;
+import co.edu.uniandes.rest.cities.exceptions.EspecializacionException;
+
+
+
 public class EspecializacionMock
 {
-	/*
-	 * identificador de la especializacion
-	 */
-	private int id;
+	private final static Logger logger = Logger.getLogger(EspecializacionMock.class.getName());
 	
-	/*
-	 * nombre de la especializacion
-	 */
-	private String nombre;
+	/**
+	 * Lista de esepcialidades en el hospital
+	 */	
+	private static ArrayList<EspecializacionDTO> especialidades;
 	
-	/*
-	 * descripcion de la especializacion
-	 */
-	private String descripcion;
 	
-	/*
-	 * @return id
-	 */
-	public int getId()
+	public List<EspecializacionDTO> getSpecialties() throws EspecializacionException
 	{
-		return id;
-	}
+    	if (especialidades == null)
+    	{
+    		logger.severe("Error interno: lista de especialidades no existe.");
+    		throw new EspecializacionException("Error interno: lista de especialidades no existe.");    		
+    	}
+    	
+    	logger.info("retornando todas las especialidades");
+    	return especialidades;
+    }
 	
-	/*
-	 * @return nombre
-	 */
-	public String getNombre()
-	{
-		return nombre;
-	}
 	
-	/*
-	 * @return descripcion
-	 */
-	public String getDescripcion()
+	public EspecializacionDTO createSpecialty(EspecializacionDTO specialty) throws EspecializacionException
 	{
-		return descripcion;
-	}
-
-	public void setId(int id)
-	{
-		this.id = id;
-	}
-
-	public void setNombre(String nombre)
-	{
-		this.nombre = nombre;
-	}
-
-	public void setDescripcion(String descripcion)
-	{
-		this.descripcion = descripcion;
-	}
-	
+    	logger.info("recibiendo solicitud de agregar especialidad" + specialty);
+    	
+    	{
+    		logger.info("Generando id para la especializacion");
+	        specialty.setId(especialidades.size());
+    	}
+    	
+    	logger.info("agregando especialidad" + specialty);
+        especialidades.add(specialty);
+        return specialty;
+    }
 }
