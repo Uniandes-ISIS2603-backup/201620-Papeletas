@@ -47,7 +47,10 @@ public class HorarioDTO {
      * Constructor de la clase, incializa el arreglo de días y los días dependiendo el mes en que el horario es creado
      */
     public HorarioDTO(){
-        dias = new ArrayList(30); 
+        dias = new ArrayList(30);
+        for (int i = 0; i < dias.size(); i++) {
+            dias.add(new DiaDTO());
+        }
     }
     
     /**
@@ -97,6 +100,20 @@ public class HorarioDTO {
      */
     public void setMes(meses mes) {
         this.mes = mes;
+    }
+    
+    /**
+     * @return the año
+     */
+    public int getAño() {
+        return año;
+    }
+
+    /**
+     * @param año the año to set
+     */
+    public void setMes(int año) {
+        this.año = año;
     }
     
     

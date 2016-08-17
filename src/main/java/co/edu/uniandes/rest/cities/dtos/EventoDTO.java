@@ -11,4 +11,21 @@ package co.edu.uniandes.rest.cities.dtos;
  */
 public class EventoDTO {
     
+    private int horaIni;
+    private int horaFin;
+    
+    public EventoDTO(){
+        horaIni = 10;
+        horaFin = 11;
+    }
+    
+    public int getHoraIni(){
+        return horaIni;
+    }
+    
+    public int getHoraFin(){
+        return horaFin;
+    }
+    
+    
 }
