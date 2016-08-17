@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.rest.cities.mocks;
+package co.edu.uniandes.rest.hospital.mocks;
 
 import co.edu.uniandes.rest.cities.dtos.HorarioDTO;
 import co.edu.uniandes.rest.cities.dtos.HorarioDTO.meses;
@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class HorarioMock {
     // objeto para presentar logs de las operaciones
-    private final static Logger logger = Logger.getLogger(CityLogicMock.class.getName());
+    private final static Logger logger = Logger.getLogger(HorarioMock.class.getName());
      
     private HorarioDTO horario;
     
