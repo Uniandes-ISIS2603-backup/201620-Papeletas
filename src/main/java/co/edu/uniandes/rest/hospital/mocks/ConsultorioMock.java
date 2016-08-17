@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.rest.cities.mocks;
+package co.edu.uniandes.rest.hospital.mocks;
 
-import co.edu.uniandes.rest.cities.dtos.ConsultorioDTO;
+import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
 import co.edu.uniandes.rest.cities.exceptions.ConsultorioException;
 import java.util.ArrayList;
 import java.util.List;
