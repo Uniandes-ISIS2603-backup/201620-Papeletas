@@ -78,7 +78,7 @@ public class MedicoMock {
      * @return lista de consultorios
      * @throws ConsultorioException Si la lista no existe
      */
-    public List<MedicoDTO> getConsultorios () throws MedicoException
+    public List<MedicoDTO> getMedico () throws MedicoException
     {
         if (medicos == null)
         {

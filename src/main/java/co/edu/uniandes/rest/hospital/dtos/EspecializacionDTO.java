@@ -1,4 +1,4 @@
-package co.edu.uniandes.rest.cities.dtos;
+package co.edu.uniandes.rest.hospital.dtos;
 
 public class EspecializacionDTO
 {
