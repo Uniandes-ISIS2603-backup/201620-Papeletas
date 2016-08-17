@@ -10,6 +10,7 @@ import co.edu.uniandes.rest.cities.exceptions.ConsultorioException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -30,7 +31,7 @@ public class ConsultorioMock {
     /**
      * Lista de consultorios
      */
-    private ArrayList <ConsultorioDTO> consultorios;
+    private static ArrayList <ConsultorioDTO> consultorios;
     
     /**
      * Constructor de la clase
@@ -46,12 +47,16 @@ public class ConsultorioMock {
                 boolean libre = false;
                 //Para probar la clase, los consultorios con id par están libres
                 if (l % 2 == 0) libre = true;
-                
+               
                 ConsultorioDTO consultorio = new ConsultorioDTO(l++, libre);
                 
                 consultorios.add(consultorio);
             }
         }
+        logger.setLevel(Level.INFO);
+        
+        logger.info("Inicializa la lista de ciudades");
+    	logger.info("ciudades" + consultorios );
         
     }
     
@@ -97,6 +102,16 @@ public class ConsultorioMock {
                     newId = consultorio.getId() + 1;
             }
             newConsultorio.setId(newId);
+        }
+        
+        if (newConsultorio.getDisponibilidad() == null)
+        {
+            boolean [] disponibilidad = new boolean [ConsultorioDTO.NUM_CUARTOS_DE_HORA_DIA];
+            
+            for (int i = 0; i < ConsultorioDTO.NUM_CUARTOS_DE_HORA_DIA; i++)
+                disponibilidad[i]= false;
+            
+            newConsultorio.setDisponibilidad(disponibilidad);
         }
         
         consultorios.add(newConsultorio);
@@ -177,7 +192,7 @@ public class ConsultorioMock {
                 {
                     if (i < 0 || i > 95)
                         throw new ConsultorioException ("Debe ingresar un número entre 0 y 95");
-                    consul.setDisponibilidad(i);
+                    consul.changeDisponibilidad(i);
                 }
             }
         }

@@ -46,10 +46,9 @@ public class ConsultorioDTO {
         this.id = id;
         this.libre = libre;
         this.disponibilidad = new boolean [NUM_CUARTOS_DE_HORA_DIA];
-        
         //Por defecto, el consultorio siempre está disponible
-        for (int j = 0; j < NUM_CUARTOS_DE_HORA_DIA; j++)
-                disponibilidad[j] = false;
+        for (int i = 0; i < NUM_CUARTOS_DE_HORA_DIA; i++)
+            disponibilidad[i] = false;
     }
     
     /**
@@ -97,11 +96,16 @@ public class ConsultorioDTO {
         return disponibilidad;
     }
     
+    public void setDisponibilidad (boolean [] disponibilidad)
+    {
+        this.disponibilidad = disponibilidad;
+    }
+    
     /**
      * Modifica la disponibilidad del consultorio en el indice de la hora especificada
      * @param i inidce de la hora especificada.
      */
-    public void setDisponibilidad (int i)
+    public void changeDisponibilidad (int i)
     {
         if (disponibilidad [i])
             disponibilidad [i] = false;
