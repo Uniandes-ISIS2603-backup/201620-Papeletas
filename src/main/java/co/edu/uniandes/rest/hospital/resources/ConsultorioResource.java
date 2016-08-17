@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.rest.cities.resources;
+package co.edu.uniandes.rest.hospital.resources;
 
-import co.edu.uniandes.rest.cities.dtos.ConsultorioDTO;
+import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
 import co.edu.uniandes.rest.cities.exceptions.ConsultorioException;
-import co.edu.uniandes.rest.cities.mocks.ConsultorioMock;
+import co.edu.uniandes.rest.hospital.mocks.ConsultorioMock;
 import java.util.List;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;

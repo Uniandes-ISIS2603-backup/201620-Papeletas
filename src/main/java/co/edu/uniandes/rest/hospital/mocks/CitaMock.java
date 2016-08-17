@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.rest.hospital.mocks;
 
-import co.edu.uniandes.rest.cities.dtos.CitaDTO;
+import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.cities.exceptions.CitaException;
 import java.util.ArrayList;
 import java.util.Date;

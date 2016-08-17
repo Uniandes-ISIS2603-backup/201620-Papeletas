@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.rest.cities.dtos;
+package co.edu.uniandes.rest.hospital.dtos;
 
+import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import java.util.Date;
 
 /**
@@ -29,16 +30,16 @@ public class CitaDTO
     private boolean hayCita;
     
     //medico asiganado a la cita
-    private Medico medico;
+    private MedicoDTO medico;
     
     //consultorio asignado a la cita
-    private Consultorio consultorio;
+    private ConsultorioDTO consultorio;
    
-    private Paciente paciente;
+    private PacienteDTO paciente;
      /**
      * Constructor. Crea una nueva cita.
      */
-    public CitaDTO(long pId, Date pFecha, Medico pMedico, Consulatorio pConsultorio, Paciente pPaciente) 
+    public CitaDTO(long pId, Date pFecha, MedicoDTO pMedico, ConsultorioDTO pConsultorio, PacienteDTO pPaciente) 
     {
         id = pId;
         fecha = pFecha;
