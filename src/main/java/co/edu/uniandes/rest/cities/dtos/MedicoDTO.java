@@ -6,6 +6,7 @@
 package co.edu.uniandes.rest.cities.dtos;
 
 import co.edu.uniandes.rest.cities.mocks.EspecializacionMock;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -27,18 +28,29 @@ public class MedicoDTO {
     /**
      * disponibilidad del medico
      */
-    private Date disponibilidad;
+    private String disponibilidad;
 
     /**
      * Especialidad del medico
      */
     private EspecializacionDTO espe;
+    
+    private String especialidad;
+    
+    /**
+     * 
+     * @param nombre
+     * @param id
+     * @param disponibilidad
+     * @param espe 
+     */
 
-    public MedicoDTO(String nombre, Long id, Date disponibilidad, EspecializacionDTO espe) {
+    public MedicoDTO(String nombre, Long id, String disponibilidad, String espe) {
+        
         this.nombre = nombre;
         this.id = id;
         this.disponibilidad = disponibilidad;
-        this.espe = espe;
+        especialidad = espe;
 
     }
 
@@ -83,7 +95,7 @@ public class MedicoDTO {
      *
      * @return disponibilidad del medico
      */
-    public Date getDisponibilidad() {
+        public String getDisponibilidad() {
         return disponibilidad;
     }
 
@@ -92,7 +104,7 @@ public class MedicoDTO {
      *
      * @param disponibilidad disponibilidad del medico
      */
-    public void setDisponibilidad(Date disponibilidad) {
+    public void setDisponibilidad(String disponibilidad) {
         this.disponibilidad = disponibilidad;
     }
 
@@ -112,6 +124,17 @@ public class MedicoDTO {
      */
     public void setEspe(EspecializacionDTO espe) {
         this.espe = espe;
+    }
+    
+    
+    public String getEspecializacion()
+    {
+        return especialidad;
+    }
+    
+    public void setEspecialidad(String e)
+    {
+        this.especialidad=e;
     }
     
     @Override
