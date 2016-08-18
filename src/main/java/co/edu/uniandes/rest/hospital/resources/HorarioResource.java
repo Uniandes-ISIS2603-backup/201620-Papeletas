@@ -6,7 +6,7 @@
 package co.edu.uniandes.rest.hospital.resources;
 
 import co.edu.uniandes.rest.hospital.dtos.HorarioDTO;
-import co.edu.uniandes.rest.hospital.mocks.HorarioMock;
+import co.edu.uniandes.rest.hospital.mocks.HorarioLogicMock;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -23,7 +23,8 @@ import javax.ws.rs.Produces;
 @Path("horario")
 @Produces("application/json")
 public class HorarioResource {
-    HorarioMock horarioLogica = new HorarioMock();
+    
+    HorarioLogicMock horarioLogica = new HorarioLogicMock();
     
     @GET
     public HorarioDTO getHorario(){
@@ -31,9 +32,8 @@ public class HorarioResource {
     }
     
     @POST
-    @Path("{pMes: \\d+}/{pAño: \\d+}")
-    public HorarioDTO createHorario(@PathParam("pMes")int pMes,@PathParam("pAño")int pAño){
-        return horarioLogica.crearHorario(pMes, pAño);
+    public HorarioDTO createHorario(HorarioDTO pHorario){
+        return horarioLogica.crearHorario(pHorario);
     }
     
     @PUT
