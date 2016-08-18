@@ -22,7 +22,7 @@ import javax.ws.rs.Produces;
  *
  * @author Nicolas
  */
-@Path("consultorio")
+@Path("medico")
 @Produces("application/json")
 public class MedicoResource {
     

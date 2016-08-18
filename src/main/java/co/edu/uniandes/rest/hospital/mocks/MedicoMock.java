@@ -104,8 +104,8 @@ public class MedicoMock {
             long nid = 1;
             for (MedicoDTO medic : medicos)
             {
-                if (nid <= medico.getId())
-                    nid = medico.getId() + 1;
+                if (nid <= medic.getId())
+                    nid = medic.getId() + 1;
             }
             medico.setId(nid);
             medicos.add(medico);
