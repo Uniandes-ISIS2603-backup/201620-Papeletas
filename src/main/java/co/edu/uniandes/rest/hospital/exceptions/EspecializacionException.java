@@ -1,5 +1,11 @@
 package co.edu.uniandes.rest.hospital.exceptions;
 
+/**
+ * 
+ * @author Juan Camilo Lara
+ *
+ */
+
 public class EspecializacionException extends Exception
 {
 	/**
