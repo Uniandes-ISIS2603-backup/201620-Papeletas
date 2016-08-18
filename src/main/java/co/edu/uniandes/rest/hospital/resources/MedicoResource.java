@@ -22,7 +22,7 @@ import javax.ws.rs.Produces;
  *
  * @author Nicolas
  */
-@Path("medico")
+@Path("medicos")
 @Produces("application/json")
 public class MedicoResource {
     
@@ -30,12 +30,14 @@ public class MedicoResource {
     /**
      * Clase MedicoMock
      */
-    private MedicoMock medico;
+     MedicoMock medico= new MedicoMock();
     
-    /**
-     * Metodo que optiene la lista de todos los medicos
-     */
-    
+ 
+ /**
+  * retorna una lista con los medicos y sus datos
+  * @return lista de medicos
+  * @throws MedicoException si no hay medicso en la lista 
+  */ 
     @GET
     public List<MedicoDTO> getMedicos() throws MedicoException
     {
@@ -48,7 +50,7 @@ public class MedicoResource {
      * @throws MedicoException cuando no existe un medico con el id
      */
     @GET
-    @Path("{id: \\d+}")
+    @Path("{id: \\d+}") 
     public MedicoDTO getMedicoID(@PathParam("id")Long id)throws MedicoException
     {
         return medico.getMedID(id);
@@ -61,7 +63,7 @@ public class MedicoResource {
      * @throws MedicoException cuando ya existe un medico con el id dado 
      */
     @POST
-    public MedicoDTO createMedico(MedicoDTO medi)throws MedicoException
+    public MedicoDTO creatMedico(MedicoDTO medi)throws MedicoException
     {
      return medico.createMedico(medi);
     }
@@ -69,7 +71,7 @@ public class MedicoResource {
     
     /**
      * Borra un medico
-     * @param medicoN medico a borrar
+     * @param id
      * @throws MedicoException si no existe el medico que se quiere eliminar
      */
     @DELETE
@@ -82,6 +84,7 @@ public class MedicoResource {
     /**
      * Actualiza un medico dado su id
      * @param medicoN Medico con los nuevos datos
+     * @throws MedicoException
      * @return medico actualizado
      */
     @PUT

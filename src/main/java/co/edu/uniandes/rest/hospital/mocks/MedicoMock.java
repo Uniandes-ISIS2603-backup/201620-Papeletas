@@ -31,32 +31,21 @@ public class MedicoMock {
     private final static int NUM_MED = 103;
 
     /**
-     * Arraylisto con los medicos
+     * Arraylist con los medicos
      */
-    private ArrayList<MedicoDTO> medicos;
+    private static ArrayList<MedicoDTO> medicos;
 
-    /**
-     * String con la disponibiliidad de los medicos
-     */
-    private String disponibilidad;
-
-    /**
-     * Asociacion con la clase MEdicoDTO
-     */
-    private MedicoDTO medicoDTO;
 
     public MedicoMock() {
-        if (medicos == null)
-        {
+        if (medicos == null) {
+            medicos = new ArrayList<>();
             medicos.add(new MedicoDTO("Nicolas Simmonds", 1L, "02/04-15/04", "Ortopedista"));
             medicos.add(new MedicoDTO("Juan Mendez", 2L, "15/04-25/04", "Cardiologo"));
             medicos.add(new MedicoDTO("Diego Castro", 3L, "01/04-30/04", "Ginecologo"));
             medicos.add(new MedicoDTO("Juan Useche", 4L, "08/04-11/04", "Otorrino"));
             medicos.add(new MedicoDTO("Juan Lara", 5L, "20/04-29/04", "Oftalmologo"));
-
         }
         logger.setLevel(Level.INFO);
-
         logger.info("Inicializa la lista de ciudades");
         logger.info("ciudades" + medicos);
     }
@@ -77,6 +66,8 @@ public class MedicoMock {
     }
 
     public MedicoDTO createMedico(MedicoDTO medico) throws MedicoException {
+        logger.info("recibiendo solicitud de agregar medico " + medico);
+
         if (medico.getId() != null) {
             for (MedicoDTO medic : medicos) {
                 if (Objects.equals(medic.getId(), medico.getId())) {
@@ -91,8 +82,8 @@ public class MedicoMock {
                 }
             }
             medico.setId(nid);
-            medicos.add(medico);
         }
+        medicos.add(medico);
         return medico;
     }
 
@@ -113,17 +104,20 @@ public class MedicoMock {
         return med;
     }
 
-    public void deleteMedico(long id) throws MedicoException {
+    public void deleteMedico(Long id) throws MedicoException {
         if (medicos == null) {
             throw new MedicoException("la lista de medicos esta vacia");
         } else {
+            boolean ya = false;
             for (MedicoDTO medic : medicos) {
                 if (Objects.equals(medic.getId(), id)) {
                     medicos.remove(medic);
-                    return;
+                    ya = true;
                 }
             }
-            throw new MedicoException("El medico que desea eliminar non existe");
+            if (!ya) {
+                throw new MedicoException("El medico que desea eliminar non existe");
+            }
         }
     }
 

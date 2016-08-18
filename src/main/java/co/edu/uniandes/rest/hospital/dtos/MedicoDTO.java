@@ -32,7 +32,6 @@ public class MedicoDTO {
     /**
      * Especialidad del medico
      */
-    private EspecializacionDTO espe;
     
     private String especialidad;
     
@@ -49,7 +48,7 @@ public class MedicoDTO {
         this.nombre = nombre;
         this.id = id;
         this.disponibilidad = disponibilidad;
-        especialidad = espe;
+        this.especialidad = espe;
 
     }
 
@@ -107,24 +106,7 @@ public class MedicoDTO {
         this.disponibilidad = disponibilidad;
     }
 
-    /**
-     * Retorna un objeto con la especializacion del medico
-     *
-     * @return datos de la especializacion del medico
-     */
-    public EspecializacionDTO getEspe() {
-        return espe;
-    }
-
-    /**
-     * Modifica le especializacion del medico
-     *
-     * @param espe Especializacion del medico
-     */
-    public void setEspe(EspecializacionDTO espe) {
-        this.espe = espe;
-    }
-    
+  
     
     public String getEspecializacion()
     {
@@ -136,10 +118,6 @@ public class MedicoDTO {
         this.especialidad=e;
     }
     
-    @Override
-    public String toString()
-    {
-        return "{id : "+getId()+" ,nombre :"+getNombre()+" ,Especialidad :" +getEspe().getNombre()+"}";
-    }
+   
 
 }
