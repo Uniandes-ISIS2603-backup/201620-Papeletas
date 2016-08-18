@@ -18,13 +18,33 @@ public class EventoDTO {
         horaIni = 10;
         horaFin = 11;
     }
-    
-    public int getHoraIni(){
+
+    /**
+     * @return the horaIni
+     */
+    public int getHoraIni() {
         return horaIni;
     }
-    
-    public int getHoraFin(){
+
+    /**
+     * @param horaIni the horaIni to set
+     */
+    public void setHoraIni(int horaIni) {
+        this.horaIni = horaIni;
+    }
+
+    /**
+     * @return the horaFin
+     */
+    public int getHoraFin() {
         return horaFin;
+    }
+
+    /**
+     * @param horaFin the horaFin to set
+     */
+    public void setHoraFin(int horaFin) {
+        this.horaFin = horaFin;
     }
     
     

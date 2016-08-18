@@ -24,7 +24,7 @@ public class HorarioLogicMock {
     /**
      * Horario  
      */
-    private HorarioDTO horario;
+    private static HorarioDTO horario;
     
     
     public HorarioLogicMock(){
@@ -53,7 +53,9 @@ public class HorarioLogicMock {
      */
     public HorarioDTO crearHorario(HorarioDTO pHorario){
         logger.info("Recibiendo solicitud de crear nuevo horario " + pHorario);
-        horario = new HorarioDTO(pHorario.getMes() , pHorario.getAño());
+        
+        horario = new HorarioDTO(pHorario.getMonth() , pHorario.getYear());
+        logger.info("Horario modificado " + horario);
         return horario; 
     }
     
@@ -72,7 +74,12 @@ public class HorarioLogicMock {
      * Borra el horario actual
      */
     public void borrarHorario(){
-        logger.info("Recibiendo solicitud de eliminar horario. ");
-        horario = new HorarioDTO();
+        logger.info("Recibiendo solicitud de eliminar horario.");
+        
+        logger.info("Eiminando horario.");
+        horario = new HorarioDTO(meses.ENERO, 1997);
+        
+        logger.info("Horario eliminado y sustituido por el deafult: " + horario);
+        
     }
 }

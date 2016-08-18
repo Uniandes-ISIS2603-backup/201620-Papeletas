@@ -17,7 +17,7 @@ public class HorarioDTO {
     // Enum
     //------------------------------------------------
     /**
-     * Enumeración que representa los meses del año
+     * Enumeración que representa los meses del year
      */
     public enum meses{ENERO, FEBRERO, FEBRERO_B, MARZO, ABRIL, MAYO, JUNIO, JULIO, AGOSTO, SEPTIEMBRE, OCTUBRE, NOVIEMBRE, DICIEMBRE};
     
@@ -27,17 +27,17 @@ public class HorarioDTO {
     /**
      * Año del horario
      */
-    private int año;
+    private int year;
     
     /**
      * Mes del horario
      */
-    private meses mes;
+    private meses month;
     
     /**
      * Arreglo de días del horario
      */
-    private ArrayList<DiaDTO> dias;
+    private DiaDTO[] dias;
     
     //------------------------------------------------
     // Constructores
@@ -46,22 +46,21 @@ public class HorarioDTO {
      * Constructor de la clase, incializa el arreglo de días y los días dependiendo el mes en que el horario es creado
      */
     public HorarioDTO(){
-        año = 1997;
-        mes = meses.ENERO;
-        dias = new ArrayList(30);
-        for (int i = 0; i < dias.size(); i++) {
-            dias.add(new DiaDTO());
+        year = 1997;
+        month = meses.ENERO;
+        dias = new DiaDTO[31];
+        for (int i = 0; i < dias.length; i++) {
+            dias[i]= new DiaDTO();
         }
     }
-    
     /**
-     * Constructor de la clase, incializa el arreglo de días y los días dependiendo el mes
-     * @param pMes El mes del horario
-     * @param pAño El año del horario
+     * Constructor de la clase, incializa el arreglo de días y los días dependiendo el month
+     * @param pMes El month del horario
+     * @param pAño El year del horario
      */
     public HorarioDTO(meses pMes, int pAño){ 
-        año = pAño;
-        mes = pMes;
+        year = pAño;
+        month = pMes;
         int d = 31;
         if(pMes == meses.FEBRERO)
             d = 28;
@@ -69,7 +68,11 @@ public class HorarioDTO {
             d = 29;
         else if(pMes == meses.ABRIL || pMes == meses.JUNIO || pMes == meses.SEPTIEMBRE || pMes == meses.NOVIEMBRE)
             d = 30;
-        dias = new ArrayList(d);   
+        dias = new DiaDTO[d];  
+        
+        for (int i = 0; i < dias.length; i++) {
+            dias[i]= new DiaDTO();
+        }
     }
     
     //------------------------------------------------
@@ -78,45 +81,49 @@ public class HorarioDTO {
     /**
      * @return the dias
      */
-    public ArrayList<DiaDTO> getDias() {
+    public DiaDTO[] getDias() {
         return dias;
     }
 
     /**
      * @param dias the dias to set
      */
-    public void setDias(ArrayList<DiaDTO> dias) {
+    public void setDias(DiaDTO[] dias) {
         this.dias = dias;
     }
 
     /**
-     * @return the mes
+     * @return the month
      */
-    public meses getMes() {
-        return mes;
+    public meses getMonth() {
+        return month;
     }
 
     /**
-     * @param mes the mes to set
+     * @param month the month to set
      */
-    public void setMes(meses mes) {
-        this.mes = mes;
+    public void setMonth(meses month) {
+        this.month = month;
     }
     
     /**
-     * @return the año
+     * @return the year
      */
-    public int getAño() {
-        return año;
+    public int getYear() {
+        return year;
     }
 
     /**
-     * @param año the año to set
+     * @param year the year to set
      */
-    public void setMes(int año) {
-        this.año = año;
+    public void setYear(int year) {
+        this.year = year;
     }
+
     
+    public String toString() {
+        return "Año: " + year + "Mes: " + month + "Dias: " + dias.length;
+    }
     
     
 }

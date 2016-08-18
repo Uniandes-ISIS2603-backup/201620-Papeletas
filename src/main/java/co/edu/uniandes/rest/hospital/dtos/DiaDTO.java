@@ -27,8 +27,39 @@ public class DiaDTO {
             eventos.add(new EventoDTO());
         }
     }
-    
-    public ArrayList<EventoDTO> darEventos(){
-        return eventos;
+
+    /**
+     * @param eventos the eventos to set
+     */
+    public void setEventos(ArrayList<EventoDTO> eventos) {
+        this.eventos = eventos;
+    }
+
+    /**
+     * @return the horaInicio
+     */
+    public int getHoraInicio() {
+        return horaInicio;
+    }
+
+    /**
+     * @param horaInicio the horaInicio to set
+     */
+    public void setHoraInicio(int horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    /**
+     * @return the horaFin
+     */
+    public int getHoraFin() {
+        return horaFin;
+    }
+
+    /**
+     * @param horaFin the horaFin to set
+     */
+    public void setHoraFin(int horaFin) {
+        this.horaFin = horaFin;
     }
 }
