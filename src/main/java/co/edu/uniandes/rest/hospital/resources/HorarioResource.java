@@ -13,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 /**
@@ -30,7 +31,8 @@ public class HorarioResource {
     }
     
     @POST
-    public HorarioDTO createHorario(int pMes, int pAño){
+    @Path("{pMes: \\d+}/{pAño: \\d+}")
+    public HorarioDTO createHorario(@PathParam("pMes")int pMes,@PathParam("pAño")int pAño){
         return horarioLogica.crearHorario(pMes, pAño);
     }
     
