@@ -24,11 +24,10 @@ public class HorarioDTO {
     //------------------------------------------------
     // Atributos
     //------------------------------------------------
-    
     /**
-     * Arreglo de días del horario
+     * Año del horario
      */
-    private ArrayList<DiaDTO> dias;
+    private int año;
     
     /**
      * Mes del horario
@@ -36,9 +35,9 @@ public class HorarioDTO {
     private meses mes;
     
     /**
-     * Año del horario
+     * Arreglo de días del horario
      */
-    private int año;
+    private ArrayList<DiaDTO> dias;
     
     //------------------------------------------------
     // Constructores
@@ -47,6 +46,8 @@ public class HorarioDTO {
      * Constructor de la clase, incializa el arreglo de días y los días dependiendo el mes en que el horario es creado
      */
     public HorarioDTO(){
+        año = 1997;
+        mes = meses.ENERO;
         dias = new ArrayList(30);
         for (int i = 0; i < dias.size(); i++) {
             dias.add(new DiaDTO());
@@ -59,8 +60,8 @@ public class HorarioDTO {
      * @param pAño El año del horario
      */
     public HorarioDTO(meses pMes, int pAño){ 
-        mes = pMes;
         año = pAño;
+        mes = pMes;
         int d = 31;
         if(pMes == meses.FEBRERO)
             d = 28;

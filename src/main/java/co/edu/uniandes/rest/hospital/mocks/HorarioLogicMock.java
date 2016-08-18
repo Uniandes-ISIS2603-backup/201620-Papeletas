@@ -1,0 +1,78 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package co.edu.uniandes.rest.hospital.mocks;
+
+import co.edu.uniandes.rest.hospital.dtos.HorarioDTO;
+import co.edu.uniandes.rest.hospital.dtos.HorarioDTO.meses;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ * Horario logic Mock
+ * Mock del recurso horario
+ * @author ac.cabezas716
+ */
+public class HorarioLogicMock {
+    /**
+     * Objeto para presentar logs de las operaciones
+     */
+    private final static Logger logger = Logger.getLogger(HorarioLogicMock.class.getName());
+
+    /**
+     * Horario  
+     */
+    private HorarioDTO horario;
+    
+    
+    public HorarioLogicMock(){
+        horario = new HorarioDTO(meses.DICIEMBRE, 2016);
+        
+        // indica que se muestren todos los mensajes
+    	logger.setLevel(Level.INFO);
+    	
+    	logger.info("Inicializa el horario");
+    	logger.info("Horario " + horario );
+    }
+    
+    /**
+     * Retorna el horario 
+     * @return 
+     */
+    public HorarioDTO darHorario(){
+        logger.info("Recibiendo solicitud de dar horario. ");
+        return horario;
+    }
+    
+    /**
+     * Crea un nuevo Horario
+     * @param pHorario
+     * @return Horario creado
+     */
+    public HorarioDTO crearHorario(HorarioDTO pHorario){
+        logger.info("Recibiendo solicitud de crear nuevo horario " + pHorario);
+        horario = new HorarioDTO(pHorario.getMes() , pHorario.getAño());
+        return horario; 
+    }
+    
+    /**
+     * Actualiza el horario actual
+     * @param pHorario 
+     * @return 
+     */
+    public HorarioDTO actualizarHorario(HorarioDTO pHorario){
+        logger.info("Recibiendo solicitud de actualizar horario " + pHorario);
+        horario = pHorario;
+        return horario;
+    }
+    
+    /**
+     * Borra el horario actual
+     */
+    public void borrarHorario(){
+        logger.info("Recibiendo solicitud de eliminar horario. ");
+        horario = new HorarioDTO();
+    }
+}
