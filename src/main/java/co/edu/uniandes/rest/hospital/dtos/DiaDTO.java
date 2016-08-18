@@ -21,7 +21,15 @@ public class DiaDTO {
     
     public DiaDTO(){
         horaInicio = 7;
-        horaFin = 7;
+        horaFin = 19;
+        eventos = new ArrayList();
+        for (int i = 0; i < eventos.size(); i++) {
+            eventos.add(new EventoDTO());
+        }
+    }
+    public DiaDTO(int pHoraInicio, int pHoraFin){
+        horaInicio = pHoraInicio;
+        horaFin = pHoraFin;
         eventos = new ArrayList();
         for (int i = 0; i < eventos.size(); i++) {
             eventos.add(new EventoDTO());

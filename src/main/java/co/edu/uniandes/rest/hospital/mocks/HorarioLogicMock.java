@@ -28,13 +28,14 @@ public class HorarioLogicMock {
     
     
     public HorarioLogicMock(){
-        horario = new HorarioDTO(meses.DICIEMBRE, 2016);
-        
         // indica que se muestren todos los mensajes
     	logger.setLevel(Level.INFO);
     	
     	logger.info("Inicializa el horario");
     	logger.info("Horario " + horario );
+        if(horario == null){
+            horario = new HorarioDTO(meses.DICIEMBRE, 2016);
+        }
     }
     
     /**
@@ -42,7 +43,9 @@ public class HorarioLogicMock {
      * @return 
      */
     public HorarioDTO darHorario(){
-        logger.info("Recibiendo solicitud de dar horario. ");
+        logger.info("Recibiendo solicitud de dar horario.");
+        
+        logger.info("Retornando horario.");
         return horario;
     }
     
@@ -56,7 +59,7 @@ public class HorarioLogicMock {
         
         horario = new HorarioDTO(pHorario.getMonth() , pHorario.getYear());
         logger.info("Horario modificado " + horario);
-        return horario; 
+        return pHorario; 
     }
     
     /**
@@ -76,7 +79,7 @@ public class HorarioLogicMock {
     public void borrarHorario(){
         logger.info("Recibiendo solicitud de eliminar horario.");
         
-        logger.info("Eiminando horario.");
+        logger.info("Eliminando horario.");
         horario = new HorarioDTO(meses.ENERO, 1997);
         
         logger.info("Horario eliminado y sustituido por el deafult: " + horario);

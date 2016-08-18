@@ -50,7 +50,7 @@ public class HorarioDTO {
         month = meses.ENERO;
         dias = new DiaDTO[31];
         for (int i = 0; i < dias.length; i++) {
-            dias[i]= new DiaDTO();
+            dias[i]= new DiaDTO(i+1, i+1);
         }
     }
     /**
@@ -71,7 +71,7 @@ public class HorarioDTO {
         dias = new DiaDTO[d];  
         
         for (int i = 0; i < dias.length; i++) {
-            dias[i]= new DiaDTO();
+            dias[i]= new DiaDTO(i+1, i+1);
         }
     }
     
