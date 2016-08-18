@@ -66,7 +66,7 @@ public class MedicoMock {
     }
 
     public MedicoDTO createMedico(MedicoDTO medico) throws MedicoException {
-        logger.info("recibiendo solicitud de agregar medico " + medico);
+        logger.info("recibiendo solicitud de agrega r medico " + medico);
 
         if (medico.getId() != null) {
             for (MedicoDTO medic : medicos) {
