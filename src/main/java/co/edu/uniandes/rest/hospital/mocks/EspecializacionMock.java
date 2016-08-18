@@ -6,7 +6,9 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 import co.edu.uniandes.rest.hospital.exceptions.EspecializacionException;
+import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
+import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 
 
 
@@ -48,6 +50,24 @@ public class EspecializacionMock
     	
     	logger.info("agregando especialidad" + specialty);
         especialidades.add(specialty);
+        return specialty;
+    }
+	
+	public EspecializacionDTO getSpecID(int id)throws EspecializacionException
+    {
+        EspecializacionDTO specialty=null;
+        if(especialidades==null)
+            throw new EspecializacionException("La lista de especializaciones esta vacia");
+        else
+        {
+            for(EspecializacionDTO spec:especialidades)
+            {
+                if(Objects.equals(spec.getId(),id))
+                        specialty=spec;        
+            }
+            if(specialty==null)
+                throw new EspecializacionException("No hay especialidades con el id dado");
+        }
         return specialty;
     }
 }
