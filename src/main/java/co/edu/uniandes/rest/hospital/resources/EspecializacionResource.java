@@ -27,6 +27,9 @@ import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 @Produces("application/json")
 public class EspecializacionResource
 {
+	/*
+	 * Especializacion mock
+	 */
 	private EspecializacionMock Especialidad;
 	
 	@GET

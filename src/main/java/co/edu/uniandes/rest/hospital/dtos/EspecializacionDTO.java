@@ -1,5 +1,11 @@
 package co.edu.uniandes.rest.hospital.dtos;
 
+/**
+ * 
+ * @author Juan Camilo Lara
+ *
+ */
+
 public class EspecializacionDTO
 {
 	

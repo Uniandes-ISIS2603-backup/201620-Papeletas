@@ -10,7 +10,11 @@ import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 
-
+/**
+ * 
+ * @author Juan Camilo Lara
+ *
+ */
 
 public class EspecializacionMock
 {
