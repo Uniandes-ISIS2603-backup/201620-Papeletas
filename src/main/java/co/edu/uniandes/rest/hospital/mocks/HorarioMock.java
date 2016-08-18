@@ -5,8 +5,8 @@
  */
 package co.edu.uniandes.rest.hospital.mocks;
 
-import co.edu.uniandes.rest.cities.dtos.HorarioDTO;
-import co.edu.uniandes.rest.cities.dtos.HorarioDTO.meses;
+import co.edu.uniandes.rest.hospital.dtos.HorarioDTO;
+import co.edu.uniandes.rest.hospital.dtos.HorarioDTO.meses;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 

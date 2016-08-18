@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.rest.hospital.mocks;
 
+import co.edu.uniandes.rest.hospital.exceptions.ConsultorioException;
 import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
-import co.edu.uniandes.rest.cities.exceptions.ConsultorioException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

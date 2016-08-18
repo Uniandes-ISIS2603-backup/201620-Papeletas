@@ -5,9 +5,10 @@
  */
 package co.edu.uniandes.rest.hospital.resources;
 
+import co.edu.uniandes.rest.hospital.exceptions.ConsultorioException;
 import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
-import co.edu.uniandes.rest.cities.exceptions.ConsultorioException;
 import co.edu.uniandes.rest.hospital.mocks.ConsultorioMock;
+
 import java.util.List;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;

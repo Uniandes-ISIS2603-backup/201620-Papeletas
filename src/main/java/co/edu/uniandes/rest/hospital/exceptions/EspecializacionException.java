@@ -1,4 +1,4 @@
-package co.edu.uniandes.rest.cities.exceptions;
+package co.edu.uniandes.rest.hospital.exceptions;
 
 public class EspecializacionException extends Exception
 {

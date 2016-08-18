@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
-import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import java.util.Date;
+
+import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 
 /**
  *Objeto de transferencia de datos de Citas.

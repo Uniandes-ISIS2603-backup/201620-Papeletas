@@ -5,8 +5,9 @@
  */
 package co.edu.uniandes.rest.hospital.resources;
 
-import co.edu.uniandes.rest.cities.dtos.HorarioDTO;
+import co.edu.uniandes.rest.hospital.dtos.HorarioDTO;
 import co.edu.uniandes.rest.hospital.mocks.HorarioMock;
+
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;

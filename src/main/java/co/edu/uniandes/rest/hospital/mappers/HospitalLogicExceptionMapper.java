@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.rest.cities.mappers;
+package co.edu.uniandes.rest.hospital.mappers;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 import javax.ws.rs.ext.Provider;
 
-import co.edu.uniandes.rest.cities.exceptions.HospitalLogicException;
+import co.edu.uniandes.rest.hospital.exceptions.HospitalLogicException;
 /**
  *
  * @author df.castro12

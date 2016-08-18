@@ -8,6 +8,7 @@ package co.edu.uniandes.rest.hospital.resources;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import co.edu.uniandes.rest.hospital.mocks.MedicoMock;
+
 import java.util.List;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;

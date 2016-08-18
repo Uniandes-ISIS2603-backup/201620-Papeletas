@@ -5,8 +5,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.logging.Logger;
 
+import co.edu.uniandes.rest.hospital.exceptions.EspecializacionException;
 import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
-import co.edu.uniandes.rest.cities.exceptions.EspecializacionException;
 
 
 
