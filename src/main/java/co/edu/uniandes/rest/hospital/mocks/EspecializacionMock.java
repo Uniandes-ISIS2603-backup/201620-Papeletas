@@ -19,7 +19,11 @@ public class EspecializacionMock
 	 */	
 	private static ArrayList<EspecializacionDTO> especialidades;
 	
-	
+	/**
+	 * 
+	 * @return lista de especialidades en el hospital
+	 * @throws EspecializacionException
+	 */
 	public List<EspecializacionDTO> getSpecialties() throws EspecializacionException
 	{
     	if (especialidades == null)
