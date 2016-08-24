@@ -127,7 +127,7 @@ public class MedicoMock {
         } else {
             boolean ya = false;
             for (MedicoDTO medic : medicos) {
-                if (Objects.equals(medic.getId(), id)) {
+                if (medic.getId().equals(id)) {
                     medicos.remove(medic);
                     ya = true;
                 }
