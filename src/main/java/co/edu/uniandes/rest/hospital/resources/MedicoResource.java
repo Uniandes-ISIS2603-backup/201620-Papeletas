@@ -76,7 +76,7 @@ public class MedicoResource {
      */
     @DELETE
     @Path("{id: \\d+}")
-    public void deleteMedico(Long id) throws MedicoException
+    public void deleteMedico(@PathParam("id")Long id) throws MedicoException
     {
          medico.deleteMedico(id);
     }

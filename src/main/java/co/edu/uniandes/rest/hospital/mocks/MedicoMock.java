@@ -133,7 +133,7 @@ public class MedicoMock {
                 }
             }
             if (!ya) {
-                throw new MedicoException("El medico que desea eliminar non existe");
+                throw new MedicoException("El medico que desea eliminar no existe");
             }
         }
     }

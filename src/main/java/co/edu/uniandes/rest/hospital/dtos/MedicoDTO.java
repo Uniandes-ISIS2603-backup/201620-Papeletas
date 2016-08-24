@@ -32,6 +32,14 @@ public class MedicoDTO {
     
     private String especialidad;
     
+    
+    /**
+     * Constructor vacio
+     */
+    public MedicoDTO()
+    {
+        
+    }
     /**
      * 
      * @param nombre
@@ -47,6 +55,9 @@ public class MedicoDTO {
         this.especialidad = espe;
 
     }
+    
+    
+    
 
     /**
      * retorna el Nombre del medico
