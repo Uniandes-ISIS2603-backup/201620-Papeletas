@@ -46,7 +46,7 @@ public class CitaMock {
 	 * @return lista de ciudades
 	 * @throws CityLogicException cuando no existe la lista en memoria  
 	 */    
-    public List<CitaDTO> getCities() throws CitaException {
+    public List<CitaDTO> getCitas() throws CitaException {
     	if (citas == null) {
     		logger.severe("Error interno: lista de ciudades no existe.");
     		throw new CitaException("Error interno: lista de ciudades no existe.");    		
