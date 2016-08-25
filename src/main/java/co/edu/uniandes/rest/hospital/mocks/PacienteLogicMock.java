@@ -107,7 +107,12 @@ public class PacienteLogicMock {
      * @return boolean si indica si se elimino
      */
     public boolean deletePaciente(Long id){
-        return pacientes.remove(id);
+    	for(int i=0;i<pacientes.size();i++){
+    	if(pacientes.get(i).getId()==id){
+    		return pacientes.remove(pacientes.get(i));
+    	}
+        }
+        return false;
     }
     /**
      * Modifica un paciente
