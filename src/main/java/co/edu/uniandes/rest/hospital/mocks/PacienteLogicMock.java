@@ -124,6 +124,7 @@ public class PacienteLogicMock {
                 index = i;
                 out = true;
             }
+            i++;
         }
         return pacientes.set(i, dto);
     }
