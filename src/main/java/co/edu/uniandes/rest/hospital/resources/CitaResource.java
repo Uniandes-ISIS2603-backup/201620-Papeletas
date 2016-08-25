@@ -22,7 +22,7 @@ import javax.ws.rs.QueryParam;
  *
  * @author jc.useche10
  */
-@Path("cita")
+@Path("citas")
 @Produces("application/json")
 public class CitaResource {
      /**
@@ -82,7 +82,6 @@ public class CitaResource {
      * Actualiza el cita con el id especificado
      * @param id id del cita que se quiere actualizar
      * @param i índice de la hora que se quiere actualizar
-     * @param consul cita actualizado
      * @return el cita actualizado
      * @throws CitaException Si la información del cita está incompleta, el cita con el id no existe o se ingresa un índice fuera del rango
      */

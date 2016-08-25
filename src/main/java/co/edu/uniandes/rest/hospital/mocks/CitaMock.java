@@ -7,6 +7,9 @@ package co.edu.uniandes.rest.hospital.mocks;
 
 import co.edu.uniandes.rest.hospital.exceptions.CitaException;
 import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
+import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
+import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
+import co.edu.uniandes.rest.hospital.dtos.PacienteDTO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -30,8 +33,13 @@ public class CitaMock {
      * Constructor. Crea los datos de ejemplo.
      */
     public CitaMock() {
-
         
+        if (citas == null) {
+            citas = new ArrayList<>();
+            citas.add(new CitaDTO(01,new Date(), new MedicoDTO("Juan Lara", 5L, "20/04-29/04", "Oftalmologo"),new ConsultorioDTO(1L, false),new PacienteDTO(1L, "Diego", "Castro",18,10)));
+           
+        }
+
     	// indica que se muestren todos los mensajes
     	logger.setLevel(Level.INFO);
     	
