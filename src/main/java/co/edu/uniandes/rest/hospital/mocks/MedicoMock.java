@@ -110,7 +110,7 @@ public class MedicoMock {
                 }
             }
             if (med == null) {
-                throw new MedicoException("No hay medicso con el id dado");
+                throw new MedicoException("No hay medicos con el id dado");
             }
         }
         return med;
@@ -123,7 +123,7 @@ public class MedicoMock {
      */
     public void deleteMedico(Long id) throws MedicoException {
         if (medicos == null) {
-            throw new MedicoException("la lista de medicos esta vacia");
+            throw new MedicoException("La lista de medicos esta vacia");
         } else {
             boolean ya = false;
             for (MedicoDTO medic : medicos) {
