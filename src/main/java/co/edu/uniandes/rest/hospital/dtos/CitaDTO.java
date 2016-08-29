@@ -50,6 +50,11 @@ public class CitaDTO
         paciente = pPaciente;
         
     }
+    
+    public CitaDTO()
+    {
+        
+    }
     /**
     * obtiene la fecha para la cual esta programada la cita
     * @returnfecha

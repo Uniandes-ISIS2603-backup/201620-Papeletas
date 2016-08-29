@@ -63,7 +63,7 @@ public class MedicoResource {
      * @throws MedicoException cuando ya existe un medico con el id dado 
      */
     @POST
-    public MedicoDTO creatMedico(MedicoDTO medi)throws MedicoException
+    public MedicoDTO createMedico(MedicoDTO medi)throws MedicoException
     {
      return medico.createMedico(medi);
     }
