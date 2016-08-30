@@ -3,9 +3,9 @@
 
     mod.controller("citasCtrl", ['$scope', '$state', '$stateParams', '$http', 'citasContext', function ($scope, $state, $stateParams, $http, context) {
 
-            // inicialmente el listado de ciudades está vacio
+            // inicialmente el listado de citas está vacio
             $scope.records = {};
-            // carga las ciudades
+            // carga las citas
             $http.get(context).then(function(response){
                 $scope.records = response.data;    
             }, responseError);
