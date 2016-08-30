@@ -14,6 +14,8 @@ import java.util.List;
  * @author ac.cabezas716
  */
 public class HorarioDTO {
+
+    
     //------------------------------------------------
     // Enum
     //------------------------------------------------
@@ -56,8 +58,7 @@ public class HorarioDTO {
     //------------------------------------------------
     // Metodos
     //------------------------------------------------
-   
-    /**
+   /**
      * @return the tipo
      */
     public TipoUsuario getTipo() {
@@ -70,8 +71,8 @@ public class HorarioDTO {
     public void setTipo(TipoUsuario tipo) {
         this.tipo = tipo;
     }
-    
-     /**
+
+    /**
      * @return the nombre
      */
     public String getNombre() {
@@ -84,7 +85,6 @@ public class HorarioDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
 
     /**
      * @return the jornadas
@@ -113,19 +113,16 @@ public class HorarioDTO {
     public void setEventos(ArrayList<EventoDTO> eventos) {
         this.eventos = eventos;
     }
-
-    
+   
     public void addEvento(Date pFechaI, Date pFechaF){
-        eventos.add(new EventoDTO(pFechaI, pFechaF));
+        getEventos().add(new EventoDTO(pFechaI, pFechaF));
     }
     
     public void addJornada(DiaSemana pDia, int pHoraI, int pHoraF){
-        jornadas.add(new JornadaDTO(pDia, pHoraI, pHoraF));
+        getJornadas().add(new JornadaDTO(pDia, pHoraI, pHoraF));
     }
     
     public String toString() {
-        return "Tipo: " + tipo.toString() + "  Jornadas agregadas: " + jornadas.size() + "  Eventos programados: " + eventos.size();
+        return "Tipo: " + getTipo().toString() + "  Jornadas agregadas: " + getJornadas().size() + "  Eventos programados: " + getEventos().size();
     }
-    
-    
 }

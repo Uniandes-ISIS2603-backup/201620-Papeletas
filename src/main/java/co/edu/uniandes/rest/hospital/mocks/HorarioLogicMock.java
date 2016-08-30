@@ -10,7 +10,6 @@ import co.edu.uniandes.rest.hospital.exceptions.HorarioLogicException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,9 +32,8 @@ public class HorarioLogicMock {
 
     	if (horarios == null) {
             horarios = new ArrayList();
-            HorarioDTO nuevo1 = new HorarioDTO(HorarioDTO.TipoUsuario.MEDICO, "Jose Patiño");
+            HorarioDTO nuevo1 = new HorarioDTO(HorarioDTO.TipoUsuario.MEDICO, "Jose Amortegui");
             nuevo1.addJornada(HorarioDTO.DiaSemana.LUNES, 7, 19);
-            horarios.add(nuevo1);
             nuevo1.addJornada(HorarioDTO.DiaSemana.JUEVES, 10, 14);
             horarios.add(nuevo1);
             HorarioDTO nuevo2 = new HorarioDTO(HorarioDTO.TipoUsuario.CONSULTORIO, "204_Cardiología");
