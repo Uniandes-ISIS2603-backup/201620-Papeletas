@@ -7,6 +7,7 @@ package co.edu.uniandes.rest.hospital.dtos;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Clase que representa un horario
@@ -88,7 +89,7 @@ public class HorarioDTO {
     /**
      * @return the jornadas
      */
-    public ArrayList<JornadaDTO> getJornadas() {
+    public List<JornadaDTO> getJornadas() {
         return jornadas;
     }
 
@@ -102,7 +103,7 @@ public class HorarioDTO {
     /**
      * @return the eventos
      */
-    public ArrayList<EventoDTO> getEventos() {
+    public List<EventoDTO> getEventos() {
         return eventos;
     }
 

@@ -23,7 +23,7 @@ import javax.ws.rs.Consumes;
  *
  * @author ac.cabezas716
  */
-@Path("horario")
+@Path("horarios")
 @Produces("application/json")
 @Consumes("application/json")
 public class HorarioResource {

@@ -32,7 +32,7 @@ public class HorarioLogicMock {
     public HorarioLogicMock() {
 
     	if (horarios == null) {
-            horarios = new ArrayList<>();
+            horarios = new ArrayList();
             HorarioDTO nuevo1 = new HorarioDTO(HorarioDTO.TipoUsuario.MEDICO, "Jose Patiño");
             nuevo1.addJornada(HorarioDTO.DiaSemana.LUNES, 7, 19);
             horarios.add(nuevo1);
