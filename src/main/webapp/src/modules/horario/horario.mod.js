@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-var mod = ng.module("horarioModule", ["ui-router"]);
+var mod = ng.module("horarioModule", ["ui.router"]);
 
 mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
         var basePath = 'src/modules/horario/';

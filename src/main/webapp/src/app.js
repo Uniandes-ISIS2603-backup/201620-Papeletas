@@ -1,4 +1,4 @@
-(function (ng) {
+00(function (ng) {
 
     var mod = ng.module("mainView", [
         "ui.router",
