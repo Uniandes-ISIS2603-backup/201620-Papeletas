@@ -1,7 +1,7 @@
 
     <div class="col-md-6 well">
         <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000"></alert>
-        <form| novalidate name="form" id="medico-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+        <form novalidate name="form" id="medico-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
 
             <div ng-messages="form.$error">
                 <div ng-message="required">Por favor, llene los campos con la informacion del médico</div>
