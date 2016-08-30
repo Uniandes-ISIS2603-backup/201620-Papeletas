@@ -4,11 +4,7 @@
  * and open the template in the editor.
  */
 var mod = ng.module("pacienteModule",["ui-router"]);
-<<<<<<< HEAD
 
-
-
-=======
 mod.constant("pacienteContext","api/pacientes");
 mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $urlRouterProvider){
         var basePath = 'src/modules/paciente/';
@@ -57,4 +53,4 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
             }
         })
 }])
->>>>>>> b138853f21cdb9ced581303c088040045abe5700
+
