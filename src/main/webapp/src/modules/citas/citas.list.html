@@ -3,14 +3,17 @@
     <table class="table table-striped" class="col-md-4">
         <thead>
             <tr>
-                <th>Name</th>        
-                <th>Actions</th>
+                <th>ID</th>
+                <th>Fecha</th>   
+                <th>Duración</th>
+                <th>Acciones</th>  
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="record in records">
                 <td id="{{$index}}-name">{{record.name}}</td>
-
+                <td id="{{$index}}-fecha">{{record.fecha}}</td>
+                <td id="{{$index}}-duracion">{{record.duracion}}</td>
                 <td>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="citaEdit({citaId: record.id})"><span class="glyphicon glyphicon-edit"></span> Edit</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Remove</button>
