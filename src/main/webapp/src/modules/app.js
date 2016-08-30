@@ -1,6 +1,6 @@
 (function (ng) {
 
-    var mod = ng.module("mainApp", [
+    var mod = ng.module("mainView", [
         "ui.router",
         "citasModule",
         "pacienteModule",

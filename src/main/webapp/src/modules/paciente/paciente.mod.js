@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var mod = ng.module("pacienteModule",["ui-router"]);
+var mod = angular.module("pacienteModule",["ui-router"]);
 
 mod.constant("pacienteContext","api/pacientes");
 mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $urlRouterProvider){
@@ -13,7 +13,7 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
             url: '/pacientes',
             views: {
                 'mainView': {
-                    controller: 'pacientesCtrl',
+                    controller: 'paciente.ctrl.js',
                     controllerAs: 'ctrl',
                     templateUrl: basePath + 'pacientes.list.html'
                 }
@@ -22,7 +22,7 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
             url: '/pacientes/create',
             views: {
                 'mainView': {
-                    controller: 'pacientesCtrl',
+                    controller: 'paciente.ctrl.js',
                     controllerAs: 'ctrl',
                     templateUrl: basePath + 'pacientes.create.html'
                 }
@@ -34,7 +34,7 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
             },
             views: {
                 'mainView': {
-                    controller: 'pacientesCtrl',
+                    controller: 'paciente.ctrl.js',
                     controllerAs: 'ctrl',
                     templateUrl: basePath + 'pacientes.create.html'
                 }
@@ -46,11 +46,11 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
             },
             views: {
                 'mainView': {
-                    controller: 'pacientesCtrl',
+                    controller: 'paciente.ctrl.js',
                     controllerAs: 'ctrl',
                     templateUrl: basePath + 'pacientes.delete.html'
                 }
             }
-        })
-}])
+        });
+}]);
 
