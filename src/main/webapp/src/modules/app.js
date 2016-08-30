@@ -2,7 +2,7 @@
 
     var mod = ng.module("mainApp", [
         "ui.router",
-        "citAsModule",
+        "citasModule",
         "pacienteModule",
         "ngMessages"
     ]);
@@ -14,6 +14,8 @@
     mod.config(['$urlRouterProvider', function ($urlRouterProvider) {
             $urlRouterProvider.otherwise('/citasList');
         }]);
-
+    mod.config(['$urlRouterProvider', function ($urlRouterProvider) {
+            $urlRouterProvider.otherwise('/pacientesList');
+        }]);
   
 })(window.angular);
