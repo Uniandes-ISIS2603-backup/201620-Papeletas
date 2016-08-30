@@ -4,18 +4,44 @@
  * and open the template in the editor.
  */
 
-var mod = ng.module("horarioModule", ["ui-router"]);
+(function (ng) {
+    var mod = ng.module("horarioModule", ["ngMessages", "ui.router"]);
+    mod.constant("horarioContext", "api/horario");
+    mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
+            var basePath = 'src/modules/horario/';
+            $urlRouterProvider.otherwise("/horarioList");
+     
+            $stateProvider.state('horarioList', {
+                url: '/horario',
+                views: {
+                    'mainView': {
+                        controller: 'horarioCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'horario.list.html'
+                    }
+                }
+            }).state('horarioCreate', {
+                url: '/horario/create',
+                views: {
+                    'mainView': {
+                        controller: 'horarioCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'horario.create.html'
+                    }
+                }
 
-mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-        var basePath = 'src/modules/horario/';
-        $urlRouterProvider.otherwise("/horario");
-        $stateProvider
-                .state('horario', {
-                    url: "/horario",
-                    templateUrl: basePath + "horario.html"
-                })
-                .state('horario.get', {
-                    url: "/horario.get",
-                    templateUrl: basePath + "horario.get.html"
-                });
-    }]);
+            }).state('horarioEdit', {
+                url: '/horario/:horarioId',
+                param: {
+                    horarioId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'horarioCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'horario.create.html'
+                    }
+                }
+            });
+        }]);
+})(window.angular);

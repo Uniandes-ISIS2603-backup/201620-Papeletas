@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var mod = angular.module("pacienteModule",["ui-router"]);
+var mod = angular.module("pacienteModule",["ui.router"]);
 
 mod.constant("pacienteContext","api/pacientes");
 mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $urlRouterProvider){

@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("medicoModule", ["ngMessages"]);
+    var mod = ng.module("medicoModule", ["ngMessages","ui.router"]);
     mod.constant("medicoContext", "api/medico");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/medico/';
