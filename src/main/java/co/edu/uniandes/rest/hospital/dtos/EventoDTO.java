@@ -5,46 +5,52 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
+import java.util.Date;
+
 /**
  *
  * @author ac.cabezas716
  */
 public class EventoDTO {
     
-    private int horaIni;
-    private int horaFin;
+    private Date fechaIni;
+    private Date fechaFin;
     
-    public EventoDTO(){
-        horaIni = 10;
-        horaFin = 11;
+    public EventoDTO(Date pFechaIni, Date pFechaFin){
+        fechaIni = pFechaIni;
+        fechaFin = pFechaFin;
     }
 
     /**
-     * @return the horaIni
+     * @return the fechaIni
      */
-    public int getHoraIni() {
-        return horaIni;
+    public Date getFechaIni() {
+        return fechaIni;
     }
 
     /**
-     * @param horaIni the horaIni to set
+     * @param fechaIni the fechaIni to set
      */
-    public void setHoraIni(int horaIni) {
-        this.horaIni = horaIni;
+    public void setFechaIni(Date fechaIni) {
+        this.fechaIni = fechaIni;
     }
 
     /**
-     * @return the horaFin
+     * @return the fechaFin
      */
-    public int getHoraFin() {
-        return horaFin;
+    public Date getFechaFin() {
+        return fechaFin;
     }
 
     /**
-     * @param horaFin the horaFin to set
+     * @param fechaFin the fechaFin to set
      */
-    public void setHoraFin(int horaFin) {
-        this.horaFin = horaFin;
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+    
+    public String toString(){
+        return "Evento con fecha inicial " + fechaIni.toString() + " y fecha final " + fechaFin.toString();
     }
     
     

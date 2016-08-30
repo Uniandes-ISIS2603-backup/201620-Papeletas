@@ -6,7 +6,9 @@
 package co.edu.uniandes.rest.hospital.resources;
 
 import co.edu.uniandes.rest.hospital.dtos.HorarioDTO;
+import co.edu.uniandes.rest.hospital.exceptions.HorarioLogicException;
 import co.edu.uniandes.rest.hospital.mocks.HorarioLogicMock;
+import java.util.List;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -29,10 +31,10 @@ public class HorarioResource {
     HorarioLogicMock horarioLogica = new HorarioLogicMock();
     
     @GET
-    public HorarioDTO getHorario(){
-        return horarioLogica.darHorario();
+    public List<HorarioDTO> getHorarios() throws HorarioLogicException{
+        return horarioLogica.getHorarios();
     }
-    
+    /*
     @POST
     public HorarioDTO createHorario(HorarioDTO pHorario){
         return horarioLogica.crearHorario(pHorario);
@@ -47,6 +49,6 @@ public class HorarioResource {
     public void deleteHorario(){
         horarioLogica.borrarHorario();
     }
-    
+    */
     
 }

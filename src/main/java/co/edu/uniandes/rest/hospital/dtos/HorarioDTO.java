@@ -6,38 +6,32 @@
 package co.edu.uniandes.rest.hospital.dtos;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Clase que representa un horario
  * @author ac.cabezas716
  */
 public class HorarioDTO {
-    
     //------------------------------------------------
     // Enum
     //------------------------------------------------
-    /**
-     * Enumeración que representa los meses del year
-     */
-    public enum meses{ENERO, FEBRERO, FEBRERO_B, MARZO, ABRIL, MAYO, JUNIO, JULIO, AGOSTO, SEPTIEMBRE, OCTUBRE, NOVIEMBRE, DICIEMBRE};
+    public enum TipoUsuario {MEDICO, CONSULTORIO, DESCONOCIDO};
     
+    public enum DiaSemana {LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO};
     //------------------------------------------------
     // Atributos
     //------------------------------------------------
-    /**
-     * Año del horario
-     */
-    private int year;
     
-    /**
-     * Mes del horario
-     */
-    private meses month;
+    private TipoUsuario tipo;
     
-    /**
-     * Arreglo de días del horario
-     */
-    private DiaDTO[] dias;
+    private String nombre;
+    
+    private ArrayList<JornadaDTO> jornadas;
+    
+    private ArrayList<EventoDTO> eventos;
+   
+
     
     //------------------------------------------------
     // Constructores
@@ -45,84 +39,91 @@ public class HorarioDTO {
     /**
      * Constructor de la clase, incializa el arreglo de días y los días dependiendo el mes en que el horario es creado
      */
-    public HorarioDTO(){
-        year = 1997;
-        month = meses.ENERO;
-        dias = new DiaDTO[31];
-        for (int i = 0; i < dias.length; i++) {
-            dias[i]= new DiaDTO(i+1, i+1);
-        }
-    }
-    /**
-     * Constructor de la clase, incializa el arreglo de días y los días dependiendo el month
-     * @param pMes El month del horario
-     * @param pAño El year del horario
-     */
-    public HorarioDTO(meses pMes, int pAño){ 
-        year = pAño;
-        month = pMes;
-        int d = 31;
-        if(pMes == meses.FEBRERO)
-            d = 28;
-        else if(pMes == meses.FEBRERO_B)
-            d = 29;
-        else if(pMes == meses.ABRIL || pMes == meses.JUNIO || pMes == meses.SEPTIEMBRE || pMes == meses.NOVIEMBRE)
-            d = 30;
-        dias = new DiaDTO[d];  
-        
-        for (int i = 0; i < dias.length; i++) {
-            dias[i]= new DiaDTO(i+1, i+1);
-        }
+    public HorarioDTO(TipoUsuario pTipo, String pNombre){
+        tipo = pTipo;
+        nombre = pNombre;
+        jornadas = new ArrayList();
+        eventos = new ArrayList();
     }
     
+    public HorarioDTO(){
+        tipo = TipoUsuario.DESCONOCIDO;
+        nombre = "desconocido";
+        jornadas = new ArrayList();
+        eventos = new ArrayList();
+    }    
     //------------------------------------------------
     // Metodos
     //------------------------------------------------
+   
     /**
-     * @return the dias
+     * @return the tipo
      */
-    public DiaDTO[] getDias() {
-        return dias;
+    public TipoUsuario getTipo() {
+        return tipo;
     }
 
     /**
-     * @param dias the dias to set
+     * @param tipo the tipo to set
      */
-    public void setDias(DiaDTO[] dias) {
-        this.dias = dias;
-    }
-
-    /**
-     * @return the month
-     */
-    public meses getMonth() {
-        return month;
-    }
-
-    /**
-     * @param month the month to set
-     */
-    public void setMonth(meses month) {
-        this.month = month;
+    public void setTipo(TipoUsuario tipo) {
+        this.tipo = tipo;
     }
     
-    /**
-     * @return the year
+     /**
+     * @return the nombre
      */
-    public int getYear() {
-        return year;
+    public String getNombre() {
+        return nombre;
     }
 
     /**
-     * @param year the year to set
+     * @param nombre the nombre to set
      */
-    public void setYear(int year) {
-        this.year = year;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
+
+    /**
+     * @return the jornadas
+     */
+    public ArrayList<JornadaDTO> getJornadas() {
+        return jornadas;
+    }
+
+    /**
+     * @param jornadas the jornadas to set
+     */
+    public void setJornadas(ArrayList<JornadaDTO> jornadas) {
+        this.jornadas = jornadas;
+    }
+
+    /**
+     * @return the eventos
+     */
+    public ArrayList<EventoDTO> getEventos() {
+        return eventos;
+    }
+
+    /**
+     * @param eventos the eventos to set
+     */
+    public void setEventos(ArrayList<EventoDTO> eventos) {
+        this.eventos = eventos;
+    }
+
+    
+    public void addEvento(Date pFechaI, Date pFechaF){
+        eventos.add(new EventoDTO(pFechaI, pFechaF));
+    }
+    
+    public void addJornada(DiaSemana pDia, int pHoraI, int pHoraF){
+        jornadas.add(new JornadaDTO(pDia, pHoraI, pHoraF));
+    }
     
     public String toString() {
-        return "Año: " + year + "Mes: " + month + "Dias: " + dias.length;
+        return "Tipo: " + tipo.toString() + "  Jornadas agregadas: " + jornadas.size() + "  Eventos programados: " + eventos.size();
     }
     
     

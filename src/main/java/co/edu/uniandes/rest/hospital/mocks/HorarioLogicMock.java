@@ -6,7 +6,11 @@
 package co.edu.uniandes.rest.hospital.mocks;
 
 import co.edu.uniandes.rest.hospital.dtos.HorarioDTO;
-import co.edu.uniandes.rest.hospital.dtos.HorarioDTO.meses;
+import co.edu.uniandes.rest.hospital.exceptions.HorarioLogicException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,73 +20,136 @@ import java.util.logging.Logger;
  * @author ac.cabezas716
  */
 public class HorarioLogicMock {
-    /**
-     * Objeto para presentar logs de las operaciones
-     */
-    private final static Logger logger = Logger.getLogger(HorarioLogicMock.class.getName());
+    // objeto para presentar logs de las operaciones
+	private final static Logger logger = Logger.getLogger(HorarioLogicMock.class.getName());
+	
+	// listado de horarios
+    private static ArrayList<HorarioDTO> horarios;
 
     /**
-     * Horario  
+     * Constructor. Crea los datos de ejemplo.
      */
-    private static HorarioDTO horario;
-    
-    
-    public HorarioLogicMock(){
-        // indica que se muestren todos los mensajes
+    public HorarioLogicMock() {
+
+    	if (horarios == null) {
+            horarios = new ArrayList<>();
+            HorarioDTO nuevo1 = new HorarioDTO(HorarioDTO.TipoUsuario.MEDICO, "Jose Patiño");
+            nuevo1.addJornada(HorarioDTO.DiaSemana.LUNES, 7, 19);
+            horarios.add(nuevo1);
+            nuevo1.addJornada(HorarioDTO.DiaSemana.JUEVES, 10, 14);
+            horarios.add(nuevo1);
+            HorarioDTO nuevo2 = new HorarioDTO(HorarioDTO.TipoUsuario.CONSULTORIO, "204_Cardiología");
+            nuevo2.addEvento(new Date(472574600000L),new Date(1472575500000L));
+            horarios.add(nuevo2);
+        }
+        
+    	// indica que se muestren todos los mensajes
     	logger.setLevel(Level.INFO);
     	
-    	logger.info("Inicializa el horario");
-    	logger.info("Horario " + horario );
-        if(horario == null){
-            horario = new HorarioDTO(meses.DICIEMBRE, 2016);
+    	// muestra información 
+    	logger.info("Inicializa la lista de horarios");
+    	logger.info("ciudades" + horarios );
+    }    
+    
+	/**
+	 * Obtiene el listado de personas. 
+	 * @return lista de ciudades
+	 * @throws CityLogicException cuando no existe la lista en memoria  
+	 */    
+    public List<HorarioDTO> getHorarios() throws HorarioLogicException {
+    	if (horarios == null) {
+    		logger.severe("Error interno: lista horarios no existe.");
+    		throw new HorarioLogicException("Error interno: lista de horarios no existe.");    		
+    	}
+    	
+    	logger.info("retornando todas los horarios");
+    	return horarios;
+    }
+
+ 
+/*
+    
+    public CityDTO createCity(CityDTO newCity) throws CityLogicException {
+    	logger.info("recibiendo solicitud de agregar ciudad " + newCity);
+    	
+    	// la nueva ciudad tiene id ?
+    	if ( newCity.getId() != null ) {
+	    	// busca la ciudad con el id suministrado
+	        for (CityDTO city : horarios) {
+	        	// si existe una ciudad con ese id
+	            if (Objects.equals(city.getId(), newCity.getId())){
+	            	logger.severe("Ya existe una ciudad con ese id");
+	                throw new CityLogicException("Ya existe una ciudad con ese id");
+	            }
+	        }
+	        
+	    // la nueva ciudad no tiene id ? 
+    	} else {
+
+    		// genera un id para la ciudad
+    		logger.info("Generando id para la nueva ciudad");
+    		long newId = 1;
+	        for (CityDTO city : horarios) {
+	            if (newId <= city.getId()){
+	                newId =  city.getId() + 1;
+	            }
+	        }
+	        newCity.setId(newId);
+    	}
+    	
+        // agrega la ciudad
+    	logger.info("agregando ciudad " + newCity);
+        horarios.add(newCity);
+        return newCity;
+    }
+
+    public CityDTO getCity(long pId)throws CityLogicException{
+        logger.info("recibiendo solicitud de buscar ciudad con id " + pId);
+        for (CityDTO city : horarios) {
+            if(city.getId() == pId){
+                logger.info("Ciudad encontrada: " + city);
+                return city;
+            }
+                
         }
+        logger.severe("No existe una ciudad con ese id");
+        throw new CityLogicException("No existe una ciudad con ese id");
     }
     
-    /**
-     * Retorna el horario 
-     * @return 
-     */
-    public HorarioDTO darHorario(){
-        logger.info("Recibiendo solicitud de dar horario.");
-        
-        logger.info("Retornando horario.");
-        return horario;
+    public void deleteCity(long pId)throws CityLogicException{
+        logger.info("recibiendo solicitud de eliminar ciudad con id " + pId);
+        for(int i = 0; i < horarios.size(); i++){
+            CityDTO actual = horarios.get(i);
+            if(actual.getId() == pId){
+                logger.info("Eliminando ciudad: " + actual);
+                horarios.remove(i);
+                return;
+            }    
+        }
+        logger.severe("No existe una ciudad con ese id");
+        throw new CityLogicException("No existe una ciudad con ese id");
     }
     
-    /**
-     * Crea un nuevo Horario
-     * @param pHorario
-     * @return Horario creado
-     */
-    public HorarioDTO crearHorario(HorarioDTO pHorario){
-        logger.info("Recibiendo solicitud de crear nuevo horario " + pHorario);
-        
-        horario = new HorarioDTO(pHorario.getMonth() , pHorario.getYear());
-        logger.info("Horario modificado " + horario);
-        return pHorario; 
-    }
-    
-    /**
-     * Actualiza el horario actual
-     * @param pHorario 
-     * @return 
-     */
-    public HorarioDTO actualizarHorario(HorarioDTO pHorario){
-        logger.info("Recibiendo solicitud de actualizar horario " + pHorario);
-        horario = pHorario;
-        return horario;
-    }
-    
-    /**
-     * Borra el horario actual
-     */
-    public void borrarHorario(){
-        logger.info("Recibiendo solicitud de eliminar horario.");
-        
-        logger.info("Eliminando horario.");
-        horario = new HorarioDTO(meses.ENERO, 1997);
-        
-        logger.info("Horario eliminado y sustituido por el deafult: " + horario);
-        
-    }
+    public CityDTO updateCity(long pId, CityDTO pCity)throws CityLogicException{
+        logger.info("recibiendo solicitud de actualizar ciudad con id " + pId);
+        int pos = -1;
+        for(int i = 0; i < horarios.size(); i++){
+            CityDTO actual = horarios.get(i);
+            if(actual.getId() == pId){
+                logger.info("Ciudad a cambiar encontrada");
+                pos = i;
+            }
+            else if(actual.getId() == pCity.getId()){
+                logger.severe("El id de la nueva ciudad ya esta en uso");
+                throw new CityLogicException("El id de la nueva ciudad ya esta en uso");
+            }
+        }
+        if(pos!= -1){
+            logger.info("Cambiando ciudad");
+            horarios.set(pos, pCity);
+            return pCity;
+        }
+        logger.severe("No existe una ciudad con ese id");
+        throw new CityLogicException("No existe una ciudad con ese id");
+    }*/
 }
