@@ -3,6 +3,7 @@
     var mod = ng.module("mainApp", [
         "ui.router",
         "citAsModule",
+        "pacienteModule",
         "ngMessages"
     ]);
 

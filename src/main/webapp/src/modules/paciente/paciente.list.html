@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
 <div class="container-fluid" >
    
     <table class="col-md-4">
@@ -6,7 +12,8 @@
                 <th>ID</th>
                 <th>Nombre</th>   
                 <th>Apellido</th>
-                <th>Disponibilidad</th>  
+                <th>Edad</th> 
+                <th>Satisfaccion</th>
             </tr>
         </thead>
         <tbody>
@@ -14,7 +21,8 @@
                 <td id="{{$index}}-id">{{record.id}}</td>
                 <td id="{{$index}}-nombre">{{record.name}}</td>
                 <td id="{{$index}}-apellido">{{record.apellido}}</td>
-                <td id="{{$index}}-disponibilidad">{{record.disponibilidad}}</td>
+                <td id="{{$index}}-edad">{{record.edad}}</td>
+                <td id="{{$index}}-satisfaccion">{{record.satisfaccion}}</td>
                 <td>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
@@ -24,4 +32,3 @@
         </tbody>
     </table>
 </div>
- 
