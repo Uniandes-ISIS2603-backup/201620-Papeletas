@@ -38,5 +38,17 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
                     templateUrl: basePath + 'pacientes.create.html'
                 }
             }
+        }).state('pacienteDelete',{
+            url: '/pacientes/:pacienteId',
+            param:{
+                pacienteId: null
+            },
+            views: {
+                'mainView': {
+                    controller: 'pacientesCtrl',
+                    controllerAs: 'ctrl',
+                    templateUrl: basePath + 'pacientes.delete.html'
+                }
+            }
         })
 }])
