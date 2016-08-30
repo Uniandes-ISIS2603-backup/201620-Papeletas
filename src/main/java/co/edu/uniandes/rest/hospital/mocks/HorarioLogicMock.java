@@ -62,7 +62,7 @@ public class HorarioLogicMock {
     		throw new HorarioLogicException("Error interno: lista de horarios no existe.");    		
     	}
     	
-    	logger.info("retornando todas los horarios");
+    	logger.info("retornando todos los horarios");
     	return horarios;
     }
 

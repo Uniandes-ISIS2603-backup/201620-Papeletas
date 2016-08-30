@@ -5,16 +5,17 @@
  */
 
 var mod = ng.module("horarioModule", ["ui-router"]);
-/*
-mod.config('$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider){
+
+mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
     var basePath = 'src/modules/horario/';
     $urlRouterProvider.otherwise("/horario");
     $stateProvider
-            .state('horario',{
-                templateUrl: basePath + ""
+            .state('horario', {
+                url: "/horario",
+                templateUrl: basePath + "horario.html"
             })
-            .state('horario.list', {
-                
-            })
-}
-*/
+            .state('horario.get', {
+                url: "/horario.get",
+                templateUrl: basePath + "horario.get.html"
+            });
+        }]);
