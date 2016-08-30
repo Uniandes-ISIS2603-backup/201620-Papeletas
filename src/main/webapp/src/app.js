@@ -1,8 +1,12 @@
-00(function (ng) {
+(function (ng) {
 
     var mod = ng.module("mainView", [
         "ui.router",
         "citasModule",
+        "consultorioModule",
+        "especializacionModule",
+        "horarioModule",
+        "medicoModule",
         "pacienteModule",
         "ngMessages"
     ]);
@@ -14,8 +18,4 @@
     mod.config(['$urlRouterProvider', function ($urlRouterProvider) {
             $urlRouterProvider.otherwise('/citasList');
         }]);
-    mod.config(['$urlRouterProvider', function ($urlRouterProvider) {
-            $urlRouterProvider.otherwise('/pacientesList');
-        }]);
-  
 })(window.angular);
