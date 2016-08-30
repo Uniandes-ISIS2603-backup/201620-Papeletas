@@ -1,4 +1,7 @@
+<div ng-controller = "horarioController as horCtrl">
 <h3>Lista general de horarios</h3>
+<button ng-click="horCtrl.listaHorarios()">Refresh</button>
 <ul>
-  <li ng-repeat="horario in horarios">{{horarios}}</li>
+    <li ng-repeat = "horarios">{{horario}}</li>
 </ul>
+</div>
