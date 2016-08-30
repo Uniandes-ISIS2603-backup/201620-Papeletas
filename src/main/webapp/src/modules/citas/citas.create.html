@@ -10,9 +10,19 @@
         <fieldset>
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
-                <label for="name" class="col-md-2 control-label">Name</label>
+                   <label for="name" class="col-md-2 control-label">ID</label>
                 <div class="col-md-10">
-                    <input id="name" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+                    <input id="idCita" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+                </div>
+                
+                 <label for="name" class="col-md-2 control-label">Fecha</label>
+                <div class="col-md-10">
+                    <input id="fecha" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+                </div>
+                
+                  <label for="name" class="col-md-2 control-label">Duracion(minutos)</label>
+                <div class="col-md-10">
+                    <input id="duracion" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
                 </div>
             </div>
             <button type="button" ui-sref='citasList'>Cancel</button>
