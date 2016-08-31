@@ -5,9 +5,9 @@
  */
 (function (ng) {
     var mod = ng.module("consultorioModule", ["ui.router"]);
-
+    mod.constant("consultorioContext", "api/consultorio");
     mod.config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider){
-        var basePath = 'src/modules/consultorio';
+        var basePath = 'src/modules/consultorio/';
         $urlRouterProvider.otherwise("/consultorioList");
     
         $stateProvider.state("consultorioList", {
@@ -23,7 +23,7 @@
             url: "/consultorio/create",
             views: {
                 "mainView" : {
-                    controller : "consultoriosCtrl",
+                    controller : "consultorioCtrl",
                     controllerAs: "ctrl",
                     templateURL: basePath + "consultorio.create.html"
                 }
@@ -35,7 +35,7 @@
             },
             views: {
                 "mainView" : {
-                    controller : "consultoriosCtrl",
+                    controller : "consultorioCtrl",
                     controllerAs : "ctrl",
                     templateURL : basePath + "consultorio.list.html"
                 }
@@ -47,7 +47,7 @@
             },
             views : {
                 "mainView" : {
-                    controller : "consultoriosCrtl",
+                    controller : "consultorioCrtl",
                     controllerAs : "ctrl",
                     templateURL : basePath + "consultorio.create.html"
                 }
