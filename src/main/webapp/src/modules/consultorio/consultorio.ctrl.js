@@ -40,21 +40,22 @@
                 
                 if (id == null) {
                     return $http.post(context, currentRecord).then(function() {
-                        $state.go("consultorioList");
+                        $state.go('consultorioList');
                     }, responseError);
                 }
                 else {
                     return $http.put(context + "/" + currentRecord.id, currentRecord).then(function () {
-                        $state.go("consultorioList");
+                        $state.go('consultorioList');
                     }, responseError);
                 };
                 
             };
             
-            this.removeRecord = function (id) {
+            this.deleteRecord = function (id) {
+                currentRecord = $scope.currentRecord;
                 if (id !== null) {
-                    $http.delete(context + "/" + $scope.currentRecord.id, $scope.currentRecord).then(function () {
-                        $state.go("consultorioList");
+                    $http.delete(context + "/" + currentRecord.id).then(function () {
+                        $state.go('consultorioList');
                     }, responseError);
                 };
             };

@@ -10,48 +10,48 @@
         var basePath = 'src/modules/consultorio/';
         $urlRouterProvider.otherwise("/consultorioList");
     
-        $stateProvider.state("consultorioList", {
-            url: "/consultorio",
+        $stateProvider.state('consultorioList', {
+            url: '/consultorio',
             views: {
-                "mainView" : {
-                  controller : "consultoriosCtrl",
-                  controllerAs: "ctrl",
-                  templateURL: basePath + "consultorio.list.html"
+                'mainView' : {
+                  controller : 'consultorioCtrl',
+                  controllerAs: 'ctrl',
+                  templateURL: basePath + 'consultorio.list.html'
                 }
             }
-        }).state("consultorioCreate", {
-            url: "/consultorio/create",
+        }).state('consultorioCreate', {
+            url: '/consultorio/create',
             views: {
-                "mainView" : {
-                    controller : "consultorioCtrl",
-                    controllerAs: "ctrl",
-                    templateURL: basePath + "consultorio.create.html"
+                'mainView' : {
+                    controller : 'consultorioCtrl',
+                    controllerAs: 'ctrl',
+                    templateURL: basePath + 'consultorio.create.html'
                 }
             }
-        }).state("consultorioDelete", {
-            url: "/consultorio/:consultorioId",
+        }).state('consultorioDelete', {
+            url: '/consultorio/:consultorioId',
             param: {
                 consultorioId : null
             },
             views: {
-                "mainView" : {
-                    controller : "consultorioCtrl",
-                    controllerAs : "ctrl",
-                    templateURL : basePath + "consultorio.list.html"
+                'mainView' : {
+                    controller : 'consultorioCtrl',
+                    controllerAs : 'ctrl',
+                    templateURL : basePath + 'consultorio.list.html'
                 }
             }
-        }).state("consultorioEdit", {
-            url: "/consultorio/:consultorioId",
+        }).state('consultorioEdit', {
+            url: '/consultorio/:consultorioId',
             param: {
                 consultorioId : null
             },
             views : {
-                "mainView" : {
-                    controller : "consultorioCrtl",
-                    controllerAs : "ctrl",
-                    templateURL : basePath + "consultorio.create.html"
+                'mainView' : {
+                    controller : 'consultorioCrtl',
+                    controllerAs : 'ctrl',
+                    templateURL : basePath + 'consultorio.create.html'
                 }
             }
-        }) 
+        }); 
     }]);
 })(window.angular);

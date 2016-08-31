@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <div class="col-md-6 well">
-
+  <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000"></alert>
   <form novalidate name="form" id="consultorio-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
 
     <div ng-messages="form.$error">
@@ -15,13 +15,13 @@ and open the template in the editor.
     <fieldset>
       <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id" />
       <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}">
-        <label for="id" class="col-md-2 control-label">ID</label>
+        <label for="name" class="col-md-2 control-label">ID</label>
         <div class="col-md-10">
-          <input id="id" name="id" class="form-control" type="number" ng-model="currentRecord.id" ng-init="currentRecord.id" required />
+          <input id="idConsultorio" name="name" class="form-control" type="number" ng-model="currentRecord.id" ng-init="currentRecord.id" required />
         </div>
-        <label for="libre" class="col-md-2 control-label">Libre</label>
+        <label for="name" class="col-md-2 control-label">Libre</label>
         <div class="col-md-10">
-          <input id="libre" name="libre" class="form-control" type="boolean" ng-model="currentRecord.libre" ng-init="currentRecord.libre" required />
+          <input id="libre" name="name" class="form-control" type="text" ng-model="currentRecord.libre" ng-init="currentRecord.libre" required />
         </div>
       </div>
       <button type="button" ui-sref='consultorioList'>Cancel</button>
