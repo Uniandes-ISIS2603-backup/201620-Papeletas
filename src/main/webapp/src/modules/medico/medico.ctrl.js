@@ -65,6 +65,15 @@
                         }, responseError);
                 };
             };
+            
+            
+            this.deleteRecord = function(currentRecord) {
+                //currentRecord = $scope.currentRecord;
+                $http.delete(context + "/" + currentRecord.id)
+                        .then(function() {
+                            $state.go('medicoList');
+                }, responseError);
+            };
 
 
 
