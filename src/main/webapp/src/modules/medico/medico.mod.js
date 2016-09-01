@@ -36,6 +36,18 @@
                         templateUrl: basePath + 'medico.edit.html'
                     }
                 }
+                }).state('medicoDelete', {
+                url: '/medico/:medicoId',
+                param: {
+                    medicoId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'medicoCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'medico.delete.html'
+                    }
+                }
             });
         }]);
 })(window.angular);
