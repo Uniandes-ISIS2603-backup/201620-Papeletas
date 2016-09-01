@@ -1,7 +1,6 @@
 (function (ng) {
-    var mod = ng.module("horarioModule");
-
-    mod.controller("horarioCtrl", ['$scope', '$state', '$stateParams', '$http', 'horarioContext', function ($scope, $state, $stateParams, $http, context) {
+    var mod = ng.module("horariosModule");
+    mod.controller("horariosCtrl", ['$scope', '$state', '$stateParams', '$http', 'horariosContext', function ($scope, $state, $stateParams, $http, context) {
 
             // inicialmente el listado de horario está vacio
             $scope.records = {};
@@ -29,8 +28,9 @@
             {
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
-                    id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                    id: undefined /*Tipo int. El valor se asigna en el backend*/,
                     name: '' /*Tipo String*/,
+                    type: '',
                 };
               
                 $scope.alerts = [];
@@ -48,7 +48,7 @@
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('horarioList');
+                            $state.go('horariosList');
                         }, responseError);
                         
                 // si el id no es null, es un registro existente entonces lo actualiza
@@ -59,7 +59,7 @@
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('horarioList');
+                            $state.go('horariosList');
                         }, responseError);
                 };
             };
