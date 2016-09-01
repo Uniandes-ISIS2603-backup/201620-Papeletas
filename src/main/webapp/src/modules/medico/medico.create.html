@@ -4,27 +4,23 @@
         <form novalidate name="form" id="medico-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
 
             <div ng-messages="form.$error">
-                <div ng-message="required">Por favor, llene los campos con la informacion del médico</div>
+                <div ng-message="required">Por favor, llene los campos con la información del médico</div>
             </div>
 
             <fieldset>
                 <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
                 <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
-                    <label for="name" class="col-md-2 control-label">ID</label>
-                    <div class="col-md-10">
-                        <input id="idMed" name="name" class="form-control" type="number" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
-                    </div>
 
                     <label for="name" class="col-md-2 control-label">Nombre</label>
                     <div class="col-md-10">
-                        <input id="nombre" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+                        <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.nombre" required />
                     </div>          
-                    <label for="name" class="col-md-2 control-label">Apellido</label>
+                    <label for="name" class="col-md-2 control-label">Disponibilidad</label>
                     <div class="col-md-10">
-                        <input id="apellido" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+                        <input id="disponibilidad" name="apellido" class="form-control" type="text" ng-model="currentRecord.disponibilidad" ng-init="currentRecord.disponibilidad" required />
                     </div>
                     <button type="submit" >Save</button>    
-                    <button type="button">Cancel</button>
+                    <button type="button" ui-sref='pacientesList'>Cancel</button>
                 </div>
             </fieldset>
         </form>
