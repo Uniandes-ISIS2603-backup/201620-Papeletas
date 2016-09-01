@@ -49,7 +49,7 @@
                     'mainView': {
                         controller: 'horariosCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'horarios.create.html'
+                        templateUrl: basePath + 'horarios.delete.html'
                     }
                 }
             });

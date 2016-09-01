@@ -81,7 +81,7 @@ public class MedicoMock {
                 }
             }
         } else {
-            long nid = 1;
+            Long nid = 1L;
             for (MedicoDTO medic : medicos) {
                 if (nid <= medic.getId()) {
                     nid = medic.getId() + 1;
