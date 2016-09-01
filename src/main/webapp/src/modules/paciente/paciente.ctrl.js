@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 (function (ng) {
-    var mod = ng.module("citasModule");
+    var mod = ng.module("pacienteModule");
 
     mod.controller("pacientesCtrl", ['$scope', '$state', '$stateParams', '$http', 'pacienteContext', function ($scope, $state, $stateParams, $http, context) {
 
@@ -34,8 +34,11 @@
             {
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
-                    id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                    pacid: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     name: '' /*Tipo String*/,
+                    lastName: '',
+                    age: undefined,
+                    satisfaction: undefined,
                 };
               
                 $scope.alerts = [];
@@ -68,9 +71,13 @@
                         }, responseError);
                 };
             };
-
-
-
+            this.deleteRecord = function (id) {
+                currentRecord = $scope.currentRecord;
+                return $http.delete(context+"/"+currentRecord.id,currentRecord)
+                        .then(function(){
+                            $state.go('pacientesList');
+                },responseError);
+            };
             // -----------------------------------------------------------------
             // Funciones para manejra los mensajes en la aplicación
 

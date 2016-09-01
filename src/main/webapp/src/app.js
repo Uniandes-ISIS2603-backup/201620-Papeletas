@@ -16,6 +16,7 @@
         }]);
 
     mod.config(['$urlRouterProvider', function ($urlRouterProvider) {
-            $urlRouterProvider.otherwise('/citasList');
+            $urlRouterProvider.otherwise('/');
         }]);
+
 })(window.angular);

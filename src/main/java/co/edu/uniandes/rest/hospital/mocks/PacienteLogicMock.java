@@ -69,24 +69,25 @@ public class PacienteLogicMock {
      * @return paciente agregado
      */
     public PacienteDTO createPaciente(PacienteDTO newPaciente) throws HospitalLogicException {
-    	logger.info("recibiendo solicitud de agregar ciudad " + newPaciente);
+    	logger.info("recibiendo solicitud de agregar paciente" + newPaciente);
     	
     	// el nuevo paciente tiene id ?
     	if ( newPaciente.getId() != null ) {
 	    	// busca el paciente con el id suministrado
-	        for (PacienteDTO city : pacientes) {
+	        for (PacienteDTO paciente : pacientes) {
 	        	// si existe un paciente con ese id
-	            if (Objects.equals(city.getId(), newPaciente.getId())){
+	            if (paciente.getId()==(newPaciente.getId())){
 	            	logger.severe("Ya existe un paciente con ese id");
 	                throw new HospitalLogicException("Ya existe un paciente con ese id");
 	            }
 	        }
-	        
+                pacientes.add(newPaciente);
+                return newPaciente;
 	    // el nuevo paciente no tiene id ? 
     	} else {
 
     		// genera un id para el paciente
-    		logger.info("Generando id paa la nueva ciudad");
+    		logger.info("Generando id para el nuevo paciente");
     		long newId = 1;
 	        for (PacienteDTO paciente : pacientes) {
 	            if (newId <= paciente.getId()){
@@ -131,7 +132,7 @@ public class PacienteLogicMock {
             }
             i++;
         }
-        return pacientes.set(i, dto);
+        return pacientes.set(index, dto);
     }
     /**
      * Obtiene un paciente
