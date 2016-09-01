@@ -9,7 +9,7 @@ and open the template in the editor.
     <form novalidate name="form" id="paciente-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
         
         <div ng-messages="form.$error">
-            <div ng-message="required">Agregue los datos del paciente!</div>
+            <div ng-message="required">Agregue los datos del paciente (Para editar escriba el ID)</div>
         </div>
    
         <fieldset>
