@@ -38,16 +38,16 @@ public class CitaDTO
      /**
      * Constructor. Crea una nueva cita.
      */
-    public CitaDTO(int pId, Date pFecha,double pDuracionMins, MedicoDTO pMedico, ConsultorioDTO pConsultorio, PacienteDTO pPaciente) 
+    public CitaDTO(int idCita, Date fecha,double duracion, MedicoDTO medico, ConsultorioDTO consultorio, PacienteDTO paciente) 
     {
-        idCita = pId;
-        fecha = pFecha;
-        duracion = pDuracionMins;
-        completada = false;
-        hayCita = true;
-        medico = pMedico;
-        consultorio = pConsultorio;
-        paciente = pPaciente;
+        this.idCita = idCita;
+        this.fecha = fecha;
+        this.duracion = duracion;
+        this.completada = false;
+        this.hayCita = true;
+        this.medico = medico;
+        this.consultorio = consultorio;
+        this.paciente = paciente;
         
     }
     
@@ -94,36 +94,36 @@ public class CitaDTO
      * cambia la fecha de una cita
      * @param pNuevaFecha  nueva fecha para la cita
      */
-    public void setFecha(Date pNuevaFecha)
+    public void setFecha(Date fecha)
     {
-        fecha = pNuevaFecha;
+        this.fecha = fecha;
     }
     
     /**
      * establece la duracion de una cita
      * @param pDuracion 
      */
-    public void setDuracionMins(double pDuracion)
+    public void setDuracionMins(double duracion)
     {
-        duracion= pDuracion;
+        this.duracion= duracion;
     }
     
     /**
      * establece si la cita fue completada
      * @param pDuracion 
      */
-    public void setFueCompletada(boolean pCompletada)
+    public void setFueCompletada(boolean completada)
     {
-        completada = pCompletada;
+        this.completada = completada;
     }
     
     /**
      * establece si hay una cita
      * @param pDuracion 
      */
-    public void setHayCita(boolean pHayCita)
+    public void setHayCita(boolean hayCita)
     {
-        hayCita = pHayCita;
+        this.hayCita =hayCita;
     }
 
     public int getId() 
@@ -131,8 +131,8 @@ public class CitaDTO
         return idCita;
     }
 
-    public void setId(int newId)
+    public void setId(int idCita)
     {
-       idCita= newId;
+       this.idCita= idCita;
     }
 }

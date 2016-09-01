@@ -9,19 +9,21 @@
    
         <fieldset>
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
-            
-            <div class="form-group col-md-12" ng-class="{'has-success': form.idCita.$valid && form.idCita.$dirty, 'has-error': form.idCita.$invalid && (form.idCita.$dirty || form.$submitted)}" >    
-                  <label for="idCita" class="col-md-2 control-label">ID</label>
+            <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >    
+                  
+                <label for="name" class="col-md-2 control-label">ID</label>
                 <div class="col-md-10">
                     <input id="idCita" name="idCita" class="form-control" type="number" ng-model="currentRecord.idCita" ng-init="currentRecord.idCita" required />
                 </div>
             
-                  <label for="fecha" class="col-md-2 control-label">Fecha</label>
+                  
+                <label for="name" class="col-md-2 control-label">Fecha</label>
                 <div class="col-md-10">
                     <input id="fecha" name="fecha" class="form-control" type="date" ng-model="currentRecord.fecha" ng-init="currentRecord.fecha" required />
                 </div>
             
-                  <label for="duracion" class="col-md-2 control-label">Duracion(minutos)</label>
+                  
+                <label for="name" class="col-md-2 control-label">Duracion(minutos)</label>
                 <div class="col-md-10">
                     <input id="duracion" name="duracion" class="form-control" type="number" ng-model="currentRecord.duracion" ng-init="currentRecord.duracion" required />
                 </div>
