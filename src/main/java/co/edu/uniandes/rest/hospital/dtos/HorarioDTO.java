@@ -23,7 +23,7 @@ public class HorarioDTO {
     //------------------------------------------------
     // Atributos
     //------------------------------------------------
-    private int id;
+    private Long id;
     
     private TipoUsuario tipo;
     
@@ -41,7 +41,7 @@ public class HorarioDTO {
     /**
      * Constructor de la clase, incializa el arreglo de días y los días dependiendo el mes en que el horario es creado
      */
-    public HorarioDTO(int pId, TipoUsuario pTipo, String pNombre){
+    public HorarioDTO(Long pId, TipoUsuario pTipo, String pNombre){
         id = pId;
         tipo = pTipo;
         nombre = pNombre;
@@ -50,7 +50,7 @@ public class HorarioDTO {
     }
     
     public HorarioDTO(){
-        id = -1;
+        id = null;
         tipo = TipoUsuario.DESCONOCIDO;
         nombre = "desconocido";
         jornadas = new ArrayList();
@@ -62,14 +62,14 @@ public class HorarioDTO {
     /**
      * @return the id
      */
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

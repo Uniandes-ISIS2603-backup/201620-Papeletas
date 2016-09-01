@@ -37,7 +37,7 @@ public class HorarioResource {
     
     @GET
     @Path("{pId: \\d+}")
-    public HorarioDTO getHorario(@PathParam("pId") int pId) throws HorarioLogicException{
+    public HorarioDTO getHorario(@PathParam("pId") Long pId) throws HorarioLogicException{
         return horarioLogica.getHorario(pId);
     }
     
@@ -48,14 +48,14 @@ public class HorarioResource {
     
     @PUT
     @Path("{pId: \\d+}")
-    public HorarioDTO putHorario(@PathParam("pId")int pId, HorarioDTO pHorario) throws HorarioLogicException{
+    public HorarioDTO putHorario(@PathParam("pId")Long pId, HorarioDTO pHorario) throws HorarioLogicException{
         return horarioLogica.updateHorario(pId, pHorario);
     }
     
     
     @DELETE
     @Path("{pId: \\d+}")
-    public void deleteHorario(@PathParam("pId")int pId) throws HorarioLogicException{
+    public void deleteHorario(@PathParam("pId")Long pId) throws HorarioLogicException{
         horarioLogica.deleteHorario(pId);
     }
 }
