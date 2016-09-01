@@ -12,9 +12,9 @@ import javax.ws.rs.Produces;
 
 import co.edu.uniandes.rest.hospital.mocks.EspecializacionMock;
 import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
-import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import co.edu.uniandes.rest.hospital.exceptions.EspecializacionException;
-import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
+import javax.ws.rs.QueryParam;
+
 
 
 /**
@@ -40,7 +40,7 @@ public class EspecializacionResource
 	
 	@GET
     @Path("{id: \\d+}")
-	public EspecializacionDTO getEspecializacionID(@PathParam("id")int id) throws EspecializacionException
+	public EspecializacionDTO getEspecializacionID(@PathParam("id")Long id) throws EspecializacionException
 	{
 		return Especialidad.getSpecID(id);
 	}
@@ -49,5 +49,18 @@ public class EspecializacionResource
     public EspecializacionDTO createEspecialidad(EspecializacionDTO spec)throws EspecializacionException
     {
      return Especialidad.createSpecialty(spec);
+    }
+    
+    @DELETE
+    @Path ("{id: \\d+}")
+    public void deleteEspecializacion (@PathParam("id") Long id) throws EspecializacionException
+    {
+        Especialidad.deleteEspecializacion(id);
+    }
+    @PUT
+    @Path ("{id: \\d+}")
+    public EspecializacionDTO updateEspecializacion (@PathParam("id") Long id, @QueryParam ("i") Integer i, EspecializacionDTO spec) throws EspecializacionException
+    {
+        return Especialidad.updateEspecializacion(id, i, spec);
     }
 }

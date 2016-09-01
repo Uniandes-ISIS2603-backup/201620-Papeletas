@@ -19,6 +19,17 @@
                 {
                     'mainView': {controller: 'specCTRL', controllerAs: 'CTRL', templateUrl: basePath + 'especializacion.create.html'}
                 }
+        }).state('especializacionDelete',
+        {
+                url: '/especializacion/:especializacionId',
+                param:
+                {
+                    especializacionId:null
+                },
+                views: 
+                {
+                    'mainView': {controller: 'specCTRL', controllerAs: 'CTRL', templateUrl: basePath + 'especializacion.create.html'}
+                }
         })
     }])
 })(window.angular);

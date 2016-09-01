@@ -6,10 +6,7 @@ import java.util.Objects;
 import java.util.logging.Logger;
 
 import co.edu.uniandes.rest.hospital.exceptions.EspecializacionException;
-import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
-import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
-
 /**
  * 
  * @author Juan Camilo Lara
@@ -73,5 +70,42 @@ public class EspecializacionMock
                 throw new EspecializacionException("No hay especialidades con el id dado");
         }
         return specialty;
+    }
+        
+        public void deleteEspecializacion (int id) throws EspecializacionException
+    {
+        boolean exists = false;
+        for (EspecializacionDTO consultorio : especialidades)
+        {
+            if (Objects.equals(consultorio.getId(), id))
+            {
+                especialidades.remove(consultorio);
+                exists = true;
+            }
+        }
+        if (!exists)
+        {
+            throw new EspecializacionException("No existe una especialidad con el id especificado");
+        }
+    }
+    public EspecializacionDTO updateEspecializacion (int id, Integer i, EspecializacionDTO spec) throws EspecializacionException
+    {
+        
+        boolean exists = false;
+        for (EspecializacionDTO special : especialidades)
+        {
+            if (Objects.equals(special.getId(), id))
+            {
+                exists = true;
+                special.setId(spec.getId());
+                special.setDescripcion(spec.getDescripcion());
+                special.setNombre(spec.getNombre());
+            }
+        }
+        if (!exists)
+        {
+            throw new EspecializacionException ("No existe una especialidad con ese id.");
+        }
+        return spec;
     }
 }

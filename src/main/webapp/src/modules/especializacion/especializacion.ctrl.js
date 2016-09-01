@@ -42,8 +42,8 @@
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
                 
-                // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) {
+                // si el id es 0, es un registro nuevo, entonces lo crea
+                if (id == 0) {
 
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
@@ -63,7 +63,13 @@
                         }, responseError);
                 };
             };
-
+            this.deleteRecord = function(currentRecord) {
+                //currentRecord = $scope.currentRecord;
+                $http.delete(context + "/" + currentRecord.id)
+                        .then(function() {
+                            $state.go('especializacionList');
+                }, responseError);
+            };
 
 
             // -----------------------------------------------------------------
