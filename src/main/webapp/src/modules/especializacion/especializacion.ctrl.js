@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 (function (ng) {
-    var mod = ng.module("medicoModule");
+    var mod = ng.module("especializacionModule");
 
-    mod.controller("especializacionCTRL", ['$scope', '$state', '$stateParams', '$http', 'medicoContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("specCTRL", ['$scope', '$state', '$stateParams', '$http', 'especializacionContext', function ($scope, $state, $stateParams, $http, context) {
 
             // inicialmente el listado de especializaciones está vacio
             $scope.records = {};
@@ -15,10 +15,10 @@
                 $scope.records = response.data;    
             }, responseError);
 
-            if ($stateParams.medicoId !== null && $stateParams.medicoId !== undefined) {
+            if ($stateParams.Id !== null && $stateParams.Id !== undefined) {
                 
                 // toma el id del parámetro
-                id = $stateParams.medicoId;
+                id = $stateParams.Id;
                 // obtiene el dato del recurso REST
                 $http.get(context + "/" + id)
                     .then(function (response) {

@@ -4,20 +4,20 @@
     mod.constant("especializacion", "api/especializacion");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider)
     {
-        var basePath = 'src/modules/especializacion';
+        var basePath = 'src/modules/especializacion/';
         $urlRouterProvider.otherwise("/especializacionList");
         $stateProvider.state('especializacionList',
         {
-            url: '/especializacion', views:
+            url: '/especializacion/', views:
                     {
                         'mainView':{controller:'specCTRL', controllerAs:'CTRL', templateUrl: basePath + 'especializacion.list.html'}
                     }
         }).state('especializacionCreate',
         {
-                url: '/especializacion/create',
+                url: '/especializacion/',
                 views: 
                 {
-                    'mainView': {controller: 'citiesCtrl', controllerAs: 'ctrl', templateUrl: basePath + 'cities.create.html'}
+                    'mainView': {controller: 'specCTRL', controllerAs: 'CTRL', templateUrl: basePath + 'especializacion.create.html'}
                 }
         })
     }])
