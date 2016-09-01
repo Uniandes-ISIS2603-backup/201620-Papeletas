@@ -29,7 +29,7 @@
                     }
                 }
             }).state('horariosEdit', {
-                url: '/horarios/:horarioId',
+                url: '/horarios/delete/:horarioId',
                 param: {
                     horarioId: null
                 },
