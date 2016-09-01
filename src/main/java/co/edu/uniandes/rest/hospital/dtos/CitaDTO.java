@@ -14,13 +14,13 @@ import java.util.Date;
 public class CitaDTO 
 {
     //identificador de la cita
-    private int idCita;
+    private long idCita;
     
     //fecha para la cual esta programada la cita
     private Date fecha;
     
     //tiempo de la cita
-    private double duracion;
+    private long duracion;
     
     //indica si la cita ya ha sido completada o no
     private boolean completada;
@@ -38,7 +38,7 @@ public class CitaDTO
      /**
      * Constructor. Crea una nueva cita.
      */
-    public CitaDTO(int idCita, Date fecha,double duracion, MedicoDTO medico, ConsultorioDTO consultorio, PacienteDTO paciente) 
+    public CitaDTO(long idCita, Date fecha,long duracion, MedicoDTO medico, ConsultorioDTO consultorio, PacienteDTO paciente) 
     {
         this.idCita = idCita;
         this.fecha = fecha;
@@ -68,7 +68,7 @@ public class CitaDTO
      * obtiene la duracion que tuvo la cita
      * @return duracionMins
      */
-    public double getDuracionMins()
+    public long getDuracionMins()
     {
         return duracion;
     }
@@ -103,7 +103,7 @@ public class CitaDTO
      * establece la duracion de una cita
      * @param pDuracion 
      */
-    public void setDuracionMins(double duracion)
+    public void setDuracionMins(long duracion)
     {
         this.duracion= duracion;
     }
@@ -126,12 +126,12 @@ public class CitaDTO
         this.hayCita =hayCita;
     }
 
-    public int getId() 
+    public long getId() 
     {  
         return idCita;
     }
 
-    public void setId(int idCita)
+    public void setId(long idCita)
     {
        this.idCita= idCita;
     }

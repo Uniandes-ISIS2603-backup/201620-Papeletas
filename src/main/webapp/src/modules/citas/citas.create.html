@@ -11,7 +11,7 @@
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >    
                   
-                <label for="name" class="col-md-2 control-label">ID</label>
+                <label for="name" class="col-md-2 control-label">IdCita</label>
                 <div class="col-md-10">
                     <input id="idCita" name="idCita" class="form-control" type="number" ng-model="currentRecord.idCita" ng-init="currentRecord.idCita" required />
                 </div>
@@ -23,7 +23,7 @@
                 </div>
             
                   
-                <label for="name" class="col-md-2 control-label">Duracion(minutos)</label>
+                <label for="name" class="col-md-2 control-label">Duración</label>
                 <div class="col-md-10">
                     <input id="duracion" name="duracion" class="form-control" type="number" ng-model="currentRecord.duracion" ng-init="currentRecord.duracion" required />
                 </div>

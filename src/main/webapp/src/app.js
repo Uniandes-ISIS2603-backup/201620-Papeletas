@@ -5,7 +5,7 @@
         "citasModule",
         "consultorioModule",
         "especializacionModule",
-        "horarioModule",
+        "horariosModule",
         "medicoModule",
         "pacienteModule",
         "ngMessages"
