@@ -34,21 +34,28 @@ public class HorarioResource {
     public List<HorarioDTO> getHorarios() throws HorarioLogicException{
         return horarioLogica.getHorarios();
     }
-    /*
+    
+    @GET
+    @Path("{pId: \\d+}")
+    public HorarioDTO getHorario(@PathParam("pId") int pId) throws HorarioLogicException{
+        return horarioLogica.getHorario(pId);
+    }
+    
     @POST
-    public HorarioDTO createHorario(HorarioDTO pHorario){
-        return horarioLogica.crearHorario(pHorario);
+    public HorarioDTO createHorario(HorarioDTO pHorario) throws HorarioLogicException{
+        return horarioLogica.createHorario(pHorario);
     }
     
     @PUT
-    public HorarioDTO putHorario(HorarioDTO pHorario){
-        return horarioLogica.actualizarHorario(pHorario);
+    @Path("{pId: \\d+}")
+    public HorarioDTO putHorario(@PathParam("pId")int pId, HorarioDTO pHorario) throws HorarioLogicException{
+        return horarioLogica.updateHorario(pId, pHorario);
     }
+    
     
     @DELETE
-    public void deleteHorario(){
-        horarioLogica.borrarHorario();
+    @Path("{pId: \\d+}")
+    public void deleteHorario(@PathParam("pId")int pId) throws HorarioLogicException{
+        horarioLogica.deleteHorario(pId);
     }
-    */
-    
 }

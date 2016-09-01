@@ -14,8 +14,6 @@ import java.util.List;
  * @author ac.cabezas716
  */
 public class HorarioDTO {
-
-    
     //------------------------------------------------
     // Enum
     //------------------------------------------------
@@ -25,6 +23,7 @@ public class HorarioDTO {
     //------------------------------------------------
     // Atributos
     //------------------------------------------------
+    private int id;
     
     private TipoUsuario tipo;
     
@@ -42,7 +41,8 @@ public class HorarioDTO {
     /**
      * Constructor de la clase, incializa el arreglo de días y los días dependiendo el mes en que el horario es creado
      */
-    public HorarioDTO(TipoUsuario pTipo, String pNombre){
+    public HorarioDTO(int pId, TipoUsuario pTipo, String pNombre){
+        id = pId;
         tipo = pTipo;
         nombre = pNombre;
         jornadas = new ArrayList();
@@ -50,6 +50,7 @@ public class HorarioDTO {
     }
     
     public HorarioDTO(){
+        id = -1;
         tipo = TipoUsuario.DESCONOCIDO;
         nombre = "desconocido";
         jornadas = new ArrayList();
@@ -58,6 +59,21 @@ public class HorarioDTO {
     //------------------------------------------------
     // Metodos
     //------------------------------------------------
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
    /**
      * @return the tipo
      */

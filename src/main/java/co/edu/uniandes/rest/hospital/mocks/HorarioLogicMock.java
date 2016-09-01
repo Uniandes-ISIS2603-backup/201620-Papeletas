@@ -10,6 +10,7 @@ import co.edu.uniandes.rest.hospital.exceptions.HorarioLogicException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,11 +33,11 @@ public class HorarioLogicMock {
 
     	if (horarios == null) {
             horarios = new ArrayList();
-            HorarioDTO nuevo1 = new HorarioDTO(HorarioDTO.TipoUsuario.MEDICO, "Jose Amortegui");
+            HorarioDTO nuevo1 = new HorarioDTO(1, HorarioDTO.TipoUsuario.MEDICO, "Jose Amortegui");
             nuevo1.addJornada(HorarioDTO.DiaSemana.LUNES, 7, 19);
             nuevo1.addJornada(HorarioDTO.DiaSemana.JUEVES, 10, 14);
             horarios.add(nuevo1);
-            HorarioDTO nuevo2 = new HorarioDTO(HorarioDTO.TipoUsuario.CONSULTORIO, "204_Cardiología");
+            HorarioDTO nuevo2 = new HorarioDTO(2, HorarioDTO.TipoUsuario.CONSULTORIO, "204_Cardiología");
             nuevo2.addEvento(new Date(472574600000L),new Date(1472575500000L));
             horarios.add(nuevo2);
         }
@@ -46,7 +47,7 @@ public class HorarioLogicMock {
     	
     	// muestra información 
     	logger.info("Inicializa la lista de horarios");
-    	logger.info("ciudades" + horarios );
+    	logger.info("horarioss" + horarios );
     }    
     
 	/**
@@ -63,61 +64,80 @@ public class HorarioLogicMock {
     	logger.info("retornando todos los horarios");
     	return horarios;
     }
-    
-    public HorarioDTO createCity(HorarioDTO newHorario) throws HorarioLogicException {
-    	logger.info("recibiendo solicitud de agregar horario" + newHorario);
+    public HorarioDTO getHorario(int pId)throws HorarioLogicException{
+        logger.info("recibiendo solicitud de buscar horario por id " + pId);
+        for (HorarioDTO actual : horarios) {
+            if(actual.getId() == pId){
+                logger.info("Horario encontrado: " + actual);
+                return actual;
+            }
+                
+        }
+        logger.severe("No existe un horario con ese nombre");
+        throw new HorarioLogicException("No existe un horario con ese nombre");
+    }
+    public HorarioDTO createHorario(HorarioDTO newHorario) throws HorarioLogicException {
+    	logger.info("recibiendo solicitud de agregar horario " + newHorario);
     	
-    	// el nuevo horario tiene nombre ?
-    	if ( newHorario.getNombre().equals("") ) {
-	    	// busca el horario con el nombre suministrado
+    	// el nuevo horario tiene id ?
+    	if (newHorario.getId() != 0) {
+	    	// busca el horario con el id suministrado
 	        for (HorarioDTO horario : horarios) {
-	        	// si existe un horario con ese nombre
-	            if (horario.getNombre().equals(newHorario.getNombre())){
-	            	logger.severe("Ya existe un horario con ese nombre");
-	                throw new HorarioLogicException("Ya existe un horario con ese nombre");
+	        	// si existe un horario con ese id
+	            if (Objects.equals(horario.getId(), newHorario.getId())){
+	            	logger.severe("Ya existe un horario con ese id");
+	                throw new HorarioLogicException("Ya existe un horario con ese id");
 	            }
 	        }
 	        
-	    
+	    // el nuevo horario no tiene id ? 
     	} else {
 
-    		logger.severe("Se deben ingresar los nombres de los propietarios de los horarios");
-	        throw new HorarioLogicException("Ya existe un horario con ese nombre");
+    		// genera un id para el horario
+    		logger.info("Generando id para el nuevo hroario");
+    		int newId = 1;
+	        for (HorarioDTO horario : horarios) {
+	            if (newId <= horario.getId()){
+	                newId =  horario.getId() + 1;
+	            }
+	        }
+	        newHorario.setId(newId);
     	}
     	
-        // agrega la ciudad
+        // agrega el horario
     	logger.info("agregando horario " + newHorario);
         horarios.add(newHorario);
         return newHorario;
     }
     
-        
-    public void deleteHorario(String pNombre)throws HorarioLogicException{
-        logger.info("recibiendo solicitud de eliminar el horario con nombre " + pNombre);
+    public void deleteHorario(int pId)throws HorarioLogicException{
+        logger.info("recibiendo solicitud de eliminar horario con id " + pId);
         for(int i = 0; i < horarios.size(); i++){
             HorarioDTO actual = horarios.get(i);
-            if(actual.getNombre().equals(pNombre)){
+            if(actual.getId() == pId){
                 logger.info("Eliminando horario: " + actual);
                 horarios.remove(i);
                 return;
             }    
         }
-        logger.severe("No existe un horario con ese nombre");
-        throw new HorarioLogicException("No existe un horario con ese nombre");
+        logger.severe("No existe un horario con ese id");
+        throw new HorarioLogicException("No existe un horario con ese id");
     }
     
-    public HorarioDTO updateHorario(String pNombre, HorarioDTO pHorario)throws HorarioLogicException{
-        logger.info("recibiendo solicitud de actualizar horario con nombre " + pNombre);
+        
+    
+    public HorarioDTO updateHorario(int pId, HorarioDTO pHorario)throws HorarioLogicException{
+        logger.info("recibiendo solicitud de actualizar horario con id " + pId);
         int pos = -1;
         for(int i = 0; i < horarios.size(); i++){
             HorarioDTO actual = horarios.get(i);
-            if(actual.getNombre().equals(pNombre)){
+            if(actual.getId() == (pId)){
                 logger.info("Horario a cambiar encontrada");
                 pos = i;
             }
-            else if(actual.getNombre().equals(pHorario.getNombre())){
-                logger.severe("El nombre dle nuevo horario ya esta en uso");
-                throw new HorarioLogicException("El nombre dle nuevo horario ya esta en uso");
+            else if(actual.getId() == pHorario.getId()){
+                logger.severe("El id del nuevo horario ya esta en uso");
+                throw new HorarioLogicException("El id del nuevo horario ya esta en uso");
             }
         }
         if(pos!= -1){
