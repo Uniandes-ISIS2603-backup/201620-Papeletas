@@ -45,7 +45,7 @@
                     'mainView': {
                         controller: 'medicoCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'medico.create.html'
+                        templateUrl: basePath + 'medico.edit.html'
                     }
                 }
             });
