@@ -1,7 +1,7 @@
 
 <div class="col-md-6 well">
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
-    <form novalidate name="form" id="paciente-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+    <form novalidate name="form" id="horario-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
         
         <div ng-messages="form.$error">
             <div ng-message="required">Agregue los datos del horario</div>
@@ -12,17 +12,17 @@
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
                    <label for="name" class="col-md-2 control-label">ID</label>
                 <div class="col-md-10">
-                    <input id="idPaciente" name="name" class="form-control" type="number" ng-model="currentRecord.id" ng-init="currentRecord.id" required />
+                    <input id="id" name="id" class="form-control" type="number" ng-model="currentRecord.id" ng-init="currentRecord.id" required />
                 </div>
                 
                  <label for="name" class="col-md-2 control-label">Nombre</label>
                 <div class="col-md-10">
-                    <input id="nombre" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+                    <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
                 </div>
                 
                   <label for="name" class="col-md-2 control-label">Tipo</label>
                 <div class="col-md-10">
-                    <input id="apellido" name="name" class="form-control" type="text" ng-model="currentRecord.type" ng-init="currentRecord.type" required />
+                    <input id="tipo" name="tipo" class="form-control" type="text" ng-model="currentRecord.type" ng-init="currentRecord.type" required />
                 </div>
             
             </div>
