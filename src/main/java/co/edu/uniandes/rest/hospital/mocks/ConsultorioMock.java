@@ -56,8 +56,8 @@ public class ConsultorioMock {
         }
         logger.setLevel(Level.INFO);
         
-        logger.info("Inicializa la lista de ciudades");
-    	logger.info("ciudades" + consultorios );
+        logger.info("Inicializa la lista de consultorios");
+    	logger.info("consultorios" + consultorios );
         
     }
     
