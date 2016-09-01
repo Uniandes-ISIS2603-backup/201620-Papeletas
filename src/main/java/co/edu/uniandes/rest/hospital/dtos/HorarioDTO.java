@@ -30,9 +30,9 @@ public class HorarioDTO {
     
     private String nombre;
     
-    private ArrayList<JornadaDTO> jornadas;
+    private List<JornadaDTO> jornadas;
     
-    private ArrayList<EventoDTO> eventos;
+    private List<EventoDTO> eventos;
    
 
     

@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
-import java.util.ArrayList;
 
 /**
  *

@@ -63,91 +63,69 @@ public class HorarioLogicMock {
     	logger.info("retornando todos los horarios");
     	return horarios;
     }
-
- 
-/*
     
-    public CityDTO createCity(CityDTO newCity) throws CityLogicException {
-    	logger.info("recibiendo solicitud de agregar ciudad " + newCity);
+    public HorarioDTO createCity(HorarioDTO newHorario) throws HorarioLogicException {
+    	logger.info("recibiendo solicitud de agregar horario" + newHorario);
     	
-    	// la nueva ciudad tiene id ?
-    	if ( newCity.getId() != null ) {
-	    	// busca la ciudad con el id suministrado
-	        for (CityDTO city : horarios) {
-	        	// si existe una ciudad con ese id
-	            if (Objects.equals(city.getId(), newCity.getId())){
-	            	logger.severe("Ya existe una ciudad con ese id");
-	                throw new CityLogicException("Ya existe una ciudad con ese id");
+    	// el nuevo horario tiene nombre ?
+    	if ( newHorario.getNombre().equals("") ) {
+	    	// busca el horario con el nombre suministrado
+	        for (HorarioDTO horario : horarios) {
+	        	// si existe un horario con ese nombre
+	            if (horario.getNombre().equals(newHorario.getNombre())){
+	            	logger.severe("Ya existe un horario con ese nombre");
+	                throw new HorarioLogicException("Ya existe un horario con ese nombre");
 	            }
 	        }
 	        
-	    // la nueva ciudad no tiene id ? 
+	    
     	} else {
 
-    		// genera un id para la ciudad
-    		logger.info("Generando id para la nueva ciudad");
-    		long newId = 1;
-	        for (CityDTO city : horarios) {
-	            if (newId <= city.getId()){
-	                newId =  city.getId() + 1;
-	            }
-	        }
-	        newCity.setId(newId);
+    		logger.severe("Se deben ingresar los nombres de los propietarios de los horarios");
+	        throw new HorarioLogicException("Ya existe un horario con ese nombre");
     	}
     	
         // agrega la ciudad
-    	logger.info("agregando ciudad " + newCity);
-        horarios.add(newCity);
-        return newCity;
-    }
-
-    public CityDTO getCity(long pId)throws CityLogicException{
-        logger.info("recibiendo solicitud de buscar ciudad con id " + pId);
-        for (CityDTO city : horarios) {
-            if(city.getId() == pId){
-                logger.info("Ciudad encontrada: " + city);
-                return city;
-            }
-                
-        }
-        logger.severe("No existe una ciudad con ese id");
-        throw new CityLogicException("No existe una ciudad con ese id");
+    	logger.info("agregando horario " + newHorario);
+        horarios.add(newHorario);
+        return newHorario;
     }
     
-    public void deleteCity(long pId)throws CityLogicException{
-        logger.info("recibiendo solicitud de eliminar ciudad con id " + pId);
+        
+    public void deleteHorario(String pNombre)throws HorarioLogicException{
+        logger.info("recibiendo solicitud de eliminar el horario con nombre " + pNombre);
         for(int i = 0; i < horarios.size(); i++){
-            CityDTO actual = horarios.get(i);
-            if(actual.getId() == pId){
-                logger.info("Eliminando ciudad: " + actual);
+            HorarioDTO actual = horarios.get(i);
+            if(actual.getNombre().equals(pNombre)){
+                logger.info("Eliminando horario: " + actual);
                 horarios.remove(i);
                 return;
             }    
         }
-        logger.severe("No existe una ciudad con ese id");
-        throw new CityLogicException("No existe una ciudad con ese id");
+        logger.severe("No existe un horario con ese nombre");
+        throw new HorarioLogicException("No existe un horario con ese nombre");
     }
     
-    public CityDTO updateCity(long pId, CityDTO pCity)throws CityLogicException{
-        logger.info("recibiendo solicitud de actualizar ciudad con id " + pId);
+    public HorarioDTO updateHorario(String pNombre, HorarioDTO pHorario)throws HorarioLogicException{
+        logger.info("recibiendo solicitud de actualizar horario con nombre " + pNombre);
         int pos = -1;
         for(int i = 0; i < horarios.size(); i++){
-            CityDTO actual = horarios.get(i);
-            if(actual.getId() == pId){
-                logger.info("Ciudad a cambiar encontrada");
+            HorarioDTO actual = horarios.get(i);
+            if(actual.getNombre().equals(pNombre)){
+                logger.info("Horario a cambiar encontrada");
                 pos = i;
             }
-            else if(actual.getId() == pCity.getId()){
-                logger.severe("El id de la nueva ciudad ya esta en uso");
-                throw new CityLogicException("El id de la nueva ciudad ya esta en uso");
+            else if(actual.getNombre().equals(pHorario.getNombre())){
+                logger.severe("El nombre dle nuevo horario ya esta en uso");
+                throw new HorarioLogicException("El nombre dle nuevo horario ya esta en uso");
             }
         }
         if(pos!= -1){
-            logger.info("Cambiando ciudad");
-            horarios.set(pos, pCity);
-            return pCity;
+            logger.info("Cambiando horario");
+            horarios.set(pos, pHorario);
+            return pHorario;
         }
-        logger.severe("No existe una ciudad con ese id");
-        throw new CityLogicException("No existe una ciudad con ese id");
-    }*/
+        logger.severe("No existe una horario con ese nombre");
+        throw new HorarioLogicException("No existe una horario con ese nombre");
+    }
 }
