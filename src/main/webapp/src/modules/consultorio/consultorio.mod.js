@@ -42,7 +42,7 @@
                     }
                 }
             }).state('consultorioDelete',{
-                url:'/consultorio/delete/:consultorioId',
+                url:'/consultorio/:consultorioId',
                 param: {
                     consultorioId: null
                 },
@@ -50,7 +50,7 @@
                     'mainView': {
                         controller: 'consultorioCrtl',
                         controllerAs: 'crtl',
-                        templateUrl: basePath + 'consultorio.delete.html'
+                        templateUrl: basePath + 'consultorio.create.html'
                     }
                 }
             });
