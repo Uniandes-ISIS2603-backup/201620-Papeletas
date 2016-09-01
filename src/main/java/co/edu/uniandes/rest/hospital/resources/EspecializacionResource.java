@@ -40,7 +40,7 @@ public class EspecializacionResource
 	
 	@GET
     @Path("{id: \\d+}")
-	public EspecializacionDTO getEspecializacionID(@PathParam("id")Long id) throws EspecializacionException
+	public EspecializacionDTO getEspecializacionID(@PathParam("id")int id) throws EspecializacionException
 	{
 		return Especialidad.getSpecID(id);
 	}
@@ -53,13 +53,13 @@ public class EspecializacionResource
     
     @DELETE
     @Path ("{id: \\d+}")
-    public void deleteEspecializacion (@PathParam("id") Long id) throws EspecializacionException
+    public void deleteEspecializacion (@PathParam("id") int id) throws EspecializacionException
     {
         Especialidad.deleteEspecializacion(id);
     }
     @PUT
     @Path ("{id: \\d+}")
-    public EspecializacionDTO updateEspecializacion (@PathParam("id") Long id, @QueryParam ("i") Integer i, EspecializacionDTO spec) throws EspecializacionException
+    public EspecializacionDTO updateEspecializacion (@PathParam("id") int id, @QueryParam ("i") Integer i, EspecializacionDTO spec) throws EspecializacionException
     {
         return Especialidad.updateEspecializacion(id, i, spec);
     }
