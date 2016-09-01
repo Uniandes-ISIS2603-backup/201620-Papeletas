@@ -23,6 +23,8 @@ public class EspecializacionDTO
 	 * descripcion de la especializacion
 	 */
 	private String descripcion;
+        
+        public EspecializacionDTO(){}
 	
 	public EspecializacionDTO(int id, String nombre, String descripcion)
 	{

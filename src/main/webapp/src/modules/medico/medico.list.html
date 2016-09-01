@@ -14,8 +14,9 @@
                 <td id="{{$index}}-nombre">{{record.nombre}}</td>
                 <td id="{{$index}}-disponibilidad">{{record.disponibilidad}}</td>
                 <td>
-                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm"ui-sref="medicoEdit({medicoId:record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
-                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"ui-sref="medicoDelete({medicoId:record.id})"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm"ui-sref="medicoEdit({medicoId:record.id})"> <span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="medicoDelete({medicoId:record.id})"><span class="glyphicon glyphicon-minus"></span> Remove</button>
+                    
                 </td>
             </tr>
         </tbody>
