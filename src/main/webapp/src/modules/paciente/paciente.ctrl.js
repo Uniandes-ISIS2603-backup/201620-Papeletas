@@ -73,10 +73,18 @@
             };
             this.deleteRecord = function (id) {
                 currentRecord = $scope.currentRecord;
-                return $http.delete(context+"/"+currentRecord.id,currentRecord)
-                        .then(function(){
-                            $state.go('pacientesList');
-                },responseError);
+                if(id!=null)
+                {
+                    return $http.delete(context+"/"+id,currentRecord)
+                            .then(function () {
+                             $scope.records = {};
+                             $http.get(context).then(function(response){
+                                 $scope.records = response. response.data;
+                             },responseError);
+                             $state.go('pacientesList');
+                    },responseError);
+  
+                }
             };
             // -----------------------------------------------------------------
             // Funciones para manejra los mensajes en la aplicación

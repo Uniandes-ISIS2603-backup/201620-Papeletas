@@ -76,7 +76,7 @@ public class MedicoMock {
 
         if (medico.getId() != null) {
             for (MedicoDTO medic : medicos) {
-                if (Objects.equals(medic.getId(), medico.getId())) {
+                if ((medic.getId()==medico.getId())) {
                     throw new MedicoException("Ya existe un medico con ese id");
                 }
             }

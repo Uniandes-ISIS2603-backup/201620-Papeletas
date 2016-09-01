@@ -30,7 +30,9 @@
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    name: '' /*Tipo String*/,
+                    idCita: undefined /*Tipo String*/,
+                    fecha: '',
+                    duracion: undefined,
                 };
               
                 $scope.alerts = [];
@@ -64,7 +66,21 @@
                 };
             };
 
-
+                this.deleteRecord = function (id) {
+                currentRecord = $scope.currentRecord;
+                if(id!=null)
+                {
+                    return $http.delete(context+"/"+id,currentRecord)
+                            .then(function () {
+                             $scope.records = {};
+                             $http.get(context).then(function(response){
+                                 $scope.records = response. response.data;
+                             },responseError);
+                             $state.go('citasList');
+                    },responseError);
+  
+                }
+            };
 
             // -----------------------------------------------------------------
             // Funciones para manejra los mensajes en la aplicación

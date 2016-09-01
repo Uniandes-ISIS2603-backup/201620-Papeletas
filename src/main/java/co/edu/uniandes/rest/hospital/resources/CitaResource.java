@@ -49,7 +49,7 @@ public class CitaResource {
      */
     @GET
     @Path ("{id: \\d+}")
-    public CitaDTO getCita (@PathParam ("id") Long id) throws CitaException
+    public CitaDTO getCita (@PathParam ("id") int id) throws CitaException
     {
         return cita.getCita(id);
     }
@@ -73,7 +73,7 @@ public class CitaResource {
      */
     @DELETE
     @Path ("{id: \\d+}")
-    public void deleteCita (@PathParam("id") Long id) throws CitaException
+    public void deleteCita (@PathParam("id") int id) throws CitaException
     {
         cita.deleteCita(id);
     }
@@ -87,7 +87,7 @@ public class CitaResource {
      */
     @PUT
     @Path ("{id: \\d+}")
-    public CitaDTO updateCita (@PathParam("id") Long id, @QueryParam ("i") Integer i, CitaDTO nuevaCita) throws CitaException
+    public CitaDTO updateCita (@PathParam("id") int id, @QueryParam ("i") Integer i, CitaDTO nuevaCita) throws CitaException
     {
         return cita.updateCita(id, nuevaCita);
     }
