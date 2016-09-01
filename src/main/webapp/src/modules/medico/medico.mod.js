@@ -6,7 +6,7 @@
             $urlRouterProvider.otherwise("/medicoList");
      
             $stateProvider.state('medicoList', {
-                url: '/medico',
+                url: '/medicos',
                 views: {
                     'mainView': {
                         controller: 'medicoCtrl',
@@ -33,7 +33,7 @@
                     'mainView': {
                         controller: 'medicoCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'medico.create.html'
+                        templateUrl: basePath + 'medico.edit    .html'
                     }
                 }
             });
