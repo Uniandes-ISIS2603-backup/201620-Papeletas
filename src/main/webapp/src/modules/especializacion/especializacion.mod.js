@@ -1,7 +1,7 @@
 (function (ng)
 {
     var mod = ng.module("especializacionModule", ["ui.router"]);
-    mod.constant("especializacion", "api/especializacion");
+    mod.constant("especializacionContext", "api/especializacion");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider)
     {
         var basePath = 'src/modules/especializacion/';
