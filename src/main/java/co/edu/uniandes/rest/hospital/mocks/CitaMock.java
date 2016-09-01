@@ -36,7 +36,7 @@ public class CitaMock {
         
         if (citas == null) {
             citas = new ArrayList<>();
-            citas.add(new CitaDTO(01,new Date(), new MedicoDTO("Juan Lara", 5L, "20/04-29/04", "Oftalmologo"),new ConsultorioDTO(1L, false),new PacienteDTO(1L, "Diego", "Castro",18,10)));
+            citas.add(new CitaDTO(01, new Date(), 10.5 ,new MedicoDTO("Juan Lara", 5L, "20/04-29/04", "Oftalmologo"),new ConsultorioDTO(1L, false),new PacienteDTO(1L, "Diego", "Castro",18,10)));
            
         }
 
@@ -89,7 +89,7 @@ public class CitaMock {
 
     		// genera un id para la ciudad
     		logger.info("Generando id paa la nueva cita");
-    		long newId = 1;
+    		int newId = 1;
 	        for (CitaDTO cita : citas) {
 	            if (newId <= cita.getId()){
 	                newId =  cita.getId() + 1;
@@ -104,7 +104,7 @@ public class CitaMock {
         return newCita;
     }
     
-    public CitaDTO updateCita(long id, CitaDTO pCita)
+    public CitaDTO updateCita(int id, CitaDTO pCita)
     {
         CitaDTO cita = null;
         boolean encontrado = false;
@@ -124,7 +124,7 @@ public class CitaMock {
         return cita;
     }
 
-    public CitaDTO getCita(long id) 
+    public CitaDTO getCita(int id) 
     {
         CitaDTO cita = null;
         boolean encontrado = false;
@@ -139,7 +139,7 @@ public class CitaMock {
         return cita;
     }
 
-    public void deleteCita(long id) 
+    public void deleteCita(int id) 
     {
         CitaDTO ciudad = null;
         boolean encontrado = false;
