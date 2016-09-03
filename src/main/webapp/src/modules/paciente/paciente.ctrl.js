@@ -38,7 +38,7 @@
                     name: '' /*Tipo String*/,
                     lastName: '',
                     age: undefined,
-                    satisfaction: undefined,
+                    satisfaction: undefined
                 };
               
                 $scope.alerts = [];

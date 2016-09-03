@@ -32,7 +32,7 @@
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
                     id: undefined /*Tipo int*/,
-                    name: '' /*Tipo String*/,
+                    name: '' /*Tipo String*/
                 };
               
                 $scope.alerts = [];
