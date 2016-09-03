@@ -2,7 +2,6 @@
     var mod = ng.module("citasModule");
 
     mod.controller("citasCtrl", ['$scope', '$state', '$stateParams', '$http', 'citasContext', function ($scope, $state, $stateParams, $http, context) {
-
             // inicialmente el listado de citas está vacio
             $scope.records = {};
             // carga las citas
@@ -13,7 +12,6 @@
             // el controlador recibió un citaId ??
             // revisa los parámetros (ver el :citaId en la definición de la ruta)
             if ($stateParams.citaId !== null && $stateParams.citaId !== undefined) {
-                
                 // toma el id del parámetro
                 id = $stateParams.citaId;
                 // obtiene el dato del recurso REST
@@ -32,7 +30,7 @@
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     idCita: undefined /*Tipo String*/,
                     fecha: '',
-                    duracion: undefined,
+                    duracion: undefined
                 };
               
                 $scope.alerts = [];
