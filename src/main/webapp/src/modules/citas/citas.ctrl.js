@@ -64,20 +64,14 @@
                 };
             };
 
-                this.deleteRecord = function (id) {
+                 this.deleteRecord = function (id) {
                 currentRecord = $scope.currentRecord;
-                if(id!=null)
-                {
-                    return $http.delete(context+"/"+id,currentRecord)
-                            .then(function () {
-                             $scope.records = {};
-                             $http.get(context).then(function(response){
-                                 $scope.records = response. response.data;
-                             },responseError);
-                             $state.go('citasList');
-                    },responseError);
-  
-                }
+                $http.delete(context + "/" + currentRecord.id)
+                        .then(function () {
+                            // $http.put es una promesa
+                            // cuando termine bien, cambie de estado
+                            $state.go('citasList');
+                        }, responseError);
             };
 
             // -----------------------------------------------------------------

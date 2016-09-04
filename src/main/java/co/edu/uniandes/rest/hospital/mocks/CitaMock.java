@@ -51,22 +51,22 @@ public class CitaMock {
     
 	/**
 	 * Obtiene el listado de personas. 
-	 * @return lista de ciudades
+	 * @return lista de citaes
 	 * @throws CityLogicException cuando no existe la lista en memoria  
 	 */    
     public List<CitaDTO> getCitas() throws CitaException {
     	if (citas == null) {
-    		logger.severe("Error interno: lista de ciudades no existe.");
-    		throw new CitaException("Error interno: lista de ciudades no existe.");    		
+    		logger.severe("Error interno: lista de ciTAs no existe.");
+    		throw new CitaException("Error interno: lista de citas no existe.");    		
     	}
     	
-    	logger.info("retornando todas las ciudades");
+    	logger.info("retornando todas las citas");
     	return citas;
     }
     
      /**
      * Agrega una cita la lista.
-     * @param newCita ciudad a adicionar
+     * @param newCita cita a adicionar
      * @throws CitaException cuando ya existe una cita con el id suministrado
      * @return cita agregada
      */
@@ -98,30 +98,34 @@ public class CitaMock {
 	        newCita.setId(newId);
     	}
     	
-        // agrega la ciudad
-    	logger.info("agregando ciudad " + newCita);
+        // agrega la cita
+    	logger.info("agregando cita " + newCita);
         citas.add(newCita);
         return newCita;
     }
     
-    public CitaDTO updateCita(int id, CitaDTO pCita)
+    public CitaDTO updateCita(int id, CitaDTO pCita) throws CitaException
     {
-        CitaDTO cita = null;
-        boolean encontrado = false;
-        for(int i = 0; i<citas.size()&& !encontrado;i++)
-        {
-           if(citas.get(i).getId()==id)
-           {
-               citas.get(i).setFecha(pCita.getFecha());
-               citas.get(i).setDuracionMins(pCita.getDuracionMins());
-               citas.get(i).setFueCompletada(pCita.getFueCompletada());
-               citas.get(i).setHayCita(pCita.getHayCita());
-               
-               cita = citas.get(i);
-               encontrado = true;
-           }
+        logger.info("recibiendo solicitud de actualizar cita con id " + id);
+        Long pos = null;
+        for(int i = 0; i < citas.size(); i++){
+            CitaDTO actual = citas.get(i);
+            if(actual.getId() == (id)){
+                logger.info("Cita a cambiar encontrada");
+                pos = Long.valueOf(i);
+            }
+            else if(actual.getId() == pCita.getId()){
+                logger.severe("El id de la nueva cita ya esta en uso");
+                throw new CitaException("El id de la nueva cita ya esta en uso");
+            }
         }
-        return cita;
+        if(pos!= -1){
+            logger.info("Cambiando horario");
+            citas.set((int)(long)pos, pCita);
+            return pCita;
+        }
+        logger.severe("No existe una horario con ese nombre");
+        throw new CitaException("No existe una cita con ese nombre");
     }
 
     public CitaDTO getCita(int id) 
@@ -141,16 +145,16 @@ public class CitaMock {
 
     public void deleteCita(int id) 
     {
-        CitaDTO ciudad = null;
+        CitaDTO cita = null;
         boolean encontrado = false;
         for(int i = 0; i<citas.size()&& !encontrado;i++)
         {
            if(citas.get(i).getId()==id)
            {
-               ciudad = citas.get(i);
+               cita = citas.get(i);
                encontrado = true;
            }
         }
-        citas.remove(ciudad);
+        citas.remove(cita);
     }
 }

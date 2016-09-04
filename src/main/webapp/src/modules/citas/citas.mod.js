@@ -14,7 +14,7 @@
                         templateUrl: basePath + 'citas.list.html'
                     }
                 }
-            }).state('citaCreate', {
+            }).state('citasCreate', {
                 url: '/citas/create',
                 views: {
                     'mainView': {
@@ -24,8 +24,8 @@
                     }
                 }
 
-            }).state('citaEdit', {
-                url: '/citas/:citaId',
+            }).state('citasEdit', {
+                url: '/citas/delete/:citaId',
                 param: {
                     citaId: null
                 },
@@ -34,6 +34,18 @@
                         controller: 'citasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'citas.create.html'
+                    }
+                }
+                }).state('citasDelete', {
+                url: '/citas/:citaId',
+                param: {
+                    citaId: null
+                },
+                views: {
+                    'mainView': {
+                        controller: 'citasCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'citas.delete.html'
                     }
                 }
             });

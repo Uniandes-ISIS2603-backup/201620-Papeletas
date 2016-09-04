@@ -53,7 +53,7 @@ public class CitaDTO
     
     public CitaDTO()
     {
-        
+      
     }
     /**
     * obtiene la fecha para la cual esta programada la cita

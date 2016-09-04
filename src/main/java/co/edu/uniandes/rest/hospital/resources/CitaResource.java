@@ -9,6 +9,7 @@ import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.hospital.exceptions.CitaException;
 import co.edu.uniandes.rest.hospital.mocks.CitaMock;
 import java.util.List;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -24,6 +25,7 @@ import javax.ws.rs.QueryParam;
  */
 @Path("citas")
 @Produces("application/json")
+@Consumes("application/json")
 public class CitaResource {
      /**
      * Mock del cita
