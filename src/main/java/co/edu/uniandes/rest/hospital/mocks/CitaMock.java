@@ -36,7 +36,10 @@ public class CitaMock {
         
         if (citas == null) {
             citas = new ArrayList<>();
-            citas.add(new CitaDTO(01, new Date(), 10 ,new MedicoDTO("Juan Lara", 5L, "20/04-29/04", "Oftalmologo"),new ConsultorioDTO(1L, false),new PacienteDTO(1L, "Diego", "Castro",18,10)));
+            citas.add(new CitaDTO(1L, new Date(), 10L , 
+                    new MedicoDTO("Juan Lara", 5L, "20/04-29/04", "Oftalmologo"),
+                    new ConsultorioDTO(1L, false),
+                    new PacienteDTO(1L, "Diego", "Castro",18,10)));
            
         }
 

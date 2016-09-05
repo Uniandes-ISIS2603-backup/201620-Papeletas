@@ -14,19 +14,19 @@ import java.util.Date;
 public class CitaDTO 
 {
     //identificador de la cita
-    private long idCita;
+    private Long idCita;
     
     //fecha para la cual esta programada la cita
     private Date fecha;
     
     //tiempo de la cita
-    private long duracion;
+    private Long duracion;
     
     //indica si la cita ya ha sido completada o no
-    private boolean completada;
+    private Boolean completada;
     
     //indica si existe una cita
-    private boolean hayCita;
+    private Boolean hayCita;
     
     //medico asiganado a la cita
     private MedicoDTO medico;
@@ -38,7 +38,7 @@ public class CitaDTO
      /**
      * Constructor. Crea una nueva cita.
      */
-    public CitaDTO(long idCita, Date fecha,long duracion, MedicoDTO medico, ConsultorioDTO consultorio, PacienteDTO paciente) 
+    public CitaDTO(Long idCita, Date fecha,Long duracion, MedicoDTO medico, ConsultorioDTO consultorio, PacienteDTO paciente) 
     {
         this.idCita = idCita;
         this.fecha = fecha;
@@ -66,9 +66,9 @@ public class CitaDTO
     
     /**
      * obtiene la duracion que tuvo la cita
-     * @return duracionMins
+     * @return duracion
      */
-    public long getDuracionMins()
+    public Long getDuracion()
     {
         return duracion;
     }
@@ -77,7 +77,7 @@ public class CitaDTO
      * informa si una cita ya fue completada o no
      * @return true si ya fue completada, false de lo contrario
      */
-    public boolean getFueCompletada()
+    public Boolean getFueCompletada()
     {
         return completada;
     }
@@ -86,7 +86,7 @@ public class CitaDTO
      * informa si hay una cita
      * @return true si hay una cita, false de lo contrario
      */
-    public boolean getHayCita()
+    public Boolean getHayCita()
     {
         return hayCita;
     }
@@ -103,7 +103,7 @@ public class CitaDTO
      * establece la duracion de una cita
      * @param pDuracion 
      */
-    public void setDuracionMins(long duracion)
+    public void setDuracion(Long duracion)
     {
         this.duracion= duracion;
     }
@@ -112,7 +112,7 @@ public class CitaDTO
      * establece si la cita fue completada
      * @param pDuracion 
      */
-    public void setFueCompletada(boolean completada)
+    public void setFueCompletada(Boolean completada)
     {
         this.completada = completada;
     }
@@ -121,17 +121,17 @@ public class CitaDTO
      * establece si hay una cita
      * @param pDuracion 
      */
-    public void setHayCita(boolean hayCita)
+    public void setHayCita(Boolean hayCita)
     {
         this.hayCita =hayCita;
     }
 
-    public long getId() 
+    public Long getId() 
     {  
         return idCita;
     }
 
-    public void setId(long idCita)
+    public void setId(Long idCita)
     {
        this.idCita= idCita;
     }
