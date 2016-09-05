@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var mod = angular.module("pacienteModule",["ui.router"]);
-
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+(function (ng) {
+var mod = angular.module("pacienteModule",["ngMessages","ui.router"]);
 mod.constant("pacienteContext","api/pacientes");
 mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $urlRouterProvider){
         var basePath = 'src/modules/paciente/';
@@ -40,7 +45,7 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
                 }
             }
         }).state('pacienteDelete',{
-            url: '/pacientes/:pacienteId',
+            url: '/pacientes/delete/:pacienteId',
             param:{
                 pacienteId: null
             },
@@ -48,9 +53,9 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
                 'mainView': {
                     controller: 'pacientesCtrl',
                     controllerAs: 'ctrl',
-                    templateUrl: basePath + 'paciente.create.html'
+                    templateUrl: basePath + 'paciente.delete.html'
                 }
             }
         });
 }]);
-
+})(window.angular);
