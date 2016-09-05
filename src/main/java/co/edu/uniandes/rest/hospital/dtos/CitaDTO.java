@@ -5,7 +5,9 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
-import java.util.Date;
+
+
+
 
 /**
  *Objeto de transferencia de datos de Citas.
@@ -14,13 +16,13 @@ import java.util.Date;
 public class CitaDTO 
 {
     //identificador de la cita
-    private Long idCita;
+    private long idCita;
     
     //fecha para la cual esta programada la cita
-    private Date fecha;
+    private String fecha;
     
     //tiempo de la cita
-    private Long duracion;
+    private long duracion;
     
     //indica si la cita ya ha sido completada o no
     private Boolean completada;
@@ -38,7 +40,7 @@ public class CitaDTO
      /**
      * Constructor. Crea una nueva cita.
      */
-    public CitaDTO(Long idCita, Date fecha,Long duracion, MedicoDTO medico, ConsultorioDTO consultorio, PacienteDTO paciente) 
+    public CitaDTO(long idCita, String fecha,long duracion, MedicoDTO medico, ConsultorioDTO consultorio, PacienteDTO paciente) 
     {
         this.idCita = idCita;
         this.fecha = fecha;
@@ -59,7 +61,7 @@ public class CitaDTO
     * obtiene la fecha para la cual esta programada la cita
     * @returnfecha
     */
-    public Date getFecha()
+    public String getFecha()
     {
         return fecha;
     }
@@ -68,7 +70,7 @@ public class CitaDTO
      * obtiene la duracion que tuvo la cita
      * @return duracion
      */
-    public Long getDuracion()
+    public long getDuracion()
     {
         return duracion;
     }
@@ -94,7 +96,7 @@ public class CitaDTO
      * cambia la fecha de una cita
      * @param pNuevaFecha  nueva fecha para la cita
      */
-    public void setFecha(Date fecha)
+    public void setFecha(String fecha)
     {
         this.fecha = fecha;
     }
@@ -103,7 +105,7 @@ public class CitaDTO
      * establece la duracion de una cita
      * @param pDuracion 
      */
-    public void setDuracion(Long duracion)
+    public void setDuracion(long duracion)
     {
         this.duracion= duracion;
     }
@@ -126,12 +128,12 @@ public class CitaDTO
         this.hayCita =hayCita;
     }
 
-    public Long getId() 
+    public long getId() 
     {  
         return idCita;
     }
 
-    public void setId(Long idCita)
+    public void setId(long idCita)
     {
        this.idCita= idCita;
     }
