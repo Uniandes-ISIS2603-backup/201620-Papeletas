@@ -9,17 +9,14 @@ and open the template in the editor.
     <form novalidate name="form" id="paciente-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
         
         <div ng-messages="form.$error">
-            <div ng-message="required">Agregue los datos del paciente (Para editar escriba el ID)</div>
+            <div ng-message="required">Agregue los datos del paciente
+            <img class="emoji" draggable="false"  src="http://twemoji.maxcdn.com/36x36/1f464.png">
+            </div>
         </div>
    
         <fieldset>
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
-                   <label for="name" class="col-md-2 control-label">ID</label>
-                <div class="col-md-10">
-                    <input id="idPaciente" name="name" class="form-control" type="number" ng-model="currentRecord.pacid" ng-init="currentRecord.pacid" required />
-                </div>
-                
                  <label for="name" class="col-md-2 control-label">Nombre</label>
                 <div class="col-md-10">
                     <input id="nombre" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
