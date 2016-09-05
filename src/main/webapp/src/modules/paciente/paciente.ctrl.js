@@ -34,11 +34,11 @@
             {
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
-                    pacid: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                    id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     name: '' /*Tipo String*/,
                     lastName: '',
                     age: undefined,
-                    satisfaction: undefined
+                    satisfaction: undefined,
                 };
               
                 $scope.alerts = [];
@@ -48,43 +48,44 @@
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
                 
-                // si el id es null, es un registro nuevo, entonces lo crea
-                if (id == null) {
+                //verifica si el id dado existe
+                var existe = false;
+                for(var i = 0; i < $scope.records.length; i++){
+                    if($scope.records[i].id === id){
+                        existe = true;
+                    }
+                }
+                if (existe == false) {
 
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
-                        .then(function () {
-                            // $http.post es una promesa
-                            // cuando termine bien, cambie de estado
-                            $state.go('pacientesList');
-                        }, responseError);
-                        
-                // si el id no es null, es un registro existente entonces lo actualiza
+                            .then(function () {
+                                // $http.post es una promesa
+                                // cuando termine bien, cambie de estado
+                                $state.go('pacientesList');
+                            }, responseError);
+
+                    // si el registro existe
                 } else {
-                    
+
                     // ejecuta PUT en el recurso REST
                     return $http.put(context + "/" + currentRecord.id, currentRecord)
+                            .then(function () {
+                                // $http.put es una promesa
+                                // cuando termine bien, cambie de estado
+                                $state.go('pacientesList');
+                            }, responseError);
+                }
+                ;
+            };
+            this.deleteRecord = function (id) {
+                currentRecord = $scope.currentRecord;
+                $http.delete(context + "/" + currentRecord.id)
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
                             $state.go('pacientesList');
                         }, responseError);
-                };
-            };
-            this.deleteRecord = function (id) {
-                currentRecord = $scope.currentRecord;
-                if(id!=null)
-                {
-                    return $http.delete(context+"/"+id,currentRecord)
-                            .then(function () {
-                             $scope.records = {};
-                             $http.get(context).then(function(response){
-                                 $scope.records = response. response.data;
-                             },responseError);
-                             $state.go('pacientesList');
-                    },responseError);
-  
-                }
             };
             // -----------------------------------------------------------------
             // Funciones para manejra los mensajes en la aplicación
@@ -121,4 +122,3 @@
         }]);
 
 })(window.angular);
-
