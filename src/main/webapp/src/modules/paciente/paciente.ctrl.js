@@ -55,7 +55,7 @@
                         existe = true;
                     }
                 }
-                if (existe == false) {
+                if (existe === false) {
 
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
