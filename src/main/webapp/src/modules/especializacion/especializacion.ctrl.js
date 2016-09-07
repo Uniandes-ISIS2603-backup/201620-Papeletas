@@ -43,7 +43,7 @@
                 currentRecord = $scope.currentRecord;
                 
                 // si el id es 0, es un registro nuevo, entonces lo crea
-                if (id == 0) {
+                if (id === 0) {
 
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
