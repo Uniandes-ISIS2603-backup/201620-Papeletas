@@ -37,7 +37,7 @@
                     }
                 }
                 }).state('medicoDelete', {
-                url: '/medico/:medicoId',
+                url: '/medico/delete/:medicoId',
                 param: {
                     medicoId: null
                 },
