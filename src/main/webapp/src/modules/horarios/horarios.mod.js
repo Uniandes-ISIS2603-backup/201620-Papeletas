@@ -29,7 +29,7 @@
                     }
                 }
             }).state('horariosEdit', {
-                url: '/horarios/delete/:horarioId',
+                url: '/horarios/:horarioId',
                 param: {
                     horarioId: null
                 },
@@ -41,7 +41,7 @@
                     }
                 }
             }).state('horariosDelete', {
-                url: '/horarios/:horarioId',
+                url: '/horarios/delete/:horarioId',
                 param: {
                     horarioId: null
                 },
@@ -55,3 +55,4 @@
             });
         }]);
 })(window.angular);
+
