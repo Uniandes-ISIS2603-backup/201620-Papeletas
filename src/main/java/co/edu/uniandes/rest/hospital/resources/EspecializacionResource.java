@@ -23,15 +23,17 @@ import javax.ws.rs.QueryParam;
  *
  */
 
-@Path("Especializacion")
+@Path("especializacion")
 @Produces("application/json")
 public class EspecializacionResource
 {
 	/*
 	 * Especializacion mock
 	 */
-	private EspecializacionMock Especialidad;
+	private EspecializacionMock Especialidad = new EspecializacionMock();
 	
+       
+        
 	@GET
 	public List<EspecializacionDTO> getEspecializaciones() throws EspecializacionException
 	{

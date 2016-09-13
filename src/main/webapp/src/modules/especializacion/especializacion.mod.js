@@ -1,6 +1,6 @@
 (function (ng)
 {
-    var mod = ng.module("especializacionModule", ["ui.router"]);
+    var mod = ng.module("especializacionModule", ["ngMessages","ui.router"]);
     mod.constant("especializacionContext", "api/especializacion");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider)
     {
@@ -8,20 +8,20 @@
         $urlRouterProvider.otherwise("/especializacionList");
         $stateProvider.state('especializacionList',
         {
-            url: '/especializacion/', views:
+            url: '/especializacion', views:
                     {
                         'mainView':{controller:'specCTRL', controllerAs:'CTRL', templateUrl: basePath + 'especializacion.list.html'}
                     }
         }).state('especializacionCreate',
         {
-                url: '/especializacion/',
+                url: '/especializacion/create',
                 views: 
                 {
                     'mainView': {controller: 'specCTRL', controllerAs: 'CTRL', templateUrl: basePath + 'especializacion.create.html'}
                 }
-        }).state('especializacionDelete',
+        }).state('especializacionEdit',
         {
-                url: '/especializacion/:especializacionId',
+                url: '/especializacion/:Id',
                 param:
                 {
                     especializacionId:null
