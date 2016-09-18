@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
+import java.util.Date;
+
 
 
 
@@ -19,7 +21,7 @@ public class CitaDTO
     private long idCita;
     
     //fecha para la cual esta programada la cita
-    private String fecha;
+    private Date fecha;
     
     //tiempo de la cita
     private long duracion;
@@ -34,7 +36,7 @@ public class CitaDTO
      /**
      * Constructor. Crea una nueva cita.
      */
-    public CitaDTO(long idCita, String fecha,long duracion, MedicoDTO medico, ConsultorioDTO consultorio, PacienteDTO paciente) 
+    public CitaDTO(long idCita, Date fecha,long duracion, MedicoDTO medico, ConsultorioDTO consultorio, PacienteDTO paciente) 
     {
         this.idCita = idCita;
         this.fecha = fecha;
@@ -53,7 +55,7 @@ public class CitaDTO
     * obtiene la fecha para la cual esta programada la cita
     * @returnfecha
     */
-    public String getFecha()
+    public Date getFecha()
     {
         return fecha;
     }
@@ -71,7 +73,7 @@ public class CitaDTO
      * cambia la fecha de una cita
      * @param pNuevaFecha  nueva fecha para la cita
      */
-    public void setFecha(String fecha)
+    public void setFecha(Date fecha)
     {
         this.fecha = fecha;
     }

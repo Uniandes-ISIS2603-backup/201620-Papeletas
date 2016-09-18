@@ -51,7 +51,7 @@ public class CitaResource {
      */
     @GET
     @Path ("{id: \\d+}")
-    public CitaDTO getCita (@PathParam("idTurno") Long idTurno, @PathParam ("id") int id) throws CitaException
+    public CitaDTO getCita (@PathParam("idTurno") Long idTurno, @PathParam ("id") Long id) throws CitaException
     {
         return cita.getCita(idTurno, id);
     }
