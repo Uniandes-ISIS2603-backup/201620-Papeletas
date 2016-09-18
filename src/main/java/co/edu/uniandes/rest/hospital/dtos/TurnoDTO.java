@@ -33,9 +33,69 @@ public class TurnoDTO {
         fecha = pFecha;
         duracion = pDuracion;
         citas = new CitaDTO[duracion/15];
+        for(int i = 0; i < citas.length ; i++){
+            citas[i] = new CitaDTO();
+        }
     }
     
     public TurnoDTO(){
+        
+    }
+
+    /**
+     * @return the id
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the fecha
+     */
+    public Date getFecha() {
+        return fecha;
+    }
+
+    /**
+     * @param fecha the fecha to set
+     */
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    /**
+     * @return the duracion
+     */
+    public int getDuracion() {
+        return duracion;
+    }
+
+    /**
+     * @param duracion the duracion to set
+     */
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
+    }
+
+    /**
+     * @return the citas
+     */
+    public CitaDTO[] getCitas() {
+        return citas;
+    }
+
+    /**
+     * @param citas the citas to set
+     */
+    public void setCitas(CitaDTO[] citas) {
+        this.citas = citas;
     }
     
 }
