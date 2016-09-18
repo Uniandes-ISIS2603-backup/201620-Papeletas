@@ -23,7 +23,7 @@ import javax.ws.rs.QueryParam;
  *
  * @author jc.useche10
  */
-@Path("citas")
+@Path("medicos/{idMedico: \\d+}/turnos/{idTurno: \\d+}/citas")
 @Produces("application/json")
 @Consumes("application/json")
 public class CitaResource {
@@ -38,9 +38,9 @@ public class CitaResource {
      * @throws CitaException Si la lista no existe
      */
     @GET
-    public List<CitaDTO> getCitas () throws CitaException 
+    public List<CitaDTO> getCitas (@PathParam("idTurno") Long idTurno) throws CitaException 
     {
-        return cita.getCitas();
+        return cita.getCitas(idTurno);
     }
     
     /**
@@ -51,9 +51,9 @@ public class CitaResource {
      */
     @GET
     @Path ("{id: \\d+}")
-    public CitaDTO getCita (@PathParam ("id") int id) throws CitaException
+    public CitaDTO getCita (@PathParam("idTurno") Long idTurno, @PathParam ("id") int id) throws CitaException
     {
-        return cita.getCita(id);
+        return cita.getCita(idTurno, id);
     }
     
     /**
@@ -63,9 +63,9 @@ public class CitaResource {
      * @throws CitaException si ya existe un cita con el ese id
      */
     @POST
-    public CitaDTO createCita (CitaDTO newCita) throws CitaException
+    public CitaDTO createCita (@PathParam("idTurno") Long idTurno, CitaDTO newCita) throws CitaException
     {
-        return cita.createCita(newCita);
+        return cita.createCita(idTurno,newCita);
     }
     
     /**
@@ -75,9 +75,9 @@ public class CitaResource {
      */
     @DELETE
     @Path ("{id: \\d+}")
-    public void deleteCita (@PathParam("id") int id) throws CitaException
+    public void deleteCita (@PathParam("idTurno") Long idTurno, @PathParam("id") int id) throws CitaException
     {
-        cita.deleteCita(id);
+        cita.deleteCita(idTurno, id);
     }
     
     /**
@@ -89,8 +89,8 @@ public class CitaResource {
      */
     @PUT
     @Path ("{id: \\d+}")
-    public CitaDTO updateCita (@PathParam("id") int id, @QueryParam ("i") Integer i, CitaDTO nuevaCita) throws CitaException
+    public CitaDTO updateCita (@PathParam("idTurno") Long idTurno,@PathParam("id") int id, @QueryParam ("i") Integer i, CitaDTO nuevaCita) throws CitaException
     {
-        return cita.updateCita(id, nuevaCita);
+        return cita.updateCita(idTurno, id, nuevaCita);
     }
 }

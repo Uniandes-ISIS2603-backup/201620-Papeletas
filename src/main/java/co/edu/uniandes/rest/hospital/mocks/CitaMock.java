@@ -52,14 +52,14 @@ public class CitaMock {
     }   
     
     
-	/**
-	 * Obtiene el listado de personas. 
-	 * @return lista de citaes
-	 * @throws CityLogicException cuando no existe la lista en memoria  
-	 */    
-    public List<CitaDTO> getCitas() throws CitaException {
+/**
+ * Obtiene el listado de personas. 
+ * @return lista de citaes
+ * @throws CityLogicException cuando no existe la lista en memoria  
+ */    
+    public List<CitaDTO> getCitas(Long idTurno) throws CitaException {
     	if (citas == null) {
-    		logger.severe("Error interno: lista de ciTAs no existe.");
+    		logger.severe("Error interno: lista de citas no existe.");
     		throw new CitaException("Error interno: lista de citas no existe.");    		
     	}
     	
@@ -67,13 +67,27 @@ public class CitaMock {
     	return citas;
     }
     
+    public CitaDTO getCita(Long idTurno, int id) 
+    {
+        CitaDTO cita = null;
+        boolean encontrado = false;
+        for(int i = 0; i<citas.size()&& !encontrado;i++)
+        {
+           if(citas.get(i).getId()==id)
+           {
+               cita= citas.get(i);
+               encontrado = true;
+           }
+        }
+        return cita;
+    }
      /**
      * Agrega una cita la lista.
      * @param newCita cita a adicionar
      * @throws CitaException cuando ya existe una cita con el id suministrado
      * @return cita agregada
      */
-    public CitaDTO createCita(CitaDTO newCita) throws CitaException {
+    public CitaDTO createCita(Long idTurno, CitaDTO newCita) throws CitaException {
     	logger.info("recibiendo solicitud de agregar cita " + newCita);
     	
     	// la nueva cita tiene id ?
@@ -107,7 +121,7 @@ public class CitaMock {
         return newCita;
     }
     
-    public CitaDTO updateCita(int id, CitaDTO pCita) throws CitaException
+    public CitaDTO updateCita(Long idTurno, int id, CitaDTO pCita) throws CitaException
     {
         logger.info("recibiendo solicitud de actualizar cita con id " + id);
         Long pos = null;
@@ -131,22 +145,7 @@ public class CitaMock {
         throw new CitaException("No existe una cita con ese nombre");
     }
 
-    public CitaDTO getCita(int id) 
-    {
-        CitaDTO cita = null;
-        boolean encontrado = false;
-        for(int i = 0; i<citas.size()&& !encontrado;i++)
-        {
-           if(citas.get(i).getId()==id)
-           {
-               cita= citas.get(i);
-               encontrado = true;
-           }
-        }
-        return cita;
-    }
-
-    public void deleteCita(int id) 
+    public void deleteCita(Long idTurno, int id) 
     {
         CitaDTO cita = null;
         boolean encontrado = false;
