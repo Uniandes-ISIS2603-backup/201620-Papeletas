@@ -9,16 +9,11 @@
             <fieldset>
                 <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
                 <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
-                    <label for="name" class="col-md-2 control-label">ID</label>
+                    <label for="nombre" class="col-md-2 control-label">Nombre</label>
                     <div class="col-md-10">
-                        <input id="id" name="id" class="form-control" type="number" ng-model="currentRecord.id" ng-init="currentRecord.id" required />
-                    </div>
-
-                    <label for="name" class="col-md-2 control-label">Nombre</label>
-                    <div class="col-md-10">
-                        <input id="nombre" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+                        <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.nombre" required />
                     </div>          
-                    <label for="name" class="col-md-2 control-label">Descripcion</label>
+                    <label for="descripcion" class="col-md-2 control-label">Descripcion</label>
                     <div class="col-md-10">
                         <input id="descripcion" name=descripcion class="form-control" type="text" ng-model="currentRecord.descripcion" ng-init="currentRecord.descripcion" required />
                     </div>

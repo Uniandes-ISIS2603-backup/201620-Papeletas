@@ -21,6 +21,12 @@ public class EspecializacionMock
 	 * Lista de esepcialidades en el hospital
 	 */	
 	private static ArrayList<EspecializacionDTO> especialidades;
+        
+         public EspecializacionMock()
+        {
+            especialidades = new ArrayList<>();
+            especialidades.add(new EspecializacionDTO(0, "Dotorisimo", "Medico general"));
+        }
 	
 	/**
 	 * 
@@ -63,7 +69,7 @@ public class EspecializacionMock
         {
             for(EspecializacionDTO spec:especialidades)
             {
-                if(Objects.equals(spec.getId(),id))
+                if(spec.getId()==id)
                         specialty=spec;        
             }
             if(specialty==null)
@@ -75,11 +81,11 @@ public class EspecializacionMock
         public void deleteEspecializacion (int id) throws EspecializacionException
     {
         boolean exists = false;
-        for (EspecializacionDTO consultorio : especialidades)
+        for (EspecializacionDTO spec : especialidades)
         {
-            if (Objects.equals(consultorio.getId(), id))
+            if (spec.getId()==id)
             {
-                especialidades.remove(consultorio);
+                especialidades.remove(spec);
                 exists = true;
             }
         }
@@ -94,7 +100,7 @@ public class EspecializacionMock
         boolean exists = false;
         for (EspecializacionDTO special : especialidades)
         {
-            if (Objects.equals(special.getId(), id))
+            if (id==special.getId())
             {
                 exists = true;
                 special.setId(spec.getId());
