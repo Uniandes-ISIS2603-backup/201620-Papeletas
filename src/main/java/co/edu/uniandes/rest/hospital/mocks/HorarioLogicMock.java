@@ -34,18 +34,12 @@ public class HorarioLogicMock {
     	if (horarios == null) {
             horarios = new ArrayList();
             HorarioDTO nuevo1 = new HorarioDTO(1L, HorarioDTO.TipoUsuario.MEDICO, "Jose Amortegui");
-            nuevo1.addJornada(HorarioDTO.DiaSemana.LUNES, 7, 19);
-            nuevo1.addJornada(HorarioDTO.DiaSemana.JUEVES, 10, 14);
             horarios.add(nuevo1);
             HorarioDTO nuevo2 = new HorarioDTO(2L, HorarioDTO.TipoUsuario.CONSULTORIO, "204_Cardiología");
-            nuevo2.addEvento(new Date(472574600000L),new Date(1472575500000L));
             horarios.add(nuevo2);
             HorarioDTO nuevo3 = new HorarioDTO(3L, HorarioDTO.TipoUsuario.CONSULTORIO, "408_Neurología");
-            nuevo3.addEvento(new Date(472574600000L),new Date(1472575500000L));
             horarios.add(nuevo3);
             HorarioDTO nuevo4 = new HorarioDTO(4L, HorarioDTO.TipoUsuario.MEDICO, "Mario Amortegui");
-            nuevo4.addJornada(HorarioDTO.DiaSemana.MIERCOLES, 7, 9);
-            nuevo4.addJornada(HorarioDTO.DiaSemana.JUEVES, 12, 17);
             horarios.add(nuevo4);
             HorarioDTO nuevo5 = new HorarioDTO(5L, HorarioDTO.TipoUsuario.MEDICO, "Jhon Mario");
             horarios.add(nuevo5);
@@ -89,7 +83,7 @@ public class HorarioLogicMock {
     	logger.info("recibiendo solicitud de agregar horario " + newHorario);
     	
     	// el nuevo horario tiene id ?
-    	if (newHorario.getId() == null) {
+    	if (newHorario.getId() != null) {
 	    	// busca el horario con el id suministrado
 	        for (HorarioDTO horario : horarios) {
 	        	// si existe un horario con ese id
