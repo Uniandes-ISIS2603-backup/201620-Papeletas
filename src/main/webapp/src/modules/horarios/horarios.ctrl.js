@@ -71,13 +71,12 @@
                 ;
             };
 
-            this.deleteRecord = function (id) {
-                currentRecord = $scope.currentRecord;
+            this.deleteRecord = function (currentRecord) {
                 $http.delete(context + "/" + currentRecord.id)
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('horariosList');
+                            $state.reload();
                         }, responseError);
             };
 

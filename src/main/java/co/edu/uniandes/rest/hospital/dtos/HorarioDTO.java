@@ -19,7 +19,7 @@ public class HorarioDTO {
     //------------------------------------------------
     public enum TipoUsuario {MEDICO, CONSULTORIO, DESCONOCIDO};
     
-    public enum DiaSemana {LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO};
+    
     //------------------------------------------------
     // Atributos
     //------------------------------------------------
@@ -28,12 +28,6 @@ public class HorarioDTO {
     private TipoUsuario tipo;
     
     private String nombre;
-    
-    private List<JornadaDTO> jornadas;
-    
-    private List<EventoDTO> eventos;
-   
-
     
     //------------------------------------------------
     // Constructores
@@ -45,16 +39,12 @@ public class HorarioDTO {
         id = pId;
         tipo = pTipo;
         nombre = pNombre;
-        jornadas = new ArrayList();
-        eventos = new ArrayList();
     }
     
     public HorarioDTO(){
         id = null;
         tipo = TipoUsuario.DESCONOCIDO;
         nombre = "desconocido";
-        jornadas = new ArrayList();
-        eventos = new ArrayList();
     }    
     //------------------------------------------------
     // Metodos
@@ -101,44 +91,8 @@ public class HorarioDTO {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    /**
-     * @return the jornadas
-     */
-    public List<JornadaDTO> getJornadas() {
-        return jornadas;
-    }
-
-    /**
-     * @param jornadas the jornadas to set
-     */
-    public void setJornadas(ArrayList<JornadaDTO> jornadas) {
-        this.jornadas = jornadas;
-    }
-
-    /**
-     * @return the eventos
-     */
-    public List<EventoDTO> getEventos() {
-        return eventos;
-    }
-
-    /**
-     * @param eventos the eventos to set
-     */
-    public void setEventos(ArrayList<EventoDTO> eventos) {
-        this.eventos = eventos;
-    }
-   
-    public void addEvento(Date pFechaI, Date pFechaF){
-        getEventos().add(new EventoDTO(pFechaI, pFechaF));
-    }
-    
-    public void addJornada(DiaSemana pDia, int pHoraI, int pHoraF){
-        getJornadas().add(new JornadaDTO(pDia, pHoraI, pHoraF));
-    }
     
     public String toString() {
-        return "Tipo: " + getTipo().toString() + "  Jornadas agregadas: " + getJornadas().size() + "  Eventos programados: " + getEventos().size();
+        return "Tipo: " + getTipo().toString();
     }
 }
