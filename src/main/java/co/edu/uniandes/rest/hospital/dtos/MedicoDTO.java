@@ -43,6 +43,9 @@ public class MedicoDTO {
     
     private int duracionConsultas;
     
+    /**
+     * numero de citas finalizadas;
+     */
     private int cantidadCitas;
     
     
@@ -154,8 +157,12 @@ public class MedicoDTO {
     /**
      * @param consultaTerminada the consultaTerminada to set
      */
-    public void setConsultaTerminada(boolean consultaTerminada) {
-        this.consultaTerminada = consultaTerminada;
+    public void cambiarEstadoCita()
+    {
+        if(!consultaTerminada)
+            consultaTerminada=true;
+        else
+            consultaTerminada=false;
     }
 
     /**
@@ -187,6 +194,17 @@ public class MedicoDTO {
     {
         return getDuracionConsulta()/darCantidadCitas();
     }
+    
+    public void registrarFinCita(int pDuracion)
+    {
+        setDuracionConsulta(pDuracion);
+        agregarCita();
+        cambiarEstadoCita();
+      
+    }
+    
+    
+   
     
    
 

@@ -169,19 +169,32 @@ public class MedicoMock {
     
     
     
-    
-      public double calcularPromedioCitaMedico(String especialidad)
+    /**
+     * Calcula el promedio de duracion de citas dado un medico
+     * @param especialidad
+     * @return 
+     */
+      public double calcularPromedioCitaMedico(Long id)
     {
         double promedio=0;
         for(int i=0;i<medicos.size();i++)
         {
-            promedio+=medicos.get(i).calcularPromedioCitaMedico();
+            if(medicos.get(i).getId()==id)
+            {
+               promedio=medicos.get(i).calcularPromedioCitaMedico();
+               break;
+            }
         }
         return promedio;
     
     }
     
     
+      /**
+       * Calcula el promedio de citas dada una especialidad;
+       * @param pEspecialidad
+       * @return 
+       */
    public double calcularPromedioEspecialidad(String pEspecialidad)
    {
        double promedio=0;
@@ -195,4 +208,9 @@ public class MedicoMock {
        return promedio;
        
    }
+   
+   
+  
+   
+   
 }
