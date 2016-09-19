@@ -52,19 +52,6 @@
                         templateUrl: basePath + 'citas.reservar.html'
                     }
                 }
-                }).state('citasCancelar', {
-                url: '/citas/:citaId',
-                parent: 'verCitas',
-                param: {
-                    citaId: null
-                },
-                views: {
-                    'mainView': {
-                        controller: 'citasCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'citas.list.html'
-                    }
-                }
                 }).state('citasDelete', {
                 url: '/citas/:citaId',
                 parent: 'verCitas',
