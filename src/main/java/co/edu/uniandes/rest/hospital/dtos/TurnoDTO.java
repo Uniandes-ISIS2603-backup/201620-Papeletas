@@ -28,8 +28,8 @@ public class TurnoDTO {
     
     private CitaDTO[] citas;
 
-    public TurnoDTO(Long pId, MedicoDTO pMedico, Date pFecha, int pDuracion) {
-        id = pId;
+    public TurnoDTO(MedicoDTO pMedico, Date pFecha, int pDuracion) {
+        id = new Long((int)(Math.random()* Long.MAX_VALUE));
         fecha = pFecha;
         duracion = pDuracion;
         citas = new CitaDTO[duracion/15];
