@@ -28,8 +28,8 @@ public class TurnoDTO {
     
     private CitaDTO[] citas;
 
-    public TurnoDTO(Long pId, MedicoDTO pMedico, Date pFecha, int pDuracion) {
-        id = pId;
+    public TurnoDTO(MedicoDTO pMedico, Date pFecha, int pDuracion) {
+        id = new Long((int)(Math.random()* Long.MAX_VALUE));
         fecha = pFecha;
         duracion = pDuracion;
         citas = new CitaDTO[duracion/15];
@@ -122,12 +122,14 @@ public class TurnoDTO {
     }
 
     /**
-     * @param consultorio Asigna un consultorio a un turno y ademas a todas las citas contenidas en el
+     * Asigna consultorio a un turno y a todas las citas de ese turno
+     * @param pConsultorio Consultorio a asignar
      */
-    public void setConsultorio(ConsultorioDTO consultorio) {
-        this.consultorio = consultorio;
+    public void setConsultorio(ConsultorioDTO pConsultorio) {
+        this.consultorio = pConsultorio;
         for(int i = 0; i < citas.length; i++){
-            //TODO: asignar consultorio a las citas
+            //Asignar consultorio a las citas
+            citas[i].setConsultorio(pConsultorio);
         }
     }
     
