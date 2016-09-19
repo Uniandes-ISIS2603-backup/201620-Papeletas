@@ -63,6 +63,6 @@ public class EspecializacionResource
     @Path ("{id: \\d+}")
     public EspecializacionDTO updateEspecializacion (@PathParam("id") int id, @QueryParam ("i") Integer i, EspecializacionDTO spec) throws EspecializacionException
     {
-        return Especialidad.updateEspecializacion(id, i, spec);
+        return Especialidad.updateEspecializacion(id, spec);
     }
 }
