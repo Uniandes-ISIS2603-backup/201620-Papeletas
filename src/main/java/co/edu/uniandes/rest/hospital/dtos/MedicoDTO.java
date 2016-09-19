@@ -43,7 +43,7 @@ public class MedicoDTO {
      */
     private ArrayList<CitaDTO> listaEspera;
     
-    private TurnoDTO turno;
+    private List<TurnoDTO> turnos;
     
     /**
      * Determina si la consulta ya acabo o no;
@@ -83,6 +83,7 @@ public class MedicoDTO {
         this.disponibilidad = disponibilidad;
         this.especialidad = espe;
         listaEspera = new ArrayList <>();
+        turnos = new ArrayList<>();
         cita=new CitaMock();
     }
 
@@ -193,13 +194,13 @@ public class MedicoDTO {
         return cita;
     }
     
-    private TurnoDTO darTurno()
+    private List<TurnoDTO> darTurno()
     {
-        return turno;
+        return turnos;
     }
-    private void setTurno(TurnoDTO turno)
+    private void setTurno(List<TurnoDTO> turnos)
     {
-        this.turno=turno;
+        this.turnos=turnos;
     }
 
     /**
@@ -273,6 +274,16 @@ public class MedicoDTO {
         
     }
     
+    public void agregarTurno(Date pFecha, int pDuracion){
+        turnos.add(new TurnoDTO(this, pFecha, pDuracion));
+    }
+    
+    public void asignarConsultorioTurno(Long pIdTurno, ConsultorioDTO pConsultorio){
+        for (TurnoDTO actual : turnos) {
+            if(actual.getId() == pIdTurno)
+                actual.setConsultorio(pConsultorio);
+        }
+    }
     
    
 }
