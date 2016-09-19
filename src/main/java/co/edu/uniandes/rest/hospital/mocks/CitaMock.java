@@ -36,7 +36,7 @@ public class CitaMock {
         
         if (citas == null) {
             citas = new ArrayList<>();
-            citas.add(new CitaDTO(1L, "02/04-15/04", 40L , 
+            citas.add(new CitaDTO(1L, new Date(), 40L , 
                     new MedicoDTO("Juan Lara", 5L, "20/04-29/04", "Oftalmologo"),
                     new ConsultorioDTO(1L, false),
                     new PacienteDTO(1L, "Diego", "Castro",18,10)));
@@ -66,20 +66,27 @@ public class CitaMock {
     	logger.info("retornando todas las citas");
     	return citas;
     }
-    
-    public CitaDTO getCita(Long idTurno, int id) 
-    {
-        CitaDTO cita = null;
-        boolean encontrado = false;
-        for(int i = 0; i<citas.size()&& !encontrado;i++)
-        {
-           if(citas.get(i).getId()==id)
-           {
-               cita= citas.get(i);
-               encontrado = true;
-           }
+     /**
+     * Obtiene una getCita
+     *
+     * @param id identificador de la cita
+     * @return cita encontrada
+     * @throws citaException cuando la getReview no existe
+     */  
+    public CitaDTO getCita(Long idTurno, Long id) throws CitaException {
+        logger.info("recibiendo solicitud de getReview con id " + id);
+
+        // busca la getReview con el id suministrado
+        for (CitaDTO cita : citas) {
+            if (Objects.equals(cita.getId(), id)) {
+                logger.info("retornando getReview " + cita);
+                return cita;
+            }
         }
-        return cita;
+
+        // si no encuentra la getReview
+        logger.severe("No existe citacon ese id");
+        throw new CitaException("No existe cita con ese id");
     }
      /**
      * Agrega una cita la lista.
