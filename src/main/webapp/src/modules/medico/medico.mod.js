@@ -15,7 +15,7 @@
                     }
                 }
             }).state('medicoCreate', {
-                url: '/medico/create',
+                url: '/medicos/create',
                 views: {
                     'mainView': {
                         controller: 'medicoCtrl',
@@ -25,7 +25,7 @@
                 }
 
             }).state('medicoEdit', {
-                url: '/medico/:medicoId',
+                url: '/medicos/:medicoId',
                 param: {
                     medicoId: null
                 },
@@ -37,7 +37,7 @@
                     }
                 }
                 }).state('medicoDelete', {
-                url: '/medico/delete/:medicoId',
+                url: '/medicos/delete/:medicoId',
                 param: {
                     medicoId: null
                 },

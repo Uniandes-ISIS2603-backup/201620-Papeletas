@@ -6,9 +6,11 @@
 package co.edu.uniandes.rest.hospital.mocks;
 
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
+import co.edu.uniandes.rest.hospital.dtos.TurnoDTO;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -46,15 +48,15 @@ public class MedicoMock {
             medicos.add(new MedicoDTO("Juan Lara", 5L, "20/04-29/04", "Oftalmologo"));
         }
         logger.setLevel(Level.INFO);
-        logger.info("Inicializa la lista de ciudades");
-        logger.info("ciudades" + medicos);
+        logger.info("Inicializa la lista de medicos");
+        logger.info("medicos" + medicos);
     }
 
     /**
      * Lista de los medicos
      *
-     * @return lista de consultorios
-     * @throws ConsultorioException Si la lista no existe
+     * @return lista de medicos
+     * @throws MedicoException Si la lista no existe
      */
     public List<MedicoDTO> getMedico() throws MedicoException {
         if (medicos == null) {
@@ -164,4 +166,33 @@ public class MedicoMock {
         }
         return medicoN;
     }
+    
+    
+    
+    
+      public double calcularPromedioCitaMedico(String especialidad)
+    {
+        double promedio=0;
+        for(int i=0;i<medicos.size();i++)
+        {
+            promedio+=medicos.get(i).calcularPromedioCitaMedico();
+        }
+        return promedio;
+    
+    }
+    
+    
+   public double calcularPromedioEspecialidad(String pEspecialidad)
+   {
+       double promedio=0;
+       for(int i=0;i<medicos.size();i++)
+       {
+           if(medicos.get(i).getEspecializacion().equals(pEspecialidad)) 
+            {
+                promedio+=medicos.get(i).calcularPromedioCitaMedico();
+            }          
+       }
+       return promedio;
+       
+   }
 }
