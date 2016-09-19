@@ -14,9 +14,7 @@ import java.util.Date;
  */
 public class TurnoDTO {
     
-    
     private Long id;
-    
     /**
      * Dia de la semana del turno
      */
@@ -24,15 +22,19 @@ public class TurnoDTO {
     
     private int duracion;
     
+    private MedicoDTO medico;
+    
+    private ConsultorioDTO consultorio;
+    
     private CitaDTO[] citas;
 
-    
-
-    public TurnoDTO(Long pId, Date pFecha, int pDuracion) {
+    public TurnoDTO(Long pId, MedicoDTO pMedico, Date pFecha, int pDuracion) {
         id = pId;
         fecha = pFecha;
         duracion = pDuracion;
         citas = new CitaDTO[duracion/15];
+        medico = pMedico;
+        consultorio = null;
         for(int i = 0; i < citas.length ; i++){
             citas[i] = new CitaDTO();
         }
@@ -95,7 +97,35 @@ public class TurnoDTO {
      * @param citas the citas to set
      */
     public void setCitas(CitaDTO[] citas) {
-        this.citas = citas;
+        this.setCitas(citas);
+    }
+
+    /**
+     * @return the medico
+     */
+    public MedicoDTO getMedico() {
+        return medico;
+    }
+
+    /**
+     * @param medico the medico to set
+     */
+    public void setMedico(MedicoDTO medico) {
+        this.medico = medico;
+    }
+
+    /**
+     * @return the consultorio
+     */
+    public ConsultorioDTO getConsultorio() {
+        return consultorio;
+    }
+
+    /**
+     * @param consultorio the consultorio to set
+     */
+    public void setConsultorio(ConsultorioDTO consultorio) {
+        this.consultorio = consultorio;
     }
     
 }
