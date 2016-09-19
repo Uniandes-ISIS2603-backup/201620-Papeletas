@@ -31,7 +31,23 @@
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     idCita: undefined /*Tipo String*/,
                     fecha: '',
-                    duracion: undefined
+                    duracion: undefined,
+                    medico: {
+                        id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                        nombre: '' /*Tipo String*/,
+                        disponibilidad:''
+                    },
+                    consultorio: {
+                        id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                        libre: false /*Tipo boolean*/
+                    },
+                    paciente: {
+                        id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                        name: '' /*Tipo String*/,
+                        lastName: '',
+                        age: undefined,
+                        satisfaction: undefined,
+                    }        
                 };
               
                 $scope.alerts = [];

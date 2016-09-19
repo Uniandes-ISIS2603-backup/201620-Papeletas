@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
+import java.util.Calendar;
 import java.util.Date;
 
 
@@ -35,8 +36,11 @@ public class TurnoDTO {
         citas = new CitaDTO[duracion/15];
         medico = pMedico;
         consultorio = null;
+        Calendar c = Calendar.getInstance();
+        c.setTime(fecha);
         for(int i = 0; i < citas.length ; i++){
-            citas[i] = new CitaDTO(pFecha, 15L, pMedico);
+            Date f = new Date(c.getTimeInMillis() + 900000L);
+            citas[i] = new CitaDTO( f, 15L, pMedico);
         }
     }
     
