@@ -36,7 +36,7 @@ public class TurnoDTO {
         medico = pMedico;
         consultorio = null;
         for(int i = 0; i < citas.length ; i++){
-            citas[i] = new CitaDTO();
+            citas[i] = new CitaDTO(pFecha, 15L, pMedico);
         }
     }
     
@@ -122,10 +122,14 @@ public class TurnoDTO {
     }
 
     /**
-     * @param consultorio the consultorio to set
+     * @param consultorio Asigna un consultorio a un turno y ademas a todas las citas contenidas en el
      */
     public void setConsultorio(ConsultorioDTO consultorio) {
         this.consultorio = consultorio;
+        for(int i = 0; i < citas.length; i++){
+            //TODO: asignar consultorio a las citas
+        }
     }
+    
     
 }
