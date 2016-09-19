@@ -166,4 +166,33 @@ public class MedicoMock {
         }
         return medicoN;
     }
+    
+    
+    
+    
+      public double calcularPromedioCitaMedico(String especialidad)
+    {
+        double promedio=0;
+        for(int i=0;i<medicos.size();i++)
+        {
+            promedio+=medicos.get(i).calcularPromedioCitaMedico();
+        }
+        return promedio;
+    
+    }
+    
+    
+   public double calcularPromedioEspecialidad(String pEspecialidad)
+   {
+       double promedio=0;
+       for(int i=0;i<medicos.size();i++)
+       {
+           if(medicos.get(i).getEspecializacion().equals(pEspecialidad))
+            {
+                promedio+=medicos.get(i).calcularPromedioCitaMedico();
+            }          
+       }
+       return promedio;
+       
+   }
 }
