@@ -93,6 +93,9 @@ public class MedicoResource {
     {
         return medico.updateMedico(medicoN);
     }
+    
+    
+    
 
     
     

@@ -43,6 +43,9 @@ public class MedicoDTO {
      */
     private ArrayList<CitaDTO> listaEspera;
     
+    /**
+     * Turno del medico
+     */
     private TurnoDTO turno;
     
     /**
@@ -50,7 +53,9 @@ public class MedicoDTO {
      */
     private boolean consultaTerminada;
     
-    
+    /**
+     * Duracion de la consulta del medico
+     */
     private int duracionConsultas;
     
     /**
@@ -58,7 +63,9 @@ public class MedicoDTO {
      */
     private int cantidadCitas;
     
-    
+    /**
+     * Relacion con la clase ciita
+     */
     private CitaMock cita;
     
     
@@ -141,7 +148,6 @@ public class MedicoDTO {
     }
 
   
-    
     public String getEspecializacion()
     {
         return especialidad;
