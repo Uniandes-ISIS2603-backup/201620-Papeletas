@@ -208,6 +208,19 @@ public class MedicoMock {
        return promedio;
        
    }
+  
+   
+   public void registrarFinCita(Long idMedico, Long idTurno, Long idCita, int pDuracion)
+   {
+       for(int i=0;i<medicos.size();i++)
+       {
+           if(medicos.get(i).getId()==idMedico)
+           {
+               medicos.get(i).registrarFinCita(pDuracion, idCita, idTurno);
+               break;
+           }
+       }
+   }
    
    
   

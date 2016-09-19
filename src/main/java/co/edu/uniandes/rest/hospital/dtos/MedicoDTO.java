@@ -5,8 +5,11 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
+import co.edu.uniandes.rest.hospital.mocks.CitaMock;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 
 /**
  *
@@ -56,6 +59,9 @@ public class MedicoDTO {
     private int cantidadCitas;
     
     
+    private CitaMock cita;
+    
+    
     /**
      * Constructor vacio
      */
@@ -77,6 +83,7 @@ public class MedicoDTO {
         this.disponibilidad = disponibilidad;
         this.especialidad = espe;
         listaEspera = new ArrayList <>();
+        cita=new CitaMock();
     }
 
     /**
@@ -243,17 +250,29 @@ public class MedicoDTO {
         return getDuracionConsulta()/darCantidadCitas();
     }
     
-    public void registrarFinCita(int pDuracion)
+    public void registrarFinCita(int pDuracion, Long idCita, Long idTurno) 
     {
-        setDuracionConsulta(pDuracion);
-        agregarCita();
-        cambiarEstadoCita();
-      
+        try
+        {
+           List<CitaDTO> citas= cita.getCitas(idTurno);
+           for(int i=0;i<citas.size();i++)
+           {
+              if(citas.get(i).getMedico().getId()==getId())
+              {
+                  setDuracionConsulta(pDuracion);
+                  agregarCita();
+                  cambiarEstadoCita();
+
+              }
+           }
+        }
+        catch(Exception e)
+        {
+            e.getMessage();
+        }
+        
     }
     
     
    
-    
-   
-
 }

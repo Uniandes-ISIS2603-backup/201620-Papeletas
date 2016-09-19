@@ -105,7 +105,7 @@ public class CitaResource {
      * @throws CitaException 
      */
     @PUT
-    @PATH("{id: \\d+}")
+    @Path("{id: \\d+}")
     public CitaDTO cancelarCita (@PathParam("idTurno") Long idTurno,@PathParam("id") int id, @QueryParam ("i") Integer i) throws CitaException
     {
         return cita.cancelarCita(idTurno, id);
@@ -120,7 +120,7 @@ public class CitaResource {
      * @throws CitaException 
      */
     @PUT
-    @PATH("{id: \\d+}")
+    @Path("{id: \\d+}")
     public CitaDTO reservarCita (@PathParam("idTurno") Long idTurno,@PathParam("id") int id, @QueryParam ("i") Integer i, PacienteDTO paciente) throws CitaException
     {
         return cita.reservarCita(idTurno, id, paciente);
