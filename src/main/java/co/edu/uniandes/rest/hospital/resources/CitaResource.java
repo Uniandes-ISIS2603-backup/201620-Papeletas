@@ -25,7 +25,7 @@ import static org.glassfish.jersey.server.model.Parameter.Source.PATH;
  *
  * @author jc.useche10
  */
-@Path("medicos/{idMedico: \\d+}/turnos/{idTurno: \\d+}/citas")
+@Path("")
 @Produces("application/json")
 @Consumes("application/json")
 public class CitaResource {
@@ -40,11 +40,10 @@ public class CitaResource {
      * @throws CitaException Si la lista no existe
      */
     @GET
-    
-    
-    public List<CitaDTO> getCitas (@PathParam("idTurno") Long idTurno) throws CitaException 
+    @Path ("medicos/{idMedico: \\d+}/citas")
+    public List<CitaDTO> getCitas (@PathParam("idMedico") Long idMedico) throws CitaException 
     {
-        return cita.getCitas(idTurno);
+        return cita.getCitas(idMedico);
     }
     
     /**
@@ -54,7 +53,7 @@ public class CitaResource {
      * @throws CitaException si no existe un cita con el id especificado o no existe la lista
      */
     @GET
-    @Path ("{id: \\d+}")
+    @Path ("medicos/{idMedico: \\d+}/citas/{id: \\d+}")
     public CitaDTO getCita (@PathParam("idTurno") Long idTurno, @PathParam ("id") Long id) throws CitaException
     {
         return cita.getCita(idTurno, id);
