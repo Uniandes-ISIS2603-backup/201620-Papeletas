@@ -25,7 +25,7 @@ public class EspecializacionMock
          public EspecializacionMock()
         {
             especialidades = new ArrayList<>();
-            especialidades.add(new EspecializacionDTO(0, "Dotorisimo", "Medico general"));
+            especialidades.add(new EspecializacionDTO(0, "Dotorisimo"));
         }
 	
 	/**
@@ -51,9 +51,28 @@ public class EspecializacionMock
     	logger.info("recibiendo solicitud de agregar especialidad" + specialty);
     	
     	{
-    		logger.info("Generando id para la especializacion");
-	        specialty.setId(especialidades.size());
-    	}
+            for (EspecializacionDTO spec : especialidades)
+            {
+                // si existe una editorial con ese id
+                
+                if (Objects.equals(spec.getNombre(), specialty.getNombre()))
+                {
+                    logger.severe("Ya existe una especializacion con ese nombre");
+                    throw new EspecializacionException("Ya existe una especializacion con ese nombre");
+                }
+
+            }
+            // genera un id para el editorial
+            logger.info("Generando id para la nueva especializacion");
+            int newId = 1;
+            for (EspecializacionDTO spec : especialidades)
+            {
+                if (newId <= spec.getId()) {
+                    newId = spec.getId() + 1;
+                }
+            }
+            specialty.setId(newId);
+        }
     	
     	logger.info("agregando especialidad" + specialty);
         especialidades.add(specialty);
@@ -94,7 +113,7 @@ public class EspecializacionMock
             throw new EspecializacionException("No existe una especialidad con el id especificado");
         }
     }
-    public EspecializacionDTO updateEspecializacion (int id, Integer i, EspecializacionDTO spec) throws EspecializacionException
+    public EspecializacionDTO updateEspecializacion (int id, EspecializacionDTO spec) throws EspecializacionException
     {
         
         boolean exists = false;
@@ -104,7 +123,6 @@ public class EspecializacionMock
             {
                 exists = true;
                 special.setId(spec.getId());
-                special.setDescripcion(spec.getDescripcion());
                 special.setNombre(spec.getNombre());
             }
         }
