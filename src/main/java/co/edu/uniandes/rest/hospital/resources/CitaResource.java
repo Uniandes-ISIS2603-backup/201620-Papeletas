@@ -81,48 +81,4 @@ public class CitaResource {
     {
         cita.deleteCita(idTurno, id);
     }
-    
-    /**
-     * Actualiza el cita con el id especificado
-     * @param id id del cita que se quiere actualizar
-     * @param i índice de la hora que se quiere actualizar
-     * @return el cita actualizado
-     * @throws CitaException Si la información del cita está incompleta, el cita con el id no existe o se ingresa un índice fuera del rango
-     */
-    @PUT
-    @Path ("{id: \\d+}")
-    public CitaDTO updateCita (@PathParam("idTurno") Long idTurno,@PathParam("id") int id, @QueryParam ("i") Integer i, CitaDTO nuevaCita) throws CitaException
-    {
-        return cita.updateCita(idTurno, id, nuevaCita);
-    }
-    
-    /**
-     * Cancela la cita con el id especificado
-     * @param idTurno
-     * @param id
-     * @param i
-     * @return
-     * @throws CitaException 
-     */
-    @PUT
-    @Path("{id: \\d+}")
-    public CitaDTO cancelarCita (@PathParam("idTurno") Long idTurno,@PathParam("id") int id, @QueryParam ("i") Integer i) throws CitaException
-    {
-        return cita.cancelarCita(idTurno, id);
-    }
-   
-     /**
-     * Reserva la cita con el id especificado
-     * @param idTurno
-     * @param id
-     * @param i
-     * @return
-     * @throws CitaException 
-     */
-    @PUT
-    @Path("{id: \\d+}")
-    public CitaDTO reservarCita (@PathParam("idTurno") Long idTurno,@PathParam("id") int id, @QueryParam ("i") Integer i, PacienteDTO paciente) throws CitaException
-    {
-        return cita.reservarCita(idTurno, id, paciente);
-    }
 }
