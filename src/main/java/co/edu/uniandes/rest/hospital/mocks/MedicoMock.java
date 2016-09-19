@@ -187,7 +187,7 @@ public class MedicoMock {
        double promedio=0;
        for(int i=0;i<medicos.size();i++)
        {
-           if(medicos.get(i).getEspecializacion().equals(pEspecialidad))
+           if(medicos.get(i).getEspecializacion().equals(pEspecialidad)) 
             {
                 promedio+=medicos.get(i).calcularPromedioCitaMedico();
             }          
