@@ -6,6 +6,7 @@
 package co.edu.uniandes.rest.hospital.resources;
 
 import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
+import co.edu.uniandes.rest.hospital.dtos.PacienteDTO;
 import co.edu.uniandes.rest.hospital.exceptions.CitaException;
 import co.edu.uniandes.rest.hospital.mocks.CitaMock;
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import static org.glassfish.jersey.server.model.Parameter.Source.PATH;
 
 /**
  *
@@ -92,5 +94,35 @@ public class CitaResource {
     public CitaDTO updateCita (@PathParam("idTurno") Long idTurno,@PathParam("id") int id, @QueryParam ("i") Integer i, CitaDTO nuevaCita) throws CitaException
     {
         return cita.updateCita(idTurno, id, nuevaCita);
+    }
+    
+    /**
+     * Cancela la cita con el id especificado
+     * @param idTurno
+     * @param id
+     * @param i
+     * @return
+     * @throws CitaException 
+     */
+    @PUT
+    @PATH("{id: \\d+}")
+    public CitaDTO cancelarCita (@PathParam("idTurno") Long idTurno,@PathParam("id") int id, @QueryParam ("i") Integer i) throws CitaException
+    {
+        return cita.cancelarCita(idTurno, id);
+    }
+   
+     /**
+     * Reserva la cita con el id especificado
+     * @param idTurno
+     * @param id
+     * @param i
+     * @return
+     * @throws CitaException 
+     */
+    @PUT
+    @PATH("{id: \\d+}")
+    public CitaDTO reservarCita (@PathParam("idTurno") Long idTurno,@PathParam("id") int id, @QueryParam ("i") Integer i, PacienteDTO paciente) throws CitaException
+    {
+        return cita.reservarCita(idTurno, id, paciente);
     }
 }
