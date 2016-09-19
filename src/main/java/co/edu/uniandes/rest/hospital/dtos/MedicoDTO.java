@@ -5,6 +5,12 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
+import co.edu.uniandes.rest.hospital.mocks.CitaMock;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+
 /**
  *
  * @author Nicolas
@@ -32,6 +38,10 @@ public class MedicoDTO {
     
     private String especialidad;
     
+    /**
+     * Lista de espera del médico
+     */
+    private ArrayList<CitaDTO> listaEspera;
     
     private TurnoDTO turno;
     
@@ -43,7 +53,13 @@ public class MedicoDTO {
     
     private int duracionConsultas;
     
+    /**
+     * numero de citas finalizadas;
+     */
     private int cantidadCitas;
+    
+    
+    private CitaMock cita;
     
     
     /**
@@ -66,6 +82,8 @@ public class MedicoDTO {
         this.id = id;
         this.disponibilidad = disponibilidad;
         this.especialidad = espe;
+        listaEspera = new ArrayList <>();
+        cita=new CitaMock();
     }
 
     /**
@@ -134,6 +152,46 @@ public class MedicoDTO {
         this.especialidad=e;
     }
     
+    /**
+     * Obtiene la lista de espera del médico.
+     * @return la lista de espera del médico
+     */
+    public ArrayList getListaEspera () {
+        return listaEspera;
+    }
+    
+    /**
+     * Modifica la lista de espera del médico
+     * @param listaEspera nueva lista de espera del médico.
+     */
+    public void setListaEspera (ArrayList listaEspera) {
+        this.listaEspera = listaEspera;
+    }
+    
+    /**
+     * Agrega una cita nueva a la lista de espera
+     * @param cita nueva cita 
+     */
+    public void agregarCitaListaEspera (CitaDTO cita) {
+        listaEspera.add(cita);
+    }
+    
+    /**
+     * Remueve un paciente de la lista de espera
+     * @param fecha fecha de la cita que se quiere remover
+     * @return cita de la lista de espera con la fecha que se encuentra por parámetro
+     */
+    public CitaDTO removerCitaListaEspera (Date fecha) {
+        boolean encontro = false;
+        CitaDTO cita = null;
+        for (int i = 0; i < listaEspera.size() && !encontro; i++){
+            if(listaEspera.get(i).getFecha().equals(fecha)){
+                cita = listaEspera.get(i);
+                encontro = true;
+            }
+        }
+        return cita;
+    }
     
     private TurnoDTO darTurno()
     {
@@ -154,8 +212,12 @@ public class MedicoDTO {
     /**
      * @param consultaTerminada the consultaTerminada to set
      */
-    public void setConsultaTerminada(boolean consultaTerminada) {
-        this.consultaTerminada = consultaTerminada;
+    public void cambiarEstadoCita()
+    {
+        if(!consultaTerminada)
+            consultaTerminada=true;
+        else
+            consultaTerminada=false;
     }
 
     /**
@@ -188,6 +250,29 @@ public class MedicoDTO {
         return getDuracionConsulta()/darCantidadCitas();
     }
     
-   
+    public void registrarFinCita(int pDuracion, Long idCita, Long idTurno) 
+    {
+        try
+        {
+           List<CitaDTO> citas= cita.getCitas(idTurno);
+           for(int i=0;i<citas.size();i++)
+           {
+              if(citas.get(i).getMedico().getId()==getId())
+              {
+                  setDuracionConsulta(pDuracion);
+                  agregarCita();
+                  cambiarEstadoCita();
 
+              }
+           }
+        }
+        catch(Exception e)
+        {
+            e.getMessage();
+        }
+        
+    }
+    
+    
+   
 }

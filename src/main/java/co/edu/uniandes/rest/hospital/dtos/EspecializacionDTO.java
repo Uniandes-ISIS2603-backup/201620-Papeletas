@@ -19,19 +19,14 @@ public class EspecializacionDTO
 	 */
 	private String nombre;
 	
-	/*
-	 * descripcion de la especializacion
-	 */
-	private String descripcion;
         
         public EspecializacionDTO(){}
 	
-	public EspecializacionDTO(int id, String nombre, String descripcion)
+	public EspecializacionDTO(int id, String nombre)
 	{
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.descripcion = descripcion;
 	}
 
 	/*
@@ -53,10 +48,6 @@ public class EspecializacionDTO
 	/*
 	 * @return descripcion
 	 */
-	public String getDescripcion()
-	{
-		return descripcion;
-	}
 
 	public void setId(int id)
 	{
@@ -67,10 +58,10 @@ public class EspecializacionDTO
 	{
 		this.nombre = nombre;
 	}
-
-	public void setDescripcion(String descripcion)
-	{
-		this.descripcion = descripcion;
-	}
+        @Override
+        public String toString()
+        {
+    	return "{ id : " + getId() + ", name : \"" + getNombre() + "\" }" ;  
+        }
 		
 }

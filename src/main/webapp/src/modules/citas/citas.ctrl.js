@@ -1,12 +1,12 @@
 (function (ng) {
     var mod = ng.module("citasModule");
 
-    mod.controller("citasCtrl", ['$scope', '$state', '$stateParams', '$http', 'turnosContext', function ($scope, $state, $stateParams, $http, turnosContext) {
+    mod.controller("citasCtrl", ['$scope', '$state', '$stateParams', '$http', 'medicosContext', 'turnosContext', function ($scope, $state, $stateParams, $http, turnosContext) {
             // inicialmente el listado de citas está vacio
             $scope.citasContext = '/citas';
             $scope.records = {};
             // carga las citas
-            $http.get(turnosContext + "/" + $stateParams.turnoId + $scope.citasContext).then(function(response){
+            $http.get(medicosContext + "/" + $stateParams.medicoID + turnosContext + "/" + $stateParams.turnoId + $scope.citasContext).then(function(response){
                 $scope.records = response.data;    
             }, responseError);
 
@@ -16,7 +16,7 @@
                 // toma el id del parámetro
                 id = $stateParams.citaId;
                 // obtiene el dato del recurso REST
-                $http.get(turnosContext + "/" + $stateParams.turnoId +$scope.citasContext + "/" + id)
+                $http.get(medicosContext + "/" + $stateParams.medicoId +$scope.citasContext+ turnosContext + "/" + $stateParams.turnoId +$scope.citasContext + "/" + id)
                     .then(function (response) {
                         // $http.get es una promesa
                         // cuando llegue el dato, actualice currentRecord
@@ -45,7 +45,7 @@
                 if (id == null) {
 
                     // ejecuta POST en el recurso REST
-                    return $http.post(turnosContext + "/" + $stateParams.turnoId + $scope.citasContext, currentRecord)
+                    return $http.post(medicosContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext, currentRecord)
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
@@ -56,7 +56,7 @@
                 } else {
                     
                     // ejecuta PUT en el recurso REST
-                    return $http.put(turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id, currentRecord)
+                    return $http.put(medicosContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id, currentRecord)
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
@@ -67,7 +67,7 @@
 
                 this.deleteRecord = function (id) {
                 currentRecord = $scope.currentRecord;
-                $http.delete(context + "/" + currentRecord.id)
+                $http.delete(medicosContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id)
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
@@ -75,6 +75,24 @@
                         }, responseError);
             };
 
+                this.cancelarCita = function(id) {
+                    currentRecord = $scope.currentRecord;
+                    $http.put(medicosContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id)
+                            .then(function () {
+                            // $http.put es una promesa
+                            // cuando termine bien, cambie de estado
+                            $state.go('citasCancelar');
+                        }, responseError);
+                }
+                this.reservarCita = function(id){
+                    currentRecord = $scope.currentRecord;
+                    $http.put(medicosContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id)
+                            .then(function () {
+                            // $http.put es una promesa
+                            // cuando termine bien, cambie de estado
+                            $state.go('citasReservar');
+                        }, responseError);
+                }
             // -----------------------------------------------------------------
             // Funciones para manejra los mensajes en la aplicación
 

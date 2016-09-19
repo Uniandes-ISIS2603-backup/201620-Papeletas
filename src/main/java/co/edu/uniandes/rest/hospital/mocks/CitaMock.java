@@ -69,20 +69,20 @@ public class CitaMock {
      *
      * @param id identificador de la cita
      * @return cita encontrada
-     * @throws citaException cuando la getReview no existe
+     * @throws citaException cuando la getcita no existe
      */  
     public CitaDTO getCita(Long idTurno, Long id) throws CitaException {
-        logger.info("recibiendo solicitud de getReview con id " + id);
+        logger.info("recibiendo solicitud de getcita con id " + id);
 
-        // busca la getReview con el id suministrado
+        // busca la getcita con el id suministrado
         for (CitaDTO cita : citas) {
             if (Objects.equals(cita.getId(), id)) {
-                logger.info("retornando getReview " + cita);
+                logger.info("retornando getcita " + cita);
                 return cita;
             }
         }
 
-        // si no encuentra la getReview
+        // si no encuentra la getcita
         logger.severe("No existe citacon ese id");
         throw new CitaException("No existe cita con ese id");
     }
@@ -163,5 +163,41 @@ public class CitaMock {
            }
         }
         citas.remove(cita);
+    }
+
+    public CitaDTO cancelarCita(Long idTurno, int id) throws CitaException
+    {
+       logger.info("recibiendo solicitud de cancelar la cita con id " + id);
+
+        // busca la getcita con el id suministrado
+        for (CitaDTO cita : citas) {
+            if (Objects.equals(cita.getId(), id)) {
+                logger.info("retornando getcita " + cita);
+                cita.setPaciente(null);
+                return cita;
+            }
+        }
+
+        // si no encuentra la getcita
+        logger.severe("No existe citacon ese id");
+        throw new CitaException("No existe cita con ese id");
+    }
+
+    public CitaDTO reservarCita(Long idTurno, int id, PacienteDTO paciente) throws CitaException
+    {
+        logger.info("recibiendo solicitud de cancelar la cita con id " + id);
+
+        // busca la getcita con el id suministrado
+        for (CitaDTO cita : citas) {
+            if (Objects.equals(cita.getId(), id)) {
+                logger.info("retornando getcita " + cita);
+                cita.setPaciente(paciente);
+                return cita;
+            }
+        }
+
+        // si no encuentra la getcita
+        logger.severe("No existe citacon ese id");
+        throw new CitaException("No existe cita con ese id");
     }
 }

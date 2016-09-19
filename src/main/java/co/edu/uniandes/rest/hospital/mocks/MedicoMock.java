@@ -166,4 +166,64 @@ public class MedicoMock {
         }
         return medicoN;
     }
+    
+    
+    
+    /**
+     * Calcula el promedio de duracion de citas dado un medico
+     * @param especialidad
+     * @return 
+     */
+      public double calcularPromedioCitaMedico(Long id)
+    {
+        double promedio=0;
+        for(int i=0;i<medicos.size();i++)
+        {
+            if(medicos.get(i).getId()==id)
+            {
+               promedio=medicos.get(i).calcularPromedioCitaMedico();
+               break;
+            }
+        }
+        return promedio;
+    
+    }
+    
+    
+      /**
+       * Calcula el promedio de citas dada una especialidad;
+       * @param pEspecialidad
+       * @return 
+       */
+   public double calcularPromedioEspecialidad(String pEspecialidad)
+   {
+       double promedio=0;
+       for(int i=0;i<medicos.size();i++)
+       {
+           if(medicos.get(i).getEspecializacion().equals(pEspecialidad)) 
+            {
+                promedio+=medicos.get(i).calcularPromedioCitaMedico();
+            }          
+       }
+       return promedio;
+       
+   }
+  
+   
+   public void registrarFinCita(Long idMedico, Long idTurno, Long idCita, int pDuracion)
+   {
+       for(int i=0;i<medicos.size();i++)
+       {
+           if(medicos.get(i).getId()==idMedico)
+           {
+               medicos.get(i).registrarFinCita(pDuracion, idCita, idTurno);
+               break;
+           }
+       }
+   }
+   
+   
+  
+   
+   
 }
