@@ -66,6 +66,7 @@ public class CitaResource {
      * @throws CitaException si ya existe un cita con el ese id
      */
     @POST
+    @Path ("medicos/{idMedico: \\d+}/citas")
     public CitaDTO createCita (@PathParam("idTurno") Long idTurno, CitaDTO newCita) throws CitaException
     {
         return cita.createCita(idTurno,newCita);
@@ -77,7 +78,7 @@ public class CitaResource {
      * @throws CitaException si no existe un cita con el id especificado
      */
     @DELETE
-    @Path ("{id: \\d+}")
+    @Path ("medicos/{idMedico: \\d+}/citas/{id: \\d+}")
     public void deleteCita (@PathParam("idTurno") Long idTurno, @PathParam("id") int id) throws CitaException
     {
         cita.deleteCita(idTurno, id);
