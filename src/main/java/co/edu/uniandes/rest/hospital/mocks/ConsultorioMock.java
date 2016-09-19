@@ -45,12 +45,8 @@ public class ConsultorioMock {
             long l = 1L;
             for (int i = 0; i < NUM_CONSULTORIOS; i++)
             {
-                boolean libre = false;
-                //Para probar la clase, los consultorios con id par están libres
-                if (l % 2 == 0) libre = true;
-               
-                ConsultorioDTO consultorio = new ConsultorioDTO(l++, libre);
-                
+                ConsultorioDTO consultorio = new ConsultorioDTO(l, l);
+                l++;
                 consultorios.add(consultorio);
             }
         }
@@ -103,16 +99,6 @@ public class ConsultorioMock {
                     newId = consultorio.getId() + 1;
             }
             newConsultorio.setId(newId);
-        }
-        
-        if (newConsultorio.getDisponibilidad() == null)
-        {
-            boolean [] disponibilidad = new boolean [ConsultorioDTO.NUM_CUARTOS_DE_HORA_DIA];
-            
-            for (int i = 0; i < ConsultorioDTO.NUM_CUARTOS_DE_HORA_DIA; i++)
-                disponibilidad[i]= false;
-            
-            newConsultorio.setDisponibilidad(disponibilidad);
         }
         
         consultorios.add(newConsultorio);
@@ -169,12 +155,11 @@ public class ConsultorioMock {
     /**
      * Actualiza el consultorio con el id especificado
      * @param id id del consultorio que se quiere actualizar
-     * @param i índice de la hora que se quiere actualizar
      * @param consultorio consultorio actualizado
      * @return el consultorio actualizado
      * @throws ConsultorioException Si la información del consultorio está incompleta, el consultorio con el id no existe o se ingresa un índice fuera del rango
      */
-    public ConsultorioDTO updateConsultorio (Long id, Integer i, ConsultorioDTO consultorio) throws ConsultorioException
+    public ConsultorioDTO updateConsultorio (Long id, ConsultorioDTO consultorio) throws ConsultorioException
     {
         if (consultorio.getId() == null)
         {
@@ -188,13 +173,7 @@ public class ConsultorioMock {
             {
                 exists = true;
                 consul.setId(consultorio.getId());
-                consul.setLibre(consultorio.isLibre());
-                if (i != null)
-                {
-                    if (i < 0 || i > 95)
-                        throw new ConsultorioException ("Debe ingresar un número entre 0 y 95");
-                    consul.changeDisponibilidad(i);
-                }
+                consul.setNumero(consultorio.getNumero());
             }
         }
         if (!exists)

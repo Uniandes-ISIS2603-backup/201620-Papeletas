@@ -84,16 +84,15 @@ public class ConsultorioResource {
     /**
      * Actualiza el consultorio con el id especificado
      * @param id id del consultorio que se quiere actualizar
-     * @param i índice de la hora que se quiere actualizar
      * @param consul consultorio actualizado
      * @return el consultorio actualizado
      * @throws ConsultorioException Si la información del consultorio está incompleta, el consultorio con el id no existe o se ingresa un índice fuera del rango
      */
     @PUT
     @Path ("{id: \\d+}")
-    public ConsultorioDTO updateConsultorio (@PathParam("id") Long id, @QueryParam ("i") Integer i, ConsultorioDTO consul) throws ConsultorioException
+    public ConsultorioDTO updateConsultorio (@PathParam("id") Long id, ConsultorioDTO consul) throws ConsultorioException
     {
-        return consultorio.updateConsultorio(id, i, consul);
+        return consultorio.updateConsultorio(id, consul);
     }
     
 }
