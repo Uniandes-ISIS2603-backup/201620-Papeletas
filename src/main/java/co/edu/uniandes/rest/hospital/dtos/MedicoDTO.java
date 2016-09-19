@@ -33,6 +33,19 @@ public class MedicoDTO {
     private String especialidad;
     
     
+    private TurnoDTO turno;
+    
+    /**
+     * Determina si la consulta ya acabo o no;
+     */
+    private boolean consultaTerminada;
+    
+    
+    private int duracionConsultas;
+    
+    private int cantidadCitas;
+    
+    
     /**
      * Constructor vacio
      */
@@ -53,11 +66,7 @@ public class MedicoDTO {
         this.id = id;
         this.disponibilidad = disponibilidad;
         this.especialidad = espe;
-
     }
-    
-    
-    
 
     /**
      * retorna el Nombre del medico
@@ -123,6 +132,60 @@ public class MedicoDTO {
     public void setEspecialidad(String e)
     {
         this.especialidad=e;
+    }
+    
+    
+    private TurnoDTO darTurno()
+    {
+        return turno;
+    }
+    private void setTurno(TurnoDTO turno)
+    {
+        this.turno=turno;
+    }
+
+    /**
+     * @return the consultaTerminada
+     */
+    public boolean isConsultaTerminada() {
+        return consultaTerminada;
+    }
+
+    /**
+     * @param consultaTerminada the consultaTerminada to set
+     */
+    public void setConsultaTerminada(boolean consultaTerminada) {
+        this.consultaTerminada = consultaTerminada;
+    }
+
+    /**
+     * @return the duracionConsulta
+     */
+    public int getDuracionConsulta() {
+        return duracionConsultas;
+    }
+
+    /**
+     * @param duracionConsulta the duracionConsulta to set
+     */
+    public void setDuracionConsulta(int duracionConsulta)
+    {
+         duracionConsultas+=duracionConsulta;
+        
+    }
+    
+    public int darCantidadCitas()
+    {
+        return cantidadCitas;
+    }
+    
+    public void agregarCita()
+    {
+        cantidadCitas++;
+    } 
+    public double calcularPromedioCitaMedico()
+    {
+        return getDuracionConsulta()/darCantidadCitas();
     }
     
    

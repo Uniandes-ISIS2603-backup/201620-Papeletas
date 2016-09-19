@@ -36,20 +36,28 @@ public class CitaDTO
      /**
      * Constructor. Crea una nueva cita.
      */
-    public CitaDTO(long idCita, Date fecha,long duracion, MedicoDTO medico, ConsultorioDTO consultorio, PacienteDTO paciente) 
+    public CitaDTO(Date fecha,long duracion, MedicoDTO medico) 
     {
-        this.idCita = idCita;
+        this.idCita = (long)Math.random()*(100-1)+1;
         this.fecha = fecha;
         this.duracion = duracion;
         this.medico = medico;
-        this.consultorio = consultorio;
-        this.paciente = paciente;
+        this.consultorio = null;
+        this.paciente = null;
         
     }
     
     public CitaDTO()
     {
       
+    }
+    public long getId()
+    {
+        return idCita;
+    }
+    public void setId(Long pIdCita)
+    {
+        this.idCita = pIdCita;
     }
     /**
     * obtiene la fecha para la cual esta programada la cita
@@ -58,6 +66,14 @@ public class CitaDTO
     public Date getFecha()
     {
         return fecha;
+    }
+     /**
+     * cambia la fecha de una cita
+     * @param pNuevaFecha  nueva fecha para la cita
+     */
+    public void setFecha(Date fecha)
+    {
+        this.fecha = fecha;
     }
     
     /**
@@ -68,32 +84,42 @@ public class CitaDTO
     {
         return duracion;
     }
-    
-    /**
-     * cambia la fecha de una cita
-     * @param pNuevaFecha  nueva fecha para la cita
-     */
-    public void setFecha(Date fecha)
-    {
-        this.fecha = fecha;
-    }
-    
     /**
      * establece la duracion de una cita
      * @param pDuracion 
      */
-    public void setDuracion(long duracion)
+    public void setDuracion(long pDuracion)
     {
-        this.duracion= duracion;
+        duracion = pDuracion;
+    }
+   
+    public MedicoDTO getMedico()
+    {
+       return medico;
     }
     
-    public long getId() 
-    {  
-        return idCita;
-    }
-
-    public void setId(long idCita)
+    public void setMedico(MedicoDTO pMedico)
     {
-       this.idCita= idCita;
+        medico = pMedico;
+    }
+    
+    public ConsultorioDTO getConsultorio()
+    {
+       return consultorio;
+    }
+ 
+    public void setConsultorio(ConsultorioDTO pConsultorio)
+    {
+        consultorio = pConsultorio;
+    }
+    
+    public PacienteDTO getPaciente()
+    {
+        return paciente;
+    }
+    
+    public void setPaciente(PacienteDTO pPaciente)
+    {
+        paciente = pPaciente;
     }
 }
