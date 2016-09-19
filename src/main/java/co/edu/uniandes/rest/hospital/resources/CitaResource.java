@@ -40,6 +40,8 @@ public class CitaResource {
      * @throws CitaException Si la lista no existe
      */
     @GET
+    
+    
     public List<CitaDTO> getCitas (@PathParam("idTurno") Long idTurno) throws CitaException 
     {
         return cita.getCitas(idTurno);
