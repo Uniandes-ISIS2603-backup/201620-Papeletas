@@ -122,12 +122,14 @@ public class TurnoDTO {
     }
 
     /**
-     * @param consultorio Asigna un consultorio a un turno y ademas a todas las citas contenidas en el
+     * Asigna consultorio a un turno y a todas las citas de ese turno
+     * @param pConsultorio Consultorio a asignar
      */
-    public void setConsultorio(ConsultorioDTO consultorio) {
-        this.consultorio = consultorio;
+    public void setConsultorio(ConsultorioDTO pConsultorio) {
+        this.consultorio = pConsultorio;
         for(int i = 0; i < citas.length; i++){
-            //TODO: asignar consultorio a las citas
+            //Asignar consultorio a las citas
+            citas[i].setConsultorio(pConsultorio);
         }
     }
     
