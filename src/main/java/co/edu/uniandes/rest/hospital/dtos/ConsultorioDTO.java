@@ -12,22 +12,14 @@ package co.edu.uniandes.rest.hospital.dtos;
 public class ConsultorioDTO {
     
     /**
-     * Número de cuartos de hora en un día
-     */
-    public static final int NUM_CUARTOS_DE_HORA_DIA = 96;
-    
-    /**
      * Id del consultorio
      */
     private Long id;
+    
     /**
-     * Indica si el consultorio está libre
+     * Número del consultorio
      */
-    private boolean libre;
-    /**
-     * Disponibilidad del consultorio
-     */
-    private boolean [] disponibilidad;
+    private Long numero;
     
     /**
      * Constructor de la clase
@@ -40,15 +32,11 @@ public class ConsultorioDTO {
      * @param id id del consultorio
      * @param libre si el consultorio está libre o no.
      */
-    public ConsultorioDTO (Long id, boolean libre)
+    public ConsultorioDTO (Long id, Long numero)
     {
         super();
         this.id = id;
-        this.libre = libre;
-        this.disponibilidad = new boolean [NUM_CUARTOS_DE_HORA_DIA];
-        //Por defecto, el consultorio siempre está disponible
-        for (int i = 0; i < NUM_CUARTOS_DE_HORA_DIA; i++)
-            disponibilidad[i] = false;
+        this.numero = numero;
     }
     
     /**
@@ -70,46 +58,20 @@ public class ConsultorioDTO {
     }
     
     /**
-     * Indica si el consultorio está libre
-     * @return true si el consultorio está libre, false de lo contrario
+     * Indica el número del consultorio
+     * @return el número del consultorio
      */
-    public boolean isLibre ()
+    public Long getNumero ()
     {
-        return libre;
+        return numero;
     }
     
     /**
-     * Cambia el estado de libre del consultorio
-     * @param libre nuevo estado del consultorio
+     * Cambia el número del consultorio
+     * @param numero nuevo estado del consultorio
      */
-    public void setLibre (boolean libre)
+    public void setNumero (Long numero)
     {
-        this.libre = libre;
-    }
-    
-    /**
-     * Retorna un arreglo con la disponibilidad del consultorio
-     * @return el arreglo de la disponibilidad del consultorio
-     */
-    public boolean [] getDisponibilidad ()
-    {
-        return disponibilidad;
-    }
-    
-    public void setDisponibilidad (boolean [] disponibilidad)
-    {
-        this.disponibilidad = disponibilidad;
-    }
-    
-    /**
-     * Modifica la disponibilidad del consultorio en el indice de la hora especificada
-     * @param i inidce de la hora especificada.
-     */
-    public void changeDisponibilidad (int i)
-    {
-        if (disponibilidad [i])
-            disponibilidad [i] = false;
-        else
-            disponibilidad [i] = true;
+        this.numero = numero;
     }
 }
