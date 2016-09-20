@@ -5,9 +5,10 @@
  */
 package co.edu.uniandes.rest.hospital.mocks;
 
+import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
-import co.edu.uniandes.rest.hospital.dtos.TurnoDTO;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
+import co.edu.uniandes.rest.hospital.exceptions.TurnoLogicException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -221,6 +222,41 @@ public class MedicoMock {
            }
        }
    }
+   
+   /**
+    * Crea un turno en el médco con cierta id
+    * @param pIdMedico Id del médico
+    * @param pFecha Fecha del medico
+    * @param pDuracion Duracion del turno en minutos
+    *//*
+   public void crearTurno(Long pIdMedico, Date pFecha, int pDuracion) throws MedicoException{
+       for(MedicoDTO actual: medicos){
+           if(actual.getId().equals(pIdMedico)){
+               actual.agregarTurno(pFecha, pDuracion);
+               return;
+           }
+       }
+       throw new MedicoException("No existe un médico con id " + pIdMedico);
+   }
+   
+   /**
+    * Asigna un consultorio a un turno con cierta id de un medico con cierta id
+    * @param pIdMedico Id del médico
+    * @param pIdTurno Id del turno
+    * @param pConsultorio Consultorio a agregar
+    * @throws TurnoLogicException
+    * @throws MedicoException 
+    */
+   public void asignarConsultorio(Long pIdMedico, Long pIdTurno, ConsultorioDTO pConsultorio) throws TurnoLogicException, MedicoException{
+       for(MedicoDTO actual: medicos){
+           if(actual.getId().equals(pIdMedico)){
+               actual.asignarConsultorioTurno(pIdTurno, pConsultorio);
+               return;
+           }
+       }
+       throw new MedicoException("No existe un médico con id " + pIdMedico);
+   }
+   
    
    
   
