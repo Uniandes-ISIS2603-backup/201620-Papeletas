@@ -5,6 +5,8 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
+import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
+import co.edu.uniandes.rest.hospital.exceptions.TurnoLogicException;
 import co.edu.uniandes.rest.hospital.mocks.CitaMock;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,11 +45,15 @@ public class MedicoDTO {
      */
     private ArrayList<CitaDTO> listaEspera;
     
+
+
+
+    
+
     /**
      * Turno del medico
      */
-    private TurnoDTO turno;
-    
+    private List<TurnoDTO> turnos;
     /**
      * Determina si la consulta ya acabo o no;
      */
@@ -59,7 +65,7 @@ public class MedicoDTO {
     private int duracionConsultas;
     
     /**
-     * numero de citas finalizadas;
+     * numero de citas finalizadas;|
      */
     private int cantidadCitas;
     
@@ -90,6 +96,7 @@ public class MedicoDTO {
         this.disponibilidad = disponibilidad;
         this.especialidad = espe;
         listaEspera = new ArrayList <>();
+        turnos = new ArrayList<>();
         cita=new CitaMock();
         this.cantidadCitas=0;
     }
@@ -200,13 +207,13 @@ public class MedicoDTO {
         return cita;
     }
     
-    private TurnoDTO darTurno()
+    private List<TurnoDTO> darTurno()
     {
-        return turno;
+        return turnos;
     }
-    private void setTurno(TurnoDTO turno)
+    private void setTurno(List<TurnoDTO> turnos)
     {
-        this.turno=turno;
+        this.turnos=turnos;
     }
 
     /**
@@ -285,6 +292,27 @@ public class MedicoDTO {
         
     }
     
+    /**
+     * Crea un turno nuevo y lo agrega a la lista de turnos del médico cada cita del turno tiene una duración inicil de 15 minutos
+     * @param pFecha Fecha del nuevo turno
+     * @param pDuracion Duracion en minutos del turno
+     */
+    /*public void agregarTurno(Date pFecha, int pDuracion){
+        turnos.add(new TurnoDTO(this, pFecha, pDuracion, 15));
+    }*/
     
-   
+    /**
+     * Asigna el consultorio al turno identificado con el id 
+     * @param pIdTurno id del turno
+     * @param pConsultorio consultorio a asignar
+     */
+    public void asignarConsultorioTurno(Long pIdTurno, ConsultorioDTO pConsultorio)throws TurnoLogicException{
+        for (TurnoDTO actual : turnos) {
+            if(actual.getId().equals(pIdTurno)){
+                actual.setConsultorio(pConsultorio);
+                return;
+            }
+            throw new TurnoLogicException("No existe un turno con el id requerido " + pIdTurno);
+        }
+    }
 }

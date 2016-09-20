@@ -14,32 +14,60 @@ import java.util.Date;
  * @author ac.cabezas716
  */
 public class TurnoDTO {
-    
-    private Long id;
     /**
-     * Dia de la semana del turno
+     * Id del turno
+     */
+    private Long id;
+    
+    /**
+     * Fecha del turno
      */
     private Date fecha;
     
+    /**
+     * Duracion en minutos del turno
+     */
     private int duracion;
     
+    /**
+     * Medico dueño del turno
+     */
     private MedicoDTO medico;
     
+    /**
+     * Consultorio asignado para el turno
+     */
     private ConsultorioDTO consultorio;
     
+    /**
+     * Arreglo de citas del turno
+     */
     private CitaDTO[] citas;
 
-    public TurnoDTO(MedicoDTO pMedico, Date pFecha, int pDuracion) {
-        id = new Long((int)(Math.random()* Long.MAX_VALUE));
+    /**
+     * Duración asignada para cada cita en el turno en minutos
+     */
+    private int duracionCitas;
+    /**
+     * Constructor de la clase turno:
+     * -El arreglo de citas es inicializado sin paciente lo que indican que no han sido asignadas.
+     * -Las fechas de cada cita ya han sido asignadas
+     * @param pMedico Medico dueño del turno creado
+     * @param pFecha Fecha que representa el día del turno
+     * @param pDuracion Duración del turno en minutos
+     * @param pDuracionCitas Duración inicial de cada cita en el turno
+     */
+    public TurnoDTO(Long pIdTurno, MedicoDTO pMedico, Date pFecha, int pDuracion, int pDuracionCitas ) {
         fecha = pFecha;
         duracion = pDuracion;
         citas = new CitaDTO[duracion/15];
         medico = pMedico;
         consultorio = null;
+        duracionCitas = pDuracionCitas;
         Calendar c = Calendar.getInstance();
         c.setTime(fecha);
         for(int i = 0; i < citas.length ; i++){
-            Date f = new Date(c.getTimeInMillis() + 900000L);
+            Date f = new Date(c.getTimeInMillis() + (i * 900000L));
             citas[i] = new CitaDTO( f, 15L, pMedico);
         }
     }
@@ -135,6 +163,20 @@ public class TurnoDTO {
             //Asignar consultorio a las citas
             citas[i].setConsultorio(pConsultorio);
         }
+    }
+
+    /**
+     * @return the duracionCitas
+     */
+    public int getDuracionCitas() {
+        return duracionCitas;
+    }
+
+    /**
+     * @param duracionCitas the duracionCitas to set
+     */
+    public void setDuracionCitas(int duracionCitas) {
+        this.duracionCitas = duracionCitas;
     }
     
     
