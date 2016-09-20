@@ -37,7 +37,7 @@ public class TurnoLogicMock {
     	
     	// muestra información 
     	logger.info("Inicializa la lista de turnos");
-    	logger.info("horarioss" + turnos );
+    	logger.info("turnos " + turnos );
     }    
     
 	/**
@@ -45,14 +45,18 @@ public class TurnoLogicMock {
 	 * @return lista de turnos
 	 * @throws TurnoLogicException cuando no existe la lista en memoria  
 	 */    
-    public List<TurnoDTO> getHorarios() throws TurnoLogicException {
+    public List<TurnoDTO> getTurnos(Long pIdMedico) throws TurnoLogicException {
+        List<TurnoDTO> resp = new ArrayList<>();
     	if (turnos == null) {
     		logger.severe("Error interno: lista de turnos no existe.");
     		throw new TurnoLogicException("Error interno: lista de turnos no existe.");    		
     	}
-    	
+    	for(TurnoDTO actual : turnos){
+            if(actual.getMedico().getId().equals(pIdMedico))
+                resp.add(actual);
+        }
     	logger.info("retornando todos los horarios");
-    	return turnos;
+    	return resp;
     }
     public TurnoDTO getTurno(Long pId)throws TurnoLogicException{
         logger.info("recibiendo solicitud de buscar turno por id " + pId);
@@ -63,10 +67,10 @@ public class TurnoLogicMock {
             }
                 
         }
-        logger.severe("No existe un turno con ese nombre");
-        throw new TurnoLogicException("No existe un turno con ese nombre");
+        logger.severe("No existe un turno con el id " + pId);
+        throw new TurnoLogicException("No existe un turno con el id " + pId);
     }
-    public TurnoDTO createTurno(TurnoDTO newTurno) throws TurnoLogicException {
+    public TurnoDTO createTurno(Long pIdMedico, TurnoDTO newTurno) throws TurnoLogicException {
     	logger.info("recibiendo solicitud de agregar turno " + newTurno);
     	
     	// el nuevo turno tiene id ?
@@ -82,7 +86,6 @@ public class TurnoLogicMock {
 	        
 	    // el nuevo turno no tiene id ? 
     	} else {
-
     		// genera un id para el turno
     		logger.info("Generando id para el nuevo turno");
     		Long newId = 1L;
@@ -94,8 +97,8 @@ public class TurnoLogicMock {
 	        newTurno.setId(newId);
     	}
     	
-        // agrega el horario
-    	logger.info("agregando horario " + newTurno);
+        // agrega el turno
+    	logger.info("agregando turno " + newTurno);
         turnos.add(newTurno);
         return newTurno;
     }

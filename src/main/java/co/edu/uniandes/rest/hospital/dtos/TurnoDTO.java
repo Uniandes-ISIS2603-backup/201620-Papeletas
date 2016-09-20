@@ -56,8 +56,10 @@ public class TurnoDTO {
      * @param pFecha Fecha que representa el día del turno
      * @param pDuracion Duración del turno en minutos
      * @param pDuracionCitas Duración inicial de cada cita en el turno
+     * @param pId id del turno
      */
-    public TurnoDTO(Long pIdTurno, MedicoDTO pMedico, Date pFecha, int pDuracion, int pDuracionCitas ) {
+    public TurnoDTO(Long pId, MedicoDTO pMedico, Date pFecha, int pDuracion, int pDuracionCitas ) {
+        id = pId;
         fecha = pFecha;
         duracion = pDuracion;
         citas = new CitaDTO[duracion/15];
@@ -178,6 +180,5 @@ public class TurnoDTO {
     public void setDuracionCitas(int duracionCitas) {
         this.duracionCitas = duracionCitas;
     }
-    
     
 }

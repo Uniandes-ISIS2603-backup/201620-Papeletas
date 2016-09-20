@@ -44,14 +44,9 @@ public class MedicoDTO {
      * Lista de espera del médico
      */
     private ArrayList<CitaDTO> listaEspera;
-    
-
-
-
-    
 
     /**
-     * Turno del medico
+     * Turnos del medico
      */
     private List<TurnoDTO> turnos;
     /**
