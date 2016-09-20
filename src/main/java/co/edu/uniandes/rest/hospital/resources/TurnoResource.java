@@ -20,19 +20,31 @@ import javax.ws.rs.PathParam;
   * Clase que implementa el recurso REST correspondiente a "turnos".
   * @author ac.cabezas716
   */
-@Path("medico/{idMedico: \\d+}/turnos")
 public class TurnoResource {
     
+   
     TurnoLogicMock turnoLogicMock = new TurnoLogicMock();
+    /**
+     * Obtiene el listado general de turnos.
+     *
+     * @return lista de turnos 
+     * @throws TurnoLogicException excepción retornada por la lógica
+     */
+    @Path("turnos")
+    @GET
+    public List<TurnoDTO> getTurnos() throws TurnoLogicException {
+        return turnoLogicMock.getTurnos();
+    }
     
     /**
-     * Obtiene el listado de turnos.
+     * Obtiene el listado de turnos de un médico.
      *
      * @return lista de turnos del médico
      * @throws TurnoLogicException excepción retornada por la lógica
      */
+    @Path("medico/{idMedico: \\d+}/turnos")
     @GET
-    public List<TurnoDTO> getReviews(@PathParam("idMedico") Long idMedico) throws TurnoLogicException {
+    public List<TurnoDTO> getTurnos(@PathParam("idMedico") Long idMedico) throws TurnoLogicException {
         return turnoLogicMock.getTurnos(idMedico);
     }
 
@@ -44,7 +56,7 @@ public class TurnoResource {
      * @throws TurnoLogicException cuando el turno no existe
      */
     @GET
-    @Path("{id: \\d+}")
+    @Path("medico/{idMedico: \\d+}/turnos/{id: \\d+}")
     public TurnoDTO getTurno(@PathParam("id") Long id) throws TurnoLogicException {
         return turnoLogicMock.getTurno(id);
     }
@@ -57,8 +69,9 @@ public class TurnoResource {
      * @throws TurnoLogicException cuando ya existe un turno con el id
      * suministrado
      */
+    @Path("medico/{idMedico: \\d+}/turnos")
     @POST
-    public TurnoDTO createReview(@PathParam("idMedico") Long idMedico, TurnoDTO turno) throws TurnoLogicException {
+    public TurnoDTO createTurno(@PathParam("idMedico") Long idMedico, TurnoDTO turno) throws TurnoLogicException {
         return turnoLogicMock.createTurno(idMedico, turno);
     }
 
@@ -72,21 +85,21 @@ public class TurnoResource {
      * suministrado
      */
     @PUT
-    @Path("{id: \\d+}")
-    public TurnoDTO updateReview(@PathParam("id") Long id, TurnoDTO turno) throws TurnoLogicException {
+    @Path("medico/{idMedico: \\d+}/turnos/{id: \\d+}")
+    public TurnoDTO updateTurno(@PathParam("id") Long id, TurnoDTO turno) throws TurnoLogicException {
         return turnoLogicMock.updateTurno(id, turno);
     }
 
     /**
-     * Elimina los datos de una review
+     * Elimina los datos de un turno
      *
-     * @param id identificador de la review a eliminar
-     * @throws BookLogicException cuando no existe una review con el id
+     * @param id identificador del turno a eliminar
+     * @throws TurnoLogicException cuando no existe un turno con el id
      * suministrado
      */
     @DELETE
-    @Path("{id: \\d+}")
-    public void deleteReview(@PathParam("idMedico") Long idMedico, @PathParam("id") Long id) throws TurnoLogicException {
+    @Path("medico/{idMedico: \\d+}/turnos/{id: \\d+}")
+    public void deleteTurno(@PathParam("id") Long id) throws TurnoLogicException {
         turnoLogicMock.deleteTurno(id);
     }
     
