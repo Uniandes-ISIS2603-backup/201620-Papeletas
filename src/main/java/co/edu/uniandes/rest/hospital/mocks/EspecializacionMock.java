@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import co.edu.uniandes.rest.hospital.exceptions.EspecializacionException;
 import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
+import java.util.logging.Level;
 /**
  * 
  * @author Juan Camilo Lara
@@ -24,8 +25,30 @@ public class EspecializacionMock
         
          public EspecializacionMock()
         {
+            if (especialidades == null)
+            {
             especialidades = new ArrayList<>();
-            especialidades.add(new EspecializacionDTO(0, "Dotorisimo"));
+            especialidades.add(new EspecializacionDTO(1, "Cardiologia"));
+            especialidades.add(new EspecializacionDTO(2 , "Endocrinologia"));
+            especialidades.add(new EspecializacionDTO(3 , "Neumologia"));
+            especialidades.add(new EspecializacionDTO(4 , "Neurologia"));
+            especialidades.add(new EspecializacionDTO(5 , "Patologia"));
+            especialidades.add(new EspecializacionDTO(6 , "Hematologia"));
+            especialidades.add(new EspecializacionDTO(7 , "Oncologia"));
+            especialidades.add(new EspecializacionDTO(8 , "Cirugia"));
+            especialidades.add(new EspecializacionDTO(9 , "Siruela"));
+            especialidades.add(new EspecializacionDTO(10 , "Pediatria"));
+            especialidades.add(new EspecializacionDTO(11 , "OB/GYN"));
+            especialidades.add(new EspecializacionDTO(12 , "Dermatologia"));
+            especialidades.add(new EspecializacionDTO(13 , "Urologia"));
+            especialidades.add(new EspecializacionDTO(14 , "Ortopedia y Traumatologia"));
+            }
+            
+            logger.setLevel(Level.INFO);
+
+             // muestra información 
+            logger.info("Inicializa la lista de especializacion");
+            logger.info("especializacion" + especialidades);
         }
 	
 	/**
@@ -48,21 +71,16 @@ public class EspecializacionMock
 	
 	public EspecializacionDTO createSpecialty(EspecializacionDTO specialty) throws EspecializacionException
 	{
-    	logger.info("recibiendo solicitud de agregar especialidad" + specialty);
-    	
-    	{
+            logger.info("recibiendo solicitud de agregar especialidad" + specialty);
             for (EspecializacionDTO spec : especialidades)
             {
-                // si existe una editorial con ese id
-                
                 if (Objects.equals(spec.getNombre(), specialty.getNombre()))
                 {
                     logger.severe("Ya existe una especializacion con ese nombre");
                     throw new EspecializacionException("Ya existe una especializacion con ese nombre");
                 }
-
             }
-            // genera un id para el editorial
+            
             logger.info("Generando id para la nueva especializacion");
             int newId = 1;
             for (EspecializacionDTO spec : especialidades)
@@ -72,64 +90,67 @@ public class EspecializacionMock
                 }
             }
             specialty.setId(newId);
-        }
     	
     	logger.info("agregando especialidad" + specialty);
         especialidades.add(specialty);
         return specialty;
     }
 	
-	public EspecializacionDTO getSpecID(int id)throws EspecializacionException
+    public EspecializacionDTO getSpecID(int id)throws EspecializacionException
     {
-        EspecializacionDTO specialty=null;
-        if(especialidades==null)
-            throw new EspecializacionException("La lista de especializaciones esta vacia");
-        else
-        {
-            for(EspecializacionDTO spec:especialidades)
-            {
-                if(spec.getId()==id)
-                        specialty=spec;        
-            }
-            if(specialty==null)
-                throw new EspecializacionException("No hay especialidades con el id dado");
-        }
-        return specialty;
-    }
-        
-        public void deleteEspecializacion (int id) throws EspecializacionException
-    {
-        boolean exists = false;
+        logger.info("recibiendo solicitud de especialidad con id " + id);
         for (EspecializacionDTO spec : especialidades)
         {
-            if (spec.getId()==id)
+            if (Objects.equals(spec.getId(), id))
             {
-                especialidades.remove(spec);
-                exists = true;
+                logger.info("retornando editorial " + spec);
+                return spec;
             }
         }
-        if (!exists)
+        
+        logger.severe("No existe especializacion con ese id");
+        throw new EspecializacionException("No existe especializacion con ese id");
+    }
+        
+    public void deleteEspecializacion (int id) throws EspecializacionException
+    {
+        logger.info("recibiendo solictud de eliminar especialidad con id " + id);
+
+        for (EspecializacionDTO spec : especialidades)
         {
-            throw new EspecializacionException("No existe una especialidad con el id especificado");
+            if (Objects.equals(spec.getId(), id))
+            {
+                logger.info("eliminando epecializacion " + spec);
+                especialidades.remove(spec);
+                return;
+            }
         }
+
+        // no encontró el editorial con ese id ?
+        logger.severe("No existe una especializacion con ese id");
+        throw new EspecializacionException("No existe una especializacion con ese id");
     }
     public EspecializacionDTO updateEspecializacion (int id, EspecializacionDTO spec) throws EspecializacionException
     {
         
-        boolean exists = false;
-        for (EspecializacionDTO special : especialidades)
+        logger.info("recibiendo solictud de modificar especializacion " + spec);
+
+        // busca el editorial con el id suministrado
+        for (EspecializacionDTO especial : especialidades)
         {
-            if (id==special.getId())
-            {
-                exists = true;
-                special.setId(spec.getId());
-                special.setNombre(spec.getNombre());
+            if (Objects.equals(especial.getId(), id)) {
+
+                // modifica el editorial
+                especial.setId(spec.getId());
+                especial.setNombre(spec.getNombre());
+
+                // retorna el editorial modificada
+                logger.info("Modificando especialidad " + especial);
+                return especial;
             }
         }
-        if (!exists)
-        {
-            throw new EspecializacionException ("No existe una especialidad con ese id.");
-        }
-        return spec;
+
+        logger.severe("No existe una especialidad con ese id");
+        throw new EspecializacionException("No existe una especialidad con ese id");
     }
 }

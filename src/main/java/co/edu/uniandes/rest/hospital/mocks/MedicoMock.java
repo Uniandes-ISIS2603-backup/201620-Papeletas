@@ -47,6 +47,13 @@ public class MedicoMock {
             medicos.add(new MedicoDTO("Diego Castro", 3L, "01/04-30/04", "Ginecologo"));
             medicos.add(new MedicoDTO("Juan Useche", 4L, "08/04-11/04", "Otorrino"));
             medicos.add(new MedicoDTO("Juan Lara", 5L, "20/04-29/04", "Oftalmologo"));
+            
+      
+            for(int i=0;i<medicos.size();i++)
+            {
+                medicos.get(i).setDuracionConsulta(i+13);
+                medicos.get(i).setCantidadCitas(i+1);
+            }
         }
         logger.setLevel(Level.INFO);
         logger.info("Inicializa la lista de medicos");
@@ -102,13 +109,13 @@ public class MedicoMock {
      * @return medico con el id dado
      * @throws MedicoException  si no existe un medico con el id dado
      */
-    public MedicoDTO getMedID(long id) throws MedicoException {
+    public MedicoDTO getMedID(Long id) throws MedicoException {
         MedicoDTO med = null;
         if (medicos == null) {
             throw new MedicoException("La lista de medicos esta vacia");
         } else {
             for (MedicoDTO medic : medicos) {
-                if (Objects.equals(medic.getId(), id)) {
+                if (medic.getId().equals(id)) {
                     med = medic;
                 }
             }
@@ -172,7 +179,7 @@ public class MedicoMock {
     
     /**
      * Calcula el promedio de duracion de citas dado un medico
-     * @param especialidad
+     * @param id del medico
      * @return 
      */
       public double calcularPromedioCitaMedico(Long id)
@@ -180,7 +187,7 @@ public class MedicoMock {
         double promedio=0;
         for(int i=0;i<medicos.size();i++)
         {
-            if(medicos.get(i).getId()==id)
+            if(medicos.get(i).getId().equals(id))
             {
                promedio=medicos.get(i).calcularPromedioCitaMedico();
                break;
@@ -211,6 +218,13 @@ public class MedicoMock {
    }
   
    
+   /**
+    * Registra el fin de una consulta medica de un medico con el id dado y el tuirno dado
+    * @param idMedico id del medico     
+    * @param idTurno id del turno
+    * @param idCita id de la cita   
+    * @param pDuracion duracion de la consulta
+    */
    public void registrarFinCita(Long idMedico, Long idTurno, Long idCita, int pDuracion)
    {
        for(int i=0;i<medicos.size();i++)
