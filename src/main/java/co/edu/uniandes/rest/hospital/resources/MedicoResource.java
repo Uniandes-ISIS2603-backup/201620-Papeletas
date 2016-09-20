@@ -95,6 +95,14 @@ public class MedicoResource {
     }
     
     
+    @GET
+    @Path("{id: \\d+}/promedio") 
+    public double calcularPromedioMedico(@PathParam("id")Long id)throws MedicoException
+    {
+        return  medico.calcularPromedioCitaMedico(id);
+    }
+    
+    
     
 
     

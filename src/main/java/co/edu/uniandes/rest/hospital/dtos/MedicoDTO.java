@@ -91,6 +91,7 @@ public class MedicoDTO {
         this.especialidad = espe;
         listaEspera = new ArrayList <>();
         cita=new CitaMock();
+        this.cantidadCitas=0;
     }
 
     /**
@@ -251,6 +252,11 @@ public class MedicoDTO {
     {
         cantidadCitas++;
     } 
+    
+    public void setCantidadCitas(int cantidad)
+    {
+        cantidadCitas+=cantidad;
+    }
     public double calcularPromedioCitaMedico()
     {
         return getDuracionConsulta()/darCantidadCitas();
