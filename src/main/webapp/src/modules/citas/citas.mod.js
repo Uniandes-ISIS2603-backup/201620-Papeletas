@@ -7,9 +7,9 @@
      
             $stateProvider.state('citasList', {
                 url: '/citas',
-                parent: 'verCitas',
+                parent: 'medicoEdit',
                 views: {
-                    'mainView': {
+                    'medicoInstanceView': {
                         controller: 'citasCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'citas.list.html'
@@ -17,7 +17,6 @@
                 }
             }).state('citasCreate', {
                 url: '/citas/create',
-                parent: 'verCitas',
                 views: {
                     'mainView': {
                         controller: 'citasCtrl',
@@ -28,7 +27,6 @@
 
             }).state('citasEdit', {
                 url: '/citas/delete/:citaId',
-                parent: 'verCitas',
                 param: {
                     citaId: null
                 },
@@ -41,7 +39,6 @@
                 }
                 }).state('citasReservar', {
                 url: '/citas/reservar/:citaId',
-                parent: 'verCitas',
                 param: {
                     citaId: null
                 },
@@ -54,7 +51,6 @@
                 }
                 }).state('citasDelete', {
                 url: '/citas/:citaId',
-                parent: 'verCitas',
                 param: {
                     citaId: null
                 },

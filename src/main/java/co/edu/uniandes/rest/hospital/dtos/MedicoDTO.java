@@ -45,9 +45,15 @@ public class MedicoDTO {
      */
     private ArrayList<CitaDTO> listaEspera;
     
-    private List<TurnoDTO> turnos;
+
+
 
     
+
+    /**
+     * Turno del medico
+     */
+    private List<TurnoDTO> turnos;
     /**
      * Determina si la consulta ya acabo o no;
      */
@@ -59,7 +65,7 @@ public class MedicoDTO {
     private int duracionConsultas;
     
     /**
-     * numero de citas finalizadas;
+     * numero de citas finalizadas;|
      */
     private int cantidadCitas;
     
