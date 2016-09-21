@@ -40,7 +40,7 @@ public class CitaResource {
      * @throws CitaException Si la lista no existe
      */
     @GET
-    @Path ("medicos/{idMedico: \\d+}/citas")
+    @Path ("medico/{idMedico: \\d+}/citas")
     public List<CitaDTO> getCitas (@PathParam("idMedico") Long idMedico) throws CitaException 
     {
         return cita.getCitas(idMedico);
@@ -53,10 +53,10 @@ public class CitaResource {
      * @throws CitaException si no existe un cita con el id especificado o no existe la lista
      */
     @GET
-    @Path ("medicos/{idMedico: \\d+}/citas/{id: \\d+}")
-    public CitaDTO getCita (@PathParam("idTurno") Long idTurno, @PathParam ("id") Long id) throws CitaException
+    @Path ("medico/{idMedico: \\d+}/citas/{id: \\d+}")
+    public CitaDTO getCita (@PathParam("idMedico") Long idMedico, @PathParam ("id") Long id) throws CitaException
     {
-        return cita.getCita(idTurno, id);
+        return cita.getCita(idMedico, id);
     }
     
     /**
@@ -66,10 +66,10 @@ public class CitaResource {
      * @throws CitaException si ya existe un cita con el ese id
      */
     @POST
-    @Path ("medicos/{idMedico: \\d+}/citas")
-    public CitaDTO createCita (@PathParam("idTurno") Long idTurno, CitaDTO newCita) throws CitaException
+    @Path ("medico/{idMedico: \\d+}/citas")
+    public CitaDTO createCita (@PathParam("idMedico") Long idMedico, CitaDTO newCita) throws CitaException
     {
-        return cita.createCita(idTurno,newCita);
+        return cita.createCita(idMedico,newCita);
     }
     
     /**
@@ -78,9 +78,9 @@ public class CitaResource {
      * @throws CitaException si no existe un cita con el id especificado
      */
     @DELETE
-    @Path ("medicos/{idMedico: \\d+}/citas/{id: \\d+}")
-    public void deleteCita (@PathParam("idTurno") Long idTurno, @PathParam("id") int id) throws CitaException
+    @Path ("medico/{idMedico: \\d+}/citas/{id: \\d+}")
+    public void deleteCita (@PathParam("idMedico") Long idMedico, @PathParam("id") int id) throws CitaException
     {
-        cita.deleteCita(idTurno, id);
+        cita.deleteCita(idMedico, id);
     }
 }

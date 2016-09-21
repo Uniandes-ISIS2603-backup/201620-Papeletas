@@ -33,10 +33,14 @@ public class CitaDTO
     private ConsultorioDTO consultorio;
    
     private PacienteDTO paciente;
+    
+    private boolean citaTerminada;
+    
+    private long idTurno;
      /**
      * Constructor. Crea una nueva cita.
      */
-    public CitaDTO(Date fecha,long duracion, MedicoDTO medico) 
+    public CitaDTO(Date fecha,long duracion, MedicoDTO medico, long pIdTurno) 
     {
         this.idCita = (long)Math.random()*(100-1)+1;
         this.fecha = fecha;
@@ -44,7 +48,8 @@ public class CitaDTO
         this.medico = medico;
         this.consultorio = null;
         this.paciente = null;
-        
+        this.idTurno = pIdTurno;
+        this.citaTerminada = false;
     }
     
     public CitaDTO()
@@ -122,4 +127,5 @@ public class CitaDTO
     {
         paciente = pPaciente;
     }
+   
 }

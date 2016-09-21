@@ -89,6 +89,7 @@
 
                 this.cancelarCita = function(id) {
                     currentRecord = $scope.currentRecord;
+                    currentRecord.paciente = null;
                     $http.put(medicosContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id)
                             .then(function () {
                             // $http.put es una promesa
