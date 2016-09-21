@@ -30,6 +30,7 @@ public class TurnoLogicMock {
 
     	if (turnos == null) {
             turnos = new ArrayList();
+            TurnoDTO t = new TurnoDTO(1L, new);
         }
         
     	// indica que se muestren todos los mensajes
@@ -40,8 +41,11 @@ public class TurnoLogicMock {
     	logger.info("turnos " + turnos );
     }    
     
+    public List<TurnoDTO> getTurnos() throws TurnoLogicException {
+        return turnos;
+    }
 	/**
-	 * Obtiene el listado de turnos. 
+	 * Obtiene el listado de turnos de un médico. 
 	 * @return lista de turnos
 	 * @throws TurnoLogicException cuando no existe la lista en memoria  
 	 */    

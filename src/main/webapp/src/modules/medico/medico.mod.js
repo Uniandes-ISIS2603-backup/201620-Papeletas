@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("medicoModule", ["ngMessages", "ui.router"]);
+    var mod = ng.module("medicoModule", []);
     mod.constant("medicoContext", "api/medico");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/medico/';
@@ -26,7 +26,7 @@
                     }
                 }
             }).state('medicoCreate', {
-                url: '/medicos/create',
+                url: '/medico/create',
                 parent: 'medico',
                 views: {
                     'medicoView': {
@@ -53,7 +53,7 @@
                     }
                 }
                 }).state('medicoDelete', {
-                url: '/medicos/delete/:medicoId',
+                url: '/medico/delete/:medicoId',
                 param: {
                     medicoId: null
                 },

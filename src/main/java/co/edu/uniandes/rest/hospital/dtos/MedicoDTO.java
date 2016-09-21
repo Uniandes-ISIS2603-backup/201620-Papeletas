@@ -30,11 +30,6 @@ public class MedicoDTO {
     private Long id;
 
     /**
-     * disponibilidad del medico
-     */
-    private String disponibilidad;
-
-    /**
      * Especialidad del medico
      */
     
@@ -49,10 +44,6 @@ public class MedicoDTO {
      * Turnos del medico
      */
     private List<TurnoDTO> turnos;
-    /**
-     * Determina si la consulta ya acabo o no;
-     */
-    private boolean consultaTerminada;
     
     /**
      * Duracion de la consulta del medico
@@ -84,11 +75,14 @@ public class MedicoDTO {
      * @param disponibilidad
      * @param espe 
      */
+<<<<<<< HEAD
     public MedicoDTO(String nombre, Long id, String disponibilidad, EspecializacionDTO espe) {
+=======
+    public MedicoDTO(String nombre, Long id, String espe) {
+>>>>>>> origin/master
         super();
         this.nombre = nombre;
         this.id = id;
-        this.disponibilidad = disponibilidad;
         this.especialidad = espe;
         listaEspera = new ArrayList <>();
         turnos = new ArrayList<>();
@@ -130,6 +124,7 @@ public class MedicoDTO {
      */
     public void setId(Long id) {
         this.id = id;
+<<<<<<< HEAD
     }
 
     /**
@@ -152,6 +147,10 @@ public class MedicoDTO {
 
   
     public EspecializacionDTO getEspecializacion()
+=======
+    } 
+    public String getEspecializacion()
+>>>>>>> origin/master
     {
         return especialidad;
     }
@@ -212,24 +211,6 @@ public class MedicoDTO {
     }
 
     /**
-     * @return the consultaTerminada
-     */
-    public boolean isConsultaTerminada() {
-        return consultaTerminada;
-    }
-
-    /**
-     * @param consultaTerminada the consultaTerminada to set
-     */
-    public void cambiarEstadoCita()
-    {
-        if(!consultaTerminada)
-            consultaTerminada=true;
-        else
-            consultaTerminada=false;
-    }
-
-    /**
      * @return the duracionConsulta
      */
     public int getDuracionConsulta() {
@@ -275,8 +256,6 @@ public class MedicoDTO {
               {
                   setDuracionConsulta(pDuracion);
                   agregarCita();
-                  cambiarEstadoCita();
-
               }
            }
         }
