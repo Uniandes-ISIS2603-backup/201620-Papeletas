@@ -44,11 +44,11 @@ public class MedicoMock {
         if (medicos == null) {
             medicos = new ArrayList<>();
 
-            medicos.add(new MedicoDTO("Nicolas Simmonds", 1L    , "02/04-15/04", new EspecializacionDTO(1, "Cardiologia")));
-            medicos.add(new MedicoDTO("Juan Mendez", 2L, "15/04-25/04", new EspecializacionDTO(1,"Cardiologia")));
-            medicos.add(new MedicoDTO("Diego Castro", 3L, "01/04-30/04", new EspecializacionDTO(2, "Endocrinologia")));
-            medicos.add(new MedicoDTO("Juan Useche", 4L, "08/04-11/04", new EspecializacionDTO(3, "Neumologia")));
-            medicos.add(new MedicoDTO("Juan Lara", 5L, "20/04-29/04", new EspecializacionDTO(4, "Neurologia")));
+            medicos.add(new MedicoDTO("Nicolas Simmonds", 1L  , new EspecializacionDTO(1, "Cardiologia")));
+            medicos.add(new MedicoDTO("Juan Mendez", 2L, new EspecializacionDTO(1,"Cardiologia")));
+            medicos.add(new MedicoDTO("Diego Castro", 3L, new EspecializacionDTO(2, "Endocrinologia")));
+            medicos.add(new MedicoDTO("Juan Useche", 4L, new EspecializacionDTO(3, "Neumologia")));
+            medicos.add(new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(4, "Neurologia")));
 
             
       
