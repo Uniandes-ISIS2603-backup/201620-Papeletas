@@ -6,6 +6,7 @@
 package co.edu.uniandes.rest.hospital.mocks;
 
 import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
+import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import co.edu.uniandes.rest.hospital.exceptions.TurnoLogicException;
@@ -42,11 +43,13 @@ public class MedicoMock {
     public MedicoMock() {
         if (medicos == null) {
             medicos = new ArrayList<>();
-            medicos.add(new MedicoDTO("Nicolas Simmonds", 1L    , "Ortopedista"));
-            medicos.add(new MedicoDTO("Juan Mendez", 2L, "Cardiologo"));
-            medicos.add(new MedicoDTO("Diego Castro", 3L,  "Ginecologo"));
-            medicos.add(new MedicoDTO("Juan Useche", 4L,"Otorrino"));
-            medicos.add(new MedicoDTO("Juan Lara", 5L,  "Oftalmologo"));
+
+            medicos.add(new MedicoDTO("Nicolas Simmonds", 1L    , "02/04-15/04", new EspecializacionDTO(1, "Cardiologia")));
+            medicos.add(new MedicoDTO("Juan Mendez", 2L, "15/04-25/04", new EspecializacionDTO(1,"Cardiologia")));
+            medicos.add(new MedicoDTO("Diego Castro", 3L, "01/04-30/04", new EspecializacionDTO(2, "Endocrinologia")));
+            medicos.add(new MedicoDTO("Juan Useche", 4L, "08/04-11/04", new EspecializacionDTO(3, "Neumologia")));
+            medicos.add(new MedicoDTO("Juan Lara", 5L, "20/04-29/04", new EspecializacionDTO(4, "Neurologia")));
+
             
       
             for(int i=0;i<medicos.size();i++)
@@ -270,6 +273,18 @@ public class MedicoMock {
        throw new MedicoException("No existe un médico con id " + pIdMedico);
    }
    
+   public List listaPorSpec(Long IdSpec)      
+   {
+       ArrayList temp = new ArrayList();
+       for(int i=0;i<medicos.size();i++)
+       {
+           if(medicos.get(i).getEspecializacion().getId()==IdSpec)
+           {
+               temp.add(medicos.get(i));
+           }
+       }
+       return temp;
+   }
    
    
   

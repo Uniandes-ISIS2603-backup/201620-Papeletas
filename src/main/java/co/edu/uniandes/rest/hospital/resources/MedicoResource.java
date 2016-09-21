@@ -105,6 +105,12 @@ public class MedicoResource {
     }
     
     
+    @GET
+    public List<MedicoDTO> darMedSpec(@PathParam("id")Long id)
+    {
+        return medico.listaPorSpec(id);
+    }
+    
     
 
     
