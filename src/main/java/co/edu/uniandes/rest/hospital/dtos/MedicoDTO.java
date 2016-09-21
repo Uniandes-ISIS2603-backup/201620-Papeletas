@@ -75,11 +75,8 @@ public class MedicoDTO {
      * @param disponibilidad
      * @param espe 
      */
-<<<<<<< HEAD
-    public MedicoDTO(String nombre, Long id, String disponibilidad, EspecializacionDTO espe) {
-=======
-    public MedicoDTO(String nombre, Long id, String espe) {
->>>>>>> origin/master
+
+    public MedicoDTO(String nombre, Long id, EspecializacionDTO espe) {
         super();
         this.nombre = nombre;
         this.id = id;
@@ -124,7 +121,7 @@ public class MedicoDTO {
      */
     public void setId(Long id) {
         this.id = id;
-<<<<<<< HEAD
+
     }
 
     /**
@@ -132,25 +129,17 @@ public class MedicoDTO {
      *
      * @return disponibilidad del medico
      */
-        public String getDisponibilidad() {
-        return disponibilidad;
-    }
+ 
 
     /**
      * Modifica la disponibilidad del medico
      *
      * @param disponibilidad disponibilidad del medico
      */
-    public void setDisponibilidad(String disponibilidad) {
-        this.disponibilidad = disponibilidad;
-    }
-
   
+
     public EspecializacionDTO getEspecializacion()
-=======
-    } 
-    public String getEspecializacion()
->>>>>>> origin/master
+
     {
         return especialidad;
     }
