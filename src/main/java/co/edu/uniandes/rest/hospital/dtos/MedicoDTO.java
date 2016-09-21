@@ -75,7 +75,9 @@ public class MedicoDTO {
      */
     public MedicoDTO()
     {
-        
+        listaEspera = new ArrayList <>();
+        turnos = new ArrayList<>();
+        cita=new CitaMock();
     }
     /**
      * 
@@ -90,10 +92,10 @@ public class MedicoDTO {
         this.id = id;
         this.disponibilidad = disponibilidad;
         this.especialidad = espe;
+        this.cantidadCitas=0;
         listaEspera = new ArrayList <>();
         turnos = new ArrayList<>();
         cita=new CitaMock();
-        this.cantidadCitas=0;
     }
 
     /**
@@ -202,7 +204,7 @@ public class MedicoDTO {
         return cita;
     }
     
-    private List<TurnoDTO> darTurno()
+    public List<TurnoDTO> darTurno()
     {
         return turnos;
     }

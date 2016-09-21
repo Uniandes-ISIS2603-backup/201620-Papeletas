@@ -5,12 +5,15 @@
  */
 package co.edu.uniandes.rest.hospital.mocks;
 
+import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
+import co.edu.uniandes.rest.hospital.exceptions.CitaException;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import co.edu.uniandes.rest.hospital.exceptions.TurnoLogicException;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -54,8 +57,17 @@ public class MedicoMock {
                 medicos.get(i).setDuracionConsulta(i+13);
                 medicos.get(i).setCantidadCitas(i+1);
             }
+            
+            logger.setLevel(Level.INFO);
+            for (int i = 0; i < medicos.size(); i++) {
+                logger.info("Va tratar de crear una nueva cita");
+                CitaDTO cit = new CitaDTO(Calendar.getInstance().getTime(),15,medicos.get(i));
+                logger.info("Creo una nueva cita y va tratar de agregarla");
+                medicos.get(i).agregarCitaListaEspera(cit);
+                logger.info("Agrego la cita");
+            }
         }
-        logger.setLevel(Level.INFO);
+        
         logger.info("Inicializa la lista de medicos");
         logger.info("medicos" + medicos);
     }
@@ -272,8 +284,14 @@ public class MedicoMock {
    }
    
    
-   
-  
-   
-   
+   public ArrayList <CitaDTO> getListaEsperaMedico (Long id) throws MedicoException {
+       ArrayList<CitaDTO> listaEspera = null;
+       for (MedicoDTO medico : medicos) {
+           if (medico.getId().equals(id)) {
+               listaEspera = medico.getListaEspera();
+           }
+       }
+       if (listaEspera == null) throw new MedicoException ("No existe un médico con ese ID");
+       return listaEspera;
+   }
 }

@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.rest.hospital.resources;
 
+import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import co.edu.uniandes.rest.hospital.mocks.MedicoMock;
@@ -102,12 +103,9 @@ public class MedicoResource {
         return  medico.calcularPromedioCitaMedico(id);
     }
     
-    
-    
-
-    
-    
-    
-    
-    
+    @GET
+    @Path("{id: \\d+}/listaespera")
+    public List<CitaDTO> getListaEspera (@PathParam("id") Long id) throws MedicoException {
+        return medico.getListaEsperaMedico(id);
+    }   
 }
