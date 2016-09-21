@@ -273,12 +273,12 @@ public class MedicoMock {
        throw new MedicoException("No existe un médico con id " + pIdMedico);
    }
    
-   public List listaPorSpec(Long IdSpec)      
+   public List listaPorSpec(String spec)      
    {
        ArrayList temp = new ArrayList();
        for(int i=0;i<medicos.size();i++)
        {
-           if(medicos.get(i).getEspecializacion().getId()==IdSpec)
+           if(medicos.get(i).getEspecializacion().getNombre().equals(spec))
            {
                temp.add(medicos.get(i));
            }

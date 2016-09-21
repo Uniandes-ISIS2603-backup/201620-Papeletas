@@ -106,7 +106,8 @@ public class MedicoResource {
     
     
     @GET
-    public List<MedicoDTO> darMedSpec(@PathParam("id")Long id)
+    @Path("medico/{nombre\\d+}")
+    public List<MedicoDTO> darMedSpec(@PathParam("nombre")String id)
     {
         return medico.listaPorSpec(id);
     }
