@@ -36,8 +36,8 @@ public class CitaMock {
         
         if (citas == null) {
             citas = new ArrayList<>();
-            citas.add(new CitaDTO(new Date(), 0L , 
-                    new MedicoDTO("Juan Lara", 5L, "20/04-29/04", "Oftalmologo")));
+            citas.add(new CitaDTO(3L,new Date(), 0L , 
+                    new MedicoDTO("Juan Lara", 5L, "Oftalmologo"),1L));
            
         }
 
@@ -55,7 +55,7 @@ public class CitaMock {
  * @return lista de citaes
  * @throws CityLogicException cuando no existe la lista en memoria  
  */    
-    public List<CitaDTO> getCitas(Long idTurno) throws CitaException {
+    public List<CitaDTO> getCitas(Long idMedico) throws CitaException {
     	if (citas == null) {
     		logger.severe("Error interno: lista de citas no existe.");
     		throw new CitaException("Error interno: lista de citas no existe.");    		
@@ -71,7 +71,7 @@ public class CitaMock {
      * @return cita encontrada
      * @throws citaException cuando la getcita no existe
      */  
-    public CitaDTO getCita(Long idTurno, Long id) throws CitaException {
+    public CitaDTO getCita(Long idMedico, Long id) throws CitaException {
         logger.info("recibiendo solicitud de getcita con id " + id);
 
         // busca la getcita con el id suministrado

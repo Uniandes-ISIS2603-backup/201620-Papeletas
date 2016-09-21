@@ -1,5 +1,5 @@
 (function (ng) {
-    var mod = ng.module("citasModule", ["ngMessages", "ui.router"]);
+    var mod = ng.module("citasModule", []);
     mod.constant("citasContext", "api/citas");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/citas/';

@@ -70,7 +70,7 @@ public class TurnoDTO {
         c.setTime(fecha);
         for(int i = 0; i < citas.length ; i++){
             Date f = new Date(c.getTimeInMillis() + (i * 900000L));
-            citas[i] = new CitaDTO( f, 15L, pMedico);
+            citas[i] = new CitaDTO(f, 15L, pMedico,5);
         }
     }
     

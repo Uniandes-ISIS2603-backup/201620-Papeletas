@@ -1,12 +1,12 @@
 (function (ng) {
     var mod = ng.module("citasModule");
 
-    mod.controller("citasCtrl", ['$scope', '$state', '$stateParams', '$http', 'medicosContext', 'turnosContext', function ($scope, $state, $stateParams, $http, turnosContext) {
+    mod.controller("citasCtrl", ['$scope', '$state', '$stateParams', '$http', 'medicoContext', function ($scope, $state, $stateParams, $http, medicoContext) {
             // inicialmente el listado de citas está vacio
             $scope.citasContext = '/citas';
             $scope.records = {};
             // carga las citas
-            $http.get(medicosContext + "/" + $stateParams.medicoID + turnosContext + "/" + $stateParams.turnoId + $scope.citasContext).then(function(response){
+            $http.get(medicoContext + "/" + $stateParams.medicoId+ $scope.citasContext).then(function(response){
                 $scope.records = response.data;    
             }, responseError);
 
@@ -16,7 +16,7 @@
                 // toma el id del parámetro
                 id = $stateParams.citaId;
                 // obtiene el dato del recurso REST
-                $http.get(medicosContext + "/" + $stateParams.medicoId +$scope.citasContext+ turnosContext + "/" + $stateParams.turnoId +$scope.citasContext + "/" + id)
+               $http.get(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+  id)
                     .then(function (response) {
                         // $http.get es una promesa
                         // cuando llegue el dato, actualice currentRecord
@@ -29,20 +29,19 @@
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    idCita: undefined /*Tipo String*/,
                     fecha: '',
                     duracion: undefined,
                     medico: {
-                        id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                        idMed: undefined /*Tipo Long. El valor se asigna en el backend*/,
                         nombre: '' /*Tipo String*/,
                         disponibilidad:''
                     },
                     consultorio: {
-                        id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                        idConsult: undefined /*Tipo Long. El valor se asigna en el backend*/,
                         libre: false /*Tipo boolean*/
                     },
                     paciente: {
-                        id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                        idPaci: undefined /*Tipo Long. El valor se asigna en el backend*/,
                         name: '' /*Tipo String*/,
                         lastName: '',
                         age: undefined,
@@ -61,7 +60,7 @@
                 if (id == null) {
 
                     // ejecuta POST en el recurso REST
-                    return $http.post(medicosContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext, currentRecord)
+                    return $http.post(medicoContext + "/" + $stateParams.medicoId + $scope.citasContext, currentRecord)
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
@@ -72,7 +71,7 @@
                 } else {
                     
                     // ejecuta PUT en el recurso REST
-                    return $http.put(medicosContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id, currentRecord)
+                    return $http.put(medicoContext + "/" + $stateParams.medicoId + $scope.citasContext + "/" + currentRecord.id, currentRecord)
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
@@ -81,14 +80,11 @@
                 };
             };
 
-                this.deleteRecord = function (id) {
-                currentRecord = $scope.currentRecord;
-                $http.delete(medicosContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id)
-                        .then(function () {
-                            // $http.put es una promesa
-                            // cuando termine bien, cambie de estado
-                            $state.go('citasList');
-                        }, responseError);
+                this.deleteRecord = function(record){
+                return $http.delete(medicoContext + "/" + $stateParams.medicoId + $scope.citasContext+ "/" + record.id)
+                        .then(function(){
+                            $state.reload();
+                },responseError);
             };
 
                 this.cancelarCita = function(id) {

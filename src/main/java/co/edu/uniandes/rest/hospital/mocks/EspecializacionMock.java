@@ -36,12 +36,11 @@ public class EspecializacionMock
             especialidades.add(new EspecializacionDTO(6 , "Hematologia"));
             especialidades.add(new EspecializacionDTO(7 , "Oncologia"));
             especialidades.add(new EspecializacionDTO(8 , "Cirugia"));
-            especialidades.add(new EspecializacionDTO(9 , "Siruela"));
-            especialidades.add(new EspecializacionDTO(10 , "Pediatria"));
-            especialidades.add(new EspecializacionDTO(11 , "OB/GYN"));
-            especialidades.add(new EspecializacionDTO(12 , "Dermatologia"));
-            especialidades.add(new EspecializacionDTO(13 , "Urologia"));
-            especialidades.add(new EspecializacionDTO(14 , "Ortopedia y Traumatologia"));
+            especialidades.add(new EspecializacionDTO(9 , "Pediatria"));
+            especialidades.add(new EspecializacionDTO(10 , "OB/GYN"));
+            especialidades.add(new EspecializacionDTO(11 , "Dermatologia"));
+            especialidades.add(new EspecializacionDTO(12 , "Urologia"));
+            especialidades.add(new EspecializacionDTO(13 , "Ortopedia y Traumatologia"));
             }
             
             logger.setLevel(Level.INFO);

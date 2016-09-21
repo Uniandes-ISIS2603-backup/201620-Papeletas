@@ -27,27 +27,24 @@ import javax.ws.rs.QueryParam;
 @Produces("application/json")
 public class EspecializacionResource
 {
-	/*
-	 * Especializacion mock
-	 */
-	private EspecializacionMock Especialidad = new EspecializacionMock();
-	
-       
-        
-	@GET
+    /*
+    * Especializacion mock
+    */
+    private EspecializacionMock Especialidad = new EspecializacionMock();   
+    @GET
 	public List<EspecializacionDTO> getEspecializaciones() throws EspecializacionException
 	{
 		return Especialidad.getSpecialties();
 	}
 	
-	@GET
+    @GET
     @Path("{id: \\d+}")
-	public EspecializacionDTO getEspecializacionID(@PathParam("id")int id) throws EspecializacionException
-	{
-		return Especialidad.getSpecID(id);
-	}
+    public EspecializacionDTO getEspecializacionID(@PathParam("id")int id) throws EspecializacionException
+    {
+        return Especialidad.getSpecID(id);
+    }
 	
-	@POST
+    @POST
     public EspecializacionDTO createEspecialidad(EspecializacionDTO spec)throws EspecializacionException
     {
      return Especialidad.createSpecialty(spec);
