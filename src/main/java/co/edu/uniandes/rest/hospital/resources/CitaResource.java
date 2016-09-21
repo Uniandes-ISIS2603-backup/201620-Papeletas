@@ -72,6 +72,22 @@ public class CitaResource {
         return cita.createCita(idTurno,newCita);
     }
     
+     /**
+     * Actualiza los datos de una review
+     *
+     * @param id identificador de la review a modificar
+     * @param review review a modificar
+     * @return datos de la review modificada
+     * @throws BookLogicException cuando no existe una review con el id
+     * suministrado
+     */
+    @PUT
+    @Path("medicos/{idMedico: \\d+}/citas/{id: \\d+}")
+    public CitaDTO updateCita(@PathParam("idTurno") Long idTurno, @PathParam("id") int id, CitaDTO newCita) throws CitaException {
+        return cita.updateCita(idTurno, id, newCita);
+    }
+    
+    
     /**
      * Borra el cita con el id especificado
      * @param id ide del cita que se quiere borrar.
