@@ -5,18 +5,15 @@
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
-                <th>Disponibilidad</th>  
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="record in records">
                 <td id="{{$index}}-id">{{record.id}}</td>
                 <td id="{{$index}}-nombre">{{record.nombre}}</td>
-                <td id="{{$index}}-disponibilidad">{{record.disponibilidad}}</td>
                 <td>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm"ui-sref="medicoEdit({medicoId:record.id})"> <span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="medicoDelete({medicoId:record.id})"><span class="glyphicon glyphicon-minus"></span> Remove</button>
-                    <button id="{{$index}}-turnos-btn" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-align-justify"></span> Turnos </button>
                </td>
             </tr>
         </tbody>
