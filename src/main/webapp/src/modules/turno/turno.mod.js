@@ -5,29 +5,36 @@
  */
 (function (ng) {
     var mod = ng.module("turnoModule", ["ngMessages", "ui.router"]);
-    mod.constant("turnoContext", "api/turnos");
+    mod.constant("turnoContext", "/turnos");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
-            var basePath = 'src/modules/horarios/';
-            $urlRouterProvider.otherwise("/horariosList");
-            $stateProvider.state('horariosList', {
-                url: '/horarios',
+            var basePath = 'src/modules/turno/';
+            $urlRouterProvider.otherwise("/turnosMedicoList");
+            $stateProvider.state('turnosMedicoList', {
+                url: '/turnos',
                 views: {
                     'mainView': {
-                        controller: 'horariosCtrl',
+                        controller: 'turnoCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'horarios.list.html'
+                        templateUrl: basePath + 'turno.Mlist.html'
                     }
                 }
-            }).state('horariosCreate', {
-                url: '/horarios/create',
+            }).state('turnoMList', {
+                url: '/listaMedico', 
+                views: {
+                    controller: 'turnoCtrl',
+                    controllerAs: 'ctrl',
+                    templateUrl: basePath + 'turno. Mlist.html'
+                }
+            }).state('turnoCreate', {
+                url: '/medico/turno/create',
                 views: {
                     'mainView': {
-                        controller: 'horariosCtrl',
+                        controller: 'turnoCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'horarios.create.html'
+                        templateUrl: basePath + 'turno.create.html'
                     }
                 }
-            }).state('horariosEdit', {
+            }).state('turnoEdit', {
                 url: '/horarios/:horarioId',
                 param: {
                     horarioId: null

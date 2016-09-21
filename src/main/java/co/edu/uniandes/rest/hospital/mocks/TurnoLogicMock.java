@@ -30,6 +30,7 @@ public class TurnoLogicMock {
 
     	if (turnos == null) {
             turnos = new ArrayList();
+            TurnoDTO t = new TurnoDTO(1L, new);
         }
         
     	// indica que se muestren todos los mensajes
