@@ -269,13 +269,5 @@ public class MedicoDTO {
      * @param pIdTurno id del turno
      * @param pConsultorio consultorio a asignar
      */
-    public void asignarConsultorioTurno(Long pIdTurno, ConsultorioDTO pConsultorio)throws TurnoLogicException{
-        for (TurnoDTO actual : turnos) {
-            if(actual.getId().equals(pIdTurno)){
-                actual.setConsultorio(pConsultorio);
-                return;
-            }
-            throw new TurnoLogicException("No existe un turno con el id requerido " + pIdTurno);
-        }
-    }
+    
 }
