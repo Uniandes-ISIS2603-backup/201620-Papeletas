@@ -36,9 +36,16 @@ public class CitaMock {
         
         if (citas == null) {
             citas = new ArrayList<>();
-            citas.add(new CitaDTO(3L,new Date(), 0L , 
-                    new MedicoDTO("Juan Lara", 5L, "Oftalmologo"),1L));
-           
+            CitaDTO cita1 = new CitaDTO(1L,new Date(), 0L , new MedicoDTO("Juan Lara", 5L, "Oftalmologo"),1L);
+            CitaDTO cita2 = new CitaDTO(2L, new Date(), 0L, new MedicoDTO("Nicolas Simmonds", 1L, "Ortopedista"), 1L) ;
+            CitaDTO cita3 = new CitaDTO(3L, new Date(), 0L, new MedicoDTO("Juan Mendez", 2L, "Cardiologo"), 1L) ;
+            CitaDTO cita4 = new CitaDTO(4L, new Date(), 0L, new MedicoDTO("Diego Castro", 3L,  "Ginecologo"), 2L) ;
+            CitaDTO cita5 = new CitaDTO(5L, new Date(), 0L, new MedicoDTO("Juan Useche", 4L,"Otorrino"), 2L) ;
+            citas.add(cita1);
+            citas.add(cita2);
+            citas.add(cita3);
+            citas.add(cita4);
+            citas.add(cita5);
         }
 
     	// indica que se muestren todos los mensajes
