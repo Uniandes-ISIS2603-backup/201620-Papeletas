@@ -22,7 +22,7 @@ import javax.ws.rs.Produces;
  *
  * @author Nicolas
  */
-@Path("medico")
+@Path("")
 @Produces("application/json")
 public class MedicoResource {
     
@@ -39,6 +39,7 @@ public class MedicoResource {
   * @throws MedicoException si no hay medicso en la lista 
   */ 
     @GET
+    @Path("medico")
     public List<MedicoDTO> getMedicos() throws MedicoException
     {
      return medico.getMedico();
@@ -50,7 +51,7 @@ public class MedicoResource {
      * @throws MedicoException cuando no existe un medico con el id
      */
     @GET
-    @Path("{id: \\d+}") 
+    @Path("medico/{id: \\d+}") 
     public MedicoDTO getMedicoID(@PathParam("id")Long id)throws MedicoException
     {
         return medico.getMedID(id);
@@ -63,6 +64,7 @@ public class MedicoResource {
      * @throws MedicoException cuando ya existe un medico con el id dado 
      */
     @POST
+    @Path("medico")
     public MedicoDTO createMedico(MedicoDTO medi)throws MedicoException
     {
      return medico.createMedico(medi);
@@ -75,7 +77,7 @@ public class MedicoResource {
      * @throws MedicoException si no existe el medico que se quiere eliminar
      */
     @DELETE
-    @Path("{id: \\d+}")
+    @Path("medico/{id: \\d+}")
     public void deleteMedico(@PathParam("id")Long id) throws MedicoException
     {
          medico.deleteMedico(id);
@@ -88,7 +90,7 @@ public class MedicoResource {
      * @return medico actualizado
      */
     @PUT
-    @Path ("{id: \\d+}")
+    @Path ("medico/{id: \\d+}")
     public MedicoDTO updateMedico(MedicoDTO medicoN) throws MedicoException
     {
         return medico.updateMedico(medicoN);
@@ -96,7 +98,7 @@ public class MedicoResource {
     
     
     @GET
-    @Path("{id: \\d+}/promedio") 
+    @Path("medico/{id: \\d+}/promedio") 
     public double calcularPromedioMedico(@PathParam("id")Long id)throws MedicoException
     {
         return  medico.calcularPromedioCitaMedico(id);
