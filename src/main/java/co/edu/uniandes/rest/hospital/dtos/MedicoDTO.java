@@ -38,7 +38,7 @@ public class MedicoDTO {
      * Especialidad del medico
      */
     
-    private String especialidad;
+    private EspecializacionDTO especialidad;
     
     /**
      * Lista de espera del médico
@@ -84,7 +84,7 @@ public class MedicoDTO {
      * @param disponibilidad
      * @param espe 
      */
-    public MedicoDTO(String nombre, Long id, String disponibilidad, String espe) {
+    public MedicoDTO(String nombre, Long id, String disponibilidad, EspecializacionDTO espe) {
         super();
         this.nombre = nombre;
         this.id = id;
@@ -151,12 +151,12 @@ public class MedicoDTO {
     }
 
   
-    public String getEspecializacion()
+    public EspecializacionDTO getEspecializacion()
     {
         return especialidad;
     }
     
-    public void setEspecialidad(String e)
+    public void setEspecialidad(EspecializacionDTO e)
     {
         this.especialidad=e;
     }
