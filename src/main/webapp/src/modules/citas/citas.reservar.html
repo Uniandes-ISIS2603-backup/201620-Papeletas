@@ -16,7 +16,8 @@
                 </div>
                 
             </div>
-            <button type="button" ui-sref='citasList'>Cancelar</button>
+            <button type="button" ui-sref='citasList'>Volver</button>
+            <button type="button" ng-click="ctrl.cancelarCita(currentRecord)" ui-sref='citasList'>Cancelar Cita</button>
             <button type="submit" ng-click="ctrl.reservarCita(currentRecord)" ui-sref='citasList'>Aceptar</button>    
         </fieldset>
     </form>

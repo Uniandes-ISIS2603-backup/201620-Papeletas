@@ -45,11 +45,11 @@ public class MedicoMock {
     public MedicoMock() {
         if (medicos == null) {
             medicos = new ArrayList<>();
-            medicos.add(new MedicoDTO("Nicolas Simmonds", 1L    , "02/04-15/04", "Ortopedista"));
-            medicos.add(new MedicoDTO("Juan Mendez", 2L, "15/04-25/04", "Cardiologo"));
-            medicos.add(new MedicoDTO("Diego Castro", 3L, "01/04-30/04", "Ginecologo"));
-            medicos.add(new MedicoDTO("Juan Useche", 4L, "08/04-11/04", "Otorrino"));
-            medicos.add(new MedicoDTO("Juan Lara", 5L, "20/04-29/04", "Oftalmologo"));
+            medicos.add(new MedicoDTO("Nicolas Simmonds", 1L    , "Ortopedista"));
+            medicos.add(new MedicoDTO("Juan Mendez", 2L, "Cardiologo"));
+            medicos.add(new MedicoDTO("Diego Castro", 3L,  "Ginecologo"));
+            medicos.add(new MedicoDTO("Juan Useche", 4L,"Otorrino"));
+            medicos.add(new MedicoDTO("Juan Lara", 5L,  "Oftalmologo"));
             
       
             for(int i=0;i<medicos.size();i++)
@@ -173,7 +173,6 @@ public class MedicoMock {
             boolean ya = false;
             for (MedicoDTO medic : medicos) {
                 if (Objects.equals(medic.getId(), medicoN.getId())) {
-                    medic.setDisponibilidad(medicoN.getDisponibilidad());
                     medic.setEspecialidad(medicoN.getEspecializacion());
                     medic.setNombre(medicoN.getNombre());
                     ya = true;
