@@ -33,12 +33,12 @@ public class MedicoDTO {
      * Especialidad del medico
      */
     
-    private String especialidad;
+    private EspecializacionDTO especialidad;
     
     /**
      * Lista de espera del médico
      */
-    private ArrayList<CitaDTO> listaEspera;
+    private List<CitaDTO> listaEspera;
 
     /**
      * Turnos del medico
@@ -66,7 +66,9 @@ public class MedicoDTO {
      */
     public MedicoDTO()
     {
-        
+        listaEspera = new ArrayList <>();
+        turnos = new ArrayList<>();
+        cita=new CitaMock();
     }
     /**
      * 
@@ -75,15 +77,16 @@ public class MedicoDTO {
      * @param disponibilidad
      * @param espe 
      */
-    public MedicoDTO(String nombre, Long id, String espe) {
+
+    public MedicoDTO(String nombre, Long id, EspecializacionDTO espe) {
         super();
         this.nombre = nombre;
         this.id = id;
         this.especialidad = espe;
+        this.cantidadCitas=0;
         listaEspera = new ArrayList <>();
         turnos = new ArrayList<>();
         cita=new CitaMock();
-        this.cantidadCitas=0;
     }
 
     /**
@@ -120,13 +123,30 @@ public class MedicoDTO {
      */
     public void setId(Long id) {
         this.id = id;
-    } 
-    public String getEspecializacion()
+
+    }
+
+    /**
+     * retorna la disponibilidad del medico
+     *
+     * @return disponibilidad del medico
+     */
+ 
+
+    /**
+     * Modifica la disponibilidad del medico
+     *
+     * @param disponibilidad disponibilidad del medico
+     */
+  
+
+    public EspecializacionDTO getEspecializacion()
+
     {
         return especialidad;
     }
     
-    public void setEspecialidad(String e)
+    public void setEspecialidad(EspecializacionDTO e)
     {
         this.especialidad=e;
     }
@@ -135,7 +155,7 @@ public class MedicoDTO {
      * Obtiene la lista de espera del médico.
      * @return la lista de espera del médico
      */
-    public ArrayList getListaEspera () {
+    public List<CitaDTO> getListaEspera () {
         return listaEspera;
     }
     
@@ -172,7 +192,7 @@ public class MedicoDTO {
         return cita;
     }
     
-    private List<TurnoDTO> darTurno()
+    public List<TurnoDTO> darTurno()
     {
         return turnos;
     }
@@ -251,13 +271,5 @@ public class MedicoDTO {
      * @param pIdTurno id del turno
      * @param pConsultorio consultorio a asignar
      */
-    public void asignarConsultorioTurno(Long pIdTurno, ConsultorioDTO pConsultorio)throws TurnoLogicException{
-        for (TurnoDTO actual : turnos) {
-            if(actual.getId().equals(pIdTurno)){
-                actual.setConsultorio(pConsultorio);
-                return;
-            }
-            throw new TurnoLogicException("No existe un turno con el id requerido " + pIdTurno);
-        }
-    }
+    
 }

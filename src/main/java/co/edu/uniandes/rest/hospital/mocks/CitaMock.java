@@ -8,8 +8,10 @@ package co.edu.uniandes.rest.hospital.mocks;
 import co.edu.uniandes.rest.hospital.exceptions.CitaException;
 import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
+import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import co.edu.uniandes.rest.hospital.dtos.PacienteDTO;
+import co.edu.uniandes.rest.hospital.dtos.ValorDTO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,19 +38,16 @@ public class CitaMock {
         
         if (citas == null) {
             citas = new ArrayList<>();
-            citas.add(new CitaDTO(1L,new Date(), 0L , 
-                    new MedicoDTO("Nicolas Simmonds", 1L, "Ortopedista"),1L));
-                    citas.get(0).setPaciente(new PacienteDTO(2L, "Manuela", "Welch",19,8));
-                    citas.get(0).setConsultorio(new ConsultorioDTO(1L,402L));
-            citas.add(new CitaDTO(2L,new Date(), 0L , 
-                    new MedicoDTO("Nicolas Simmonds", 1L , "Ortopedista"),1L));
-                    citas.get(1).setPaciente(new PacienteDTO(1L, "Diego", "Welch",19,8));
-                    citas.get(1).setConsultorio(new ConsultorioDTO(2L,403L));  
-             citas.add(new CitaDTO(3L,new Date(), 0L , 
-                    new MedicoDTO("Nicolas Simmonds", 2L, "Ortopedista"),1L));
-                    citas.get(2).setPaciente(new PacienteDTO(2L, "Manuela", "Welch",19,8));
-                    citas.get(2).setConsultorio(new ConsultorioDTO(1L,402L));
-                    
+            CitaDTO cita1 = new CitaDTO(1L,new Date(), new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(1, "Cardiologia")),1L);
+            CitaDTO cita2 = new CitaDTO(2L, new Date(), new MedicoDTO("Nicolas Simmonds", 1L, new EspecializacionDTO(1, "Cardiologia")), 1L) ;
+            CitaDTO cita3 = new CitaDTO(3L, new Date(), new MedicoDTO("Juan Mendez", 2L, new EspecializacionDTO(3, "Neumologia")), 1L) ;
+            CitaDTO cita4 = new CitaDTO(4L, new Date(), new MedicoDTO("Diego Castro", 3L,  new EspecializacionDTO(3, "Neumologia")), 2L) ;
+            CitaDTO cita5 = new CitaDTO(5L, new Date(), new MedicoDTO("Juan Useche", 4L,new EspecializacionDTO(3, "Neumologia")), 2L) ;
+            citas.add(cita1);
+            citas.add(cita2);
+            citas.add(cita3);
+            citas.add(cita4);
+            citas.add(cita5);
         }
 
     	// indica que se muestren todos los mensajes
@@ -79,7 +78,6 @@ public class CitaMock {
             }
             return citMed;
         }
-        return citas;
     }
      /**
      * Obtiene una getCita
@@ -216,5 +214,57 @@ public class CitaMock {
         // si no encuentra la getcita
         logger.severe("No existe citacon ese id");
         throw new CitaException("No existe cita con ese id");
+    }
+    
+    
+    
+    
+    
+    public List<CitaDTO> darCitasPorMedico(Long id)
+    {
+        ArrayList lista= new ArrayList();
+        
+        for(int i=0;i<citas.size();i++)
+        {
+            if(citas.get(i).getMedico().getId().equals(id))
+                lista.add(citas.get(i));
+        }
+        return lista;
+    }
+    
+    public List<CitaDTO> darCitasTerminadasMedico(Long id)
+    {
+         ArrayList lista= new ArrayList();
+        
+        for(int i=0;i<citas.size();i++)
+        {
+            if(citas.get(i).getMedico().getId().equals(id))
+            {
+                if(citas.get(i).getCitaTerminada())
+                    lista.add(citas.get(i));
+            }
+        }
+        return lista;
+    }
+    
+    
+     
+        
+    public void registrarFinCita(int idCita,int duracion)
+    {
+        citas.get(idCita+1).setCitaTerminada();
+        citas.get(idCita+1).setDuracion(duracion);
+    }
+    
+    
+    public ValorDTO calularPromedioMedico(Long id)
+    {
+        List<CitaDTO> lista= darCitasTerminadasMedico(id);
+        double valor = 0.0;
+        for(int i=0;i<lista.size();i++)
+        {
+         valor +=lista.get(i).getDuracion();
+        }
+        return new ValorDTO(valor/lista.size());
     }
 }

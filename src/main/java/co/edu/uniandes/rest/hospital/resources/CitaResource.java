@@ -7,6 +7,7 @@ package co.edu.uniandes.rest.hospital.resources;
 
 import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.hospital.dtos.PacienteDTO;
+import co.edu.uniandes.rest.hospital.dtos.ValorDTO;
 import co.edu.uniandes.rest.hospital.exceptions.CitaException;
 import co.edu.uniandes.rest.hospital.mocks.CitaMock;
 import java.util.List;
@@ -98,5 +99,13 @@ public class CitaResource {
     public void deleteCita (@PathParam("idMedico") Long idMedico, @PathParam("id") int id) throws CitaException
     {
         cita.deleteCita(idMedico, id);
+    }
+    
+    
+    @GET
+    @Path(("medico/{idMedico: \\d+}/citas/{id: \\d+}/promedio"))
+    public ValorDTO calcularPromedioMedico(Long id)
+    {
+        return cita.calularPromedioMedico(id);
     }
 }

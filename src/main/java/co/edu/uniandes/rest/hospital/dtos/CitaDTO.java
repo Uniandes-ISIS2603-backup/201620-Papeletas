@@ -18,13 +18,13 @@ import java.util.Date;
 public class CitaDTO 
 {
     //identificador de la cita
-    private long idCita;
+    private Long idCita;
     
     //fecha para la cual esta programada la cita
     private Date fecha;
     
     //tiempo de la cita
-    private long duracion;
+    private int duracion;
     
     //medico asiganado a la cita
     private MedicoDTO medico;
@@ -34,17 +34,17 @@ public class CitaDTO
    
     private PacienteDTO paciente;
     
-    private boolean citaTerminada;
+    private Boolean citaTerminada;
     
-    private long idTurno;
+    private Long idTurno;
      /**
      * Constructor. Crea una nueva cita.
      */
-    public CitaDTO(long pIdCita, Date fecha,long duracion, MedicoDTO medico, long pIdTurno) 
+    public CitaDTO(long pIdCita, Date fecha, MedicoDTO medico, long pIdTurno) 
     {
         this.idCita = pIdCita;
         this.fecha = fecha;
-        this.duracion = duracion;
+        this.duracion = 0;
         this.medico = medico;
         this.consultorio = null;
         this.paciente = null;
@@ -56,7 +56,7 @@ public class CitaDTO
     {
       
     }
-    public long getId()
+    public Long getId()
     {
         return idCita;
     }
@@ -85,7 +85,7 @@ public class CitaDTO
      * obtiene la duracion que tuvo la cita
      * @return duracion
      */
-    public long getDuracion()
+    public int getDuracion()
     {
         return duracion;
     }
@@ -93,7 +93,7 @@ public class CitaDTO
      * establece la duracion de una cita
      * @param pDuracion 
      */
-    public void setDuracion(long pDuracion)
+    public void setDuracion(int pDuracion)
     {
         duracion = pDuracion;
     }
@@ -128,7 +128,7 @@ public class CitaDTO
         paciente = pPaciente;
     }
     
-    public boolean getCitaTerminada()
+    public Boolean getCitaTerminada()
     {
         return citaTerminada;
     }
@@ -136,7 +136,7 @@ public class CitaDTO
     {
         citaTerminada = !citaTerminada;
     }
-    public long getIdTurno()
+    public Long getIdTurno()
     {
         return idTurno;
     }
