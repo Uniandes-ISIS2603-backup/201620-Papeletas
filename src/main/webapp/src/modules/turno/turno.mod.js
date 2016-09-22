@@ -8,54 +8,33 @@
     mod.constant("turnoContext", "/turnos");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/turno/';
-            $urlRouterProvider.otherwise("/turnosMedicoList");
-            $stateProvider.state('turnosMedicoList', {
+            $urlRouterProvider.otherwise("/turnosMList");
+            $stateProvider.state('turnosMList', {
                 url: '/turnos',
+                parent: 'medicoEdit',
                 views: {
                     'mainView': {
                         controller: 'turnoCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'turno.Mlist.html'
+                        templateUrl: basePath + 'turno.mList.html'
                     }
                 }
-            }).state('turnoMList', {
-                url: '/listaMedico', 
+            }).state('turnoMCreate', {
+                url: '/turnos/create',
+                parent: 'medicoEdit',
                 views: {
                     controller: 'turnoCtrl',
                     controllerAs: 'ctrl',
-                    templateUrl: basePath + 'turno. Mlist.html'
+                    templateUrl: basePath + 'turno.mCreate.html'
                 }
-            }).state('turnoCreate', {
-                url: '/medico/turno/create',
+            }).state('turnoMEdit', {
+                url: '/turnos/edit',
+                parent: 'medicoEdit',
                 views: {
                     'mainView': {
                         controller: 'turnoCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'turno.create.html'
-                    }
-                }
-            }).state('turnoEdit', {
-                url: '/horarios/:horarioId',
-                param: {
-                    horarioId: null
-                },
-                views: {
-                    'mainView': {
-                        controller: 'horariosCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'horarios.create.html'
-                    }
-                }
-            }).state('horariosDelete', {
-                url: '/horarios/delete/:horarioId',
-                param: {
-                    horarioId: null
-                },
-                views: {
-                    'mainView': {
-                        controller: 'horariosCtrl',
-                        controllerAs: 'ctrl',
-                        templateUrl: basePath + 'horarios.delete.html'
+                        templateUrl: basePath + 'turno.mCreate.html'
                     }
                 }
             });
