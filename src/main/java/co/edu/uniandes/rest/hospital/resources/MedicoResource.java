@@ -106,7 +106,7 @@ public class MedicoResource {
     }
     
     @GET
-    @Path("{id: \\d+}/listaespera")
+    @Path("medico/{id: \\d+}/listaespera")
     public List<CitaDTO> getListaEspera (@PathParam("id") Long id) throws MedicoException {
         return medico.getListaEsperaMedico(id);
     }   

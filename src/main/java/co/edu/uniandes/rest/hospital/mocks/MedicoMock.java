@@ -60,7 +60,7 @@ public class MedicoMock {
             medicos.add(new MedicoDTO("Juan Useche", 4L, new EspecializacionDTO(3, "Neumologia")));
             medicos.add(new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(4, "Neurologia")));
             
-            Long l = 1L;
+            long l = 1L;
             for (int i = 0; i < medicos.size(); i++) { 
                 CitaDTO cit = new CitaDTO(l, Calendar.getInstance().getTime(), medicos.get(i), l);
                 cit.setConsultorio(new ConsultorioDTO(l, l));
