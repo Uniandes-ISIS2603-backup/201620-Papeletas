@@ -32,7 +32,7 @@
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     nombre: '' /*Tipo String*/,
                     promedio: undefined /*Tipo ValorDTO, se asigna en el backend*/,
-                    
+                    especializacion: {}
                 };
               
                 $scope.alerts = [];

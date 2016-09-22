@@ -14,7 +14,11 @@
                     <label for="name" class="col-md-2 control-label">Nombre</label>
                     <div class="col-md-10">
                         <input id="nombre" name="nombre" class="form-control" type="text" ng-model="currentRecord.nombre" ng-init="currentRecord.nombre" required />
-                    </div>                         
+                    </div> 
+                    <label for="especialidad" class="col-md-2 control-label">Especializacion</label>
+                    <div class="col-md-10">
+                         <select id="especialidad" name="especialidad" ng-options="record.name for record in especializacion track by record.id" class="form-control" type="text" ng-model="currentRecord.eespecializacion" ></select>
+                    </div>
                     <button type="submit" >Save</button>    
                     <button type="button" ui-sref='medicoList'>Cancel</button>
 

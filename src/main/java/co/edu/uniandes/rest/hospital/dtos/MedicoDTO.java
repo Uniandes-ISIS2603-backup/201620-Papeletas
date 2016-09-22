@@ -72,6 +72,7 @@ public class MedicoDTO {
         turnos = new ArrayList<>();
         cita=new CitaMock();
         promedio=0.0;
+        especialidad=null;
     }
     /**
      * 
