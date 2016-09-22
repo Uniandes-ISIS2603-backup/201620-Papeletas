@@ -24,7 +24,7 @@ public class CitaDTO
     private Date fecha;
     
     //tiempo de la cita
-    private Long duracion;
+    private int duracion;
     
     //medico asiganado a la cita
     private MedicoDTO medico;
@@ -40,11 +40,11 @@ public class CitaDTO
      /**
      * Constructor. Crea una nueva cita.
      */
-    public CitaDTO(Long pIdCita, Date fecha,Long duracion, MedicoDTO medico, Long pIdTurno) 
+    public CitaDTO(long pIdCita, Date fecha, MedicoDTO medico, long pIdTurno) 
     {
         this.idCita = pIdCita;
         this.fecha = fecha;
-        this.duracion = duracion;
+        this.duracion = 0;
         this.medico = medico;
         this.consultorio = null;
         this.paciente = null;
@@ -85,7 +85,7 @@ public class CitaDTO
      * obtiene la duracion que tuvo la cita
      * @return duracion
      */
-    public Long getDuracion()
+    public int getDuracion()
     {
         return duracion;
     }
@@ -93,7 +93,7 @@ public class CitaDTO
      * establece la duracion de una cita
      * @param pDuracion 
      */
-    public void setDuracion(long pDuracion)
+    public void setDuracion(int pDuracion)
     {
         duracion = pDuracion;
     }

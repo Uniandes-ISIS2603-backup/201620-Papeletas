@@ -7,6 +7,7 @@ package co.edu.uniandes.rest.hospital.mocks;
 
 import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
+import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import co.edu.uniandes.rest.hospital.dtos.PacienteDTO;
 import co.edu.uniandes.rest.hospital.exceptions.CitaException;
@@ -41,32 +42,33 @@ public class MedicoMock {
      * Arraylist con los medicos
      */
     private static ArrayList<MedicoDTO> medicos;
+    
+    
+    private CitaMock cita;
 
 
-    public MedicoMock() {
-        if (medicos == null) {
+    public MedicoMock()
+    {
+        if (medicos == null)
+        {
+            cita = new CitaMock();
             medicos = new ArrayList<>();
-            medicos.add(new MedicoDTO("Nicolas Simmonds", 1L    , "Ortopedista"));
-            medicos.add(new MedicoDTO("Juan Mendez", 2L, "Cardiologo"));
-            medicos.add(new MedicoDTO("Diego Castro", 3L,  "Ginecologo"));
-            medicos.add(new MedicoDTO("Juan Useche", 4L,"Otorrino"));
-            medicos.add(new MedicoDTO("Juan Lara", 5L,  "Oftalmologo"));
-            
-      
-            for(int i=0;i<medicos.size();i++)
-            {
-                medicos.get(i).setDuracionConsulta(i+13);
-                medicos.get(i).setCantidadCitas(i+1);
-            }
+
+            medicos.add(new MedicoDTO("Nicolas Simmonds", 1L  , new EspecializacionDTO(1, "Cardiologia")));
+            medicos.add(new MedicoDTO("Juan Mendez", 2L, new EspecializacionDTO(1,"Cardiologia")));
+            medicos.add(new MedicoDTO("Diego Castro", 3L, new EspecializacionDTO(2, "Endocrinologia")));
+            medicos.add(new MedicoDTO("Juan Useche", 4L, new EspecializacionDTO(3, "Neumologia")));
+            medicos.add(new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(4, "Neurologia")));
             
             Long l = 1L;
             for (int i = 0; i < medicos.size(); i++) { 
-                CitaDTO cit = new CitaDTO(l, Calendar.getInstance().getTime(), 15L, medicos.get(i), l+i);
+                CitaDTO cit = new CitaDTO(l, Calendar.getInstance().getTime(), medicos.get(i), l);
                 cit.setConsultorio(new ConsultorioDTO(l, l));
                 cit.setPaciente(new PacienteDTO(l, "nombre" + i, "apellido" + i, (int)((Math.random() + 1)*10) + i, i));
                 medicos.get(i).agregarCitaListaEspera(cit);
                 l++;
             }
+           
         }
         
         logger.info("Inicializa la lista de medicos");
@@ -201,8 +203,8 @@ public class MedicoMock {
         {
             if(medicos.get(i).getId().equals(id))
             {
-               promedio=medicos.get(i).calcularPromedioCitaMedico();
-               break;
+               
+               
             }
         }
         return promedio;
@@ -231,59 +233,25 @@ public class MedicoMock {
   
    
    /**
-    * Registra el fin de una consulta medica de un medico con el id dado y el tuirno dado
-    * @param idMedico id del medico     
-    * @param idTurno id del turno
-    * @param idCita id de la cita   
-    * @param pDuracion duracion de la consulta
-    */
-   public void registrarFinCita(Long idMedico, Long idTurno, Long idCita, int pDuracion)
-   {
-       for(int i=0;i<medicos.size();i++)
-       {
-           if(medicos.get(i).getId()==idMedico)
-           {
-               medicos.get(i).registrarFinCita(pDuracion, idCita, idTurno);
-               break;
-           }
-       }
-   }
-   
-   /**
     * Crea un turno en el médco con cierta id
     * @param pIdMedico Id del médico
     * @param pFecha Fecha del medico
     * @param pDuracion Duracion del turno en minutos
-    *//*
-   public void crearTurno(Long pIdMedico, Date pFecha, int pDuracion) throws MedicoException{
-       for(MedicoDTO actual: medicos){
-           if(actual.getId().equals(pIdMedico)){
-               actual.agregarTurno(pFecha, pDuracion);
-               return;
-           }
-       }
-       throw new MedicoException("No existe un médico con id " + pIdMedico);
-   }
-   
-   /**
-    * Asigna un consultorio a un turno con cierta id de un medico con cierta id
-    * @param pIdMedico Id del médico
-    * @param pIdTurno Id del turno
-    * @param pConsultorio Consultorio a agregar
-    * @throws TurnoLogicException
-    * @throws MedicoException 
     */
-   public void asignarConsultorio(Long pIdMedico, Long pIdTurno, ConsultorioDTO pConsultorio) throws TurnoLogicException, MedicoException{
-       for(MedicoDTO actual: medicos){
-           if(actual.getId().equals(pIdMedico)){
-               actual.asignarConsultorioTurno(pIdTurno, pConsultorio);
-               return;
+   
+   public List listaPorSpec(String spec)      
+   {
+       ArrayList temp = new ArrayList();
+       for(int i=0;i<medicos.size();i++)
+       {
+           if(medicos.get(i).getEspecializacion().getNombre().equals(spec))
+           {
+               temp.add(medicos.get(i));
            }
        }
-       throw new MedicoException("No existe un médico con id " + pIdMedico);
+       return temp;
    }
-   
-   
+     
    public List <CitaDTO> getListaEsperaMedico (Long id) throws MedicoException {
        List<CitaDTO> listaEspera = null;
        for (MedicoDTO medico : medicos) {

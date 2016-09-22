@@ -6,7 +6,7 @@
             $scope.citasContext = '/citas';
             $scope.records = {};
             // carga las citas
-            $http.get(medicoContext + "/" + $stateParams.medicoID + $scope.citasContext).then(function(response){
+            $http.get(medicoContext + "/" + $stateParams.medicoId+ $scope.citasContext).then(function(response){
                 $scope.records = response.data;    
             }, responseError);
 
@@ -16,7 +16,7 @@
                 // toma el id del parámetro
                 id = $stateParams.citaId;
                 // obtiene el dato del recurso REST
-                $http.get(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+ "/" + id)
+               $http.get(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+  id)
                     .then(function (response) {
                         // $http.get es una promesa
                         // cuando llegue el dato, actualice currentRecord
@@ -32,23 +32,21 @@
                     fecha: '',
                     duracion: undefined,
                     medico: {
-                        id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                        idMed: undefined /*Tipo Long. El valor se asigna en el backend*/,
                         nombre: '' /*Tipo String*/,
                         disponibilidad:''
                     },
                     consultorio: {
-                        id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                        idConsult: undefined /*Tipo Long. El valor se asigna en el backend*/,
                         libre: false /*Tipo boolean*/
                     },
                     paciente: {
-                        id: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                        idPaci: undefined /*Tipo Long. El valor se asigna en el backend*/,
                         name: '' /*Tipo String*/,
                         lastName: '',
                         age: undefined,
                         satisfaction: undefined,
-                    },
-                    citaTerminda: undefined,
-                    idTurno: undefined
+                    }        
                 };
               
                 $scope.alerts = [];
@@ -62,7 +60,7 @@
                 if (id == null) {
 
                     // ejecuta POST en el recurso REST
-                    return $http.post(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext, currentRecord)
+                    return $http.post(medicoContext + "/" + $stateParams.medicoId + $scope.citasContext, currentRecord)
                         .then(function () {
                             // $http.post es una promesa
                             // cuando termine bien, cambie de estado
@@ -73,7 +71,7 @@
                 } else {
                     
                     // ejecuta PUT en el recurso REST
-                    return $http.put(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+ "/" + currentRecord.id, currentRecord)
+                    return $http.put(medicoContext + "/" + $stateParams.medicoId + $scope.citasContext + "/" + currentRecord.id, currentRecord)
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
@@ -82,21 +80,17 @@
                 };
             };
 
-                this.deleteRecord = function (id) {
-                currentRecord = $scope.currentRecord;
-               
-                $http.delete(medicoContext + "/" + $stateParams.medicoId + $scope.citasContext+"/" + currentRecord.id)
-                        .then(function () {
-                            // $http.put es una promesa
-                            // cuando termine bien, cambie de estado
-                            $state.go('citasList');
-                        }, responseError);
+                this.deleteRecord = function(record){
+                return $http.delete(medicoContext + "/" + $stateParams.medicoId + $scope.citasContext+ "/" + record.id)
+                        .then(function(){
+                            $state.reload();
+                },responseError);
             };
 
                 this.cancelarCita = function(id) {
                     currentRecord = $scope.currentRecord;
                     currentRecord.paciente = null;
-                    $http.put(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+ "/" + currentRecord.id)
+                    $http.put(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id, currentRecord)
                             .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
@@ -105,7 +99,7 @@
                 }
                 this.reservarCita = function(id){
                     currentRecord = $scope.currentRecord;
-                    $http.put(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+ "/" + currentRecord.id)
+                    $http.put(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id, currentRecord)
                             .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado

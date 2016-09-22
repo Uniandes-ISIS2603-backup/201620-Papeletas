@@ -8,8 +8,10 @@ package co.edu.uniandes.rest.hospital.mocks;
 import co.edu.uniandes.rest.hospital.exceptions.CitaException;
 import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
+import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import co.edu.uniandes.rest.hospital.dtos.PacienteDTO;
+import co.edu.uniandes.rest.hospital.dtos.ValorDTO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -36,11 +38,16 @@ public class CitaMock {
         
         if (citas == null) {
             citas = new ArrayList<>();
-            citas.add(new CitaDTO(0L,new Date(), 0L , 
-                    new MedicoDTO("Juan Lara", 5L, "Oftalmologo"),2L
-            
-            ));
-           
+            CitaDTO cita1 = new CitaDTO(1L,new Date(), new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(1, "Cardiologia")),1L);
+            CitaDTO cita2 = new CitaDTO(2L, new Date(), new MedicoDTO("Nicolas Simmonds", 1L, new EspecializacionDTO(1, "Cardiologia")), 1L) ;
+            CitaDTO cita3 = new CitaDTO(3L, new Date(), new MedicoDTO("Juan Mendez", 2L, new EspecializacionDTO(3, "Neumologia")), 1L) ;
+            CitaDTO cita4 = new CitaDTO(4L, new Date(), new MedicoDTO("Diego Castro", 3L,  new EspecializacionDTO(3, "Neumologia")), 2L) ;
+            CitaDTO cita5 = new CitaDTO(5L, new Date(), new MedicoDTO("Juan Useche", 4L,new EspecializacionDTO(3, "Neumologia")), 2L) ;
+            citas.add(cita1);
+            citas.add(cita2);
+            citas.add(cita3);
+            citas.add(cita4);
+            citas.add(cita5);
         }
 
     	// indica que se muestren todos los mensajes
@@ -57,7 +64,7 @@ public class CitaMock {
  * @return lista de citaes
  * @throws CityLogicException cuando no existe la lista en memoria  
  */    
-    public List<CitaDTO> getCitas(Long idTurno) throws CitaException {
+    public List<CitaDTO> getCitas(Long idMedico) throws CitaException {
     	if (citas == null) {
     		logger.severe("Error interno: lista de citas no existe.");
     		throw new CitaException("Error interno: lista de citas no existe.");    		
@@ -73,7 +80,7 @@ public class CitaMock {
      * @return cita encontrada
      * @throws citaException cuando la getcita no existe
      */  
-    public CitaDTO getCita(Long idTurno, Long id) throws CitaException {
+    public CitaDTO getCita(Long idMedico, Long id) throws CitaException {
         logger.info("recibiendo solicitud de getcita con id " + id);
 
         // busca la getcita con el id suministrado
@@ -201,5 +208,57 @@ public class CitaMock {
         // si no encuentra la getcita
         logger.severe("No existe citacon ese id");
         throw new CitaException("No existe cita con ese id");
+    }
+    
+    
+    
+    
+    
+    public List<CitaDTO> darCitasPorMedico(Long id)
+    {
+        ArrayList lista= new ArrayList();
+        
+        for(int i=0;i<citas.size();i++)
+        {
+            if(citas.get(i).getMedico().getId().equals(id))
+                lista.add(citas.get(i));
+        }
+        return lista;
+    }
+    
+    public List<CitaDTO> darCitasTerminadasMedico(Long id)
+    {
+         ArrayList lista= new ArrayList();
+        
+        for(int i=0;i<citas.size();i++)
+        {
+            if(citas.get(i).getMedico().getId().equals(id))
+            {
+                if(citas.get(i).getCitaTerminada())
+                    lista.add(citas.get(i));
+            }
+        }
+        return lista;
+    }
+    
+    
+     
+        
+    public void registrarFinCita(int idCita,int duracion)
+    {
+        citas.get(idCita+1).setCitaTerminada();
+        citas.get(idCita+1).setDuracion(duracion);
+    }
+    
+    
+    public ValorDTO calularPromedioMedico(Long id)
+    {
+        List<CitaDTO> lista= darCitasTerminadasMedico(id);
+        double valor = 0.0;
+        for(int i=0;i<lista.size();i++)
+        {
+         valor +=lista.get(i).getDuracion();
+        }
+        return new ValorDTO(valor/lista.size());
     }
 }
