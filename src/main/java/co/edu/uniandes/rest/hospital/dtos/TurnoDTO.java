@@ -32,7 +32,7 @@ public class TurnoDTO {
     /**
      * Medico dueño del turno
      */
-    private MedicoDTO medico;
+    private MedicoDTO medico;  
     
     /**
      * Consultorio asignado para el turno
