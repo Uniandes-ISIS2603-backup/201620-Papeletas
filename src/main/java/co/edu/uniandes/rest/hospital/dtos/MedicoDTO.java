@@ -201,4 +201,24 @@ public class MedicoDTO {
     {
         this.turnos=turnos;
     }
+
+ 
+    
+    public int darCantidadCitas()
+    {
+        return cantidadCitas;
+    }
+    
+    public void agregarCita()
+    {
+        cantidadCitas++;
+    } 
+    
+    public void setCantidadCitas(int cantidad)
+    {
+        cantidadCitas+=cantidad;
+    }
+
+    
+    
 }
