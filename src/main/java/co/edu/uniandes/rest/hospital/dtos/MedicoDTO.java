@@ -257,19 +257,5 @@ public class MedicoDTO {
         
     }
     
-    /**
-     * Crea un turno nuevo y lo agrega a la lista de turnos del médico cada cita del turno tiene una duración inicil de 15 minutos
-     * @param pFecha Fecha del nuevo turno
-     * @param pDuracion Duracion en minutos del turno
-     */
-    /*public void agregarTurno(Date pFecha, int pDuracion){
-        turnos.add(new TurnoDTO(this, pFecha, pDuracion, 15));
-    }*/
-    
-    /**
-     * Asigna el consultorio al turno identificado con el id 
-     * @param pIdTurno id del turno
-     * @param pConsultorio consultorio a asignar
-     */
     
 }
