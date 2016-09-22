@@ -123,7 +123,7 @@ public class MedicoResource {
     }
     
     @GET
-    @Path("medico/{id: \\d+}")
+    @Path("medico/{id: \\d+}/especializacion")
     public EspecializacionDTO especializacionMed(@PathParam("id") Long id) throws MedicoException
     {
         return medico.getMedID(id).getEspecializacion();
