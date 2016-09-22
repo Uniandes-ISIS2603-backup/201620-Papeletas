@@ -257,19 +257,33 @@ public class CitaMock {
         
     public void registrarFinCita(int idCita,int duracion)
     {
-        citas.get(idCita+1).setCitaTerminada();
-        citas.get(idCita+1).setDuracion(duracion);
+        for(int i=0;i<citas.size();i++)
+        {
+            if(citas.get(i).getId().equals(idCita))
+            {
+                citas.get(i).setCitaTerminada();
+                citas.get(i).setDuracion(duracion);
+                break;
+            }
+        }
     }
     
     
     public ValorDTO calularPromedioMedico(Long id)
     {
-        List<CitaDTO> lista= darCitasTerminadasMedico(id);
-        double valor = 0.0;
-        for(int i=0;i<lista.size();i++)
+        List<CitaDTO> lista= darCitasTerminadasMedico(id);            
+        Double valor =0.0;  
+        if(lista.isEmpty())
         {
-         valor +=lista.get(i).getDuracion();
+            return new ValorDTO(0);
         }
-        return new ValorDTO(valor/lista.size());
+        else
+        {
+           for(int i=0;i<lista.size();i++)
+           {
+             valor +=lista.get(i).getDuracion();
+           }
+        }
+        return new ValorDTO(valor/(lista.size()));
     }
 }
