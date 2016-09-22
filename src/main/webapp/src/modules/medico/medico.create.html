@@ -17,7 +17,7 @@
                     </div> 
                     <label for="especialidad" class="col-md-2 control-label">Especializacion</label>
                     <div class="col-md-10">
-                         <select id="especialidad" name="especialidad" ng-options="record.name for record in especializacion track by record.id" class="form-control" type="text" ng-model="currentRecord.eespecializacion" ></select>
+                         <select id="especialidad" name="especialidad" ng-options="record.especializacion for record in especializacion track by record.name" class="form-control" type="text" ng-model="currentRecord.eespecializacion" ></select>
                     </div>
                     <button type="submit" >Save</button>    
                     <button type="button" ui-sref='medicoList'>Cancel</button>
