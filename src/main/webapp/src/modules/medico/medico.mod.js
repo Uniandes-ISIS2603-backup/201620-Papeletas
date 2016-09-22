@@ -35,7 +35,16 @@
                         templateUrl: basePath + 'medico.create.html'
                     }
                 }
-
+            }).state('medicoRegistrar', {
+                url: '/{medicoId:int}/registrar',
+                parent: 'medico',
+                views: {
+                    'medicoView': {
+                        controller: 'medicoCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'medico.registrar.html'
+                    }
+                }
             }).state('medicoEdit', {
                 url: '/{medicoId:int}/edit',
                 param: {

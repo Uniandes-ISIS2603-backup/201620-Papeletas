@@ -42,6 +42,10 @@ public class EspecializacionMock
             especialidades.add(new EspecializacionDTO(12 , "Urologia"));
             especialidades.add(new EspecializacionDTO(13 , "Ortopedia y Traumatologia"));
             }
+            for(int i=0;i<especialidades.size();i++)
+            {
+                especialidades.get(i).setPromedio(0.0);
+            }
             
             logger.setLevel(Level.INFO);
 

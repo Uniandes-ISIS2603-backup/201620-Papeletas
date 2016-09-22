@@ -103,7 +103,7 @@ public class CitaResource {
     
     
     @PUT
-    @Path("medico/{idMedico: \\d+}/citas/{id: \\d+}/registrar/{dura: \\d+}")
+    @Path("medico/{idMedico: \\d+}/citas/{id: \\d+}/registrar")
     public void registrarCitaTerminada(@PathParam("id")int id, @PathParam("dura")int dura)
     {
          cita.registrarFinCita(id, dura);
@@ -112,6 +112,12 @@ public class CitaResource {
     @GET
     @Path("medico/{idMedico: \\d+}/citas/{id: \\d+}/promedio")
     public ValorDTO calcularPromedioMedico(@PathParam("idMedico")Long id)
+    {
+        return (cita.calularPromedioMedico(id));
+    }
+     @GET
+    @Path("medico/{idMedico: \\d+}/citas/{id: \\d+}/pespe")
+    public ValorDTO calcularPromedioEspecializacion(@PathParam("idMedico")Long id)
     {
         return (cita.calularPromedioMedico(id));
     }

@@ -18,6 +18,9 @@ public class EspecializacionDTO
 	 * nombre de la especializacion
 	 */
 	private String nombre;
+        
+        
+        private double promedio;
 	
         
         public EspecializacionDTO(){}
@@ -27,6 +30,7 @@ public class EspecializacionDTO
 		super();
 		this.id = id;
 		this.nombre = nombre;
+                promedio=0.0;
 	}
 
 	/*
@@ -58,6 +62,17 @@ public class EspecializacionDTO
 	{
 		this.nombre = nombre;
 	}
+        
+        
+        public double getPromedio()
+        {
+            return promedio;
+        }
+        
+        public void setPromedio(double p)
+        {
+            promedio+=p;
+        }
         @Override
         public String toString()
         {
