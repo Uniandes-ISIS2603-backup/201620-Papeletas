@@ -104,9 +104,12 @@ public class MedicoResource {
         return  medico.calcularPromedioCitaMedico(id);
     }
     
+    /*
+    * 
+    */
     
     @GET
-    @Path("medico/{nombre\\d+}")
+    @Path("medico/{nombre}")
     public List<MedicoDTO> darMedSpec(@PathParam("nombre")String id)
     {
         return medico.listaPorSpec(id);

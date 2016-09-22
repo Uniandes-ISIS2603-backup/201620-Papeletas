@@ -246,6 +246,11 @@ public class MedicoMock {
     * @param pDuracion Duracion del turno en minutos
     */
    
+   /*
+   * @Param nombre spec
+   */
+   
+   
    public List listaPorSpec(String spec)      
    {
        ArrayList temp = new ArrayList();
