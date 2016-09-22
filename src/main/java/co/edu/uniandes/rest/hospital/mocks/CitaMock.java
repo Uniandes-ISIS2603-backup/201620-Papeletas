@@ -39,10 +39,15 @@ public class CitaMock {
         if (citas == null) {
             citas = new ArrayList<>();
             CitaDTO cita1 = new CitaDTO(1L,new Date(), new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(1, "Cardiologia")),1L);
+            cita1.setPaciente(new PacienteDTO(1L, "Diego", "Castro",18,10));
             CitaDTO cita2 = new CitaDTO(2L, new Date(), new MedicoDTO("Nicolas Simmonds", 1L, new EspecializacionDTO(1, "Cardiologia")), 1L) ;
+            cita2.setPaciente(new PacienteDTO(2L, "Daniela", "Castro",13,1));
             CitaDTO cita3 = new CitaDTO(3L, new Date(), new MedicoDTO("Juan Mendez", 2L, new EspecializacionDTO(3, "Neumologia")), 1L) ;
-            CitaDTO cita4 = new CitaDTO(4L, new Date(), new MedicoDTO("Diego Castro", 3L,  new EspecializacionDTO(3, "Neumologia")), 2L) ;
-            CitaDTO cita5 = new CitaDTO(5L, new Date(), new MedicoDTO("Juan Useche", 4L,new EspecializacionDTO(3, "Neumologia")), 2L) ;
+            cita3.setPaciente(new PacienteDTO(3L, "Felipe", "Castro",21,10));
+            CitaDTO cita4 = new CitaDTO(4L, new Date(), new MedicoDTO("Nicolas Simmonds", 1L, new EspecializacionDTO(1, "Cardiologia")), 2L) ;
+            cita4.setPaciente(new PacienteDTO(4L, "Luisa", "Moon",17,6));
+            CitaDTO cita5 = new CitaDTO(5L, new Date(), new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(1, "Cardiologia")), 2L) ;
+            cita5.setPaciente(new PacienteDTO(5L, "Pedro", "Salazar",19,10));
             citas.add(cita1);
             citas.add(cita2);
             citas.add(cita3);
@@ -69,9 +74,15 @@ public class CitaMock {
     		logger.severe("Error interno: lista de citas no existe.");
     		throw new CitaException("Error interno: lista de citas no existe.");    		
     	}
-    	
-    	logger.info("retornando todas las citas");
-    	return citas;
+        else{
+            List<CitaDTO> citMed = new ArrayList<>();
+            for(int i=0;i<citas.size();i++){
+                if(citas.get(i).getMedico().getId()==idMedico){
+                    citMed.add(citas.get(i));
+                }
+            }
+            return citMed;
+        }
     }
      /**
      * Obtiene una getCita
