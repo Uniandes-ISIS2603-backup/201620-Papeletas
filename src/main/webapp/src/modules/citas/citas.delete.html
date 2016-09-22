@@ -8,5 +8,5 @@ and open the template in the editor.
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
     <form novalidate name="form" id="cita-form" role="form" ng-submit="form.$valid && ctrl.deleteRecord(currentRecord)">
         <p> Se ha eliminado el cita </p>
-        <button type="button" ng-click="ctrl.deleteRecord(currentRecord) "ui-sref='citasList' >Aceptar</button> 
+        <button type="button" ng-click="ctrl.deleteRecord(currentRecord) "ui-sref='medicoEdit' >Aceptar</button> 
 </div>

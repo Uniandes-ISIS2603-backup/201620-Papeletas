@@ -38,7 +38,7 @@
                     },
                     consultorio: {
                         idConsult: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                        libre: false /*Tipo boolean*/
+                        num: undefined
                     },
                     paciente: {
                         idPaci: undefined /*Tipo Long. El valor se asigna en el backend*/,
@@ -81,7 +81,7 @@
             };
 
                 this.deleteRecord = function(record){
-                return $http.delete(medicoContext + "/" + $stateParams.medicoId + $scope.citasContext+ "/" + record.id)
+                return $http.delete(medicoContext + "/" + $stateParams.medicoId + $scope.citasContext+ "/" + id)
                         .then(function(){
                             $state.reload();
                 },responseError);

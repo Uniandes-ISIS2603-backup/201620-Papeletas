@@ -2,24 +2,30 @@
     <div class="row">
             <button class="btn btn-default" ui-sref="citasCreate">Crear Cita</button></div>
         <div class="row">
+            <style>
+                h2{
+                background-color: #c8e5bc;
+                }
+                table{
+                background-color: #c8e5bc;
+                }
+            </style>
     <h2>Citas disponibles</h2>
     <table class="col-md-4">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Fecha</th>   
-                <th>Duración</th>
+                <th>Fecha</th>  
+                <th>Paciente</th>
                 <th>Acciones</th>  
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="record in records">
-                <td id="{{$index}}-id">{{record.id}}</td>
                 <td id="{{$index}}-fecha">{{record.fecha}}</td>
-                <td id="{{$index}}-duracion">{{record.duracion}}</td>
+                <td id="{{$index}}-paciente">{{record.paciente.name}}</td>
                 <td>
                     <button id="{{$index}}-reservar-btn" class="btn btn-default btn-sm" ui-sref="citasReservar({citaId: record.id})"><span class="glyphicon glyphicon-edit"></span> Reservar Cita</button>
-                    <button id="{{$index}}-cancelar-btn" class="btn btn-default btn-sm"ng-click="ctrl.deleteCita(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar Cita</button>
+                   <button type="button" ng-click="ctrl.deleteRecord(record) "ui-sref='citasList' >Eliminar</button> 
                 </td>
             </tr>
         </tbody>
