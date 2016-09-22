@@ -30,7 +30,7 @@
                     }
                 }
             }).state('turnoMEdit', {
-                url: '/turnos/edit',
+                url: '/turnos/{turnoId:int}/edit',
                 parent: 'medicoEdit',
                 views: {
                     'medicoInstanceView': {

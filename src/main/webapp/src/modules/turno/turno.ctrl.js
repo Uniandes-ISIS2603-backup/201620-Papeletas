@@ -21,7 +21,7 @@
                 // toma el id del parámetro
                 id = $stateParams.turnoId;
                 // obtiene el dato del recurso REST
-                $http.get(medicoContext + "/" + $stateParams.medicoId +$scope.turnoContext + "/" + id)
+                $http.get(medicoContext + "/" + $stateParams.medicoId + $scope.turnoContext + "/" + id)
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
@@ -33,7 +33,7 @@
                     consultorioId: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     duracion: undefined,
                     duracionCitas: undefined,
-                    fecha: new Date(),
+                    fecha: '',
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     medicoId: undefined /*Tipo Long. El valor se asigna en el backend*/
                 };
