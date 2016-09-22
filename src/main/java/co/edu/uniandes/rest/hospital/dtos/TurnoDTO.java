@@ -57,7 +57,7 @@ public class TurnoDTO {
         fecha = pFecha;
         duracion = pDuracion;
         medicoId = pMedico;
-        consultorioId = null;
+        consultorioId = -1L;
         duracionCitas = pDuracionCitas;
     }
     

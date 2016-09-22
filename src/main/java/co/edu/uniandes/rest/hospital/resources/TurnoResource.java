@@ -20,6 +20,7 @@ import javax.ws.rs.PathParam;
   * Clase que implementa el recurso REST correspondiente a "turnos".
   * @author ac.cabezas716
   */
+@Path("")
 public class TurnoResource {
     
    
@@ -55,8 +56,8 @@ public class TurnoResource {
      * @return turno encontrado
      * @throws TurnoLogicException cuando el turno no existe
      */
-    @GET
     @Path("medico/{idMedico: \\d+}/turnos/{id: \\d+}")
+    @GET
     public TurnoDTO getTurno(@PathParam("id") Long id) throws TurnoLogicException {
         return turnoLogicMock.getTurno(id);
     }
