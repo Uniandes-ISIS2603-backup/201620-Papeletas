@@ -254,6 +254,21 @@ public class CitaMock {
     }
     
     
+    public List<CitaDTO> darCitasTerminadasEspecializacion(String espe)
+    {
+        ArrayList lista = new ArrayList();
+        for(int i=0;i<citas.size();i++)
+        {
+            if(citas.get(i).getMedico().getEspecializacion().getNombre().equals(espe))
+            {
+                if(citas.get(i).getCitaTerminada())
+                    lista.add(citas.get(i));
+            }
+        }
+        return lista;
+    }
+    
+    
      
         
     public void registrarFinCita(int idCita,int duracion)
@@ -286,5 +301,24 @@ public class CitaMock {
            }
         }
         return new ValorDTO(valor/(lista.size()));
+    }
+    
+    
+    public ValorDTO calcularPromedioEspecializacion(String espe)
+    {
+        List<CitaDTO> lista = darCitasTerminadasEspecializacion(espe);
+        Double valor=0.0;
+        if(lista.isEmpty())
+        {
+            return new ValorDTO(0);
+        }
+        else
+        {
+            for(int i=0;i<lista.size();i++)
+            {
+                valor+=lista.get(i).getDuracion();
+            }
+        }
+        return new ValorDTO(valor/lista.size());
     }
 }
