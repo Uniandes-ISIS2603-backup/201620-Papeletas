@@ -90,7 +90,7 @@
                 this.cancelarCita = function(id) {
                     currentRecord = $scope.currentRecord;
                     currentRecord.paciente = null;
-                    $http.put(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id, currentRecord)
+                    $http.put(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+"/" + currentRecord.id, currentRecord)
                             .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
@@ -99,7 +99,7 @@
                 }
                 this.reservarCita = function(id){
                     currentRecord = $scope.currentRecord;
-                    $http.put(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+turnosContext + "/" + $stateParams.turnoId + $scope.citasContext + "/" + currentRecord.id, currentRecord)
+                    $http.put(medicoContext + "/" + $stateParams.medicoId +$scope.citasContext+ "/"  + currentRecord.id, currentRecord)
                             .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
