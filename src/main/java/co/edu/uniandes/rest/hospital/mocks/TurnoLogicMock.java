@@ -19,7 +19,7 @@ import java.util.logging.Logger;
  */
 public class TurnoLogicMock {
     // objeto para presentar logs de las operaciones
-	private final static Logger logger = Logger.getLogger(HorarioLogicMock.class.getName());
+	private final static Logger logger = Logger.getLogger(TurnoLogicMock.class.getName());
 	
 	// listado de turnos
     private static ArrayList<TurnoDTO> turnos;

@@ -8,8 +8,8 @@
     mod.constant("turnoContext", "/turnos");
     mod.config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider) {
             var basePath = 'src/modules/turno/';
-            $urlRouterProvider.otherwise("/turnosMList");
-            $stateProvider.state('turnosMList', {
+            $urlRouterProvider.otherwise("/turnoMList");
+            $stateProvider.state('turnoMList', {
                 url: '/turnos',
                 parent: 'medicoEdit',
                 views: {

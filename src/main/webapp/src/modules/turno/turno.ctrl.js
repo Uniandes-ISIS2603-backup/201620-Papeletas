@@ -31,8 +31,8 @@
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
                     consultorioId: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    duracion: 0,
-                    duaracionCitas: 0,
+                    duracion: undefined,
+                    duracionCitas: undefined,
                     fecha: new Date(),
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     medicoId: undefined /*Tipo Long. El valor se asigna en el backend*/
@@ -51,7 +51,7 @@
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('turnosMList');
+                                $state.go('turnoMList');
                             }, responseError);
 
                     // si el id no es null, es un registro existente entonces lo actualiza
@@ -62,7 +62,7 @@
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('reviewsMList');
+                                $state.go('turnoMList');
                             }, responseError);
                 }
                 ;
