@@ -40,6 +40,7 @@ public class CitaMock {
             citas = new ArrayList<>();
             CitaDTO cita1 = new CitaDTO(1L,new Date(), new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(1, "Cardiologia")),1L);
             cita1.setPaciente(new PacienteDTO(1L, "Diego", "Castro",18,10));
+       
             CitaDTO cita2 = new CitaDTO(2L, new Date(), new MedicoDTO("Nicolas Simmonds", 1L, new EspecializacionDTO(1, "Cardiologia")), 1L) ;
             cita2.setPaciente(new PacienteDTO(2L, "Daniela", "Castro",13,1));
             CitaDTO cita3 = new CitaDTO(3L, new Date(), new MedicoDTO("Juan Mendez", 2L, new EspecializacionDTO(3, "Neumologia")), 1L) ;
@@ -77,7 +78,7 @@ public class CitaMock {
         else{
             List<CitaDTO> citMed = new ArrayList<>();
             for(int i=0;i<citas.size();i++){
-                if(citas.get(i).getMedico().getId()==idMedico){
+               if(citas.get(i).getMedico().getId()==idMedico){
                     citMed.add(citas.get(i));
                 }
             }
