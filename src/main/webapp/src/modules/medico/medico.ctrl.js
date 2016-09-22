@@ -31,7 +31,7 @@
                 $scope.currentRecord = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
                     nombre: '' /*Tipo String*/,
-                    disponibilidad:''
+                    promedio: undefined /*Tipo ValorDTO, se asigna en el backend*/,
                     
                 };
               

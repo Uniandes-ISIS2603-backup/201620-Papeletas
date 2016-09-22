@@ -59,6 +59,10 @@ public class MedicoMock {
             medicos.add(new MedicoDTO("Diego Castro", 3L, new EspecializacionDTO(2, "Endocrinologia")));
             medicos.add(new MedicoDTO("Juan Useche", 4L, new EspecializacionDTO(3, "Neumologia")));
             medicos.add(new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(4, "Neurologia")));
+            for(int i=0;i<medicos.size();i++)
+            {
+                medicos.get(i).setPromedio(0.0);
+            }
             
             long l = 1L;
             for (int i = 0; i < medicos.size(); i++) { 
@@ -210,33 +214,9 @@ public class MedicoMock {
         return promedio;
     
     }
-    
-    
-      /**
-       * Calcula el promedio de citas dada una especialidad;
-       * @param pEspecialidad
-       * @return 
-       */
-   public double calcularPromedioEspecialidad(String pEspecialidad)
-   {
-       double promedio=0;
-       for(int i=0;i<medicos.size();i++)
-       {
-           if(medicos.get(i).getEspecializacion().equals(pEspecialidad)) 
-            {
-                promedio+=medicos.get(i).calcularPromedioCitaMedico();
-            }          
-       }
-       return promedio;
-       
-   }
-  
-   
+ 
    /**
-    * Crea un turno en el médco con cierta id
-    * @param pIdMedico Id del médico
-    * @param pFecha Fecha del medico
-    * @param pDuracion Duracion del turno en minutos
+    * retorna la lista de medicos de una especializacion
     */
    
    public List listaPorSpec(String spec)      

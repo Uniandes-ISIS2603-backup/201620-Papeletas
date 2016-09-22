@@ -44,11 +44,7 @@ public class MedicoDTO {
      * Turnos del medico
      */
     private List<TurnoDTO> turnos;
-    
-    /**
-     * Duracion de la consulta del medico
-     */
-    private int duracionConsultas;
+
     
     /**
      * numero de citas finalizadas;|
@@ -60,6 +56,12 @@ public class MedicoDTO {
      */
     private CitaMock cita;
     
+    /**
+     * 
+     */
+    
+    private Double promedio;
+    
     
     /**
      * Constructor vacio
@@ -69,6 +71,7 @@ public class MedicoDTO {
         listaEspera = new ArrayList <>();
         turnos = new ArrayList<>();
         cita=new CitaMock();
+        promedio=0.0;
     }
     /**
      * 
@@ -125,23 +128,12 @@ public class MedicoDTO {
         this.id = id;
 
     }
-
-    /**
-     * retorna la disponibilidad del medico
-     *
-     * @return disponibilidad del medico
-     */
- 
-
-    /**
-     * Modifica la disponibilidad del medico
-     *
-     * @param disponibilidad disponibilidad del medico
-     */
   
-
+/**
+ * 
+ * @return 
+ */
     public EspecializacionDTO getEspecializacion()
-
     {
         return especialidad;
     }
@@ -151,6 +143,15 @@ public class MedicoDTO {
         this.especialidad=e;
     }
     
+    public Double getPromedio()
+    {
+        return (promedio);
+    }
+    
+    public void setPromedio(Double promedio)
+    {
+        this.promedio=promedio;
+    }
     /**
      * Obtiene la lista de espera del médico.
      * @return la lista de espera del médico
@@ -213,21 +214,7 @@ public class MedicoDTO {
         this.turnos=turnos;
     }
 
-    /**
-     * @return the duracionConsulta
-     */
-    public int getDuracionConsulta() {
-        return duracionConsultas;
-    }
-
-    /**
-     * @param duracionConsulta the duracionConsulta to set
-     */
-    public void setDuracionConsulta(int duracionConsulta)
-    {
-         duracionConsultas+=duracionConsulta;
-        
-    }
+ 
     
     public int darCantidadCitas()
     {
@@ -243,45 +230,12 @@ public class MedicoDTO {
     {
         cantidadCitas+=cantidad;
     }
-    public double calcularPromedioCitaMedico()
+
+    
+    public EspecializacionDTO updateEspecialidad(EspecializacionDTO spec)
     {
-        return getDuracionConsulta()/darCantidadCitas();
+        especialidad=spec;
+        return especialidad;
     }
-    
-    public void registrarFinCita(int pDuracion, Long idCita, Long idTurno) 
-    {
-        try
-        {
-           List<CitaDTO> citas= cita.getCitas(idTurno);
-           for(int i=0;i<citas.size();i++)
-           {
-              if(citas.get(i).getMedico().getId()==getId())
-              {
-                  setDuracionConsulta(pDuracion);
-                  agregarCita();
-              }
-           }
-        }
-        catch(Exception e)
-        {
-            e.getMessage();
-        }
-        
-    }
-    
-    /**
-     * Crea un turno nuevo y lo agrega a la lista de turnos del médico cada cita del turno tiene una duración inicil de 15 minutos
-     * @param pFecha Fecha del nuevo turno
-     * @param pDuracion Duracion en minutos del turno
-     */
-    /*public void agregarTurno(Date pFecha, int pDuracion){
-        turnos.add(new TurnoDTO(this, pFecha, pDuracion, 15));
-    }*/
-    
-    /**
-     * Asigna el consultorio al turno identificado con el id 
-     * @param pIdTurno id del turno
-     * @param pConsultorio consultorio a asignar
-     */
     
 }
