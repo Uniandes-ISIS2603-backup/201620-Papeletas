@@ -94,7 +94,7 @@
                             .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('citasCancelar');
+                            $state.go('citasList');
                         }, responseError);
                 }
                 this.reservarCita = function(id){
@@ -103,7 +103,7 @@
                             .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
-                            $state.go('citasReservar');
+                            $state.go('citasList');
                         }, responseError);
                 }
             // -----------------------------------------------------------------
