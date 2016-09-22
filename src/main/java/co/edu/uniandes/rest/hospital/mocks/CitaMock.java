@@ -11,6 +11,7 @@ import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
 import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import co.edu.uniandes.rest.hospital.dtos.PacienteDTO;
+import co.edu.uniandes.rest.hospital.dtos.ValorDTO;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,11 +38,11 @@ public class CitaMock {
         
         if (citas == null) {
             citas = new ArrayList<>();
-            CitaDTO cita1 = new CitaDTO(1L,new Date(), 0L , new MedicoDTO("Juan Lara", 5L, "Oftalmologo"),1L);
-            CitaDTO cita2 = new CitaDTO(2L, new Date(), 0L, new MedicoDTO("Nicolas Simmonds", 1L, "Ortopedista"), 1L) ;
-            CitaDTO cita3 = new CitaDTO(3L, new Date(), 0L, new MedicoDTO("Juan Mendez", 2L, "Cardiologo"), 1L) ;
-            CitaDTO cita4 = new CitaDTO(4L, new Date(), 0L, new MedicoDTO("Diego Castro", 3L,  "Ginecologo"), 2L) ;
-            CitaDTO cita5 = new CitaDTO(5L, new Date(), 0L, new MedicoDTO("Juan Useche", 4L,"Otorrino"), 2L) ;
+            CitaDTO cita1 = new CitaDTO(1L,new Date(), 0L , new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(1, "Cardiologia")),1L);
+            CitaDTO cita2 = new CitaDTO(2L, new Date(), 0L, new MedicoDTO("Nicolas Simmonds", 1L, new EspecializacionDTO(1, "Cardiologia")), 1L) ;
+            CitaDTO cita3 = new CitaDTO(3L, new Date(), 0L, new MedicoDTO("Juan Mendez", 2L, new EspecializacionDTO(3, "Neumologia")), 1L) ;
+            CitaDTO cita4 = new CitaDTO(4L, new Date(), 0L, new MedicoDTO("Diego Castro", 3L,  new EspecializacionDTO(3, "Neumologia")), 2L) ;
+            CitaDTO cita5 = new CitaDTO(5L, new Date(), 0L, new MedicoDTO("Juan Useche", 4L,new EspecializacionDTO(3, "Neumologia")), 2L) ;
             citas.add(cita1);
             citas.add(cita2);
             citas.add(cita3);
@@ -207,5 +208,57 @@ public class CitaMock {
         // si no encuentra la getcita
         logger.severe("No existe citacon ese id");
         throw new CitaException("No existe cita con ese id");
+    }
+    
+    
+    
+    
+    
+    public List<CitaDTO> darCitasPorMedico(Long id)
+    {
+        ArrayList lista= new ArrayList();
+        
+        for(int i=0;i<citas.size();i++)
+        {
+            if(citas.get(i).getMedico().getId().equals(id))
+                lista.add(citas.get(i));
+        }
+        return lista;
+    }
+    
+    public List<CitaDTO> darCitasTerminadasMedico(Long id)
+    {
+         ArrayList lista= new ArrayList();
+        
+        for(int i=0;i<citas.size();i++)
+        {
+            if(citas.get(i).getMedico().getId().equals(id))
+            {
+                if(citas.get(i).getCitaTerminada())
+                    lista.add(citas.get(i));
+            }
+        }
+        return lista;
+    }
+    
+    
+     
+        
+    public void registrarFinCita(int idCita,int duracion)
+    {
+        citas.get(idCita+1).setCitaTerminada();
+        citas.get(idCita+1).setDuracion(duracion);
+    }
+    
+    
+    public ValorDTO calularPromedioMedico(Long id)
+    {
+        List<CitaDTO> lista= darCitasTerminadasMedico(id);
+        double valor = 0.0;
+        for(int i=0;i<lista.size();i++)
+        {
+         valor +=lista.get(i).getDuracion();
+        }
+        return new ValorDTO(valor/lista.size());
     }
 }

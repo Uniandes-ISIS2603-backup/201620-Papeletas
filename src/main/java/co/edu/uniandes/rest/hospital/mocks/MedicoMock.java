@@ -12,7 +12,6 @@ import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import co.edu.uniandes.rest.hospital.exceptions.TurnoLogicException;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.Level;
@@ -38,10 +37,16 @@ public class MedicoMock {
      * Arraylist con los medicos
      */
     private static ArrayList<MedicoDTO> medicos;
+    
+    
+    private CitaMock cita;
 
 
-    public MedicoMock() {
-        if (medicos == null) {
+    public MedicoMock()
+    {
+        if (medicos == null)
+        {
+            cita = new CitaMock();
             medicos = new ArrayList<>();
 
             medicos.add(new MedicoDTO("Nicolas Simmonds", 1L  , new EspecializacionDTO(1, "Cardiologia")));
@@ -49,14 +54,7 @@ public class MedicoMock {
             medicos.add(new MedicoDTO("Diego Castro", 3L, new EspecializacionDTO(2, "Endocrinologia")));
             medicos.add(new MedicoDTO("Juan Useche", 4L, new EspecializacionDTO(3, "Neumologia")));
             medicos.add(new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(4, "Neurologia")));
-
-            
-      
-            for(int i=0;i<medicos.size();i++)
-            {
-                medicos.get(i).setDuracionConsulta(i+13);
-                medicos.get(i).setCantidadCitas(i+1);
-            }
+           
         }
         logger.setLevel(Level.INFO);
         logger.info("Inicializa la lista de medicos");
@@ -191,8 +189,8 @@ public class MedicoMock {
         {
             if(medicos.get(i).getId().equals(id))
             {
-               promedio=medicos.get(i).calcularPromedioCitaMedico();
-               break;
+               
+               
             }
         }
         return promedio;
@@ -221,35 +219,11 @@ public class MedicoMock {
   
    
    /**
-    * Registra el fin de una consulta medica de un medico con el id dado y el tuirno dado
-    * @param idMedico id del medico     
-    * @param idTurno id del turno
-    * @param idCita id de la cita   
-    * @param pDuracion duracion de la consulta
-    */
-   public void registrarFinCita(Long idMedico, Long idTurno, Long idCita, int pDuracion)
-   {
-       for(int i=0;i<medicos.size();i++)
-       {
-           if(medicos.get(i).getId()==idMedico)
-           {
-               medicos.get(i).registrarFinCita(pDuracion, idCita, idTurno);
-               break;
-           }
-       }
-   }
-   
-   /**
     * Crea un turno en el médco con cierta id
     * @param pIdMedico Id del médico
     * @param pFecha Fecha del medico
     * @param pDuracion Duracion del turno en minutos
     */
-   
-   /*
-   * @Param nombre spec
-   */
-   
    
    public List listaPorSpec(String spec)      
    {
@@ -263,9 +237,8 @@ public class MedicoMock {
        }
        return temp;
    }
+}
    
    
   
    
-   
-}
