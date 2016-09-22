@@ -16,19 +16,20 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
- /**
-  * Clase que implementa el recurso REST correspondiente a "turnos".
-  * @author ac.cabezas716
-  */
+/**
+ * Clase que implementa el recurso REST correspondiente a "turnos".
+ *
+ * @author ac.cabezas716
+ */
 @Path("")
 public class TurnoResource {
-    
-   
+
     TurnoLogicMock turnoLogicMock = new TurnoLogicMock();
+
     /**
      * Obtiene el listado general de turnos.
      *
-     * @return lista de turnos 
+     * @return lista de turnos
      * @throws TurnoLogicException excepción retornada por la lógica
      */
     @Path("turnos")
@@ -36,7 +37,7 @@ public class TurnoResource {
     public List<TurnoDTO> getTurnos() throws TurnoLogicException {
         return turnoLogicMock.getTurnos();
     }
-    
+
     /**
      * Obtiene el listado de turnos de un médico.
      *
@@ -103,5 +104,5 @@ public class TurnoResource {
     public void deleteTurno(@PathParam("id") Long id) throws TurnoLogicException {
         turnoLogicMock.deleteTurno(id);
     }
-    
+
 }

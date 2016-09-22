@@ -13,7 +13,7 @@
                 url: '/turnos',
                 parent: 'medicoEdit',
                 views: {
-                    'mainView': {
+                    'medicoInstanceView': {
                         controller: 'turnoCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'turno.mList.html'
@@ -23,15 +23,17 @@
                 url: '/turnos/create',
                 parent: 'medicoEdit',
                 views: {
-                    controller: 'turnoCtrl',
-                    controllerAs: 'ctrl',
-                    templateUrl: basePath + 'turno.mCreate.html'
+                    'medicoInstanceView': {
+                        controller: 'turnoCtrl',
+                        controllerAs: 'ctrl',
+                        templateUrl: basePath + 'turno.mCreate.html'
+                    }
                 }
             }).state('turnoMEdit', {
                 url: '/turnos/edit',
                 parent: 'medicoEdit',
                 views: {
-                    'mainView': {
+                    'medicoInstanceView': {
                         controller: 'turnoCtrl',
                         controllerAs: 'ctrl',
                         templateUrl: basePath + 'turno.mCreate.html'

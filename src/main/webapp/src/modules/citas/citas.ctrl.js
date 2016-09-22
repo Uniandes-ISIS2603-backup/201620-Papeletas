@@ -29,7 +29,7 @@
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    fecha: '',
+                    fecha: new Date(),
                     duracion: undefined,
                     medico: {
                         idMed: undefined /*Tipo Long. El valor se asigna en el backend*/,
