@@ -1,89 +1,75 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 (function (ng) {
-    var mod = ng.module("horariosModule");
-    mod.controller("horariosCtrl", ['$scope', '$state', '$stateParams', '$http', 'horariosContext', function ($scope, $state, $stateParams, $http, context) {
+    var mod = ng.module("turnoModule");
 
-            // inicialmente el listado de horario está vacio
+    mod.controller("turnoCtrl", ['$scope', '$state', '$stateParams', '$http', 'medicoContext',
+        function ($scope, $state, $stateParams, $http, medicoContext) {
+
+            // crea variable del path de turno e inicializa la lista de turnos
+            $scope.turnoContext = '/turnos';
             $scope.records = {};
-            // carga las horario
-            $http.get(context).then(function (response) {
+            // carga las reviews
+            $http.get(medicoContext + "/" + $stateParams.medicoId + $scope.turnoContext).then(function (response) {
                 $scope.records = response.data;
             }, responseError);
 
-            // el controlador recibió un horarioId ??
-            // revisa los parámetros (ver el :horarioId en la definición de la ruta)
-            if ($stateParams.horarioId !== null && $stateParams.horarioId !== undefined) {
-
+            if ($stateParams.turnoId !== null && $stateParams.turnoId !== undefined) {
                 // toma el id del parámetro
-                id = $stateParams.horarioId;
+                id = $stateParams.turnoId;
                 // obtiene el dato del recurso REST
-                $http.get(context + "/" + id)
+                $http.get(medicoContext + "/" + $stateParams.medicoId +$scope.turnoContext + "/" + id)
                         .then(function (response) {
                             // $http.get es una promesa
                             // cuando llegue el dato, actualice currentRecord
                             $scope.currentRecord = response.data;
                         }, responseError);
-
-                // el controlador no recibió un horarioId
-            } else
-            {
+            }else{
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
+                    consultorioId: undefined /*Tipo Long. El valor se asigna en el backend*/,
+                    duracion: undefined,
+                    duracionCitas: undefined,
+                    fecha: new Date(),
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    nombre: '' /*Tipo String*/,
-                    tipo: ''
+                    medicoId: undefined /*Tipo Long. El valor se asigna en el backend*/
                 };
-
                 $scope.alerts = [];
             }
-
-
+            
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
-                
-                //verifica si el id dado existe
-                var existe = false;
-                for(var i = 0; i < $scope.records.length; i++){
-                    if($scope.records[i].id === id){
-                        existe = true;
-                    }
-                }
-                if (existe === false) {
+
+                // si el id es null, es un registro nuevo, entonces lo crea
+                if (id === null || id === undefined) {
 
                     // ejecuta POST en el recurso REST
-                    return $http.post(context, currentRecord)
+                    return $http.post(medicoContext + "/" + $stateParams.medicoId + $scope.turnoContext, currentRecord)
                             .then(function () {
                                 // $http.post es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('horariosList');
+                                $state.go('turnoMList');
                             }, responseError);
 
-                    // si el registro existe
+                    // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
 
                     // ejecuta PUT en el recurso REST
-                    return $http.put(context + "/" + currentRecord.id, currentRecord)
+                    return $http.put(medicoContext + "/" + $stateParams.medicoId + $scope.turnoContext + "/" + currentRecord.id, currentRecord)
                             .then(function () {
                                 // $http.put es una promesa
                                 // cuando termine bien, cambie de estado
-                                $state.go('horariosList');
+                                $state.go('turnoMList');
                             }, responseError);
                 }
                 ;
             };
 
-            this.deleteRecord = function (currentRecord) {
-                $http.delete(context + "/" + currentRecord.id)
-                        .then(function () {
-                            // $http.put es una promesa
-                            // cuando termine bien, cambie de estado
-                            $state.reload();
-                        }, responseError);
-            };
-
-
-
             // -----------------------------------------------------------------
-            // Funciones para manejra los mensajes en la aplicación
+            // Funciones para manejar los mensajes en la aplicación
 
 
             //Alertas
@@ -115,5 +101,6 @@
                 self.showError(response.data);
             }
         }]);
-
 })(window.angular);
+
+

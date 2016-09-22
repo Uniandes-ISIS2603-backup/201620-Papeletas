@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="col-md-12 well">
+    <form novalidate name="form" id="review-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+
+        <div ng-messages="form.$error">
+            <div ng-message="required">Ingrese los campos solicitados!</div>
+        </div>
+
+        <fieldset>
+            <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
+            <!-- Medico ID -->
+            <div class="form-group col-md-6" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="medicoId" class="col-md-2 control-label">Medico ID: </label>
+                <div class="col-md-10">
+                    <input id="name" name="medicoId" class="form-control" type="number" ng-model="currentRecord.medicoId" ng-init="currentRecord.medicoId" required />
+                </div>
+            </div>
+            <!-- Fecha -->
+            <div class="form-group col-md-6" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="fecha" class="col-md-2 control-label">Fecha: </label>
+                <div class="col-md-10">
+                    <input id="name" name="fecha" class="form-control" type="date" ng-model="currentRecord.fecha" ng-init="currentRecord.fecha" required />
+                </div>
+            </div>
+            <!-- DuracionTurno -->
+            <div class="form-group col-md-6" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="duracion" class="col-md-2 control-label">Duración del turno(min): </label>
+                <div class="col-md-10">
+                    <input id="name" name="duracion" class="form-control" type="number" ng-model="currentRecord.duracion" ng-init="currentRecord.duracion" required />
+                </div>
+            </div>
+            <!-- Consultorio -->
+            <div class="form-group col-md-6" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="consultorioId" class="col-md-2 control-label">Consultorio:</label>
+                <div class="col-md-10">
+                    <input id="name" name="consultorioId" class="form-control" type="number" ng-model="currentRecord.consultorioId" ng-init="currentRecord.consultorioId" required />
+                </div>
+            </div>
+            <!-- TiempoCita -->
+            <div class="form-group col-md-6" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
+                <label for="duracionCitas" class="col-md-2 control-label">Tiempo por cita(min): </label>
+                <div class="col-md-10">
+                    <input id="name" name="duracionCitas" class="form-control" type="number" ng-model="currentRecord.duracionCitas" ng-init="currentRecord.duracionCitas" required />
+                </div>
+            </div>
+            
+          
+             </fieldset>
+            <div class="form-group col-md-12">
+                <button type="button" ui-sref='turnoMList'>Cancelar</button>
+                <button type="submit" >Guardar</button>   
+            </div>
+       
+    </form>
+</div>
+

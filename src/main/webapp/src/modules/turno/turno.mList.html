@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<div class="col-md-12">
+    <div class="container-fluid">
+        <div class="row">
+            <button class="btn btn-default" ui-sref="turnoMCreate">Crear nuevo turno</button></div>
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Médico ID</th>
+                        <th>Fecha</th>
+                        <th>Duración del turno (min)</th>
+                        <th>Consultorio</th>
+                        <th>Tiempo por cita (min)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="record in records">
+                        <td id="{{$index}}-MedicoID">{{record.medicoId}}</td>
+                        <td id="{{$index}}-Fecha">{{record.fecha}}</td>
+                        <td id="{{$index}}-DuracionTurno">{{record.duracion}}</td>
+                        <td id="{{$index}}-Consultorio">{{record.consultorioId}}</td>
+                        <td id="{{$index}}-TiempoCita">{{record.duracionCitas}}</td>
+
+                        <td>
+                            <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm" ui-sref="turnoMEdit({turnoId: record.id})"><span class="glyphicon glyphicon-edit"></span> Asignar Consultorio</button>
+                            <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ng-click="ctrl.deleteRecord(record)"><span class="glyphicon glyphicon-minus"></span> Eliminar Turno</button>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -216,10 +216,7 @@ public class MedicoMock {
     }
  
    /**
-    * Crea un turno en el médco con cierta id
-    * @param pIdMedico Id del médico
-    * @param pFecha Fecha del medico
-    * @param pDuracion Duracion del turno en minutos
+    * retorna la lista de medicos de una especializacion
     */
    
    public List listaPorSpec(String spec)      
@@ -245,4 +242,6 @@ public class MedicoMock {
        if (listaEspera == null) throw new MedicoException ("No existe un médico con ese ID");
        return listaEspera;
    }
+   
+   
 }
