@@ -8,6 +8,7 @@ package co.edu.uniandes.rest.hospital.mocks;
 import co.edu.uniandes.rest.hospital.dtos.TurnoDTO;
 import co.edu.uniandes.rest.hospital.exceptions.TurnoLogicException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +31,7 @@ public class TurnoLogicMock {
 
     	if (turnos == null) {
             turnos = new ArrayList();
-            TurnoDTO t = new TurnoDTO(1L, new);
+            TurnoDTO t = new TurnoDTO(1L, 1L,new Date(11111111L), 480, 15);
         }
         
     	// indica que se muestren todos los mensajes
@@ -56,7 +57,7 @@ public class TurnoLogicMock {
     		throw new TurnoLogicException("Error interno: lista de turnos no existe.");    		
     	}
     	for(TurnoDTO actual : turnos){
-            if(actual.getMedico().getId().equals(pIdMedico))
+            if(actual.getMedicoId().equals(pIdMedico))
                 resp.add(actual);
         }
     	logger.info("retornando todos los horarios");

@@ -8,6 +8,7 @@ package co.edu.uniandes.rest.hospital.mocks;
 import co.edu.uniandes.rest.hospital.exceptions.CitaException;
 import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
+import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import co.edu.uniandes.rest.hospital.dtos.PacienteDTO;
 

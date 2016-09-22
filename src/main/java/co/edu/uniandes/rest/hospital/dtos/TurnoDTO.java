@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
-import java.util.Calendar;
 import java.util.Date;
 
 
@@ -32,17 +31,12 @@ public class TurnoDTO {
     /**
      * Medico dueño del turno
      */
-    private MedicoDTO medico;  
+    private Long medicoId;
     
     /**
      * Consultorio asignado para el turno
      */
-    private ConsultorioDTO consultorio;
-    
-    /**
-     * Arreglo de citas del turno
-     */
-    private CitaDTO[] citas;
+    private Long consultorioId;
 
     /**
      * Duración asignada para cada cita en el turno en minutos
@@ -58,20 +52,13 @@ public class TurnoDTO {
      * @param pDuracionCitas Duración inicial de cada cita en el turno
      * @param pId id del turno
      */
-    public TurnoDTO(Long pId, MedicoDTO pMedico, Date pFecha, int pDuracion, int pDuracionCitas ) {
+    public TurnoDTO(Long pId, Long pMedico, Date pFecha, int pDuracion, int pDuracionCitas ) {
         id = pId;
         fecha = pFecha;
         duracion = pDuracion;
-        citas = new CitaDTO[duracion/15];
-        medico = pMedico;
-        consultorio = null;
+        medicoId = pMedico;
+        consultorioId = null;
         duracionCitas = pDuracionCitas;
-        Calendar c = Calendar.getInstance();
-        c.setTime(fecha);
-        for(int i = 0; i < citas.length ; i++){
-            Date f = new Date(c.getTimeInMillis() + (i * 900000L));
-            citas[i] = new CitaDTO(f, 15L, pMedico,5);
-        }
     }
     
     public TurnoDTO(){
@@ -121,50 +108,31 @@ public class TurnoDTO {
     }
 
     /**
-     * @return the citas
+     * @return the medicoId
      */
-    public CitaDTO[] getCitas() {
-        return citas;
+    public Long getMedicoId() {
+        return medicoId;
     }
 
     /**
-     * @param citas the citas to set
+     * @param medicoId the medicoId to set
      */
-    public void setCitas(CitaDTO[] citas) {
-        this.setCitas(citas);
+    public void setMedicoId(Long medicoId) {
+        this.medicoId = medicoId;
     }
 
     /**
-     * @return the medico
+     * @return the consultorioId
      */
-    public MedicoDTO getMedico() {
-        return medico;
+    public Long getConsultorioId() {
+        return consultorioId;
     }
 
     /**
-     * @param medico the medico to set
+     * @param consultorioId the consultorioId to set
      */
-    public void setMedico(MedicoDTO medico) {
-        this.medico = medico;
-    }
-
-    /**
-     * @return the consultorio
-     */
-    public ConsultorioDTO getConsultorio() {
-        return consultorio;
-    }
-
-    /**
-     * Asigna consultorio a un turno y a todas las citas de ese turno
-     * @param pConsultorio Consultorio a asignar
-     */
-    public void setConsultorio(ConsultorioDTO pConsultorio) {
-        this.consultorio = pConsultorio;
-        for(int i = 0; i < citas.length; i++){
-            //Asignar consultorio a las citas
-            citas[i].setConsultorio(pConsultorio);
-        }
+    public void setConsultorioId(Long consultorioId) {
+        this.consultorioId = consultorioId;
     }
 
     /**
