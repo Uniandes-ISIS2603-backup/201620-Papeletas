@@ -5,7 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <div class="col-md-12 well">
-    <form novalidate name="form" id="review-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+    <form novalidate name="form" id="turno-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
 
         <div ng-messages="form.$error">
             <div ng-message="required">Ingrese los campos solicitados!</div>
@@ -24,7 +24,7 @@ and open the template in the editor.
             <div class="form-group col-md-6" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
                 <label for="fecha" class="col-md-2 control-label">Fecha: </label>
                 <div class="col-md-10">
-                    <input id="name" name="fecha" class="form-control" type="date" ng-model="currentRecord.fecha" ng-init="currentRecord.fecha" required />
+                    <input id="name" name="fecha" class="form-control" type="text" ng-model="currentRecord.fecha" ng-init="currentRecord.fecha" required />
                 </div>
             </div>
             <!-- DuracionTurno -->

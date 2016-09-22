@@ -22,6 +22,7 @@ and open the template in the editor.
                 </thead>
                 <tbody>
                     <tr ng-repeat="record in records">
+                        <td id="{{$index}}-id">{{record.id}}</td>
                         <td id="{{$index}}-MedicoID">{{record.medicoId}}</td>
                         <td id="{{$index}}-Fecha">{{record.fecha}}</td>
                         <td id="{{$index}}-DuracionTurno">{{record.duracion}}</td>
