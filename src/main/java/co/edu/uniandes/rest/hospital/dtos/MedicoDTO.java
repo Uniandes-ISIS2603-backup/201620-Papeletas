@@ -38,7 +38,7 @@ public class MedicoDTO {
     /**
      * Lista de espera del médico
      */
-    private ArrayList<CitaDTO> listaEspera;
+    private List<CitaDTO> listaEspera;
 
     /**
      * Turnos del medico
@@ -137,7 +137,7 @@ public class MedicoDTO {
      * Obtiene la lista de espera del médico.
      * @return la lista de espera del médico
      */
-    public ArrayList getListaEspera () {
+    public List<CitaDTO> getListaEspera () {
         return listaEspera;
     }
     
