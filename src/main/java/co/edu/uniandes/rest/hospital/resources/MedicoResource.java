@@ -8,7 +8,9 @@ package co.edu.uniandes.rest.hospital.resources;
 import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
+import co.edu.uniandes.rest.hospital.exceptions.EspecializacionException;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
+import co.edu.uniandes.rest.hospital.mocks.EspecializacionMock;
 import co.edu.uniandes.rest.hospital.mocks.MedicoMock;
 
 import java.util.List;
@@ -127,6 +129,14 @@ public class MedicoResource {
     public EspecializacionDTO especializacionMed(@PathParam("id") Long id) throws MedicoException
     {
         return medico.getMedID(id).getEspecializacion();
+    }
+    
+    @PUT
+    @Path("medico/{id: \\d+}/modificar/{especializacion: \\d+}")
+    public EspecializacionDTO ModificarEspecializacionMed(@PathParam("id") Long id, @PathParam("especializacion") int spec) throws MedicoException, EspecializacionException
+    {
+        EspecializacionMock x = new EspecializacionMock();
+        return medico.getMedID(id).updateEspecialidad(x.getSpecID(spec));
     }
     
 

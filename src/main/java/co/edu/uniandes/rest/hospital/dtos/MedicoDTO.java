@@ -220,5 +220,10 @@ public class MedicoDTO {
     }
 
     
+    public EspecializacionDTO updateEspecialidad(EspecializacionDTO spec)
+    {
+        especialidad=spec;
+        return especialidad;
+    }
     
 }
