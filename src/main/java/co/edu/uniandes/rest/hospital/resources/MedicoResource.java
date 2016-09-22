@@ -109,7 +109,19 @@ public class MedicoResource {
     @Path("medico/{id: \\d+}/listaespera")
     public List<CitaDTO> getListaEspera (@PathParam("id") Long id) throws MedicoException {
         return medico.getListaEsperaMedico(id);
-    }   
+    }
+    
+    @DELETE
+    @Path("medico/{idMed: \\d+}/listaespera/{idCita: \\d+}")
+    public void createCitaListaEspera(@PathParam("idMed") Long idMed, @PathParam("idCita") long idCita) throws MedicoException {
+        medico.deleteCitaListaEspera(idMed, idCita);
+    }
+    
+    @POST
+    @Path("medico/{idMed: \\d+}/listaespera")
+    public CitaDTO createCitaListaEspera(@PathParam ("idMed") Long id, CitaDTO cita) throws MedicoException {
+        return medico.agregarCitaListaEspera(id, cita);
+    }
     /*
     * 
     */

@@ -262,4 +262,27 @@ public class MedicoMock {
        if (listaEspera == null) throw new MedicoException ("No existe un médico con ese ID");
        return listaEspera;
    }
+   
+   public CitaDTO agregarCitaListaEspera (Long idMedico, CitaDTO cita) throws MedicoException {
+       if (cita.getId() != 0) {
+           for (CitaDTO cit : getListaEsperaMedico(idMedico)) {
+               if (Objects.equals(cit.getId(), cita.getId())) {
+                   throw new MedicoException("Ya existe una cita con ese id en la lista de espera");
+               }
+           }
+       }
+       else {
+           long newId = 1L;
+           for (CitaDTO cit : getListaEsperaMedico(idMedico)) {
+               if (newId <= cit.getId()) newId = cit.getId() + 1;
+           }
+           cita.setId(newId);
+       }
+       getMedID(idMedico).agregarCitaListaEspera(cita);
+       return cita;
+   }
+   
+   public void deleteCitaListaEspera (Long idMedico, long idCita) throws MedicoException {
+       getMedID(idMedico).deleteCitaListaEspera(idCita);
+   }
 }
