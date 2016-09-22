@@ -19,7 +19,7 @@
 
             if ($stateParams.turnoId !== null && $stateParams.turnoId !== undefined) {
                 // toma el id del parámetro
-                id = $stateParams.medicoId;
+                id = $stateParams.turnoId;
                 // obtiene el dato del recurso REST
                 $http.get(medicoContext + "/" + $stateParams.medicoId +$scope.turnoContext + "/" + id)
                         .then(function (response) {
@@ -44,7 +44,7 @@
                 currentRecord = $scope.currentRecord;
 
                 // si el id es null, es un registro nuevo, entonces lo crea
-                if (id === null) {
+                if (id === null || id === undefined) {
 
                     // ejecuta POST en el recurso REST
                     return $http.post(medicoContext + "/" + $stateParams.medicoId + $scope.turnoContext, currentRecord)
