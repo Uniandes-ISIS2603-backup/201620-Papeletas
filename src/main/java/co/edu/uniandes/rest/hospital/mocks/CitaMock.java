@@ -36,9 +36,19 @@ public class CitaMock {
         
         if (citas == null) {
             citas = new ArrayList<>();
-            citas.add(new CitaDTO(3L,new Date(), 0L , 
-                    new MedicoDTO("Juan Lara", 5L, "Oftalmologo"),1L));
-           
+            citas.add(new CitaDTO(1L,new Date(), 0L , 
+                    new MedicoDTO("Nicolas Simmonds", 1L, "Ortopedista"),1L));
+                    citas.get(0).setPaciente(new PacienteDTO(2L, "Manuela", "Welch",19,8));
+                    citas.get(0).setConsultorio(new ConsultorioDTO(1L,402L));
+            citas.add(new CitaDTO(2L,new Date(), 0L , 
+                    new MedicoDTO("Nicolas Simmonds", 1L , "Ortopedista"),1L));
+                    citas.get(1).setPaciente(new PacienteDTO(1L, "Diego", "Welch",19,8));
+                    citas.get(1).setConsultorio(new ConsultorioDTO(2L,403L));  
+             citas.add(new CitaDTO(3L,new Date(), 0L , 
+                    new MedicoDTO("Nicolas Simmonds", 2L, "Ortopedista"),1L));
+                    citas.get(2).setPaciente(new PacienteDTO(2L, "Manuela", "Welch",19,8));
+                    citas.get(2).setConsultorio(new ConsultorioDTO(1L,402L));
+                    
         }
 
     	// indica que se muestren todos los mensajes
@@ -60,9 +70,16 @@ public class CitaMock {
     		logger.severe("Error interno: lista de citas no existe.");
     		throw new CitaException("Error interno: lista de citas no existe.");    		
     	}
-    	
-    	logger.info("retornando todas las citas");
-    	return citas;
+        else{
+            List<CitaDTO> citMed = new ArrayList<>();
+            for(int i=0;i<citas.size();i++){
+                if(citas.get(i).getMedico().getId()==idMedico){
+                    citMed.add(citas.get(i));
+                }
+            }
+            return citMed;
+        }
+        return citas;
     }
      /**
      * Obtiene una getCita
