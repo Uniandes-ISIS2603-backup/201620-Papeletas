@@ -59,6 +59,10 @@ public class MedicoMock {
             medicos.add(new MedicoDTO("Diego Castro", 3L, new EspecializacionDTO(2, "Endocrinologia")));
             medicos.add(new MedicoDTO("Juan Useche", 4L, new EspecializacionDTO(3, "Neumologia")));
             medicos.add(new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(4, "Neurologia")));
+            for(int i=0;i<medicos.size();i++)
+            {
+                medicos.get(i).setPromedio(0.0);
+            }
             
             long l = 1L;
             for (int i = 0; i < medicos.size(); i++) { 
@@ -210,28 +214,7 @@ public class MedicoMock {
         return promedio;
     
     }
-    
-    
-      /**
-       * Calcula el promedio de citas dada una especialidad;
-       * @param pEspecialidad
-       * @return 
-       */
-   public double calcularPromedioEspecialidad(String pEspecialidad)
-   {
-       double promedio=0;
-       for(int i=0;i<medicos.size();i++)
-       {
-           if(medicos.get(i).getEspecializacion().equals(pEspecialidad)) 
-            {
-                promedio+=medicos.get(i).calcularPromedioCitaMedico();
-            }          
-       }
-       return promedio;
-       
-   }
-  
-   
+ 
    /**
     * retorna la lista de medicos de una especializacion
     */
@@ -260,5 +243,26 @@ public class MedicoMock {
        return listaEspera;
    }
    
+   public CitaDTO agregarCitaListaEspera (Long idMedico, CitaDTO cita) throws MedicoException {
+       if (cita.getId() != 0) {
+           for (CitaDTO cit : getListaEsperaMedico(idMedico)) {
+               if (Objects.equals(cit.getId(), cita.getId())) {
+                   throw new MedicoException("Ya existe una cita con ese id en la lista de espera");
+               }
+           }
+       }
+       else {
+           long newId = 1L;
+           for (CitaDTO cit : getListaEsperaMedico(idMedico)) {
+               if (newId <= cit.getId()) newId = cit.getId() + 1;
+           }
+           cita.setId(newId);
+       }
+       getMedID(idMedico).agregarCitaListaEspera(cita);
+       return cita;
+   }
    
+   public void deleteCitaListaEspera (Long idMedico, long idCita) throws MedicoException {
+       getMedID(idMedico).deleteCitaListaEspera(idCita);
+   }
 }

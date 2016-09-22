@@ -44,11 +44,7 @@ public class MedicoDTO {
      * Turnos del medico
      */
     private List<TurnoDTO> turnos;
-    
-    /**
-     * Duracion de la consulta del medico
-     */
-    private int duracionConsultas;
+
     
     /**
      * numero de citas finalizadas;|
@@ -60,6 +56,12 @@ public class MedicoDTO {
      */
     private CitaMock cita;
     
+    /**
+     * 
+     */
+    
+    private Double promedio;
+    
     
     /**
      * Constructor vacio
@@ -69,6 +71,7 @@ public class MedicoDTO {
         listaEspera = new ArrayList <>();
         turnos = new ArrayList<>();
         cita=new CitaMock();
+        promedio=0.0;
     }
     /**
      * 
@@ -125,23 +128,12 @@ public class MedicoDTO {
         this.id = id;
 
     }
-
-    /**
-     * retorna la disponibilidad del medico
-     *
-     * @return disponibilidad del medico
-     */
- 
-
-    /**
-     * Modifica la disponibilidad del medico
-     *
-     * @param disponibilidad disponibilidad del medico
-     */
   
-
+/**
+ * 
+ * @return 
+ */
     public EspecializacionDTO getEspecializacion()
-
     {
         return especialidad;
     }
@@ -151,6 +143,15 @@ public class MedicoDTO {
         this.especialidad=e;
     }
     
+    public Double getPromedio()
+    {
+        return (promedio);
+    }
+    
+    public void setPromedio(Double promedio)
+    {
+        this.promedio=promedio;
+    }
     /**
      * Obtiene la lista de espera del médico.
      * @return la lista de espera del médico
@@ -167,12 +168,24 @@ public class MedicoDTO {
         this.listaEspera = listaEspera;
     }
     
+    
     /**
      * Agrega una cita nueva a la lista de espera
      * @param cita nueva cita 
      */
     public void agregarCitaListaEspera (CitaDTO cita) {
         listaEspera.add(cita);
+    }
+    
+    public void deleteCitaListaEspera (Long idEspera) throws MedicoException {
+        boolean existe = false;
+        for (CitaDTO cit : listaEspera) {
+            if (cit.getId().equals(idEspera)) {
+                listaEspera.remove(cit);
+                existe = true;
+            }
+        }
+        if (!existe) throw new MedicoException ("No existe una cita con el id identificado");
     }
     
     /**
@@ -201,21 +214,7 @@ public class MedicoDTO {
         this.turnos=turnos;
     }
 
-    /**
-     * @return the duracionConsulta
-     */
-    public int getDuracionConsulta() {
-        return duracionConsultas;
-    }
-
-    /**
-     * @param duracionConsulta the duracionConsulta to set
-     */
-    public void setDuracionConsulta(int duracionConsulta)
-    {
-         duracionConsultas+=duracionConsulta;
-        
-    }
+ 
     
     public int darCantidadCitas()
     {
@@ -231,31 +230,12 @@ public class MedicoDTO {
     {
         cantidadCitas+=cantidad;
     }
-    public double calcularPromedioCitaMedico()
-    {
-        return getDuracionConsulta()/darCantidadCitas();
-    }
+
     
-    public void registrarFinCita(int pDuracion, Long idCita, Long idTurno) 
+    public EspecializacionDTO updateEspecialidad(EspecializacionDTO spec)
     {
-        try
-        {
-           List<CitaDTO> citas= cita.getCitas(idTurno);
-           for(int i=0;i<citas.size();i++)
-           {
-              if(citas.get(i).getMedico().getId()==getId())
-              {
-                  setDuracionConsulta(pDuracion);
-                  agregarCita();
-              }
-           }
-        }
-        catch(Exception e)
-        {
-            e.getMessage();
-        }
-        
+        especialidad=spec;
+        return especialidad;
     }
-    
     
 }

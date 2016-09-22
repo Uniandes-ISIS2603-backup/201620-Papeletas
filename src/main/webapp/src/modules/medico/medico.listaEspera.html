@@ -1,0 +1,40 @@
+<div class="container-fluid" >
+    <div class="row">
+            <button class="btn btn-default" ui-sref="listaEsperaCreate">Aregar Cita a la Lista de Espera</button></div>
+        <div class="row">
+            <style>
+                h2{
+                background-color: #ffffff;
+                }
+                table{
+                background-color: #ffffff;
+                }
+            </style>
+    <h2>Lista de Espera</h2>
+    <table class="col-md-4">
+        <thead>
+            <tr>
+                <th>Fecha</th>  
+                <th>ID Paciente</th>
+                <th>Nombre Paciente</th>                
+                <th>Apellido Paciente</th>
+                <th>No. Consultorio</th>
+                <th>Acciones</th>  
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="record in records">
+                <td id="{{$index}}-fecha">{{record.fecha}}</td>
+                <td id="{{$index}}-paciente">{{record.paciente.id}}</td>
+                <td id="{{$index}}-paciente">{{record.paciente.name}}</td>
+                <td id="{{$index}}-paciente">{{record.paciente.lastName}}</td>
+                <td id="{{$index}}-consultorio">{{record.consultorio.numero}}</td>
+                
+
+                <td>
+                   <button type="button" ng-click="ctrl1.deleteRecord(record) "ui-sref='listaEspera' >Eliminar</button> 
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

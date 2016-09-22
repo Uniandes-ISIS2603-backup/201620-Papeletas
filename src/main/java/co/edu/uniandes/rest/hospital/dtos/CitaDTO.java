@@ -128,7 +128,7 @@ public class CitaDTO
         paciente = pPaciente;
     }
     
-    public Boolean getCitaTerminada()
+    public boolean getCitaTerminada()
     {
         return citaTerminada;
     }

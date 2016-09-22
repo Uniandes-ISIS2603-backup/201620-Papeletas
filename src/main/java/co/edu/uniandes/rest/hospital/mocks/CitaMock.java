@@ -40,6 +40,7 @@ public class CitaMock {
             citas = new ArrayList<>();
             CitaDTO cita1 = new CitaDTO(1L,new Date(), new MedicoDTO("Juan Lara", 5L, new EspecializacionDTO(1, "Cardiologia")),1L);
             cita1.setPaciente(new PacienteDTO(1L, "Diego", "Castro",18,10));
+       
             CitaDTO cita2 = new CitaDTO(2L, new Date(), new MedicoDTO("Nicolas Simmonds", 1L, new EspecializacionDTO(1, "Cardiologia")), 1L) ;
             cita2.setPaciente(new PacienteDTO(2L, "Daniela", "Castro",13,1));
             CitaDTO cita3 = new CitaDTO(3L, new Date(), new MedicoDTO("Juan Mendez", 2L, new EspecializacionDTO(3, "Neumologia")), 1L) ;
@@ -77,7 +78,7 @@ public class CitaMock {
         else{
             List<CitaDTO> citMed = new ArrayList<>();
             for(int i=0;i<citas.size();i++){
-                if(citas.get(i).getMedico().getId()==idMedico){
+               if(citas.get(i).getMedico().getId()==idMedico){
                     citMed.add(citas.get(i));
                 }
             }
@@ -257,19 +258,33 @@ public class CitaMock {
         
     public void registrarFinCita(int idCita,int duracion)
     {
-        citas.get(idCita+1).setCitaTerminada();
-        citas.get(idCita+1).setDuracion(duracion);
+        for(int i=0;i<citas.size();i++)
+        {
+            if(citas.get(i).getId().equals(idCita))
+            {
+                citas.get(i).setCitaTerminada();
+                citas.get(i).setDuracion(duracion);
+                break;
+            }
+        }
     }
     
     
     public ValorDTO calularPromedioMedico(Long id)
     {
-        List<CitaDTO> lista= darCitasTerminadasMedico(id);
-        double valor = 0.0;
-        for(int i=0;i<lista.size();i++)
+        List<CitaDTO> lista= darCitasTerminadasMedico(id);            
+        Double valor =0.0;  
+        if(lista.isEmpty())
         {
-         valor +=lista.get(i).getDuracion();
+            return new ValorDTO(0);
         }
-        return new ValorDTO(valor/lista.size());
+        else
+        {
+           for(int i=0;i<lista.size();i++)
+           {
+             valor +=lista.get(i).getDuracion();
+           }
+        }
+        return new ValorDTO(valor/(lista.size()));
     }
 }
