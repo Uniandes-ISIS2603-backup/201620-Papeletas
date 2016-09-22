@@ -168,12 +168,24 @@ public class MedicoDTO {
         this.listaEspera = listaEspera;
     }
     
+    
     /**
      * Agrega una cita nueva a la lista de espera
      * @param cita nueva cita 
      */
     public void agregarCitaListaEspera (CitaDTO cita) {
         listaEspera.add(cita);
+    }
+    
+    public void deleteCitaListaEspera (Long idEspera) throws MedicoException {
+        boolean existe = false;
+        for (CitaDTO cit : listaEspera) {
+            if (cit.getId().equals(idEspera)) {
+                listaEspera.remove(cit);
+                existe = true;
+            }
+        }
+        if (!existe) throw new MedicoException ("No existe una cita con el id identificado");
     }
     
     /**
@@ -220,5 +232,10 @@ public class MedicoDTO {
     }
 
     
+    public EspecializacionDTO updateEspecialidad(EspecializacionDTO spec)
+    {
+        especialidad=spec;
+        return especialidad;
+    }
     
 }

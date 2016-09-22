@@ -8,7 +8,9 @@ package co.edu.uniandes.rest.hospital.resources;
 import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
+import co.edu.uniandes.rest.hospital.exceptions.EspecializacionException;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
+import co.edu.uniandes.rest.hospital.mocks.EspecializacionMock;
 import co.edu.uniandes.rest.hospital.mocks.MedicoMock;
 
 import java.util.List;
@@ -110,7 +112,19 @@ public class MedicoResource {
     @Path("medico/{id: \\d+}/listaespera")
     public List<CitaDTO> getListaEspera (@PathParam("id") Long id) throws MedicoException {
         return medico.getListaEsperaMedico(id);
-    }   
+    }
+    
+    @DELETE
+    @Path("medico/{idMed: \\d+}/listaespera/{idCita: \\d+}")
+    public void createCitaListaEspera(@PathParam("idMed") Long idMed, @PathParam("idCita") long idCita) throws MedicoException {
+        medico.deleteCitaListaEspera(idMed, idCita);
+    }
+    
+    @POST
+    @Path("medico/{idMed: \\d+}/listaespera")
+    public CitaDTO createCitaListaEspera(@PathParam ("idMed") Long id, CitaDTO cita) throws MedicoException {
+        return medico.agregarCitaListaEspera(id, cita);
+    }
     /*
     * 
     */
@@ -127,6 +141,14 @@ public class MedicoResource {
     public EspecializacionDTO especializacionMed(@PathParam("id") Long id) throws MedicoException
     {
         return medico.getMedID(id).getEspecializacion();
+    }
+    
+    @PUT
+    @Path("medico/{id: \\d+}/modificar/{especializacion: \\d+}")
+    public EspecializacionDTO ModificarEspecializacionMed(@PathParam("id") Long id, @PathParam("especializacion") int spec) throws MedicoException, EspecializacionException
+    {
+        EspecializacionMock x = new EspecializacionMock();
+        return medico.getMedID(id).updateEspecialidad(x.getSpecID(spec));
     }
     
 

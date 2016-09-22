@@ -74,6 +74,36 @@
                         templateUrl: basePath + 'medico.delete.html'
                     }
                 }
+            }).state('listaEspera', {
+                url: '/listaespera',
+                parent: 'medicoEdit',
+                views: {
+                    'medicoInstanceView': {
+                        controller: 'listaEsperaCtrl',
+                        controllerAs: 'ctrl1',
+                        templateUrl: basePath + 'medico.listaEspera.html'
+                    }
+                }
+            }).state('listaEsperaCreate', {
+                url: '/listaespera/create',
+                parent: 'medicoEdit',
+                views: {
+                    'medicoInstanceView': {
+                        controller: 'listaEsperaCtrl',
+                        controllerAs: 'ctrl1',
+                        templateUrl: basePath + 'medico.listaEspera.create.html'
+                    }
+                }
+            }).state('listaEsperaDelete', {
+                url: '/listaespera/ ',
+                parent: 'medicoEdit',
+                views: {
+                    'medicoInstanceView': {
+                        controller: 'listaEsperaCtrl',
+                        controllerAs: 'ctrl1',
+                        templateUrl: basePath + 'medico.listaEspera.html'
+                    }
+                }
             });
-        }]);
+    }]);
 })(window.angular);
