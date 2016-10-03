@@ -8,7 +8,7 @@
 		<version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>Hospital.back</artifactId>
+    <artifactId>Hospital-back</artifactId>
     <packaging>jar</packaging>
 	
     <dependencies>

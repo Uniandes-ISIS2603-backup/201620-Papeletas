@@ -8,7 +8,7 @@
 		<version>1.0-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
-    <artifactId>Hospital.web</artifactId>
+    <artifactId>Hospital-web</artifactId>
     <packaging>war</packaging>
 
     <name>Hospital</name>
