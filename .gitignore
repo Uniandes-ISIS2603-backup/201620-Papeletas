@@ -9,6 +9,8 @@ tmp/
 
 # Binaries produced by Maven
 target/
+hospital-back/target/
+hospital-web/target/
 
 # Package Files
 *.jar
@@ -37,6 +39,8 @@ node_modules/
 # NetBeans
 nbactions.xml
 /nb-configuration.xml
+hospital-back/nb-configuration.xml/
+hospital-web/nb-configuration.xml/
 
 # Eclipse 
 .project
