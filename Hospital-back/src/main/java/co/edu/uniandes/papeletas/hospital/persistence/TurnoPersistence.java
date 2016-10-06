@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.papeletas.hospital.entities;
-
-import javax.persistence.Entity;
+package co.edu.uniandes.papeletas.hospital.persistence;
 
 /**
  *
  * @author ac.cabezas716
  */
-@Entity
-public class turnoEntity extends BaseEntity{
+public class TurnoPersistence {
     
 }
