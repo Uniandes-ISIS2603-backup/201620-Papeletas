@@ -49,3 +49,4 @@ hospital-web/nb-configuration.xml/
 
 # IntelliJ
 .idea/
+/Hospital-back/nbproject/
