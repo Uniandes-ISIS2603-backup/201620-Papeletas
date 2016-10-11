@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.papeletas.hospital.entities;
 
+import java.util.Date;
 import javax.persistence.Entity;
 
 /**
@@ -13,5 +14,7 @@ import javax.persistence.Entity;
  */
 @Entity
 public class TurnoEntity extends BaseEntity{
+    private Date fecha;
+    private int duracion;
     
 }
