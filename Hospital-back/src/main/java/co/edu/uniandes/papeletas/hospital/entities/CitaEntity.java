@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import uk.co.jemos.podam.common.PodamExclude;
 
 /**
  *
@@ -23,12 +24,15 @@ public class CitaEntity extends BaseEntity implements Serializable {
     private int duracion;
     
     //medico asiganado a la cita
+    @PodamExclude
     @ManyToOne
     private MedicoEntity medico;
     
     //consultorio asignado a la cita
+    @PodamExclude
     private ConsultorioEntity consultorio;
    
+    @PodamExclude
     private PacienteEntity paciente;
     
     private Boolean citaTerminada;
