@@ -38,15 +38,17 @@ public class PacientePersistenceTest {
      */
     @Deployment 
     public static JavaArchive createDeployment(){
-        return ShrinkWrap.create(JavaArchive.class).addPackage(PacienteEntity.class.getPackage())
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(PacienteEntity.class.getPackage())
                 .addPackage(PacientePersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
-     @Inject
+    
+    @Inject
     private PacientePersistence pacientePersistence;
     
-    @PersistenceContext
+    @PersistenceContext(unitName = "PapeletasPU")
     private EntityManager em;
     
     @Inject
@@ -59,6 +61,7 @@ public class PacientePersistenceTest {
      */
     public PacientePersistenceTest() {
     }
+    
     @Before
     public void setUp() {
         try {
@@ -94,6 +97,7 @@ public class PacientePersistenceTest {
             data.add(entity);
         }
     }
+    
     @BeforeClass
     public static void setUpClass() {
     }
@@ -101,7 +105,6 @@ public class PacientePersistenceTest {
     @AfterClass
     public static void tearDownClass() {
     }
-    
     
     @After
     public void tearDown() {

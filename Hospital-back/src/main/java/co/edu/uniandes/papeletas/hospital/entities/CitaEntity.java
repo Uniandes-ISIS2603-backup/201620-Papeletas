@@ -23,8 +23,8 @@ public class CitaEntity extends BaseEntity implements Serializable {
     private int duracion;
     
     //medico asiganado a la cita
-    @ManyToOne
-    private MedicoEntity medico;
+    // @ManyToOne
+    // private MedicoEntity medico;
     
     //consultorio asignado a la cita
     private ConsultorioEntity consultorio;
@@ -67,6 +67,7 @@ public class CitaEntity extends BaseEntity implements Serializable {
         duracion = pDuracion;
     }
    
+/*
     public MedicoEntity getMedico()
     {
        return medico;
@@ -76,7 +77,7 @@ public class CitaEntity extends BaseEntity implements Serializable {
     {
         medico = pMedico;
     }
-    
+*/     
     public ConsultorioEntity getConsultorio()
     {
        return consultorio;
