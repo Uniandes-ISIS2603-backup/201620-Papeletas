@@ -6,9 +6,14 @@
 package co.edu.uniandes.papeletas.hospital.persistence;
 
 import co.edu.uniandes.papeletas.hospital.entities.ConsultorioEntity;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -17,12 +22,44 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class ConsultorioPersistence {
     
+    private static final Logger LOGGER = Logger.getLogger(ConsultorioPersistence.class.getName());
+    
     @PersistenceContext(unitName = "PapeletasPU")
     protected EntityManager em;
     
     public ConsultorioEntity find (Long id) {
+        LOGGER.log(Level.INFO, "Consultando consultorio con id={0}", id);
         return em.find(ConsultorioEntity.class, id);
     }
     
+    public ConsultorioEntity findByName (String name) {
+        LOGGER.log(Level.INFO, "Consultando  cita con name= ", name);
+        TypedQuery <ConsultorioEntity> q = em.createQuery("select u from ConsultorioEntity where u.name = :name", ConsultorioEntity.class);
+        q = q.setParameter("name", name);
+        return q.getSingleResult();
+    }
     
+    public List <ConsultorioEntity> findAll () {
+        LOGGER.info("Consultando todos los  consultorios");
+        Query q = em.createQuery("select u from ConsultorioEntity u");
+        return q.getResultList();
+    }
+    
+    public ConsultorioEntity create (ConsultorioEntity entity) {
+        LOGGER.info("Creando un consultorio nuevo");
+        em.persist(entity);
+        LOGGER.info("Consultorio creado");
+        return entity;
+    }
+    
+    public ConsultorioEntity update (ConsultorioEntity entity) {
+        LOGGER.log(Level.INFO, "Actualizando consultorio con id={0}", entity.getId());
+        return em.merge(entity);
+    }
+    
+    public void delete(Long id) {
+        LOGGER.log(Level.INFO, "Borrando  cita con id={0}", id);
+        ConsultorioEntity entity = em.find(ConsultorioEntity.class, id);
+        em.remove(entity);
+    }
 }

@@ -15,4 +15,13 @@ import javax.persistence.Entity;
 @Entity
 public class ConsultorioEntity extends BaseEntity implements Serializable {
     
+    private Integer numero;
+    
+    private Integer getNumero () {
+        return numero;
+    }
+    
+    private void setNumero (Integer numero) {
+        this.numero = numero;
+    }
 }
