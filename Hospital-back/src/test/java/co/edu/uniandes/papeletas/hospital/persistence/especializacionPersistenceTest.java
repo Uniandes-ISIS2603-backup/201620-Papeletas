@@ -20,7 +20,7 @@ public class EspecializacionPersistenceTest
     public EspecializacionPersistenceTest()
     {
         
-    }
+    } 
     
     @BeforeClass
     public static void setupClass()
