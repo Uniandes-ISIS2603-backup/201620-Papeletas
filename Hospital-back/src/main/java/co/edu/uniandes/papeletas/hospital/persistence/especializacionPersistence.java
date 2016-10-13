@@ -26,3 +26,4 @@ public class EspecializacionPersistence
         return em.find(EspecializacionEntity.class, id);
     }
 }
+ 
