@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.papeletas.hospital.persistence;
 
-import co.edu.uniandes.papeletas.hospital.entities.especializacionEntity;
+import co.edu.uniandes.papeletas.hospital.entities.EspecializacionEntity;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -16,13 +16,13 @@ import javax.persistence.PersistenceContext;
  */
 
 @Stateless
-public class especializacionPersistence
+public class EspecializacionPersistence
 {
     @PersistenceContext(unitName = "PapeletasPU")
     protected EntityManager em;
     
-    public especializacionEntity find(Long id)
+    public EspecializacionEntity find(Long id)
     {
-        return em.find(especializacionEntity.class, id);
+        return em.find(EspecializacionEntity.class, id);
     }
 }

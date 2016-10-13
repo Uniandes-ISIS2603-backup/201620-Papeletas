@@ -15,9 +15,9 @@ import org.junit.Test;
  *
  * @author Lara
  */
-public class especializacionPersistenceTest
+public class EspecializacionPersistenceTest
 {
-    public especializacionPersistenceTest()
+    public EspecializacionPersistenceTest()
     {
         
     }

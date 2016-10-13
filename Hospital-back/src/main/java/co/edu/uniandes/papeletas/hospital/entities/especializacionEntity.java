@@ -12,7 +12,7 @@ import javax.persistence.Entity;
  * @author Lara
  */
 @Entity
-public class especializacionEntity extends BaseEntity
+public class EspecializacionEntity extends BaseEntity
 {
     
 }
