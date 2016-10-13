@@ -24,7 +24,7 @@ public class PacientePersistence {
     
     private static final Logger LOGGER = Logger.getLogger(PacientePersistence.class.getName());
     
-    @PersistenceContext(unitName = "PacientePU")
+    @PersistenceContext(unitName = "PapeletasPU")
     protected EntityManager em;
     
     public PacienteEntity find (Long id){
