@@ -24,8 +24,9 @@ public class CitaEntity extends BaseEntity implements Serializable {
     private int duracion;
     
     //medico asiganado a la cita
-    // @ManyToOne
-    // private MedicoEntity medico;
+    @PodamExclude
+    @ManyToOne
+    private MedicoEntity medico;
     
     //consultorio asignado a la cita
     @PodamExclude
