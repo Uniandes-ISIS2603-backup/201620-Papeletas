@@ -14,6 +14,16 @@ import javax.persistence.Entity;
 @Entity
 public class EspecializacionEntity extends BaseEntity
 {
+    private String nombre;
     
+    public String getName()
+    {
+        return nombre;
+    }
+    
+    public void setName(String pNombre)
+    {
+        nombre=pNombre;
+    }
 }
  
