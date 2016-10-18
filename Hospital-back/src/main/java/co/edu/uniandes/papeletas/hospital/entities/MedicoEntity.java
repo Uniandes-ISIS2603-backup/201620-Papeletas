@@ -20,9 +20,7 @@ import javax.persistence.OneToMany;
 public class MedicoEntity extends BaseEntity implements Serializable
 {
     
-    
-    @OneToMany(mappedBy = "medico" , cascade = CascadeType.ALL, orphanRemoval = true)
-    private List medicos = new ArrayList<>();
+        private List medicos = new ArrayList<>();
     
     private String nombre;
     
