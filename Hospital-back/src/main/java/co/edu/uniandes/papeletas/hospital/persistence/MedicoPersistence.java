@@ -5,8 +5,7 @@
  */
 package co.edu.uniandes.papeletas.hospital.persistence;
 
-import java.util.logging.Logger;
-import co.edu.uniandes.papeletas.hospital.entities.ConsultorioEntity;
+
 import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,13 +14,12 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 /**
  *
  * @author Nicolas
  */
-@StateLess
+@Stateless
 public class MedicoPersistence {
     
  private static final Logger LOGGER = Logger.getLogger(MedicoPersistence.class.getName());
