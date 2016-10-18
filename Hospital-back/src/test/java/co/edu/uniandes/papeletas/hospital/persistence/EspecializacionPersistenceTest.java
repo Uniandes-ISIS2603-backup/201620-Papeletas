@@ -69,7 +69,7 @@ public class EspecializacionPersistenceTest
     @AfterClass
     public static void tearDownClass()
     {
-        
+         
     }
     
     private void clearData ()

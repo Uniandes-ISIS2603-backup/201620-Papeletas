@@ -6,7 +6,7 @@
 package co.edu.uniandes.papeletas.hospital.entities;
 
 import javax.persistence.Entity;
-
+ 
 /**
  *
  * @author Lara
