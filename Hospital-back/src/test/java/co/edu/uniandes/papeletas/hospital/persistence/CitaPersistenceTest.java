@@ -8,6 +8,7 @@ package co.edu.uniandes.papeletas.hospital.persistence;
 import javax.inject.Inject;
 import co.edu.uniandes.papeletas.hospital.entities.CitaEntity;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -105,9 +106,13 @@ public class CitaPersistenceTest {
         CitaEntity newEntity =  citaPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
-        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(entity.getFecha());
+        Calendar c2 = Calendar.getInstance();
+        c2.setTime(newEntity.getFecha());
+        Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
+        Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
-        Assert.assertEquals(entity.getCitaTerminada(), newEntity.getCitaTerminada());
     }
 
     /**
@@ -119,9 +124,13 @@ public class CitaPersistenceTest {
         CitaEntity newEntity = citaPersistence.findByName(entity.getName());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
-        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(entity.getFecha());
+        Calendar c2 = Calendar.getInstance();
+        c2.setTime(newEntity.getFecha());
+        Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
+        Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
-        Assert.assertEquals(entity.getCitaTerminada(), newEntity.getCitaTerminada());
     }
 
     /**
@@ -174,9 +183,13 @@ public class CitaPersistenceTest {
         CitaEntity resp = em.find(CitaEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
-        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(entity.getFecha());
+        Calendar c2 = Calendar.getInstance();
+        c2.setTime(newEntity.getFecha());
+        Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
+        Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
-        Assert.assertEquals(entity.getCitaTerminada(), newEntity.getCitaTerminada());
     }
 
     /**
