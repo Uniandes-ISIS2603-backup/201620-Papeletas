@@ -46,7 +46,7 @@ public class EspecializacionPersistence
     public List <EspecializacionEntity> findAll ()
     {
         LOGGER.info("Consultando todos las Especializaciones");
-        Query q = em.createQuery("select u from CEspecializacionEntity u");
+        Query q = em.createQuery("select u from EspecializacionEntity u");
         return q.getResultList();
     }
     
