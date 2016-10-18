@@ -14,9 +14,12 @@ import java.util.List;
 public class MedicoEntity 
 {
     private List listaCitas;
-    
-    
+   
     private List listaEspera;
+    
+    private CitaEntity cita;
+    
+    private 
     
     
 }
