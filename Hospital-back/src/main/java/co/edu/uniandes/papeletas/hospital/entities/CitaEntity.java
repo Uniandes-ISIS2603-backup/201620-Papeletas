@@ -35,8 +35,6 @@ public class CitaEntity extends BaseEntity implements Serializable {
     @PodamExclude
     private PacienteEntity paciente;
     
-    private Boolean citaTerminada;
-    
     /**
     * obtiene la fecha para la cual esta programada la cita
     * @returnfecha
@@ -102,13 +100,5 @@ public class CitaEntity extends BaseEntity implements Serializable {
         paciente = pPaciente;
     }
     
-    public boolean getCitaTerminada()
-    {
-        return citaTerminada;
-    }
-    public void setCitaTerminada()
-    {
-        citaTerminada = !citaTerminada;
-    }
     //private Long idTurno; ??
 }
