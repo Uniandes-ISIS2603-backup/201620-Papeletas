@@ -100,7 +100,7 @@ public class ConsultorioPersistenceTest {
         Assert.assertNotNull(result);
         ConsultorioEntity entity = em.find(ConsultorioEntity.class, result.getId());
         Assert.assertNotNull(entity);
-        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getNumero(), entity.getNumero());
     }
 
     /**
@@ -131,7 +131,7 @@ public class ConsultorioPersistenceTest {
         ConsultorioEntity entity = data.get(0);
         ConsultorioEntity newEntity = consultorioPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getNumero(), newEntity.getNumero());
     }
 
     /**
@@ -140,9 +140,9 @@ public class ConsultorioPersistenceTest {
     @Test
     public void getConsultorioByNameTest() {
         ConsultorioEntity entity = data.get(0);
-        ConsultorioEntity newEntity = consultorioPersistence.findByName(entity.getName());
+        ConsultorioEntity newEntity = consultorioPersistence.findByNumber(entity.getNumero());
         Assert.assertNotNull(newEntity);
-        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getNumero(), newEntity.getNumero());
     }
 
     /**
@@ -155,10 +155,6 @@ public class ConsultorioPersistenceTest {
         ConsultorioEntity deleted = em.find(ConsultorioEntity.class, entity.getId());
         Assert.assertNull(deleted);
     }
-
-    
-    
-    
 
     /**
      * Prueba para actualizar un Consultorio.
@@ -175,7 +171,7 @@ public class ConsultorioPersistenceTest {
 
         ConsultorioEntity resp = em.find(ConsultorioEntity.class, entity.getId());
 
-        Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertEquals(newEntity.getNumero(), resp.getNumero());
     }
     
     @BeforeClass

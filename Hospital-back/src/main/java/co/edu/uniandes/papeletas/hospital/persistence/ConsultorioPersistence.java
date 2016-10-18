@@ -32,10 +32,10 @@ public class ConsultorioPersistence {
         return em.find(ConsultorioEntity.class, id);
     }
     
-    public ConsultorioEntity findByName (String name) {
-        LOGGER.log(Level.INFO, "Consultando  cita con name= ", name);
-        TypedQuery <ConsultorioEntity> q = em.createQuery("select u from ConsultorioEntity where u.name = :name", ConsultorioEntity.class);
-        q = q.setParameter("name", name);
+    public ConsultorioEntity findByNumber (Integer numero) {
+        LOGGER.log(Level.INFO, "Consultando consultorio con numero= ", numero);
+        TypedQuery <ConsultorioEntity> q = em.createQuery("select u from ConsultorioEntity u where u.numero = :numero", ConsultorioEntity.class);
+        q = q.setParameter("numero", numero);
         return q.getSingleResult();
     }
     

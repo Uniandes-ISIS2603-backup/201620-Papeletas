@@ -17,11 +17,11 @@ public class ConsultorioEntity extends BaseEntity implements Serializable {
     
     private Integer numero;
     
-    private Integer getNumero () {
+    public Integer getNumero () {
         return numero;
     }
     
-    private void setNumero (Integer numero) {
+    public void setNumero (Integer numero) {
         this.numero = numero;
     }
 }
