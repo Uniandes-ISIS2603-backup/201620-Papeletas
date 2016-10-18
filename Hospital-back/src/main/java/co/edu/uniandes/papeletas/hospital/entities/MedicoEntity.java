@@ -19,7 +19,6 @@ public class MedicoEntity
     
     private CitaEntity cita;
     
-    private 
     
     
 }
