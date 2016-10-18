@@ -38,7 +38,7 @@ public class EspecializacionPersistence
     public EspecializacionEntity findByName(String name)
     {
         LOGGER.log(Level.INFO, "Consultando especializacion con nombre= ", name);
-        TypedQuery <EspecializacionEntity> q = em.createQuery("select u from EspecializacionsEntity where u.name = :name", EspecializacionEntity.class);
+        TypedQuery <EspecializacionEntity> q = em.createQuery("select u from EspecializacionsEntity u where u.name = :name", EspecializacionEntity.class);
         q = q.setParameter("name", name);
         return q.getSingleResult();
     }

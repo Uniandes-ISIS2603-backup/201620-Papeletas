@@ -5,7 +5,6 @@
  */
 package co.edu.uniandes.papeletas.hospital.persistence;
  
-import co.edu.uniandes.papeletas.hospital.entities.ConsultorioEntity;
 import co.edu.uniandes.papeletas.hospital.entities.EspecializacionEntity;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,16 +34,19 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 @RunWith(Arquillian.class)
 public class EspecializacionPersistenceTest
 {
-    @Inject 
-    private EspecializacionPersistence especializacionPersistence;
     
     @Deployment 
-    public static JavaArchive createDeployment(){
-        return ShrinkWrap.create(JavaArchive.class).addPackage(EspecializacionEntity.class.getPackage())
-                .addPackage(CitaPersistence.class.getPackage())
+    public static JavaArchive createDeployment()
+    {
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(EspecializacionEntity.class.getPackage())
+                .addPackage(EspecializacionPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
+    
+    @Inject 
+    private EspecializacionPersistence especializacionPersistence;
     
     @PersistenceContext
     private EntityManager em;
@@ -72,7 +74,7 @@ public class EspecializacionPersistenceTest
     
     private void clearData ()
     {
-        em.createQuery("delete from ConsultorioEntity").executeUpdate();
+        em.createQuery("delete from EspecializacionEntity").executeUpdate();
     }
     
     private void insertData ()
@@ -123,11 +125,11 @@ public class EspecializacionPersistenceTest
     }
     
     @Test
-    public void getEspecializacionTest()
+    public void getEspecializacionTest() throws Exception
     {
         List<EspecializacionEntity> list = especializacionPersistence.findAll();
         Assert.assertEquals(data.size(), list.size());
-        for (EspecializacionEntity ent : list)
+        for(EspecializacionEntity ent : list)
         {
             boolean found = false;
             for (EspecializacionEntity entity : data)
