@@ -7,7 +7,7 @@ package co.edu.uniandes.papeletas.hospital.entities;
 
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -19,10 +19,10 @@ public class TurnoEntity extends BaseEntity{
     private int duracion;
     private int duracionCita;
     
-    /*@OneToOne
-    private MedicoEntity medico;*/
+    @ManyToOne
+    private MedicoEntity medico;
     
-    @OneToOne
+    @ManyToOne
     private ConsultorioEntity consultorio;
 
     /**
@@ -62,14 +62,14 @@ public class TurnoEntity extends BaseEntity{
     
     /**
      * @return the medico
-     *//*
+     */
     public MedicoEntity getMedico() {
         return medico;
     }
 
     /**
      * @param medico the medico to set
-     *//*
+     */
     public void setMedico(MedicoEntity medico) {
         this.medico = medico;
     }
