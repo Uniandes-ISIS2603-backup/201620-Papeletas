@@ -7,12 +7,14 @@ package co.edu.uniandes.papeletas.hospital.entities;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 /**
  *
  * @author Nicolas
  */
+@Entity
 public class MedicoEntity extends BaseEntity implements Serializable
 {
        
