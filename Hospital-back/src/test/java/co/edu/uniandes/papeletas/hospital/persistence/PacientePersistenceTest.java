@@ -120,7 +120,7 @@ public class PacientePersistenceTest {
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getLastName(), newEntity.getLastName());
-        Assert.assertEquals(entity.getCitas(), newEntity.getCitas());
+        
     }
 
     /**
@@ -134,7 +134,6 @@ public class PacientePersistenceTest {
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getLastName(), newEntity.getLastName());
-        Assert.assertEquals(entity.getCitas(), newEntity.getCitas());
     }
 
     /**
@@ -188,9 +187,9 @@ public class PacientePersistenceTest {
         PacienteEntity resp = em.find(PacienteEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
-        Assert.assertEquals(entity.getId(), newEntity.getId());
-        Assert.assertEquals(entity.getLastName(), newEntity.getLastName());
-        Assert.assertEquals(entity.getCitas(), newEntity.getCitas());
+        Assert.assertEquals(resp.getId(), newEntity.getId());
+        Assert.assertEquals(resp.getLastName(), newEntity.getLastName());
+        
     }
 
     /**
