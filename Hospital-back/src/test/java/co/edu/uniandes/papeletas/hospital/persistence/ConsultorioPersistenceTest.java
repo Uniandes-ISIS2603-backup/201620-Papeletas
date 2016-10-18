@@ -41,6 +41,7 @@ public class ConsultorioPersistenceTest {
     public static JavaArchive createDeployment () {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(ConsultorioPersistence.class.getPackage())
+                .addPackage(ConsultorioEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }

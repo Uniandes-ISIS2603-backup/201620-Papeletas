@@ -49,7 +49,7 @@ public class EspecializacionPersistence
         Query q = em.createQuery("select u from EspecializacionEntity u");
         return q.getResultList();
     }
-    
+     
     public EspecializacionEntity create (EspecializacionEntity entity)
     {
         LOGGER.info("Creando una especializacion nuevo");
