@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.papeletas.hospital.entities;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.OneToMany;
 
@@ -12,7 +13,7 @@ import javax.persistence.OneToMany;
  *
  * @author Nicolas
  */
-public class MedicoEntity 
+public class MedicoEntity extends BaseEntity implements Serializable
 {
        
     @OneToMany(mappedBy = "medico")
