@@ -12,7 +12,18 @@ import javax.persistence.Entity;
  * @author Lara
  */
 @Entity
-public class especializacionEntity extends BaseEntity
+public class EspecializacionEntity extends BaseEntity
 {
+    private String nombre;
     
+    public String getName()
+    {
+        return nombre;
+    }
+    
+    public void setName(String pNombre)
+    {
+        nombre=pNombre;
+    }
 }
+ 
