@@ -6,6 +6,7 @@
 package co.edu.uniandes.papeletas.hospital.entities;
 
 import java.util.List;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -13,12 +14,31 @@ import java.util.List;
  */
 public class MedicoEntity 
 {
-    private List listaCitas;
-   
-    private List listaEspera;
+       
+    @OneToMany(mappedBy = "medico")
+    private List<CitaEntity> citas;
     
-    private CitaEntity cita;
+    @OneToMany(mappedBy = "medico")
+    private List<TurnoEntity> turnos;
+    
+    @OneToMany(mappedBy = "medico")
+    private List<EspecializacionEntity> especialidades;
+    
+    public List<CitaEntity> citas()
+    {
+        return citas;
+    }
+     public List<TurnoEntity> turnos()
+    {
+        return turnos;
+    }
+     public List<EspecializacionEntity> especialidades()
+    {
+        return especialidades;
+    }
+     
     
     
     
+     
 }
