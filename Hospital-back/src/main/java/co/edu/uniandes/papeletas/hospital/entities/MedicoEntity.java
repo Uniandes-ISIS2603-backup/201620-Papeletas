@@ -22,6 +22,28 @@ public class MedicoEntity extends BaseEntity implements Serializable
     
     
     @OneToMany(mappedBy = "medico" , cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CitaEntity> medicos = new ArrayList<>();
+    private List medicos = new ArrayList<>();
     
+    private String nombre;
+    
+    private Long id;
+    
+    public String getNombre()
+    {
+        return nombre;
+    }
+    public Long getID()
+    {
+        return id;
+    }
+    
+    public void setNombre(String pNombre)
+    {
+        this.nombre=pNombre;
+    }
+    
+    public void setID(Long id)
+    {
+        this.id=id;
+    }   
 }
