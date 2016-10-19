@@ -20,6 +20,7 @@ public class TurnoLogicException extends Exception {
 	 * Constructor por defecto
 	 */
 	public TurnoLogicException() {
+            //Por defecto
 	}
 
 	/**
