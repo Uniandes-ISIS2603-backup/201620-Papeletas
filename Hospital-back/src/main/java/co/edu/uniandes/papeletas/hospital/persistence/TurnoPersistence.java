@@ -32,9 +32,9 @@ public class TurnoPersistence {
     }
     
     public TurnoEntity findByName(String name){
-         LOGGER.log(Level.INFO, "Consultando paciente con name = {0}", name);
+         LOGGER.log(Level.INFO, "Consultando turno con name = {0}", name);
         TypedQuery<TurnoEntity> q
-                = em.createQuery("select u from PacienteEntity u where u.name = :name", TurnoEntity.class);
+                = em.createQuery("select u from TurnoEntity u where u.name = :name", TurnoEntity.class);
         q = q.setParameter("name", name); 
         return q.getSingleResult();
     }
