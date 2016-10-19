@@ -118,12 +118,12 @@ public class TurnoPersistenceTest {
         TurnoEntity newEntity = turnoPersistence.findByName(entity.getName());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
-        /*Calendar c1 = Calendar.getInstance();
+        Calendar c1 = Calendar.getInstance();
         c1.setTime(entity.getFecha());
         Calendar c2 = Calendar.getInstance();
         c2.setTime(newEntity.getFecha());
         Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
-        Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));*/
+        Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
     }
 
@@ -174,16 +174,16 @@ public class TurnoPersistenceTest {
 
         turnoPersistence.update(newEntity);
 
-        TurnoEntity resp = em.find(TurnoEntity.class, newEntity.getId());
+        TurnoEntity resp = em.find(TurnoEntity.class, entity.getId());
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
         Calendar c1 = Calendar.getInstance();
-        c1.setTime(entity.getFecha());
+        c1.setTime(newEntity.getFecha());
         Calendar c2 = Calendar.getInstance();
-        c2.setTime(newEntity.getFecha());
+        c2.setTime(resp.getFecha());
         Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
         Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
-        Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
+        Assert.assertEquals(newEntity.getDuracion(), resp.getDuracion());
     }
 
     /**
