@@ -19,8 +19,8 @@ public class TurnoEntity extends BaseEntity{
     private int duracion;
     private int duracionCita;
     
-    /*@ManyToOne
-    private MedicoEntity medico;*/
+    @ManyToOne
+    private MedicoEntity medico;
     
     @ManyToOne
     private ConsultorioEntity consultorio;
@@ -63,13 +63,13 @@ public class TurnoEntity extends BaseEntity{
     /**
      * @return the medico
      */
-    /*public MedicoEntity getMedico() {
+    public MedicoEntity getMedico() {
         return medico;
     }
 
     /**
      * @param medico the medico to set
-     *//*
+     */
     public void setMedico(MedicoEntity medico) {
         this.medico = medico;
     }

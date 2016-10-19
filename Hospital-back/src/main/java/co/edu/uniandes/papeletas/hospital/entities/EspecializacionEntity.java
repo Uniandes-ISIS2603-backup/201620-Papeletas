@@ -5,7 +5,11 @@
  */
 package co.edu.uniandes.papeletas.hospital.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
  
 /**
  *
@@ -16,6 +20,9 @@ public class EspecializacionEntity extends BaseEntity
 {
     private String nombre;
     
+    @OneToMany(mappedBy = "especializacion",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MedicoEntity> medicos = new ArrayList<>();
+    
     public String getName()
     {
         return nombre;
@@ -24,6 +31,10 @@ public class EspecializacionEntity extends BaseEntity
     public void setName(String pNombre)
     {
         nombre=pNombre;
+    }
+    public List<MedicoEntity> medicos()
+    {
+        return medicos;
     }
 }
  
