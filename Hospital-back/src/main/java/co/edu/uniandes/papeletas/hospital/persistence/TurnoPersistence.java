@@ -9,6 +9,7 @@ import co.edu.uniandes.papeletas.hospital.entities.TurnoEntity;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -18,6 +19,7 @@ import javax.persistence.TypedQuery;
  *
  * @author ac.cabezas716
  */
+@Stateless
 public class TurnoPersistence {
     private static final Logger LOGGER = Logger.getLogger(PacientePersistence.class.getName());
     

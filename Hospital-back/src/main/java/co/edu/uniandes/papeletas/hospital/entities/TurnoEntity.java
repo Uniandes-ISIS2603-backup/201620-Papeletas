@@ -21,9 +21,11 @@ public class TurnoEntity extends BaseEntity{
     private int duracion;
     private int duracionCita;
     
+    @PodamExclude
     @ManyToOne
     private MedicoEntity medico;
     
+    @PodamExclude
     @ManyToOne
     private ConsultorioEntity consultorio;
     
