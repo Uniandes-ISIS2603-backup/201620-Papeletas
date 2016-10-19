@@ -31,12 +31,12 @@ public class TurnoDTO {
     /**
      * Medico dueño del turno
      */
-    private Long medicoId;
+    private MedicoDTO medico;
     
     /**
      * Consultorio asignado para el turno
      */
-    private Long consultorioId;
+    private ConsultorioDTO consultorio;
 
     /**
      * Duración asignada para cada cita en el turno en minutos
@@ -44,25 +44,30 @@ public class TurnoDTO {
     private int duracionCitas;
     /**
      * Constructor de la clase turno:
-     * -El arreglo de citas es inicializado sin paciente lo que indican que no han sido asignadas.
-     * -Las fechas de cada cita ya han sido asignadas
+     * @param pId id del turno
      * @param pMedico Medico dueño del turno creado
      * @param pFecha Fecha que representa el día del turno
      * @param pDuracion Duración del turno en minutos
      * @param pDuracionCitas Duración inicial de cada cita en el turno
-     * @param pId id del turno
      */
-    public TurnoDTO(Long pId, Long pMedico, Date pFecha, int pDuracion, int pDuracionCitas ) {
+    public TurnoDTO(Long pId, MedicoDTO pMedico, Date pFecha, int pDuracion, int pDuracionCitas ) {
         id = pId;
         fecha = pFecha;
         duracion = pDuracion;
-        medicoId = pMedico;
-        consultorioId = -1L;
+        medico = pMedico;
+        consultorio = new ConsultorioDTO();
         duracionCitas = pDuracionCitas;
     }
-    
+    /**
+     * Constructor por defecto
+     */
     public TurnoDTO(){
-        
+        id = 0L;
+        fecha = new Date();
+        duracion = 0;
+        medico = new MedicoDTO();
+        consultorio = new ConsultorioDTO();
+        duracionCitas = 0;
     }
 
     /**
@@ -108,31 +113,31 @@ public class TurnoDTO {
     }
 
     /**
-     * @return the medicoId
+     * @return the medico
      */
-    public Long getMedicoId() {
-        return medicoId;
+    public MedicoDTO getMedicoId() {
+        return medico;
     }
 
     /**
-     * @param medicoId the medicoId to set
+     * @param medicoId the medico to set
      */
-    public void setMedicoId(Long medicoId) {
-        this.medicoId = medicoId;
+    public void setMedicoId(MedicoDTO medicoId) {
+        this.medico = medicoId;
     }
 
     /**
-     * @return the consultorioId
+     * @return the consultorio
      */
-    public Long getConsultorioId() {
-        return consultorioId;
+    public ConsultorioDTO getConsultorioId() {
+        return consultorio;
     }
 
     /**
-     * @param consultorioId the consultorioId to set
+     * @param consultorioId the consultorio to set
      */
-    public void setConsultorioId(Long consultorioId) {
-        this.consultorioId = consultorioId;
+    public void setConsultorioId(ConsultorioDTO consultorioId) {
+        this.consultorio = consultorioId;
     }
 
     /**

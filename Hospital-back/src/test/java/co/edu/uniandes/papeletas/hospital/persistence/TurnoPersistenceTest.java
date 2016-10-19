@@ -79,14 +79,12 @@ public class TurnoPersistenceTest {
     
     /**
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
-     *
      * 
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
             TurnoEntity entity = factory.manufacturePojo(TurnoEntity.class);
-            
             em.persist(entity);
             data.add(entity);
         }

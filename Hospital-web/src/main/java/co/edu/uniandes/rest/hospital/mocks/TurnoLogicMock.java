@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.rest.hospital.mocks;
 
+import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import co.edu.uniandes.rest.hospital.dtos.TurnoDTO;
 import co.edu.uniandes.rest.hospital.exceptions.TurnoLogicException;
 import java.util.ArrayList;
@@ -28,20 +29,8 @@ public class TurnoLogicMock {
      * Constructor. Crea los datos de ejemplo.
      */
     public TurnoLogicMock() {
-
-    	if (turnos == null) {
+    	if (turnos == null)
             turnos = new ArrayList();
-            TurnoDTO t = new TurnoDTO(1L, 1L,new Date(4314427200000L), 480, 15);
-            turnos.add(t);
-            t = new TurnoDTO(2L, 1L,new Date(4314600000000L), 180, 15);
-            turnos.add(t);
-            t = new TurnoDTO(3L, 2L,new Date(4315276800000L), 300, 15);
-            turnos.add(t);
-            t = new TurnoDTO(4L, 3L,new Date(4314427200000L), 480, 15);
-            turnos.add(t);
-            t = new TurnoDTO(5L, 4L,new Date(4315291200000L), 360, 15);
-            turnos.add(t);
-        }
         
     	// indica que se muestren todos los mensajes
     	logger.setLevel(Level.INFO);

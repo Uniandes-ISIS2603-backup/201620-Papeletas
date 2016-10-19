@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+
 import javax.persistence.OneToMany;
+
 import javax.persistence.ManyToOne;
  
 /**
@@ -23,6 +25,7 @@ public class EspecializacionEntity extends BaseEntity
     
     @OneToMany(mappedBy = "especializacion",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MedicoEntity> medicos = new ArrayList<>();
+
 
    
     
