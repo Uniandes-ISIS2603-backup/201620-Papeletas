@@ -29,6 +29,7 @@ public class MedicoEntity extends BaseEntity implements Serializable
     
     @ManyToOne
     private EspecializacionEntity especializacion;
+
     
     public List<CitaEntity> citas()
     {
@@ -37,6 +38,7 @@ public class MedicoEntity extends BaseEntity implements Serializable
      public List<TurnoEntity> turnos()
     {
         return turnos;
+
     }
      public EspecializacionEntity especialidades()
     {
@@ -47,4 +49,7 @@ public class MedicoEntity extends BaseEntity implements Serializable
     
     
      
-}
+
+    } 
+
+

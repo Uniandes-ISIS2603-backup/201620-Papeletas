@@ -24,7 +24,8 @@ public class TurnoEntity extends BaseEntity{
     
     @ManyToOne
     private ConsultorioEntity consultorio;
-
+    
+    
     /**
      * @return the fecha
      */
