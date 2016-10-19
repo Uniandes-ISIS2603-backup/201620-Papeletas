@@ -6,6 +6,7 @@
 package co.edu.uniandes.papeletas.hospital.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
  
 /**
  *
@@ -16,6 +17,8 @@ public class EspecializacionEntity extends BaseEntity
 {
     private String nombre;
     
+   
+    
     public String getName()
     {
         return nombre;
@@ -25,5 +28,6 @@ public class EspecializacionEntity extends BaseEntity
     {
         nombre=pNombre;
     }
+       
 }
  

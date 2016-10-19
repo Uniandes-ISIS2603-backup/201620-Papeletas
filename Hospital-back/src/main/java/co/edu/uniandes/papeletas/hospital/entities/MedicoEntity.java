@@ -23,9 +23,7 @@ public class MedicoEntity extends BaseEntity implements Serializable
     
     @OneToMany(mappedBy = "medico")
     private List<TurnoEntity> turnos;
-    
-    @OneToMany(mappedBy = "medico")
-    private List<EspecializacionEntity> especialidades;
+  
     
     public List<CitaEntity> citas()
     {
@@ -34,14 +32,5 @@ public class MedicoEntity extends BaseEntity implements Serializable
      public List<TurnoEntity> turnos()
     {
         return turnos;
-    }
-     public List<EspecializacionEntity> especialidades()
-    {
-        return especialidades;
-    }
-     
-    
-    
-    
-     
+    } 
 }
