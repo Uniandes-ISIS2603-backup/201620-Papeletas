@@ -6,8 +6,11 @@
 package co.edu.uniandes.papeletas.hospital.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 /**
@@ -18,12 +21,15 @@ import javax.persistence.OneToMany;
 public class MedicoEntity extends BaseEntity implements Serializable
 {
        
-    @OneToMany(mappedBy = "medico")
-    private List<CitaEntity> citas;
+    @OneToMany(mappedBy = "medico",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CitaEntity> citas= new ArrayList<>();
     
-    @OneToMany(mappedBy = "medico")
-    private List<TurnoEntity> turnos;
-  
+    @OneToMany(mappedBy = "medico",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<TurnoEntity> turnos=new ArrayList<>();
+    
+    @ManyToOne
+    private EspecializacionEntity especializacion;
+
     
     public List<CitaEntity> citas()
     {
@@ -32,5 +38,18 @@ public class MedicoEntity extends BaseEntity implements Serializable
      public List<TurnoEntity> turnos()
     {
         return turnos;
+
+    }
+     public EspecializacionEntity especialidades()
+    {
+        return especializacion;
+    }
+     
+    
+    
+    
+     
+
     } 
-}
+
+
