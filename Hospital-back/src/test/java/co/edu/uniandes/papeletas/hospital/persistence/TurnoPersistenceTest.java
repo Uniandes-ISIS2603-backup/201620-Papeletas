@@ -7,6 +7,7 @@ package co.edu.uniandes.papeletas.hospital.persistence;
 
 import co.edu.uniandes.papeletas.hospital.entities.TurnoEntity;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -16,6 +17,7 @@ import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +32,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
 public class TurnoPersistenceTest {
      /**
      * @return el jar que se va a desplegar para la prueba
-     *//*
+     */
     @Deployment 
     public static JavaArchive createDeployment(){
         return ShrinkWrap.create(JavaArchive.class).addPackage(TurnoEntity.class.getPackage())
@@ -52,7 +54,7 @@ public class TurnoPersistenceTest {
     
      /**
      * Configuración inicial de la prueba.
-     *//*
+     */
     @Before
     public void setUp() {
         try {
@@ -79,7 +81,7 @@ public class TurnoPersistenceTest {
      * Inserta los datos iniciales para el correcto funcionamiento de las pruebas.
      *
      * 
-     *//*
+     */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
         for (int i = 0; i < 3; i++) {
@@ -92,39 +94,47 @@ public class TurnoPersistenceTest {
     
     /**
      * Test of find method, of class TurnoPersistence.
-     *//*
+     */
     @Test
     public void getTurnoTest() throws Exception {
         TurnoEntity entity = data.get(0);
         TurnoEntity newEntity =  turnoPersistence.find(entity.getId());
-        /*Assert.assertNotNull(newEntity);
+        Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
-        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(entity.getFecha());
+        Calendar c2 = Calendar.getInstance();
+        c2.setTime(newEntity.getFecha());
+        Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
+        Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
-        Assert.assertEquals(entity.getCitaTerminada(), newEntity.getCitaTerminada());*//*
     }
 
     /**
-     * Test of findByName method, of class CitaPersistence.
-     *//*
+     * Test of findByName method, of class TurnoPersistence.
+     */
     @Test
-    public void getTunroByNameTest() throws Exception {
+    public void getTurnoByNameTest() throws Exception {
         TurnoEntity entity = data.get(0);
         TurnoEntity newEntity = turnoPersistence.findByName(entity.getName());
-        /*Assert.assertNotNull(newEntity);
+        Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
-        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(entity.getFecha());
+        Calendar c2 = Calendar.getInstance();
+        c2.setTime(newEntity.getFecha());
+        Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
+        Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
-        Assert.assertEquals(entity.getCitaTerminada(), newEntity.getCitaTerminada());*//*
     }
 
     /**
-     * Test of findAll method, of class CitaPersistence.
-     *//*
+     * Test of findAll method, of class TurnoPersistence.
+     */
     @Test
-    public void getTunrosTest() throws Exception {
+    public void getTurnosTest() throws Exception {
         List<TurnoEntity> list = turnoPersistence.findAll();
-        //Assert.assertEquals(data.size(), list.size());
+        Assert.assertEquals(data.size(), list.size());
         for (TurnoEntity ent : list) {
             boolean found = false;
             for (TurnoEntity entity : data) {
@@ -132,31 +142,31 @@ public class TurnoPersistenceTest {
                     found = true;
                 }
             }
-            //Assert.assertTrue(found);
+            Assert.assertTrue(found);
         }
     }
 
     /**
-     * Test of create method, of class CitaPersistence.
-     *//*
+     * Test of create method, of class TurnoPersistence.
+     */
     @Test
-    public void createCitaTest() throws Exception {
+    public void createTurnoTest() throws Exception {
         PodamFactory factory = new PodamFactoryImpl();
         TurnoEntity newEntity = factory.manufacturePojo(TurnoEntity.class);
 
         TurnoEntity result = turnoPersistence.create(newEntity);
 
-        //Assert.assertNotNull(result);
+        Assert.assertNotNull(result);
         TurnoEntity entity = em.find(TurnoEntity.class, result.getId());
-        //Assert.assertNotNull(entity);
-        //Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertNotNull(entity);
+        Assert.assertEquals(newEntity.getName(), entity.getName());
     }
 
     /**
-     * Test of update method, of class CitaPersistence.
-     *//*
+     * Test of update method, of class TurnoPersistence.
+     */
     @Test
-    public void updateCitaTest() throws Exception {
+    public void updateTurnoTest() throws Exception {
         TurnoEntity entity = data.get(0);
         PodamFactory factory = new PodamFactoryImpl();
         TurnoEntity newEntity = factory.manufacturePojo(TurnoEntity.class);
@@ -167,20 +177,24 @@ public class TurnoPersistenceTest {
 
         TurnoEntity resp = em.find(TurnoEntity.class, entity.getId());
 
-        /*Assert.assertEquals(newEntity.getName(), resp.getName());
-        Assert.assertEquals(entity.getFecha(), newEntity.getFecha());
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(entity.getFecha());
+        Calendar c2 = Calendar.getInstance();
+        c2.setTime(newEntity.getFecha());
+        Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
+        Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
-        Assert.assertEquals(entity.getCitaTerminada(), newEntity.getCitaTerminada());*//*
     }
 
     /**
-     * Test of delete method, of class CitaPersistence.
-     *//*
+     * Test of delete method, of class TurnoPersistence.
+     */
     @Test
-    public void deleteCitaTest() throws Exception {
+    public void deleteTurnoTest() throws Exception {
         TurnoEntity entity = data.get(0);
         turnoPersistence.delete(entity.getId());
         TurnoEntity deleted = em.find(TurnoEntity.class, entity.getId());
-        //Assert.assertNull(deleted);
-    }*/
+        Assert.assertNull(deleted);
+    }
 }
