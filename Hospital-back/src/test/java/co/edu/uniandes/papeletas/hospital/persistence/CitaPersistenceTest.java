@@ -184,12 +184,12 @@ public class CitaPersistenceTest {
 
         Assert.assertEquals(newEntity.getName(), resp.getName());
         Calendar c1 = Calendar.getInstance();
-        c1.setTime(entity.getFecha());
+        c1.setTime(newEntity.getFecha());
         Calendar c2 = Calendar.getInstance();
-        c2.setTime(newEntity.getFecha());
+        c2.setTime(resp.getFecha());
         Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
         Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
-        Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
+        Assert.assertEquals(newEntity.getDuracion(), resp.getDuracion());
     }
 
     /**
