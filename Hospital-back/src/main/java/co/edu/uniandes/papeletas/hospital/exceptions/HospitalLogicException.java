@@ -5,10 +5,28 @@
  */
 package co.edu.uniandes.papeletas.hospital.exceptions;
 
+import javax.ejb.ApplicationException;
+
 /**
  *
  * @author jf.mendez11
  */
-public class HospitalLogicException {
+@ApplicationException(rollback = true)
+public class HospitalLogicException extends Exception {
     
+    public HospitalLogicException () {
+        super();
+    }
+    
+    public HospitalLogicException (String message) {
+        super (message);
+    }
+    
+    public HospitalLogicException (Throwable cause) {
+        super (cause);
+    }
+    
+    public HospitalLogicException (String message, Throwable cause) {
+        super (message, cause);
+    }
 }
