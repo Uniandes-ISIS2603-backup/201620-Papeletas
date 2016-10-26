@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.papeletas.hospital.persistence;
+package co.edu.uniandes.papeletas.hospital.test.persistence;
 
 import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
+import co.edu.uniandes.papeletas.hospital.persistence.MedicoPersistence;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;

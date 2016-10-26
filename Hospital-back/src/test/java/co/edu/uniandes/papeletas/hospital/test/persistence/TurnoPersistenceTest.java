@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.papeletas.hospital.persistence;
+package co.edu.uniandes.papeletas.hospital.test.persistence;
 
 import co.edu.uniandes.papeletas.hospital.entities.TurnoEntity;
+import co.edu.uniandes.papeletas.hospital.persistence.TurnoPersistence;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
