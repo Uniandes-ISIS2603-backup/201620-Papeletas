@@ -40,6 +40,14 @@ public class PacientePersistence {
         return q.getSingleResult();
     }
     
+    public PacienteEntity findByIdentificacionCivil(Long idcl){
+        LOGGER.log(Level.INFO, "Consultando paciente con idcl = {0}", idcl);
+        TypedQuery<PacienteEntity> q
+                = em.createQuery("select u from PacienteEntity u where u.identificacionCivil = :identificacionCivil", PacienteEntity.class);
+        q = q.setParameter("identificacionCivil", idcl); 
+        return q.getSingleResult();
+    }
+    
     public List<PacienteEntity> findAll() {
         LOGGER.info("Consultando todos los pacientes");
         Query q = em.createQuery("select u from PacienteEntity u");

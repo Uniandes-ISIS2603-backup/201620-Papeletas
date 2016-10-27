@@ -21,6 +21,8 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     
     private String lastName;
     
+    private Long identificacionCivil;
+    
     @OneToMany(mappedBy = "paciente" , cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CitaEntity> citas = new ArrayList<>();
     
@@ -31,6 +33,14 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     
     public void setLastName(String lastName){
         this.lastName = lastName;
+    }
+    
+    public Long getIndentificacionCivil(){
+        return identificacionCivil;
+    }
+    
+    public void setIdentificacionCivil(Long identificacionCivil){
+        this.identificacionCivil = identificacionCivil;
     }
     
     public List<CitaEntity> getCitas(){
