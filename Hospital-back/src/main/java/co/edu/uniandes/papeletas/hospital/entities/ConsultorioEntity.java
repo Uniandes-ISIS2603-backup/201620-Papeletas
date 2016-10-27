@@ -15,6 +15,8 @@ import javax.persistence.Entity;
 @Entity
 public class ConsultorioEntity extends BaseEntity implements Serializable {
     
+    public static int MAX_NUM_CONSULTORIOS = 23;
+    
     private Integer numero;
     
     public Integer getNumero () {

@@ -15,7 +15,7 @@ import java.util.List;
  */
 public interface IConsultorioLogic {
     
-    public List <ConsultorioEntity> getConsultorios() throws HospitalLogicException;
+    public List <ConsultorioEntity> getConsultorios();
     
     public ConsultorioEntity getConsultorio (Long id);
     
@@ -26,5 +26,7 @@ public interface IConsultorioLogic {
     public ConsultorioEntity updateConsultorio (ConsultorioEntity entity);
     
     public void deleteConsultorio (Long id);
+    
+    public Integer getNumberOfConsultorios ();
     
 }

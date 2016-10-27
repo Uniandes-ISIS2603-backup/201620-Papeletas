@@ -36,7 +36,14 @@ public class ConsultorioPersistence {
         LOGGER.log(Level.INFO, "Consultando consultorio con numero= ", numero);
         TypedQuery <ConsultorioEntity> q = em.createQuery("select u from ConsultorioEntity u where u.numero = :numero", ConsultorioEntity.class);
         q = q.setParameter("numero", numero);
-        return q.getSingleResult();
+        List<ConsultorioEntity> consultorios = q.getResultList();
+        
+        if (consultorios.isEmpty()) {
+            return null;
+        }
+        else {
+            return consultorios.get(0);
+        }
     }
     
     public List <ConsultorioEntity> findAll () {
