@@ -136,6 +136,16 @@ public class PacientePersistenceTest {
         Assert.assertEquals(entity.getId(), newEntity.getId());
         Assert.assertEquals(entity.getLastName(), newEntity.getLastName());
     }
+    
+    @Test
+    public void getPacienteByIdentificacionCivilTest() throws Exception {
+        PacienteEntity entity = data.get(0);
+        PacienteEntity newEntity = pacientePersistence.findByIdentificacionCivil(entity.getIndentificacionCivil());
+        Assert.assertNotNull(newEntity);
+        Assert.assertEquals(entity.getName(), newEntity.getName());
+        Assert.assertEquals(entity.getId(), newEntity.getId());
+        Assert.assertEquals(entity.getLastName(), newEntity.getLastName());
+    }
 
     /**
      * Test of findAll method, of class PacientePersistence.
