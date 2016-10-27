@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package co.edu.uniandes.papeletas.ejbs;
+package co.edu.uniandes.papeletas.hospital.ejbs;
 
 import co.edu.uniandes.papeletas.hospital.api.IEspecializacionLogic;
 import co.edu.uniandes.papeletas.hospital.entities.EspecializacionEntity;
