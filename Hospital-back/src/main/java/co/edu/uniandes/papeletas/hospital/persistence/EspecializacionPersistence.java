@@ -5,7 +5,7 @@
  */
 package co.edu.uniandes.papeletas.hospital.persistence;
 
-import co.edu.uniandes.papeletas.hospital.entities.ConsultorioEntity;
+
 import co.edu.uniandes.papeletas.hospital.entities.EspecializacionEntity;
 import java.util.List;
 import java.util.logging.Level;
