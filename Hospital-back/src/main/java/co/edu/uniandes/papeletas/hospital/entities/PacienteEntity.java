@@ -21,6 +21,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     
     private String lastName;
     
+    
     private Long identificacionCivil;
     
     @OneToMany(mappedBy = "paciente" , cascade = CascadeType.ALL, orphanRemoval = true)

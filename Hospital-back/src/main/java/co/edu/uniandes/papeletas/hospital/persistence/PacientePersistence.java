@@ -45,7 +45,13 @@ public class PacientePersistence {
         TypedQuery<PacienteEntity> q
                 = em.createQuery("select u from PacienteEntity u where u.identificacionCivil = :identificacionCivil", PacienteEntity.class);
         q = q.setParameter("identificacionCivil", idcl); 
-        return q.getSingleResult();
+        
+        List<PacienteEntity> pacientesSimilar = q.getResultList();
+        if (pacientesSimilar.isEmpty() ) {
+            return null; 
+        } else {
+            return pacientesSimilar.get(0);
+        }
     }
     
     public List<PacienteEntity> findAll() {

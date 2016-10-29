@@ -17,16 +17,16 @@ import java.util.List;
 public interface IPacienteLogic {
      public List<PacienteEntity> getPacientes();
     
-    public PacienteEntity getPaciente(Long id)throws HospitalLogicException;
+    public PacienteEntity getPaciente(Long id);
     
-    public PacienteEntity getPacienteByName(String name) throws HospitalLogicException;
+    public PacienteEntity getPacienteByName(String name);
     
     public PacienteEntity createPaciente (PacienteEntity paciente) throws HospitalLogicException;
     
-    public PacienteEntity updatePaciente (PacienteEntity paciente)throws HospitalLogicException;
+    public PacienteEntity updatePaciente (PacienteEntity paciente);
     
-    public void deletePaciente (Long id) throws HospitalLogicException;
+    public void deletePaciente (Long id);
     
-    public void addCita(Long id,CitaEntity cita) throws HospitalLogicException;
+    public void addCita(Long id,Long cita) throws HospitalLogicException;
     
 }

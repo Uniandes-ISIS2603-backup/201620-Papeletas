@@ -10,6 +10,7 @@ import co.edu.uniandes.papeletas.hospital.api.IPacienteLogic;
 import co.edu.uniandes.papeletas.hospital.entities.CitaEntity;
 import co.edu.uniandes.papeletas.hospital.entities.PacienteEntity;
 import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
+import co.edu.uniandes.papeletas.hospital.persistence.CitaPersistence;
 import co.edu.uniandes.papeletas.hospital.persistence.PacientePersistence;
 import java.util.Date;
 import java.util.List;
@@ -46,15 +47,10 @@ public class PacienteLogic implements IPacienteLogic {
      *
      */
     @Override
-    public PacienteEntity getPaciente(Long id) throws HospitalLogicException {
+    public PacienteEntity getPaciente(Long id){
        PacienteEntity entity;
        entity = persistence.find(id);
-       if(entity!=null){
-           return entity;
-       }
-       else{
-           throw new HospitalLogicException("El Paciente con id "+id+" no existe");
-       }
+       return entity;
     }
     
     /**
@@ -64,15 +60,10 @@ public class PacienteLogic implements IPacienteLogic {
      * @throws HospitalLogicException 
      */
     @Override
-    public PacienteEntity getPacienteByName(String name) throws HospitalLogicException {
+    public PacienteEntity getPacienteByName(String name)  {
         PacienteEntity entity;
         entity = persistence.findByName(name);
-        if(entity!=null){
-           return entity;
-       }
-       else{
-           throw new HospitalLogicException("El Paciente con el nombre: "+name+" no existe");
-       }
+        return entity;
     }
     
     /**
@@ -86,7 +77,7 @@ public class PacienteLogic implements IPacienteLogic {
     @Override
     public PacienteEntity createPaciente(PacienteEntity paciente) throws HospitalLogicException {
         PacienteEntity alreadyExist = persistence.findByIdentificacionCivil(paciente.getIndentificacionCivil());
-        if(alreadyExist!=null){
+        if(alreadyExist != null){
             throw new HospitalLogicException("El paciente con identificación civil: "+paciente.getIndentificacionCivil()+" ya existe en el sistema");
         }
         else{
@@ -99,32 +90,22 @@ public class PacienteLogic implements IPacienteLogic {
      * Se encarga de actualizar un paciente en la base de datos
      * @param paciente Objeto de PacienteEntity con datos actualizados
      * @return Objeto de PacienteEntity con los datos nuevos y su ID
-     * @throws HospitalLogicException 
      */
     @Override
-    public PacienteEntity updatePaciente(PacienteEntity paciente) throws HospitalLogicException {
-        if(persistence.find(paciente.getId())==null){
-            throw new HospitalLogicException("El paciente que está tratando de actualizar no existe en nuestra base de datos");
-        }
-        else{
-            persistence.update(paciente);
-        }
+    public PacienteEntity updatePaciente(PacienteEntity paciente) {
+       persistence.update(paciente);
         return paciente;
     }
     
     /**
      * Se encarga de eliminar un paciente con el ID dado
      * @param id el ID del objeto PacienteEntity a eliminar
-     * @throws HospitalLogicException 
      */
     @Override
-    public void deletePaciente(Long id) throws HospitalLogicException {
-        if(persistence.find(id)==null){
-            throw new HospitalLogicException("El paciente que está tratando de eliminar no existe");
-        }
-        else{
+    public void deletePaciente(Long id)  {
+ 
             persistence.delete(id);
-        }
+       
     }
     
     /**
@@ -134,8 +115,9 @@ public class PacienteLogic implements IPacienteLogic {
      * @throws HospitalLogicException 
      */
     @Override
-    public void addCita(Long id, CitaEntity cita) throws HospitalLogicException {
-        Date actual = new Date(); 
+    public void addCita(Long id, Long cita) throws HospitalLogicException {
+        /**Date actual = new Date(); 
+         CitaEntity 
         if(actual.compareTo(cita.getFecha())>0){
             throw new HospitalLogicException("La cita que está tratando de agregar tiene una fecha anterior a su reserva");
         }
@@ -144,12 +126,15 @@ public class PacienteLogic implements IPacienteLogic {
         }
         else{
             PacienteEntity entity = persistence.find(id);
+            CitaPersistence citaPersistence = new CitaPersistence();
             cita.setPaciente(entity);
+            citaPersistence.update(cita);
             List<CitaEntity> citas = entity.getCitas();
             citas.add(cita);
             entity.setCitas(citas);
             persistence.update(entity);
         }
-    }
     
+    */
+    }
 }
