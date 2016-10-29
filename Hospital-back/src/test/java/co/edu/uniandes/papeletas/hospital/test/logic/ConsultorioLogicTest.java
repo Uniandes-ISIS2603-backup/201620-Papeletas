@@ -152,7 +152,7 @@ public class ConsultorioLogicTest {
     }
     
     @Test
-    public void deleteCompanyTest() {
+    public void deleteConsultorioTest() {
         ConsultorioEntity entity = data.get(1);
         consultorioLogic.deleteConsultorio(entity.getId());
         ConsultorioEntity deleted = em.find(ConsultorioEntity.class, entity.getId());
@@ -160,7 +160,7 @@ public class ConsultorioLogicTest {
     }
     
     @Test
-    public void updateCompanyTest() {
+    public void updateConsultorioTest() {
         ConsultorioEntity entity = data.get(0);
         ConsultorioEntity newEntity = factory.manufacturePojo(ConsultorioEntity.class);
 
