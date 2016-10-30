@@ -34,11 +34,8 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class CitaLogicTest {
-
-    /**
-     * 
-     */
-
+    
+    MedicoEntity fatherEntity;
     /**
      * 
      */
@@ -67,6 +64,10 @@ public class CitaLogicTest {
      */
     private List<CitaEntity> data = new ArrayList<CitaEntity>();
 
+    /**
+    * 
+    */
+    private List<MedicoEntity> medicoData = new ArrayList<>();
     /**
      * 
      */
@@ -110,6 +111,7 @@ public class CitaLogicTest {
      */
     private void clearData() {
         em.createQuery("delete from CitaEntity").executeUpdate();
+        em.createQuery("delete from MedicoEntity").executeUpdate();
     }
 
     /**
@@ -118,8 +120,15 @@ public class CitaLogicTest {
      * 
      */
     private void insertData() {
+        fatherEntity = factory.manufacturePojo(MedicoEntity.class);
+        fatherEntity.setId(1L);
+        em.persist(fatherEntity);
         for (int i = 0; i < 3; i++) {
             CitaEntity entity = factory.manufacturePojo(CitaEntity.class);
+            entity.setMedico(fatherEntity);
+            Date hoy = new Date();
+            Date mañana = new Date(hoy.getTime()+ 86400000 + i);
+            entity.setFecha(mañana);
             em.persist(entity);
             data.add(entity);
         }
@@ -132,7 +141,10 @@ public class CitaLogicTest {
     @Test
     public void createCitaTest1() throws HospitalLogicException {
         CitaEntity newEntity = factory.manufacturePojo(CitaEntity.class);
-        CitaEntity result = citaLogic.createCita(newEntity);
+         Date hoy = new Date();
+         Date mañana = new Date(hoy.getTime()+ 86400000);
+         newEntity.setFecha(mañana);
+        CitaEntity result = citaLogic.createCita(fatherEntity.getId(),newEntity);
         Assert.assertNotNull(result);
         CitaEntity entity = em.find(CitaEntity.class, result.getId());
         Assert.assertEquals(newEntity.getName(), entity.getName());
@@ -148,7 +160,7 @@ public class CitaLogicTest {
     public void createCitaTest2() throws HospitalLogicException {
         CitaEntity newEntity = factory.manufacturePojo(CitaEntity.class);
         newEntity.setName(data.get(0).getName());
-        CitaEntity result = citaLogic.createCita(newEntity);
+        CitaEntity result = citaLogic.createCita(fatherEntity.getId(),newEntity);
     }
     
      /**
@@ -160,7 +172,7 @@ public class CitaLogicTest {
     public void createCitaTest3() throws HospitalLogicException {
         CitaEntity newEntity = factory.manufacturePojo(CitaEntity.class);
         newEntity.setDuracion(-5);
-        CitaEntity result = citaLogic.createCita(newEntity);
+        CitaEntity result = citaLogic.createCita(fatherEntity.getId(),newEntity);
     }
     
      /**
@@ -174,7 +186,7 @@ public class CitaLogicTest {
         Date hoy = new Date();
         Date ayer = new Date( hoy.getTime()-86400000);
         newEntity.setFecha(ayer);
-        CitaEntity result = citaLogic.createCita(newEntity);
+        CitaEntity result = citaLogic.createCita(fatherEntity.getId(),newEntity);
     }
     /**
      * Prueba para consultar la lista de Citas
@@ -183,7 +195,7 @@ public class CitaLogicTest {
      */
     @Test
     public void getCitasTest() {
-        List<CitaEntity> list = citaLogic.getCitas();
+        List<CitaEntity> list = citaLogic.getCitas(fatherEntity.getId());
         Assert.assertEquals(data.size(), list.size());
         for (CitaEntity entity : list) {
             boolean found = false;
@@ -232,15 +244,16 @@ public class CitaLogicTest {
     @Test
     public void updateCitaTest() throws  HospitalLogicException{
         CitaEntity entity = data.get(0);
-        CitaEntity pojoEntity = factory.manufacturePojo(CitaEntity.class);
-
-        pojoEntity.setId(entity.getId());
-
-        citaLogic.updateCita(pojoEntity);
-
+        CitaEntity newEntity = factory.manufacturePojo(CitaEntity.class);
+         Date hoy = new Date();
+         Date mañana = new Date(hoy.getTime()+ 86400000);
+         newEntity.setFecha(mañana);
+        newEntity.setId(entity.getId());
+        citaLogic.updateCita(fatherEntity.getId(),newEntity);
+     
         CitaEntity resp = em.find(CitaEntity.class, entity.getId());
 
-        Assert.assertEquals(pojoEntity.getName(), resp.getName());
-        Assert.assertEquals(pojoEntity.getId(), resp.getId());
+        Assert.assertEquals(newEntity.getName(), resp.getName());
+        Assert.assertEquals(newEntity.getId(), resp.getId());
     }
 }

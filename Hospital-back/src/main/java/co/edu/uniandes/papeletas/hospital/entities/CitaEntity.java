@@ -68,8 +68,6 @@ public class CitaEntity extends BaseEntity implements Serializable {
     {
         duracion = pDuracion;
     }
-   
-/*
     public MedicoEntity getMedico()
     {
        return medico;
@@ -78,8 +76,7 @@ public class CitaEntity extends BaseEntity implements Serializable {
     public void setMedico(MedicoEntity pMedico)
     {
         medico = pMedico;
-    }
-*/     
+    }    
     public ConsultorioEntity getConsultorio()
     {
        return consultorio;
@@ -99,6 +96,4 @@ public class CitaEntity extends BaseEntity implements Serializable {
     {
         paciente = pPaciente;
     }
-    
-    //private Long idTurno; ??
 }

@@ -14,11 +14,11 @@ import java.util.List;
  * @author jc.useche10
  */
 public interface ICitaLogic {
-    public List<CitaEntity> getCitas();
+    public List<CitaEntity> getCitas(Long medicoId);
     public CitaEntity getCita(Long id);
-    public CitaEntity getCitaByName(String name);
-    public CitaEntity createCita(CitaEntity entity) throws HospitalLogicException; 
-    public CitaEntity updateCita(CitaEntity entity) throws HospitalLogicException;
+    public CitaEntity getCitaByName(Long medicoid, String name);
+    public CitaEntity createCita(Long medicoid, CitaEntity entity) throws HospitalLogicException; 
+    public CitaEntity updateCita(Long medicoid, CitaEntity entity);
     public void deleteCita(Long id);
 }
 
