@@ -118,7 +118,7 @@ public class CitaPersistenceTest {
 
     /**
      * Test of findByName method, of class CitaPersistence.
-     */
+     *
     @Test
     public void getCitaByNameTest() throws Exception {
         CitaEntity entity = data.get(0);
@@ -132,7 +132,7 @@ public class CitaPersistenceTest {
         Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
         Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
-    }
+    }/
 
     /**
      * Test of findAll method, of class CitaPersistence.

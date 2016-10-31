@@ -31,12 +31,17 @@ public class CitaPersistence {
         return em.find(CitaEntity.class, id);
     }
 
-    public CitaEntity findByName(String name) {        
-        LOGGER.log(Level.INFO, "Consultando  cita con name= ", name);
-        TypedQuery<CitaEntity> q
-                = em.createQuery("select u from CitaEntity u where u.name = :name", CitaEntity.class);
+    public CitaEntity findByName(Long medicoId, String name) {        
+        LOGGER.log(Level.INFO, "Consultando  cita con name= {0} ", name);
+        TypedQuery<CitaEntity> q = em.createQuery("select u from CitaEntity u where u.medico.id = :medicoId and u.name = :name", CitaEntity.class);
+        q = q.setParameter("medicoId", medicoId);
         q = q.setParameter("name", name);
-        return q.getSingleResult();
+        List<CitaEntity> citasSimilarName = q.getResultList();
+        if (citasSimilarName.isEmpty() ) {
+            return null; 
+        } else {
+            return citasSimilarName.get(0);
+        }
     }
 
     public List<CitaEntity> findAll() {

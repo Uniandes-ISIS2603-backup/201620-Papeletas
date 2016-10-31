@@ -20,6 +20,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class MedicoEntity extends BaseEntity implements Serializable
 {
+    public final static int MAX_MED=103;
        
     @OneToMany(mappedBy = "medico",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CitaEntity> citas= new ArrayList<>();
@@ -31,7 +32,7 @@ public class MedicoEntity extends BaseEntity implements Serializable
     private EspecializacionEntity especializacion;
 
     
-    public List<CitaEntity> citas()
+    public List<CitaEntity> getCitas()
     {
         return citas;
     }
@@ -44,12 +45,6 @@ public class MedicoEntity extends BaseEntity implements Serializable
     {
         return especializacion;
     }
-     
-    
-    
-    
-     
-
-    } 
+ } 
 
 

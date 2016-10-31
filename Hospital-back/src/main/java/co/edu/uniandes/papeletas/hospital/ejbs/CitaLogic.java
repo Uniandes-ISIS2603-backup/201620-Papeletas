@@ -6,8 +6,11 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import co.edu.uniandes.papeletas.hospital.api.ICitaLogic;
+import co.edu.uniandes.papeletas.hospital.api.IMedicoLogic;
+import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
 import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import java.util.Calendar;
+import javax.persistence.NoResultException;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -21,18 +24,22 @@ import java.util.Calendar;
 @Stateless
 public class CitaLogic implements ICitaLogic {
     
-    @Inject private CitaPersistence persistence;
-
+    @Inject
+    private CitaPersistence persistence;
+    
+    @Inject
+    private IMedicoLogic medicoLogic;
 
     /**
-     * Obtiene la lista de los registros de Cita.
+     * Obtiene la lista de los registros de Cita que pertenecen a un medico.
      *
      * @return Colección de objetos de CitaEntity.
      * 
      */
     @Override
-    public List<CitaEntity> getCitas() {
-        return persistence.findAll();
+    public List<CitaEntity> getCitas(Long medicoid) {
+        MedicoEntity medico = medicoLogic.getMedico(medicoid);
+        return medico.getCitas();
     }
 
 
@@ -43,8 +50,13 @@ public class CitaLogic implements ICitaLogic {
      * @return Instancia de CitaEntity con los datos del Cita consultado.
      * 
      */
+    @Override
     public CitaEntity getCita(Long id) {
+        try{
         return persistence.find(id);
+          } catch (NoResultException e) {
+            throw new IllegalArgumentException("El Department no existe");
+        }
     }
 
     /**
@@ -54,8 +66,9 @@ public class CitaLogic implements ICitaLogic {
      * @return el primer empleado con ese nombre .
      * 
      */
-    public CitaEntity getCitaByName(String name) {
-        return persistence.findByName(name);
+    @Override
+    public CitaEntity getCitaByName(Long medicoid,String name) {
+        return persistence.findByName(medicoid,name);
     }
     /**
      * Se encarga de crear un Cita en la base de datos.
@@ -65,66 +78,19 @@ public class CitaLogic implements ICitaLogic {
      * 
      */
     @Override
-    public CitaEntity createCita(CitaEntity entity) throws HospitalLogicException
+    public CitaEntity createCita(Long medicoid, CitaEntity entity) throws HospitalLogicException
     {
-        CitaEntity exists = persistence.findByName(entity.getName());
-        Calendar c1 = Calendar.getInstance();
-        c1.setTime(entity.getFecha());
-        //fecha acctual
-        Calendar c2 = Calendar.getInstance();
-        if (exists != null) 
-        {
-            throw new HospitalLogicException("Ya existe una cita con ese nombre");
-        }
-        
-        else if(c1.before(c2)) 
-        {
-            throw new HospitalLogicException("La cita no puede exisitir en el pasado");
-        }   
-        else if(entity.getDuracion()<0)
-        {
-            throw new HospitalLogicException("La cita no puede exisitir en el pasado");
-        }
-        else
-        {
-            persistence.create(entity);
-        }
-        return entity;
+        MedicoEntity medico = medicoLogic.getMedico(medicoid);
+        entity.setMedico(medico);
+        return persistence.update(entity);
     }
 
-    /**
-     * Actualiza la información de una instancia de Cita.
-     *
-     * @param entity Instancia de CitaEntity con los nuevos datos.
-     * @return Instancia de CitaEntity con los datos actualizados.
-     * 
-     */
     @Override
-    public CitaEntity updateCita(CitaEntity entity) throws HospitalLogicException{
-        CitaEntity exists = persistence.findByName(entity.getName());
-        Calendar c1 = Calendar.getInstance();
-        c1.setTime(entity.getFecha());
-        //fecha acctual
-        Calendar c2 = Calendar.getInstance();
-        if (exists != null) 
-        {
-            throw new HospitalLogicException("Ya existe una cita con ese número");
-        }
-        
-        else if(c1.before(c2)) 
-        {
-            throw new HospitalLogicException("La cita no puede exisitir en el pasado");
-        }   
-        else if(entity.getDuracion()<0)
-        {
-            throw new HospitalLogicException("La cita no puede exisitir en el pasado");
-        }
-        else
-        {
-            return persistence.update(entity);
-        } 
+    public CitaEntity updateCita(Long medicoid, CitaEntity entity) {
+        MedicoEntity medico = medicoLogic.getMedico(medicoid);
+        entity.setMedico(medico);
+        return persistence.update(entity);
     }
-
     /**
      * Elimina una instancia de Cita de la base de datos.
      *
@@ -132,7 +98,8 @@ public class CitaLogic implements ICitaLogic {
      * 
      */
     @Override
-    public void deleteCita(Long id) {
-        persistence.delete(id);
+    public void deleteCita(Long id){
+        CitaEntity old = getCita(id);
+        persistence.delete(old.getId());
     }
 }
