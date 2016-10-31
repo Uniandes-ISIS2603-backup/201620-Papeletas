@@ -13,6 +13,7 @@ import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import co.edu.uniandes.papeletas.hospital.persistence.PacientePersistence;
 import co.edu.uniandes.papeletas.hospital.persistence.CitaPersistence;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import javax.inject.Inject;
@@ -50,6 +51,8 @@ public class PacienteLogicTest {
     
     private List<PacienteEntity> data = new ArrayList<PacienteEntity>();
     
+    private List<CitaEntity> citaData = new ArrayList<>();
+    
     @Deployment
     public static JavaArchive createDeplyment () {
         return ShrinkWrap.create(JavaArchive.class)
@@ -58,7 +61,6 @@ public class PacienteLogicTest {
                 .addPackage(IPacienteLogic.class.getPackage())
                 .addPackage(PacientePersistence.class.getPackage())
                 .addPackage(CitaEntity.class.getPackage())
-                .addPackage(CitaPersistence.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -94,9 +96,14 @@ public class PacienteLogicTest {
             em.persist(entity);
             data.add(entity);
         }
+        for (int i=0; i<3;i++){
+            CitaEntity citas = factory.manufacturePojo(CitaEntity.class);
+            em.persist(citas);
+            citaData.add(citas);
+        }
     }
     
-    @Test()
+    @Test
     public void createPaciente1() throws HospitalLogicException{
         PacienteEntity newEntity = factory.manufacturePojo(PacienteEntity.class);
         for (CitaEntity d : newEntity.getCitas()) {
@@ -184,11 +191,42 @@ public class PacienteLogicTest {
     
     @Test
     public void addCitas1()throws HospitalLogicException{
-        CitaEntity cita = factory.manufacturePojo(CitaEntity.class);
-        Date fechaCita = new Date(System.currentTimeMillis() + 600L*500L*300L);
-        List<CitaEntity> citas = data.get(0).getCitas();
-        cita.setFecha(fechaCita);
-        /**pacienteLogic.addCita(data.get(0).getId(), cita);*/
-        Assert.assertEquals(citas.size()+1,data.get(0).getCitas().size());
+        PacienteEntity entity = data.get(0);
+        CitaEntity citaEntity = citaData.get(1);
+        Date actual = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(actual);
+        calendar.add(Calendar.DAY_OF_YEAR,30);
+        System.out.println(actual.compareTo(calendar.getTime()));
+        citaEntity.setFecha(calendar.getTime());
+        CitaEntity response = pacienteLogic.addCita(entity.getId(), citaEntity.getId());
+        Assert.assertNotNull(response);
+        Assert.assertEquals(citaEntity.getId(), response.getId());
+    }
+    /**
+     * Test de error para cuando una cita no existe
+     * @throws Exception 
+     */
+    @Test(expected=HospitalLogicException.class)
+    public void addCitas2()throws Exception{
+        pacienteLogic.addCita(data.get(0).getId(),36542L);
+    }
+    
+    /**
+     * Test de error cuando se reserva una cita que ya pasó
+     * @throws Exception 
+     */
+    @Test(expected=HospitalLogicException.class)
+    public void addCitas3()throws Exception{
+        PacienteEntity entity = data.get(0);
+        CitaEntity citaEntity = citaData.get(0);
+        Date actual = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(actual);
+        calendar.add(Calendar.DAY_OF_YEAR,-30);
+        citaEntity.setFecha(calendar.getTime());
+        System.out.println(citaEntity.getFecha());
+        System.out.println(citaEntity.getId());
+        pacienteLogic.addCita(entity.getId(), citaEntity.getId());
     }
 }

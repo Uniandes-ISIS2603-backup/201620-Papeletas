@@ -27,6 +27,6 @@ public interface IPacienteLogic {
     
     public void deletePaciente (Long id);
     
-    public void addCita(Long id,Long cita) throws HospitalLogicException;
+    public CitaEntity addCita(Long id,Long cita) throws HospitalLogicException;
     
 }

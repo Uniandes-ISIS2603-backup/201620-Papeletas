@@ -6,6 +6,7 @@
 package co.edu.uniandes.papeletas.hospital.ejbs;
 
 
+import co.edu.uniandes.papeletas.hospital.api.ICitaLogic;
 import co.edu.uniandes.papeletas.hospital.api.IPacienteLogic;
 import co.edu.uniandes.papeletas.hospital.entities.CitaEntity;
 import co.edu.uniandes.papeletas.hospital.entities.PacienteEntity;
@@ -14,6 +15,7 @@ import co.edu.uniandes.papeletas.hospital.persistence.CitaPersistence;
 import co.edu.uniandes.papeletas.hospital.persistence.PacientePersistence;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
@@ -26,6 +28,9 @@ public class PacienteLogic implements IPacienteLogic {
     
     @Inject
     private PacientePersistence persistence;
+    
+    @Inject
+    private ICitaLogic citaLogic;
     
     /**
      * Obtiene la lista de los registros de Paciente.
@@ -111,30 +116,25 @@ public class PacienteLogic implements IPacienteLogic {
     /**
      * Se encarga de agregar una cita al paciente con ID dado
      * @param id ID del PacienteEntity al agregar la cita
-     * @param cita La cita para agregar a la lista de citas del Paciente
+     * @param idcita La cita para agregar a la lista de citas del Paciente
      * @throws HospitalLogicException 
      */
     @Override
-    public void addCita(Long id, Long cita) throws HospitalLogicException {
-        /**Date actual = new Date(); 
-         CitaEntity 
-        if(actual.compareTo(cita.getFecha())>0){
+    public CitaEntity addCita(Long id, Long idcita) throws HospitalLogicException {
+        PacienteEntity paciente = persistence.find(id);
+        CitaEntity cita = citaLogic.getCita(idcita);
+        Date actual = new Date();
+        if(cita==null){
+            throw new HospitalLogicException("La cita no existe");
+        }  
+        else if(actual.compareTo(cita.getFecha())<0){
+            System.out.println(cita.getFecha());
             throw new HospitalLogicException("La cita que está tratando de agregar tiene una fecha anterior a su reserva");
         }
-        else if(cita.getPaciente()!=null){
-            throw new HospitalLogicException("La cita que está tratando de reserva ya está reservada");
-        }
         else{
-            PacienteEntity entity = persistence.find(id);
-            CitaPersistence citaPersistence = new CitaPersistence();
-            cita.setPaciente(entity);
-            citaPersistence.update(cita);
-            List<CitaEntity> citas = entity.getCitas();
-            citas.add(cita);
-            entity.setCitas(citas);
-            persistence.update(entity);
+            System.out.println(cita.getFecha());
+            cita.setPaciente(paciente);
         }
-    
-    */
+        return cita;
     }
 }
