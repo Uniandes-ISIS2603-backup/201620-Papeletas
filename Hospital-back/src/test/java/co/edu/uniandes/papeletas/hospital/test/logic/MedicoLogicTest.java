@@ -149,7 +149,7 @@ public class MedicoLogicTest
     }
     
     @Test
-    public void updateConsultorioTest() {
+    public void updateMedicoTest() {
         MedicoEntity entity = data.get(0);
         MedicoEntity newEntity = factory.manufacturePojo(MedicoEntity.class);
         newEntity.setId(entity.getId());
