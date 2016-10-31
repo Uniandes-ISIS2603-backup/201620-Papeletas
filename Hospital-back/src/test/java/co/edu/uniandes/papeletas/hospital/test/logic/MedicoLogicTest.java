@@ -100,7 +100,7 @@ public class MedicoLogicTest
     }
    
     /**
-     * 
+     * Intenta crear un medic0o que supera la cantidad maxima de medicos permitidos
      * @throws Exception 
      */
      @Test(expected = HospitalLogicException.class)
@@ -115,7 +115,9 @@ public class MedicoLogicTest
      }
  
   
-     
+     /**
+      * Lista de todos los medicos
+      */
     @Test
     public void getMedicoTest() {
         List<MedicoEntity> list = medicoLogic.getMedicos();
@@ -131,6 +133,9 @@ public class MedicoLogicTest
         }
     }
     
+    /**
+     * Test para retornar un medico con un id dado
+     */
     @Test
     public void getMedicotest() {
         MedicoEntity entity = data.get(0);
@@ -140,6 +145,9 @@ public class MedicoLogicTest
 
     }
     
+    /**
+     * Test que prueba borrar un medico
+     */
     @Test
     public void deleteMedicotest() {
         MedicoEntity entity = data.get(1);
@@ -148,6 +156,9 @@ public class MedicoLogicTest
         Assert.assertNull(deleted);
     }
     
+    /**
+     * Test que prueba actualizar un medico
+     */
     @Test
     public void updateMedicoTest() {
         MedicoEntity entity = data.get(0);
