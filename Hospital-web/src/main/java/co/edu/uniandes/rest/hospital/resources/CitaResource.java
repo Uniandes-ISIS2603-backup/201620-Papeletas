@@ -6,6 +6,7 @@
 package co.edu.uniandes.rest.hospital.resources;
 import  co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import co.edu.uniandes.papeletas.hospital.api.ICitaLogic;
+import co.edu.uniandes.papeletas.hospital.api.IMedicoLogic;
 import co.edu.uniandes.papeletas.hospital.entities.CitaEntity;
 import co.edu.uniandes.rest.hospital.dtos.CitaDetailDTO;
 import co.edu.uniandes.rest.hospital.mocks.CitaMock;

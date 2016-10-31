@@ -7,6 +7,7 @@ package co.edu.uniandes.papeletas.hospital.test.persistence;
 
 import javax.inject.Inject;
 import co.edu.uniandes.papeletas.hospital.entities.CitaEntity;
+import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
 import co.edu.uniandes.papeletas.hospital.persistence.CitaPersistence;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -41,11 +42,15 @@ public class CitaPersistenceTest {
      */
     @Deployment 
     public static JavaArchive createDeployment(){
-        return ShrinkWrap.create(JavaArchive.class).addPackage(CitaEntity.class.getPackage())
+        return ShrinkWrap.create(JavaArchive.class)
+                .addPackage(CitaEntity.class.getPackage())
                 .addPackage(CitaPersistence.class.getPackage())
+                .addPackage(MedicoEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
+    
+    MedicoEntity fatherEntity;
     
     @Inject
     private CitaPersistence citaPersistence;
@@ -81,6 +86,7 @@ public class CitaPersistenceTest {
     
     private void clearData() {
         em.createQuery("delete from CitaEntity").executeUpdate();
+        em.createQuery("delete  from MedicoEntity").executeUpdate();
     }
     
     /**
@@ -90,9 +96,12 @@ public class CitaPersistenceTest {
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
+        fatherEntity = factory.manufacturePojo(MedicoEntity.class);
+        fatherEntity.setId(1L);
+        em.persist(fatherEntity);
         for (int i = 0; i < 3; i++) {
             CitaEntity entity = factory.manufacturePojo(CitaEntity.class);
-            
+            entity.setMedico(fatherEntity);
             em.persist(entity);
             data.add(entity);
         }
@@ -116,13 +125,11 @@ public class CitaPersistenceTest {
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
     }
 
-    /**
-     * Test of findByName method, of class CitaPersistence.
-     *
+    
     @Test
     public void getCitaByNameTest() throws Exception {
         CitaEntity entity = data.get(0);
-        CitaEntity newEntity = citaPersistence.findByName(entity.getName());
+        CitaEntity newEntity = citaPersistence.findByName(fatherEntity.getId(),entity.getName());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Calendar c1 = Calendar.getInstance();
@@ -132,14 +139,16 @@ public class CitaPersistenceTest {
         Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
         Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
-    }/
+    }
 
     /**
-     * Test of findAll method, of class CitaPersistence.
+     * Prueba para consultar la lista de Citas.
+     *
+     *
      */
     @Test
-    public void getCitasTest() throws Exception {
-        List<CitaEntity> list = citaPersistence.findAll();
+    public void getCitasInCompanyTest() {
+        List<CitaEntity> list = citaPersistence.findAllInCompany(fatherEntity.getId());
         Assert.assertEquals(data.size(), list.size());
         for (CitaEntity ent : list) {
             boolean found = false;
@@ -159,7 +168,7 @@ public class CitaPersistenceTest {
     public void createCitaTest() throws Exception {
         PodamFactory factory = new PodamFactoryImpl();
         CitaEntity newEntity = factory.manufacturePojo(CitaEntity.class);
-
+        newEntity.setMedico(fatherEntity);
         CitaEntity result = citaPersistence.create(newEntity);
 
         Assert.assertNotNull(result);

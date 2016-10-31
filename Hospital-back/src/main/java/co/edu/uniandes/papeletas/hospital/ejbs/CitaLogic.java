@@ -80,9 +80,30 @@ public class CitaLogic implements ICitaLogic {
     @Override
     public CitaEntity createCita(Long medicoid, CitaEntity entity) throws HospitalLogicException
     {
-        MedicoEntity medico = medicoLogic.getMedico(medicoid);
-        entity.setMedico(medico);
-        return persistence.update(entity);
+        CitaEntity alreadyExist = getCitaByName(medicoid, entity.getName());
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(entity.getFecha());
+        //fecha actual
+        Calendar c2 = Calendar.getInstance();
+        if (alreadyExist != null) 
+        {
+            throw new HospitalLogicException("Ya existe una cita con ese nombre en la misma compañía ");
+        } 
+        if(c1.before(c2))
+        {
+            throw new HospitalLogicException("La cita no puede ser en el pasado");
+        }
+        if(entity.getDuracion()<0)
+        {
+            throw new HospitalLogicException("Ya duracion no puede ser menor a 0 ");
+        }
+       
+            MedicoEntity  medico = medicoLogic.getMedico(medicoid);
+            entity.setMedico(medico);
+
+            entity = persistence.create(entity);
+        
+        return entity;
     }
 
     @Override

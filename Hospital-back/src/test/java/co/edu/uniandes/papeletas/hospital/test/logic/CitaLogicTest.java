@@ -79,6 +79,7 @@ public class CitaLogicTest {
                 .addPackage(CitaLogic.class.getPackage())
                 .addPackage(ICitaLogic.class.getPackage())
                 .addPackage(CitaPersistence.class.getPackage())
+                .addPackage(MedicoEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -145,6 +146,7 @@ public class CitaLogicTest {
          Date hoy = new Date();
          Date mañana = new Date(hoy.getTime()+ 86400000);
          newEntity.setFecha(mañana);
+        newEntity.setDuracion(5);
         CitaEntity result = citaLogic.createCita(fatherEntity.getId(),newEntity);
         Assert.assertNotNull(result);
         CitaEntity entity = em.find(CitaEntity.class, result.getId());
@@ -161,6 +163,7 @@ public class CitaLogicTest {
     public void createCitaTest2() throws HospitalLogicException {
         CitaEntity newEntity = factory.manufacturePojo(CitaEntity.class);
         newEntity.setName(data.get(0).getName());
+        newEntity.setDuracion(5);
         CitaEntity result = citaLogic.createCita(fatherEntity.getId(),newEntity);
     }
     
@@ -187,6 +190,7 @@ public class CitaLogicTest {
         Date hoy = new Date();
         Date ayer = new Date( hoy.getTime()-86400000);
         newEntity.setFecha(ayer);
+        newEntity.setDuracion(5);
         CitaEntity result = citaLogic.createCita(fatherEntity.getId(),newEntity);
     }
     /**

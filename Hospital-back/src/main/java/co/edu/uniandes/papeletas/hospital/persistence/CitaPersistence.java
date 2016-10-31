@@ -50,6 +50,12 @@ public class CitaPersistence {
         return q.getResultList();
     }
 
+    public List<CitaEntity> findAllInCompany(Long medicoId) {
+    LOGGER.log(Level.INFO, "Consultando todos las citas de la medico id={0}", medicoId);
+    TypedQuery q = em.createQuery("select d from CitaEntity d  where d.medico.id = :medicoId", CitaEntity.class);
+    q = q.setParameter("medicoId", medicoId);
+    return q.getResultList();
+    }
     public CitaEntity create(CitaEntity entity) {
         LOGGER.info("Creando un  cita nuevo");
         em.persist(entity);
