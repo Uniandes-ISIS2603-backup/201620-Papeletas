@@ -91,7 +91,7 @@ public class MedicoLogicTest
     *Crea un medico sin errores
     */
     @Test
-    public void createConsultorioTest1 () throws HospitalLogicException {
+    public void createMedicoTest1 () throws HospitalLogicException {
         MedicoEntity newEntity = factory.manufacturePojo(MedicoEntity.class);
         MedicoEntity result = medicoLogic.createMedico(newEntity);
         Assert.assertNotNull(result);     
@@ -104,7 +104,7 @@ public class MedicoLogicTest
      * @throws Exception 
      */
      @Test(expected = HospitalLogicException.class)
-     public void createConsultorioTest3 () throws Exception {
+     public void createMedicoTest2 () throws Exception {
          MedicoEntity newEntity = factory.manufacturePojo(MedicoEntity.class);
          for (int i = data.size(); i < MedicoEntity.MAX_MED; i++) {
              MedicoEntity entity = factory.manufacturePojo(MedicoEntity.class);
