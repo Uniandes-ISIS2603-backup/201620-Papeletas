@@ -6,6 +6,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import co.edu.uniandes.papeletas.hospital.api.ICitaLogic;
+import co.edu.uniandes.papeletas.hospital.api.IMedicoLogic;
+import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
 import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import java.util.Calendar;
 import javax.persistence.NoResultException;

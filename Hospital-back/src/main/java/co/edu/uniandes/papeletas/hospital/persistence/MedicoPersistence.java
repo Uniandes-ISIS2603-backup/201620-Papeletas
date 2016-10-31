@@ -14,6 +14,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -56,6 +57,14 @@ public class MedicoPersistence {
         LOGGER.log(Level.INFO, "Borrando  medico con id={0}", id);
         MedicoEntity entity = em.find(MedicoEntity.class, id);
         em.remove(entity);
+    }
+    
+      public MedicoEntity findByName(String name){
+         LOGGER.log(Level.INFO, "Consultando medico con name = {0}", name);
+        TypedQuery<MedicoEntity> q
+                = em.createQuery("select u from MedicoEntity u where u.name = :name", MedicoEntity.class);
+        q = q.setParameter("name", name); 
+        return q.getSingleResult();
     }
 
 }

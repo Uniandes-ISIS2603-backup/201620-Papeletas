@@ -8,6 +8,7 @@ package co.edu.uniandes.papeletas.hospital.test.logic;
 import co.edu.uniandes.papeletas.hospital.ejbs.CitaLogic;
 import co.edu.uniandes.papeletas.hospital.api.ICitaLogic;
 import co.edu.uniandes.papeletas.hospital.entities.CitaEntity;
+import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
 import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import co.edu.uniandes.papeletas.hospital.persistence.CitaPersistence;
 import java.util.ArrayList;
