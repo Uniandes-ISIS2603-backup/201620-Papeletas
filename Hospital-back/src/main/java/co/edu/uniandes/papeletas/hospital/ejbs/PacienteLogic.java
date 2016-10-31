@@ -120,21 +120,50 @@ public class PacienteLogic implements IPacienteLogic {
      * @throws HospitalLogicException 
      */
     @Override
-    public CitaEntity addCita(Long id, Long idcita) throws HospitalLogicException {
+    public CitaEntity addCita(Long id,CitaEntity cita) throws HospitalLogicException {
         PacienteEntity paciente = persistence.find(id);
-        CitaEntity cita = citaLogic.getCita(idcita);
         Date actual = new Date();
         if(cita==null){
             throw new HospitalLogicException("La cita no existe");
         }  
-        else if(actual.compareTo(cita.getFecha())<0){
-            System.out.println(cita.getFecha());
+        else if(cita.getFecha().before(actual)){
             throw new HospitalLogicException("La cita que está tratando de agregar tiene una fecha anterior a su reserva");
         }
         else{
-            System.out.println(cita.getFecha());
             cita.setPaciente(paciente);
+            List<CitaEntity> citas = paciente.getCitas();
+            citas.add(cita);
+            paciente.setCitas(citas);
         }
         return cita;
+    }
+    /**
+     * Se remuieve una cita
+     * @param idPaciente
+     * @param idCita 
+     */
+    @Override
+    public void removeCita(Long idPaciente, Long idCita) {
+        CitaEntity cita = citaLogic.getCita(idCita);
+        cita.setPaciente(null);
+    }
+
+    @Override
+    public List<CitaEntity> getCitas(Long id) {
+        PacienteEntity paciente = persistence.find(id);
+        return paciente.getCitas();
+    }
+
+    @Override
+    public CitaEntity getCita(Long id, Long idCita) {
+        List<CitaEntity> list = persistence.find(id).getCitas();
+        CitaEntity citaEntity = new CitaEntity();
+        citaEntity.setId(idCita);
+        int index = list.indexOf(citaEntity);
+        System.out.println(index);
+        if (index >= 0) {
+            return list.get(index);
+        }
+        return null;
     }
 }

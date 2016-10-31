@@ -5,7 +5,9 @@
  */
 package co.edu.uniandes.papeletas.hospital.test.logic;
 
+import co.edu.uniandes.papeletas.hospital.api.ICitaLogic;
 import co.edu.uniandes.papeletas.hospital.api.IPacienteLogic;
+import co.edu.uniandes.papeletas.hospital.ejbs.CitaLogic;
 import co.edu.uniandes.papeletas.hospital.ejbs.PacienteLogic;
 import co.edu.uniandes.papeletas.hospital.entities.CitaEntity;
 import co.edu.uniandes.papeletas.hospital.entities.PacienteEntity;
@@ -53,6 +55,8 @@ public class PacienteLogicTest {
     
     private List<CitaEntity> citaData = new ArrayList<>();
     
+    private ICitaLogic citaLogic = new CitaLogic();
+    
     @Deployment
     public static JavaArchive createDeplyment () {
         return ShrinkWrap.create(JavaArchive.class)
@@ -61,6 +65,7 @@ public class PacienteLogicTest {
                 .addPackage(IPacienteLogic.class.getPackage())
                 .addPackage(PacientePersistence.class.getPackage())
                 .addPackage(CitaEntity.class.getPackage())
+                .addPackage(ICitaLogic.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml", "persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml", "beans.xml");
     }
@@ -174,7 +179,7 @@ public class PacienteLogicTest {
     }
     
     @Test
-    public void updateCompanyTest() {
+    public void updatePacienteTest() {
         PacienteEntity entity = data.get(0);
         PacienteEntity pojoEntity = factory.manufacturePojo(PacienteEntity.class);
 
@@ -197,9 +202,8 @@ public class PacienteLogicTest {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(actual);
         calendar.add(Calendar.DAY_OF_YEAR,30);
-        System.out.println(actual.compareTo(calendar.getTime()));
         citaEntity.setFecha(calendar.getTime());
-        CitaEntity response = pacienteLogic.addCita(entity.getId(), citaEntity.getId());
+        CitaEntity response = pacienteLogic.addCita(entity.getId(), citaEntity);
         Assert.assertNotNull(response);
         Assert.assertEquals(citaEntity.getId(), response.getId());
     }
@@ -209,7 +213,7 @@ public class PacienteLogicTest {
      */
     @Test(expected=HospitalLogicException.class)
     public void addCitas2()throws Exception{
-        pacienteLogic.addCita(data.get(0).getId(),36542L);
+        pacienteLogic.addCita(data.get(0).getId(),null);
     }
     
     /**
@@ -225,8 +229,33 @@ public class PacienteLogicTest {
         calendar.setTime(actual);
         calendar.add(Calendar.DAY_OF_YEAR,-30);
         citaEntity.setFecha(calendar.getTime());
-        System.out.println(citaEntity.getFecha());
-        System.out.println(citaEntity.getId());
-        pacienteLogic.addCita(entity.getId(), citaEntity.getId());
+        pacienteLogic.addCita(entity.getId(), citaEntity);
+    }
+    
+    @Test
+    public void removeCitaTest() {
+        pacienteLogic.removeCita(data.get(0).getId(),citaData.get(0).getId());
+        CitaEntity response = pacienteLogic.getCita(data.get(0).getId(), citaData.get(0).getId());
+        Assert.assertNull(response);
+    }
+    
+    @Test
+    public void getCitaTest() throws HospitalLogicException {
+        PacienteEntity entity = data.get(0);
+        CitaEntity citaEntity = citaData.get(0);
+        Date actual = new Date();
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(actual);
+        calendar.add(Calendar.DAY_OF_YEAR,30);
+        citaEntity.setFecha(calendar.getTime());
+        pacienteLogic.addCita(entity.getId(), citaEntity);
+        CitaEntity response = pacienteLogic.getCita(entity.getId(), citaEntity.getId());
+        Assert.assertEquals(citaEntity.getId(), response.getId());
+    }
+    
+    @Test
+    public void listCitasTest() {
+        List<CitaEntity> list = pacienteLogic.getCitas(data.get(0).getId());
+        Assert.assertEquals(5, list.size());
     }
 }

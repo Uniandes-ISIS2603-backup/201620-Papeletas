@@ -26,8 +26,8 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     
     private Long identificacionCivil;
     
-    @PodamExclude
-    @OneToMany(mappedBy = "paciente")
+    
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CitaEntity> citas = new ArrayList<>();
     
 
