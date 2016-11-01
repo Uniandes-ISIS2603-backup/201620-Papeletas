@@ -5,15 +5,20 @@
  */
 package co.edu.uniandes.rest.hospital.resources;
 
+import co.edu.uniandes.papeletas.hospital.api.IMedicoLogic;
+import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
+import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
 import co.edu.uniandes.rest.hospital.dtos.EspecializacionDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
+import co.edu.uniandes.rest.hospital.dtos.MedicoDetailDTO;
 import co.edu.uniandes.rest.hospital.exceptions.EspecializacionException;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import co.edu.uniandes.rest.hospital.mocks.EspecializacionMock;
-import co.edu.uniandes.rest.hospital.mocks.MedicoMock;
+import java.util.ArrayList;
 
 import java.util.List;
+import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -31,22 +36,32 @@ import javax.ws.rs.Produces;
 public class MedicoResource {
     
     
-    /**
-     * Clase MedicoMock
-     */
-     MedicoMock medico= new MedicoMock();
+    @Inject
+    private IMedicoLogic medico;
     
  
  /**
-  * retorna una lista con los medicos y sus datos
+  * retorna una lista con los medicos y sus datos de entity a dto
   * @return lista de medicos
   * @throws MedicoException si no hay medicso en la lista 
   */ 
+    
+    public List<MedicoDetailDTO> getMedicosDTO(List <MedicoEntity> entityList)
+    {
+      List<MedicoDetailDTO> list = new ArrayList();
+       for (MedicoEntity entity : entityList) {
+            list.add(new MedicoDetailDTO(entity));
+        }
+        return list;
+    
+    }
+    
+    
     @GET
     @Path("medico")
-    public List<MedicoDTO> getMedicos() throws MedicoException
+    public List<MedicoDetailDTO> getMedicos()
     {
-     return medico.getMedico();
+      return getMedicosDTO(medico.getMedicos());
     }
     /**
      * Retorna un medico dado su ID
@@ -58,7 +73,7 @@ public class MedicoResource {
     @Path("medico/{id: \\d+}") 
     public MedicoDTO getMedicoID(@PathParam("id")Long id)throws MedicoException
     {
-        return medico.getMedID(id);
+        return new MedicoDetailDTO(medico.getMedico(id));
     }
     
     /**
@@ -69,9 +84,10 @@ public class MedicoResource {
      */
     @POST
     @Path("medico")
-    public MedicoDTO createMedico(MedicoDTO medi)throws MedicoException
+    public MedicoDTO createMedico(MedicoDTO medi)throws HospitalLogicException
     {
-     return medico.createMedico(medi);
+        
+     return new MedicoDetailDTO(medico.createMedico(medi.toEntity()));
     }
     
     
@@ -84,7 +100,7 @@ public class MedicoResource {
     @Path("medico/{id: \\d+}")
     public void deleteMedico(@PathParam("id")Long id) throws MedicoException
     {
-         medico.deleteMedico(id);
+        medico.deleteMedico(id);
     }
     
     /**
@@ -97,59 +113,11 @@ public class MedicoResource {
     @Path ("medico/{id: \\d+}")
     public MedicoDTO updateMedico(MedicoDTO medicoN) throws MedicoException
     {
-        return medico.updateMedico(medicoN);
+        return  new MedicoDetailDTO(medico.updateMedico(medicoN.toEntity()));
     }
     
     
-    @GET
-    @Path("medico/{id: \\d+}/promedio") 
-    public double calcularPromedioMedico(@PathParam("id")Long id)throws MedicoException
-    {
-        return  medico.calcularPromedioCitaMedico(id);
-    }
     
-    @GET
-    @Path("medico/{id: \\d+}/listaespera")
-    public List<CitaDTO> getListaEspera (@PathParam("id") Long id) throws MedicoException {
-        return medico.getListaEsperaMedico(id);
-    }
-    
-    @DELETE
-    @Path("medico/{idMed: \\d+}/listaespera/{idCita: \\d+}")
-    public void createCitaListaEspera(@PathParam("idMed") Long idMed, @PathParam("idCita") long idCita) throws MedicoException {
-        medico.deleteCitaListaEspera(idMed, idCita);
-    }
-    
-    @POST
-    @Path("medico/{idMed: \\d+}/listaespera")
-    public CitaDTO createCitaListaEspera(@PathParam ("idMed") Long id, CitaDTO cita) throws MedicoException {
-        return medico.agregarCitaListaEspera(id, cita);
-    }
-    /*
-    * 
-    */
-    
-    @GET
-    @Path("medico/{nombre}")
-    public List<MedicoDTO> darMedSpec(@PathParam("nombre")String id)
-    {
-        return medico.listaPorSpec(id);
-    }
-    
-    @GET
-    @Path("medico/{id: \\d+}/especializacion")
-    public EspecializacionDTO especializacionMed(@PathParam("id") Long id) throws MedicoException
-    {
-        return medico.getMedID(id).getEspecializacion();
-    }
-    
-    @PUT
-    @Path("medico/{id: \\d+}/modificar/{especializacion: \\d+}")
-    public EspecializacionDTO ModificarEspecializacionMed(@PathParam("id") Long id, @PathParam("especializacion") int spec) throws MedicoException, EspecializacionException
-    {
-        EspecializacionMock x = new EspecializacionMock();
-        return medico.getMedID(id).updateEspecialidad(x.getSpecID(spec));
-    }
     
 
     

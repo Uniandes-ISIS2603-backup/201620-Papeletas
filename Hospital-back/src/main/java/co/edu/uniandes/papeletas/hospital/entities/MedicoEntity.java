@@ -30,6 +30,8 @@ public class MedicoEntity extends BaseEntity implements Serializable
     
     @ManyToOne
     private EspecializacionEntity especializacion;
+    
+    
 
     
     public List<CitaEntity> getCitas()

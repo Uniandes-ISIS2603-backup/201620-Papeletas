@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
+import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import co.edu.uniandes.rest.hospital.exceptions.TurnoLogicException;
 import co.edu.uniandes.rest.hospital.mocks.CitaMock;
@@ -33,7 +34,7 @@ public class MedicoDTO {
      * Especialidad del medico
      */
     
-    private EspecializacionDTO especialidad;
+    private List<EspecializacionDTO> especialidad;
     
     /**
      * Lista de espera del médico
@@ -66,13 +67,27 @@ public class MedicoDTO {
     /**
      * Constructor vacio
      */
+    
     public MedicoDTO()
     {
         listaEspera = new ArrayList <>();
-        turnos = new ArrayList<>();
+        turnos=new ArrayList<>();
         cita=new CitaMock();
         promedio=0.0;
-        especialidad=null;
+        especialidad=new ArrayList<>();
+    }
+   
+    
+    
+    public MedicoDTO(MedicoEntity entity)
+    {
+        listaEspera = new ArrayList <>();
+        turnos = new ArrayList<>();
+        especialidad=new ArrayList<>();
+        cita=new CitaMock();
+        promedio=0.0;
+        this.nombre=entity.getName();
+        this.id=entity.getId();
     }
     /**
      * 
@@ -82,7 +97,7 @@ public class MedicoDTO {
      * @param espe 
      */
 
-    public MedicoDTO(String nombre, Long id, EspecializacionDTO espe) {
+    public MedicoDTO(String nombre, Long id, List espe) {
         super();
         this.nombre = nombre;
         this.id = id;
@@ -91,6 +106,19 @@ public class MedicoDTO {
         listaEspera = new ArrayList <>();
         turnos = new ArrayList<>();
         cita=new CitaMock();
+    }
+    
+     /**
+     * Convierte un objeto CitaDTO a CitaEntity.
+     *
+     * @return Nueva objeto CitaEntity.
+     * 
+     */
+    public MedicoEntity toEntity() {
+        MedicoEntity entity = new MedicoEntity();
+        entity.setName(this.getNombre());
+        entity.setId(this.getId());
+        return entity;
     }
 
     /**
@@ -134,12 +162,12 @@ public class MedicoDTO {
  * 
  * @return 
  */
-    public EspecializacionDTO getEspecializacion()
+    public List getEspecializacion()
     {
         return especialidad;
     }
     
-    public void setEspecialidad(EspecializacionDTO e)
+    public void setEspecialidad(List e)
     {
         this.especialidad=e;
     }
@@ -233,7 +261,7 @@ public class MedicoDTO {
     }
 
     
-    public EspecializacionDTO updateEspecialidad(EspecializacionDTO spec)
+    public List updateEspecialidad(List spec)
     {
         especialidad=spec;
         return especialidad;
