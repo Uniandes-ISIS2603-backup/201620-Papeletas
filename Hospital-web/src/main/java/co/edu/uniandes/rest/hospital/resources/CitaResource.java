@@ -55,14 +55,14 @@ public class CitaResource {
         }
         return list;
     }
-
+/**
     public void existsMedico(Long citaId) {
         MedicoDetailDTO cita = new MedicoDetailDTO(citaLogic.getMedico(citaId));
         if (cita == null) {
             throw new WebApplicationException("La medico no existe", 404);
         }
     }
-
+*/
     public void existsCita(Long citaId) {
         CitaDetailDTO cita = new CitaDetailDTO(citaLogic.getCita(citaId));
         if (cita == null) {
@@ -81,7 +81,7 @@ public class CitaResource {
      */
     @GET
     public List<CitaDetailDTO> getCitas() {
-        existsMedico(medicoId);
+        //existsMedico(medicoId);
 
         List<CitaEntity> citas = citaLogic.getCitas(medicoId);
 
@@ -100,7 +100,7 @@ public class CitaResource {
     @GET
     @Path("{citaId: \\d+}")
     public CitaDetailDTO getCita(@PathParam("citaId") Long citaId) {
-        existsMedico(medicoId);
+       // existsMedico(medicoId);
         CitaEntity entity = citaLogic.getCita(citaId);
         if (entity.getMedico() != null && !medicoId.equals(entity.getMedico().getId())) {
             throw new WebApplicationException(404);
@@ -118,7 +118,7 @@ public class CitaResource {
      */
     @POST
         public CitaDetailDTO createCita(CitaDetailDTO dto) throws HospitalLogicException {
-        existsMedico(medicoId);
+        //existsMedico(medicoId);
         return new CitaDetailDTO(citaLogic.createCita(medicoId, dto.toEntity()));
     }
 
@@ -134,7 +134,7 @@ public class CitaResource {
     @PUT
     @Path("{citaId: \\d+}")
     public CitaDetailDTO updateCita(@PathParam("citaId") Long citaId, CitaDetailDTO dto) {
-        existsMedico(medicoId);
+        //existsMedico(medicoId);
         existsCita(citaId);
         CitaEntity entity = dto.toEntity();
         entity.setId(citaId);
@@ -152,7 +152,7 @@ public class CitaResource {
     @Path("{citaId: \\d+}")
     public void deleteCita(@PathParam("citaId") Long citaId) {
 
-        existsMedico(medicoId);
+       // existsMedico(medicoId);
         existsCita(citaId);
         citaLogic.deleteCita(citaId);
     }
