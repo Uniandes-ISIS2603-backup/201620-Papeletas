@@ -5,11 +5,20 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
+import co.edu.uniandes.papeletas.hospital.entities.ConsultorioEntity;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author jf.mendez11
  */
+@XmlRootElement
 public class ConsultorioDTO {
+    
+    /**
+     * Nombre del consolturio (no aplica)
+     */
+    private String name;
     
     /**
      * Id del consultorio
@@ -19,7 +28,7 @@ public class ConsultorioDTO {
     /**
      * Número del consultorio
      */
-    private Long numero;
+    private Integer numero;
     
     /**
      * Constructor de la clase
@@ -29,14 +38,22 @@ public class ConsultorioDTO {
     
     /**
      * Constructor de la clase
-     * @param id id del consultorio
-     * @param libre si el consultorio está libre o no.
      */
-    public ConsultorioDTO (Long id, Long numero)
+    public ConsultorioDTO (ConsultorioEntity entity)
     {
-        super();
-        this.id = id;
-        this.numero = numero;
+        if (entity != null) {
+            this.name = entity.getName();
+            this.id = entity.getId();
+            this.numero = entity.getNumero();
+        }
+    }
+    
+    public ConsultorioEntity toEntity () {
+        ConsultorioEntity entity = new ConsultorioEntity();
+        entity.setId(this.getId());
+        entity.setName(this.getName());
+        entity.setNumero(this.getNumero());
+        return entity;
     }
     
     /**
@@ -61,7 +78,7 @@ public class ConsultorioDTO {
      * Indica el número del consultorio
      * @return el número del consultorio
      */
-    public Long getNumero ()
+    public Integer getNumero ()
     {
         return numero;
     }
@@ -70,8 +87,16 @@ public class ConsultorioDTO {
      * Cambia el número del consultorio
      * @param numero nuevo estado del consultorio
      */
-    public void setNumero (Long numero)
+    public void setNumero (Integer numero)
     {
         this.numero = numero;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public void setName (String name) {
+        this.name = name;
     }
 }

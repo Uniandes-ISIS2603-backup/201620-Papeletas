@@ -5,11 +5,14 @@
  */
 package co.edu.uniandes.rest.hospital.resources;
 
-import co.edu.uniandes.rest.hospital.exceptions.ConsultorioException;
-import co.edu.uniandes.rest.hospital.dtos.ConsultorioDTO;
-import co.edu.uniandes.rest.hospital.mocks.ConsultorioMock;
+import co.edu.uniandes.papeletas.hospital.api.IConsultorioLogic;
+import co.edu.uniandes.papeletas.hospital.entities.ConsultorioEntity;
+import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
+import co.edu.uniandes.rest.hospital.dtos.ConsultorioDetailDTO;
+import java.util.ArrayList;
 
 import java.util.List;
+import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -28,57 +31,63 @@ import javax.ws.rs.QueryParam;
 @Produces("application/json")
 public class ConsultorioResource {
     
-    /**
-     * Mock del consultorio
-     */
-    ConsultorioMock consultorio = new ConsultorioMock();
+    @Inject
+    private IConsultorioLogic consultorioLogic;
     
     /**
-     * Obtiene la lista de consultorios
-     * @return lista de consultorios
-     * @throws ConsultorioException Si la lista no existe
+     * Obtiene la lista de consultorios, de entity a dto
      */
-    @GET
-    public List<ConsultorioDTO> getConsultorios () throws ConsultorioException 
+    private List<ConsultorioDetailDTO> listEntity2DTO (List <ConsultorioEntity> entityList) 
     {
-        return consultorio.getConsultorios();
+        List<ConsultorioDetailDTO> list = new ArrayList <> (); 
+        for (ConsultorioEntity entity : entityList) {
+            list.add(new ConsultorioDetailDTO(entity));
+        }
+        return list;
+    }
+    
+    @GET
+    public List<ConsultorioDetailDTO> getConsultorios () {
+        return listEntity2DTO(consultorioLogic.getConsultorios());
     }
     
     /**
      * Obtiene el consultorio con el id especificado por parametro
      * @param id id del consultorio que se quiere buscar
      * @return el consultorio con el id que entra por parametro
-     * @throws ConsultorioException si no existe un consultorio con el id especificado o no existe la lista
      */
     @GET
     @Path ("{id: \\d+}")
-    public ConsultorioDTO getConsultorio (@PathParam ("id") Long id) throws ConsultorioException
-    {
-        return consultorio.getConsultorioId(id);
+    public ConsultorioDetailDTO getConsultorio (@PathParam ("id") Long id) {
+        return new ConsultorioDetailDTO(consultorioLogic.getConsultorio(id));
+    }
+    
+    @GET
+    @Path ("/byNumber")
+    public ConsultorioDetailDTO getConsultorio (@QueryParam("number") Integer number) {
+        return new ConsultorioDetailDTO(consultorioLogic.getConsultorioByNumber(number));
     }
     
     /**
      * Crea un nuevo consultorio y lo agrea a la lista
      * @param newConsultorio consultorio que se quiere agregat
      * @return Consultorio nuevo
-     * @throws ConsultorioException si ya existe un consultorio con el ese id
      */
     @POST
-    public ConsultorioDTO createConsultorio (ConsultorioDTO newConsultorio) throws ConsultorioException
+    public ConsultorioDetailDTO createConsultorio (ConsultorioDetailDTO newConsultorio) throws HospitalLogicException
     {
-        return consultorio.createConsultorio(newConsultorio);
+        return new ConsultorioDetailDTO(consultorioLogic.createConsultorio(newConsultorio.toEntity()));
     }
     
     /**
      * Borra el consultorio con el id especificado
      * @param id ide del consultorio que se quiere borrar.
-     * @throws ConsultorioException si no existe un consultorio con el id especificado
      */
     @DELETE
     @Path ("{id: \\d+}")
-    public void deleteConsultorio (@PathParam("id") Long id) throws ConsultorioException
+    public void deleteConsultorio (@PathParam("id") Long id)
     {
-        consultorio.deleteConsultorio(id);
+        consultorioLogic.deleteConsultorio(id);
     }
     
     /**
@@ -86,13 +95,14 @@ public class ConsultorioResource {
      * @param id id del consultorio que se quiere actualizar
      * @param consul consultorio actualizado
      * @return el consultorio actualizado
-     * @throws ConsultorioException Si la información del consultorio está incompleta, el consultorio con el id no existe o se ingresa un índice fuera del rango
      */
     @PUT
     @Path ("{id: \\d+}")
-    public ConsultorioDTO updateConsultorio (@PathParam("id") Long id, ConsultorioDTO consul) throws ConsultorioException
+    public ConsultorioDetailDTO updateConsultorio (@PathParam("id") Long id, ConsultorioDetailDTO consul)
     {
-        return consultorio.updateConsultorio(id, consul);
+        ConsultorioEntity entity = consul.toEntity();
+        entity.setId(id);
+        return new ConsultorioDetailDTO(consultorioLogic.updateConsultorio(entity));
     }
     
 }
