@@ -8,7 +8,6 @@ package co.edu.uniandes.rest.hospital.dtos;
 import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
 import co.edu.uniandes.rest.hospital.exceptions.TurnoLogicException;
-import co.edu.uniandes.rest.hospital.mocks.CitaMock;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -55,11 +54,8 @@ public class MedicoDTO {
     /**
      * Relacion con la clase ciita
      */
-    private CitaMock cita;
     
-    /**
-     * 
-     */
+   
     
     private Double promedio;
     
@@ -72,7 +68,6 @@ public class MedicoDTO {
     {
         listaEspera = new ArrayList <>();
         turnos=new ArrayList<>();
-        cita=new CitaMock();
         promedio=0.0;
         especialidad=new ArrayList<>();
     }
@@ -84,7 +79,6 @@ public class MedicoDTO {
         listaEspera = new ArrayList <>();
         turnos = new ArrayList<>();
         especialidad=new ArrayList<>();
-        cita=new CitaMock();
         promedio=0.0;
         this.nombre=entity.getName();
         this.id=entity.getId();
@@ -105,7 +99,6 @@ public class MedicoDTO {
         this.cantidadCitas=0;
         listaEspera = new ArrayList <>();
         turnos = new ArrayList<>();
-        cita=new CitaMock();
     }
     
      /**
