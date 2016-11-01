@@ -9,7 +9,6 @@ import co.edu.uniandes.papeletas.hospital.api.ICitaLogic;
 import co.edu.uniandes.papeletas.hospital.api.IMedicoLogic;
 import co.edu.uniandes.papeletas.hospital.entities.CitaEntity;
 import co.edu.uniandes.rest.hospital.dtos.CitaDetailDTO;
-import co.edu.uniandes.rest.hospital.mocks.CitaMock;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Inject;
@@ -32,10 +31,6 @@ import javax.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 @Path("/medico/{idMedico: \\d+}/citas")
 public class CitaResource {
-     /**
-     * Mock del cita
-     */
-    CitaMock cita = new CitaMock();
     
     @Inject
     private ICitaLogic citaLogic;
