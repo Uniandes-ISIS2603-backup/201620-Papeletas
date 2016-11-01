@@ -11,7 +11,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
-import uk.co.jemos.podam.common.PodamBooleanValue;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -27,7 +26,7 @@ public class PacienteEntity extends BaseEntity implements Serializable {
     private Long identificacionCivil;
     
     
-    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "paciente",cascade = CascadeType.ALL, orphanRemoval = false)
     private List<CitaEntity> citas = new ArrayList<>();
     
 

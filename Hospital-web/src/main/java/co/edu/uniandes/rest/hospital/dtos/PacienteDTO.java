@@ -5,16 +5,20 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
+import co.edu.uniandes.papeletas.hospital.entities.PacienteEntity;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author df.castro12
  */
+@XmlRootElement
 public class PacienteDTO {
     private Long id;
     private String name;
     private String lastName;
-    private int age;
-    private int satisfaction;
+    private Long identificacionCivil;
+    
     
     
 
@@ -25,21 +29,34 @@ public class PacienteDTO {
 	}
 
     /**
-     * Constructor con parámetros.
-     * @param id identificador del paciente
-     * @param name nombre del paciente
-     * @param lastName apellido del paciente
-     * @param age edad del paciente
-     * @param satisfaction nivel de satisfacción
+     * Crea un objeto PacienteDTO a partir de un objeto PacienteEntity.
+     *
+     * @param entity Entidad PacienteEntity desde la cual se va a crear el
+     * nuevo objeto.
+     * 
      */
-    public PacienteDTO(Long id, String name,String lastName, int age, int satisfaction) {
-		super();
-		this.id = id;
-		this.name = name;
-                this.lastName = lastName;
-                this.age = age;
-                this.satisfaction = satisfaction;
+    public PacienteDTO(PacienteEntity entity){
+        if(entity!=null){
+            this.id = entity.getId();
+            this.identificacionCivil = entity.getIndentificacionCivil();
+            this.name = entity.getName();
+            this.lastName = entity.getLastName();
+        }
 	}
+    /**
+     * Convierte un objeto PacienteDTO a PacienteEntity.
+     *
+     * @return Nueva objeto PacienteEntity.
+     * 
+     */
+    public PacienteEntity toEntity() {
+        PacienteEntity entity = new PacienteEntity();
+        entity.setName(this.getName());
+        entity.setId(this.getId());
+        entity.setIdentificacionCivil(this.getIdentificacionCivil());
+        entity.setLastName(this.getLastName());
+        return entity;
+    }
 
 	/**
      * @return the id
@@ -86,36 +103,22 @@ public class PacienteDTO {
      /**
      * @return the age
      */
-    public int getAge() {
-        return age;
+    public Long getIdentificacionCivil() {
+        return identificacionCivil;
     }
 
     /**
-     * @param age the name to set
+     * @param identificacionCivil  the name to set
      */
-    public void setAge(int age) {
-        this.age = age;
+    public void setIdentificacionCivil(Long identificacionCivil) {
+        this.identificacionCivil = identificacionCivil;
     }
-    
-    /**
-     * @return the satisfaction
-     */
-    public int getSatisfaction() {
-        return satisfaction;
-    }
-
-    /**
-     * @param satisfaction the name to set
-     */
-    public void setSatisfaction(int satisfaction) {
-        this.satisfaction = satisfaction;
-    }
-    
+     
     /**
      * Convierte el objeto a una cadena
      */
     @Override
     public String toString() {
-    	return "{ id : " + getId() + ", name : \"" + getName() + "\" , last name: \""+getLastName()+"\" , age :"+getAge()+", satisfaction : "+ getSatisfaction()+"}" ;  
+    	return "{ id : " + getId() + ", name : \"" + getName() + "\" , last name: \""+getLastName()+"\" , civil identification :"+getIdentificacionCivil()+ "}" ;  
     }
 }
