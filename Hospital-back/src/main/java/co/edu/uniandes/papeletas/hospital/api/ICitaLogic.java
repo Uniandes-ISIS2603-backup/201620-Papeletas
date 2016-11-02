@@ -1,5 +1,7 @@
 package co.edu.uniandes.papeletas.hospital.api;
 import co.edu.uniandes.papeletas.hospital.entities.CitaEntity;
+import co.edu.uniandes.papeletas.hospital.entities.ConsultorioEntity;
+import co.edu.uniandes.papeletas.hospital.entities.PacienteEntity;
 import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import java.util.List;
 
@@ -20,5 +22,7 @@ public interface ICitaLogic {
     public CitaEntity createCita(Long medicoid, CitaEntity entity) throws HospitalLogicException; 
     public CitaEntity updateCita(Long medicoid, CitaEntity entity);
     public void deleteCita(Long id);
+    public ConsultorioEntity getConsultorio(Long citaI);
+    public PacienteEntity getPaciente(Long citaId);
 }
 

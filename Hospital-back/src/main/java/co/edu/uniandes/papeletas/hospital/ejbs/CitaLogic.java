@@ -6,8 +6,12 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import co.edu.uniandes.papeletas.hospital.api.ICitaLogic;
+import co.edu.uniandes.papeletas.hospital.api.IConsultorioLogic;
 import co.edu.uniandes.papeletas.hospital.api.IMedicoLogic;
+import co.edu.uniandes.papeletas.hospital.api.IPacienteLogic;
+import co.edu.uniandes.papeletas.hospital.entities.ConsultorioEntity;
 import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
+import co.edu.uniandes.papeletas.hospital.entities.PacienteEntity;
 import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import java.util.Calendar;
 import javax.persistence.NoResultException;
@@ -29,6 +33,13 @@ public class CitaLogic implements ICitaLogic {
     
     @Inject
     private IMedicoLogic medicoLogic;
+
+    @Inject
+    private IConsultorioLogic consultorioLogic;
+    
+       @Inject
+    private IPacienteLogic pacienteLogic;
+
 
     /**
      * Obtiene la lista de los registros de Cita que pertenecen a un medico.
@@ -55,7 +66,7 @@ public class CitaLogic implements ICitaLogic {
         try{
         return persistence.find(id);
           } catch (NoResultException e) {
-            throw new IllegalArgumentException("El Department no existe");
+            throw new IllegalArgumentException("El Cita no existe");
         }
     }
 
@@ -123,4 +134,41 @@ public class CitaLogic implements ICitaLogic {
         CitaEntity old = getCita(id);
         persistence.delete(old.getId());
     }
+    
+     /**
+     * Obtiene una instancia de ConsultorioEntity asociada a una instancia de
+     * Cita
+     *
+     * @param citaId Identificador de la instancia de Cita
+     * @param employeesId Identificador de la instancia de Consultorio
+     *
+     */
+    @Override
+    public ConsultorioEntity getConsultorio(Long citaId) 
+    {
+        return persistence.find(citaId).getConsultorio();  
+    } 
+     /**
+     * Reemplaza una instancia de ConsultorioEntity asociada a una instancia de
+     * Cita
+     *
+     * @param citaId Identificador de la instancia de Cita
+     * @param employeesId Identificador de la instancia de Consultorio
+     *
+     
+    @Override
+    public ConsultorioEntity replaceConsultorio(Long citaId, ConsultorioEntity nuevoConsultorio) 
+    {
+        CitaEntity citaEntity = persistence.find(citaId);
+        citaEntity.setConsultorio(nuevoConsultorio);
+        ConsultorioEntity consultoioEntity = consultorioLogic.getConsultorio(nuevoConsultorio.getId());
+        consultoioEntity.setCita(citaEntity);
+    } 
+    * */
+
+    @Override
+    public PacienteEntity getPaciente(Long citaId) 
+    {
+        return persistence.find(citaId).getPaciente();  
+    }     
 }
