@@ -15,6 +15,7 @@ import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import co.edu.uniandes.papeletas.hospital.persistence.TurnoPersistence;
 import java.util.Calendar;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 
@@ -22,6 +23,7 @@ import javax.persistence.NoResultException;
  *
  * @author ac.cabezas716
  */
+@Stateless
 public class TurnoLogic implements ITurnoLogic {
     
     @Inject
