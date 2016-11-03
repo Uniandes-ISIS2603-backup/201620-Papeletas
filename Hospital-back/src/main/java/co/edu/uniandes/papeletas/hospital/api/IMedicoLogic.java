@@ -7,6 +7,7 @@ package co.edu.uniandes.papeletas.hospital.api;
 
 import co.edu.uniandes.papeletas.hospital.entities.CitaEntity;
 import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
+import co.edu.uniandes.papeletas.hospital.entities.TurnoEntity;
 import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import java.util.List;
 
@@ -19,6 +20,8 @@ public interface IMedicoLogic
     public List <MedicoEntity> getMedicos();
     
     public List <CitaEntity> getCitas();
+    
+    public List <TurnoEntity> getTurnos();
     
     public MedicoEntity getMedico (Long id);
     
