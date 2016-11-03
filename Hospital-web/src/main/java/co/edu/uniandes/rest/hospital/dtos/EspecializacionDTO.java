@@ -1,18 +1,21 @@
 package co.edu.uniandes.rest.hospital.dtos;
 
+import co.edu.uniandes.papeletas.hospital.entities.EspecializacionEntity;
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * 
  * @author Juan Camilo Lara
  *
  */
-
+@XmlRootElement
 public class EspecializacionDTO
 {
 	
 	/*
 	 * identificador de la especializacion
 	 */
-	private int id;
+	private Long id;
 	
 	/*
 	 * nombre de la especializacion
@@ -25,20 +28,30 @@ public class EspecializacionDTO
         
         public EspecializacionDTO(){}
 	
-	public EspecializacionDTO(int id, String nombre)
+	public EspecializacionDTO(EspecializacionEntity entity)
 	{
-		super();
-		this.id = id;
-		this.nombre = nombre;
-                promedio=0.0;
+            if (entity != null)
+            {
+                this.nombre = entity.getName();
+                this.id = entity.getId();
+                promedio = 0.0;
+            }
 	}
+        
+        public EspecializacionEntity toEntity ()
+        {
+            EspecializacionEntity entity = new EspecializacionEntity();
+            entity.setId((long)this.getId());
+            entity.setName(this.getNombre());
+            return entity;
+    }
 
 	/*
 	 * @return id
 	 */
 	public int getId()
 	{
-		return id;
+		return id.intValue();
 	}
 	
 	/*
@@ -55,7 +68,7 @@ public class EspecializacionDTO
 
 	public void setId(int id)
 	{
-		this.id = id;
+		this.id = (long)id;
 	}
 
 	public void setNombre(String nombre)
