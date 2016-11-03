@@ -6,6 +6,7 @@
 package co.edu.uniandes.papeletas.hospital.api;
 
 import co.edu.uniandes.papeletas.hospital.entities.EspecializacionEntity;
+import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ public interface IEspecializacionLogic
     public List<EspecializacionEntity> getEspecializaciones();
     public EspecializacionEntity getEspecializacion(Long id);
     public EspecializacionEntity getEspecializacionByName(String name);
-    public EspecializacionEntity createEspecializacion(EspecializacionEntity entity); 
+    public EspecializacionEntity createEspecializacion(EspecializacionEntity entity) throws HospitalLogicException; 
     public EspecializacionEntity updateEspecializacion(EspecializacionEntity entity);
-    public void deleteEEspecializacion(Long id);
+    public void deleteEspecializacion(Long id);
 }
