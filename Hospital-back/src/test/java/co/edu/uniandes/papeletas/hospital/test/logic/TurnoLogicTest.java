@@ -135,7 +135,64 @@ public class TurnoLogicTest {
             data.add(entity);
         }
     }
-   
+    /**
+     * Prueba para crear un Turno
+     *
+     * 
+     */
+    @Test
+    public void createTurnoTest1() throws HospitalLogicException {
+        TurnoEntity newEntity = factory.manufacturePojo(TurnoEntity.class);
+        Date hoy = new Date();
+        Date mañana = new Date(hoy.getTime()+ 86400000);
+        newEntity.setFecha(mañana);
+        newEntity.setDuracion(5);
+        TurnoEntity result = turnoLogic.createTurno(fatherEntity.getId(),newEntity);
+        Assert.assertNotNull(result);
+        TurnoEntity entity = em.find(TurnoEntity.class, result.getId());
+        Assert.assertEquals(newEntity.getName(), entity.getName());
+        Assert.assertEquals(newEntity.getId(), entity.getId());
+    }
+
+     /**
+     * Prueba para crear un Turno con un nombre que ya existe
+     *
+     * 
+     *//*
+    @Test(expected = HospitalLogicException.class)
+    public void createCitaTest2() throws HospitalLogicException {
+        TurnoEntity newEntity = factory.manufacturePojo(TurnoEntity.class);
+        newEntity.setName(data.get(0).getName());
+        newEntity.setDuracion(5);
+        TurnoEntity result = turnoLogic.createTurno(fatherEntity.getId(),newEntity);
+    }
+    
+     /**
+     * Prueba para crear un Cita con unaduracion menor a 0
+     *
+     * 
+     *//*
+    @Test(expected = HospitalLogicException.class)
+    public void createCitaTest3() throws HospitalLogicException {
+        CitaEntity newEntity = factory.manufacturePojo(CitaEntity.class);
+        newEntity.setDuracion(-5);
+        CitaEntity result = citaLogic.createCita(fatherEntity.getId(),newEntity);
+    }
+    
+     /**
+     * Prueba para crear una Fecha en el pasado
+     *
+     * 
+     *//*
+    @Test(expected = HospitalLogicException.class)
+    public void createTurnoTest4() throws HospitalLogicException {
+        CitaEntity newEntity = factory.manufacturePojo(TurnoEntity.class);
+        Date hoy = new Date();
+        Date ayer = new Date( hoy.getTime()-86400000);
+        newEntity.setFecha(ayer);
+        newEntity.setDuracion(5);
+        CitaEntity result = citaLogic.createCita(fatherEntity.getId(),newEntity);
+    }
     /**
      * Prueba para consultar la lista de Turnos
      *
