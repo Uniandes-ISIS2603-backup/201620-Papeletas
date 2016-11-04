@@ -5,104 +5,159 @@
  */
 package co.edu.uniandes.rest.hospital.resources;
 
+
+import co.edu.uniandes.papeletas.hospital.api.IMedicoLogic;
+import co.edu.uniandes.papeletas.hospital.api.ITurnoLogic;
+import co.edu.uniandes.papeletas.hospital.entities.TurnoEntity;
+import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
 import co.edu.uniandes.rest.hospital.dtos.TurnoDTO;
-import co.edu.uniandes.rest.hospital.exceptions.TurnoLogicException;
-import co.edu.uniandes.rest.hospital.mocks.TurnoLogicMock;
+import co.edu.uniandes.rest.hospital.dtos.TurnoDetailDTO;
+import java.util.ArrayList;
 import java.util.List;
+import javax.inject.Inject;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Clase que implementa el recurso REST correspondiente a "turnos".
  *
  * @author ac.cabezas716
  */
-@Path("")
+@Consumes(MediaType.APPLICATION_JSON)
+@Produces(MediaType.APPLICATION_JSON)
+@Path("/medico/{idMedico: \\d+}/turnos")
 public class TurnoResource {
+    
+    @Inject
+    private ITurnoLogic turnoLogic;
 
-    TurnoLogicMock turnoLogicMock = new TurnoLogicMock();
+    @Inject
+    private IMedicoLogic medicoLogic;
 
+    @PathParam("medicoId")
+    private Long medicoId;
     /**
-     * Obtiene el listado general de turnos.
+     * Convierte una lista de TurnoEntity a una lista de
+     * TurnosDetailDTO
      *
-     * @return lista de turnos
-     * @throws TurnoLogicException excepción retornada por la lógica
+     * @param entityList Lista de TurnoEntity a convertir
+     * @return Lista de TurnoDetailDTO convertida
+     *
      */
-    @Path("turnos")
-    @GET
-    public List<TurnoDTO> getTurnos() throws TurnoLogicException {
-        return turnoLogicMock.getTurnos();
+    private List<TurnoDetailDTO> listEntity2DTO(List<TurnoEntity> entityList) {
+        List<TurnoDetailDTO> list = new ArrayList<>();
+        for (TurnoEntity entity : entityList) {
+            list.add(new TurnoDetailDTO(entity));
+        }
+        return list;
+    }
+/**
+    public void existsMedico(Long pTurnoId) {
+        MedicoDetailDTO cita = new MedicoDetailDTO(citaLogic.getMedico(pTurnoId));
+        if (cita == null) {
+            throw new WebApplicationException("La medico no existe", 404);
+        }
+    }
+*/
+    public void existsTurno(Long pTurnoId) {
+        TurnoDetailDTO cita = new TurnoDetailDTO(turnoLogic.getTurno(pTurnoId));
+        if (cita == null) {
+            throw new WebApplicationException("El Turno no existe", 404);
+        }
     }
 
     /**
-     * Obtiene el listado de turnos de un médico.
+     * Obtiene los datos de los Turnos de un medico a partir del ID del
+     *  Medico
      *
-     * @return lista de turnos del médico
-     * @throws TurnoLogicException excepción retornada por la lógica
+     *
+     * @return Lista de TurnoDetailDTO con los datos del Turno
+     * consultado
+     *
      */
-    @Path("medico/{idMedico: \\d+}/turnos")
     @GET
-    public List<TurnoDTO> getTurnos(@PathParam("idMedico") Long idMedico) throws TurnoLogicException {
-        return turnoLogicMock.getTurnos(idMedico);
+    public List<TurnoDetailDTO> getTurnos() {
+        //existsMedico(medicoId);
+
+        List<TurnoEntity> turnos = turnoLogic.getTurnos(medicoId);
+
+        return listEntity2DTO(turnos);
     }
 
     /**
-     * Obtiene un turno
+     * Obtiene los datos de una instancia de Turno a partir de su ID
+     * asociado a un Medico
      *
-     * @param id identificador del turno
-     * @return turno encontrado
-     * @throws TurnoLogicException cuando el turno no existe
+     * @param turnoId Identificador de la instancia a consultar
+     * @return Instancia de TurnoDetailDTO con los datos del Turno
+     * consultado
+     *
      */
-    @Path("medico/{idMedico: \\d+}/turnos/{id: \\d+}")
     @GET
-    public TurnoDTO getTurno(@PathParam("id") Long id) throws TurnoLogicException {
-        return turnoLogicMock.getTurno(id);
+    @Path("{turnoId: \\d+}")
+    public TurnoDTO geTurno(@PathParam("turnoId") Long turnoId) {
+       // existsMedico(medicoId);
+        TurnoEntity entity = turnoLogic.getTurno(turnoId);
+        if (entity.getMedico() != null && !medicoId.equals(entity.getMedico().getId())) {
+            throw new WebApplicationException(404);
+        }
+
+        return new TurnoDetailDTO(entity);
     }
 
     /**
-     * Agrega un turno
+     * Asocia un Turno existente a un Medico
      *
-     * @param turno turno a agregar
-     * @return datos del turno a agregar
-     * @throws TurnoLogicException cuando ya existe un turno con el id
-     * suministrado
+     * @param dto Objeto de TurnoDetailDTO con los datos nuevos
+     * @return Objeto de TurnoDetailDTO con los datos nuevos y su ID.
+     *
      */
-    @Path("medico/{idMedico: \\d+}/turnos")
     @POST
-    public TurnoDTO createTurno(@PathParam("idMedico") Long idMedico, TurnoDTO turno) throws TurnoLogicException {
-        return turnoLogicMock.createTurno(idMedico, turno);
+        public TurnoDetailDTO createCita(TurnoDetailDTO dto) throws HospitalLogicException {
+        //existsMedico(medicoId);
+        return new TurnoDetailDTO(turnoLogic.createTurno(medicoId, dto.toEntity()));
     }
 
     /**
-     * Actualiza los datos de un turno
+     * Actualiza la información de una instancia de Turno.
      *
-     * @param id identificador del turno a modificar
-     * @param turno turno a modificar
-     * @return datos del turno modificado
-     * @throws TurnoLogicException cuando no existe un turno con el id
-     * suministrado
+     * @param turnoId Identificador de la instancia de Tunro a
+     * modificar
+     * @param dto Instancia de TunroDetailDTO con los nuevos datos.
+     * @return Instancia de TunroDetailDTO con los datos actualizados.
+     *
      */
     @PUT
-    @Path("medico/{idMedico: \\d+}/turnos/{id: \\d+}")
-    public TurnoDTO updateTurno(@PathParam("id") Long id, TurnoDTO turno) throws TurnoLogicException {
-        return turnoLogicMock.updateTurno(id, turno);
+    @Path("{turnoId: \\d+}")
+    public TurnoDetailDTO updateTurno(@PathParam("turnoId") Long turnoId, TurnoDetailDTO dto) {
+        //existsMedico(medicoId);
+        existsTurno(turnoId);
+        TurnoEntity entity = dto.toEntity();
+        entity.setId(turnoId);
+        TurnoEntity oldEntity = turnoLogic.getTurno(turnoId);
+        return new TurnoDetailDTO(turnoLogic.updateTurno(medicoId, entity));
     }
 
     /**
-     * Elimina los datos de un turno
+     * Elimina una instancia de Turno de la base de datos.
      *
-     * @param id identificador del turno a eliminar
-     * @throws TurnoLogicException cuando no existe un turno con el id
-     * suministrado
+     * @param turnoId Identificador de la instancia a eliminar.
+     *
      */
     @DELETE
-    @Path("medico/{idMedico: \\d+}/turnos/{id: \\d+}")
-    public void deleteTurno(@PathParam("id") Long id) throws TurnoLogicException {
-        turnoLogicMock.deleteTurno(id);
-    }
+    @Path("{turnoId: \\d+}")
+    public void deleteTurno(@PathParam("turnoId") Long turnoId) {
 
+       // existsMedico(medicoId);
+        existsTurno(turnoId);
+        turnoLogic.deleteTurno(turnoId);
+    }
 }

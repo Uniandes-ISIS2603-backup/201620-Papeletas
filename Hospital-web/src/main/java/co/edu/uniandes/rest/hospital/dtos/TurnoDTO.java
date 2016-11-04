@@ -5,18 +5,26 @@
  */
 package co.edu.uniandes.rest.hospital.dtos;
 
+import co.edu.uniandes.papeletas.hospital.entities.TurnoEntity;
 import java.util.Date;
+import javax.xml.bind.annotation.XmlRootElement;
 
 
 /**
  *
  * @author ac.cabezas716
  */
+@XmlRootElement
 public class TurnoDTO {
     /**
      * Id del turno
      */
     private Long id;
+    
+    /**
+     * Nombre
+     */
+    private String name;
     
     /**
      * Fecha del turno
@@ -27,36 +35,22 @@ public class TurnoDTO {
      * Duracion en minutos del turno
      */
     private int duracion;
-    
-    /**
-     * Medico dueño del turno
-     */
-    private MedicoDTO medico;
-    
-    /**
-     * Consultorio asignado para el turno
-     */
-    private ConsultorioDTO consultorio;
 
     /**
      * Duración asignada para cada cita en el turno en minutos
      */
-    private int duracionCitas;
+    private int duracionCita;
     /**
      * Constructor de la clase turno:
-     * @param pId id del turno
-     * @param pMedico Medico dueño del turno creado
-     * @param pFecha Fecha que representa el día del turno
-     * @param pDuracion Duración del turno en minutos
-     * @param pDuracionCitas Duración inicial de cada cita en el turno
+     * @param pTurnoEntity entidad base para contruir el DTO
      */
-    public TurnoDTO(Long pId, MedicoDTO pMedico, Date pFecha, int pDuracion, int pDuracionCitas ) {
-        id = pId;
-        fecha = pFecha;
-        duracion = pDuracion;
-        medico = pMedico;
-        consultorio = new ConsultorioDTO();
-        duracionCitas = pDuracionCitas;
+    
+    public TurnoDTO(TurnoEntity pTurnoEntity) {
+        id = pTurnoEntity.getId();
+        name = pTurnoEntity.getName();
+        fecha = pTurnoEntity.getFecha();
+        duracion = pTurnoEntity.getDuracion();
+        duracionCita = pTurnoEntity.getDuracionCita();
     }
     /**
      * Constructor por defecto
@@ -65,9 +59,23 @@ public class TurnoDTO {
         id = 0L;
         fecha = new Date();
         duracion = 0;
-        medico = new MedicoDTO();
-        consultorio = new ConsultorioDTO();
-        duracionCitas = 0;
+        duracionCita = 30;
+    }
+    
+    /**
+     * Convierte un objeto CitaDTO a CitaEntity.
+     *
+     * @return Nuevo objeto TurnoEntity.
+     * 
+     */
+    public TurnoEntity toEntity() {
+        TurnoEntity entity = new TurnoEntity();
+        entity.setName(this.getName());
+        entity.setId(this.getId());
+        entity.setFecha(this.getFecha());
+        entity.setDuracion(this.getDuracion());
+        entity.setDuracionCita(this.getDuracionCita());
+        return entity;
     }
 
     /**
@@ -82,6 +90,20 @@ public class TurnoDTO {
      */
     public void setId(Long id) {
         this.id = id;
+    }
+    
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     /**
@@ -111,47 +133,17 @@ public class TurnoDTO {
     public void setDuracion(int duracion) {
         this.duracion = duracion;
     }
-
-    /**
-     * @return the medico
-     */
-    public MedicoDTO getMedicoId() {
-        return medico;
-    }
-
-    /**
-     * @param medicoId the medico to set
-     */
-    public void setMedicoId(MedicoDTO medicoId) {
-        this.medico = medicoId;
-    }
-
-    /**
-     * @return the consultorio
-     */
-    public ConsultorioDTO getConsultorioId() {
-        return consultorio;
-    }
-
-    /**
-     * @param consultorioId the consultorio to set
-     */
-    public void setConsultorioId(ConsultorioDTO consultorioId) {
-        this.consultorio = consultorioId;
-    }
-
     /**
      * @return the duracionCitas
      */
-    public int getDuracionCitas() {
-        return duracionCitas;
+    public int getDuracionCita() {
+        return duracionCita;
     }
 
     /**
-     * @param duracionCitas the duracionCitas to set
+     * @param duracionCita the duracionCita to set
      */
-    public void setDuracionCitas(int duracionCitas) {
-        this.duracionCitas = duracionCitas;
+    public void setDuracionCita(int duracionCita) {
+        this.duracionCita = duracionCita;
     }
-    
 }
