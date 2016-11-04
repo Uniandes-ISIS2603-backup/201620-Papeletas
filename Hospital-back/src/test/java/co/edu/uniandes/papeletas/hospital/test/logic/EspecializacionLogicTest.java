@@ -79,8 +79,7 @@ public class EspecializacionLogicTest
     
     private void clearData()
     {
-        em.createQuery("delete from CitaEntity").executeUpdate();
-        em.createQuery("delete from PacienteEntity").executeUpdate();
+        em.createQuery("delete from EspecializacionEntity").executeUpdate();
     }
     
     private void insertData()
