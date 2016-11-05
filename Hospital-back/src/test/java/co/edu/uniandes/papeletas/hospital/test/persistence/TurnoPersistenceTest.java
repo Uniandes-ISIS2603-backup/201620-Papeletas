@@ -147,7 +147,7 @@ public class TurnoPersistenceTest {
      * Prueba para consultar la lista de Turnos de un Médico.
      */
     @Test
-    public void getCitasInMedicoTest() {
+    public void getTurnosInMedicoTest() {
         List<TurnoEntity> list = turnoPersistence.findAllInMedico(fatherEntity.getId());
         Assert.assertEquals(data.size(), list.size());
         for (TurnoEntity ent : list) {
