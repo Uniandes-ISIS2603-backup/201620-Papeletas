@@ -31,10 +31,10 @@ public class TurnoPersistence {
         return em.find(TurnoEntity.class, id);
     }
     
-    public TurnoEntity findByName(Long pMedicoId, String name){
+    public TurnoEntity findByName(Long medicoId, String name){
         LOGGER.log(Level.INFO, "Consultando  turno con name= {0} ", name);
-        TypedQuery<TurnoEntity> q = em.createQuery("select u from TurnoEntity u where u.medico.id = :pMedicoId and u.name = :name", TurnoEntity.class);
-        q = q.setParameter("pMedicoId", pMedicoId);
+        TypedQuery<TurnoEntity> q = em.createQuery("select u from TurnoEntity u where u.medico.id = :medicoId and u.name = :name", TurnoEntity.class);
+        q = q.setParameter("medicoId", medicoId);
         q = q.setParameter("name", name);
         List<TurnoEntity> turnosSimilarName = q.getResultList();
         if (turnosSimilarName.isEmpty() ) {

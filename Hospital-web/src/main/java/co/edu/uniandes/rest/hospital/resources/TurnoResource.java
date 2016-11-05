@@ -61,15 +61,15 @@ public class TurnoResource {
     }
 /**
     public void existsMedico(Long pTurnoId) {
-        MedicoDetailDTO cita = new MedicoDetailDTO(citaLogic.getMedico(pTurnoId));
-        if (cita == null) {
+        MedicoDetailDTO turno = new MedicoDetailDTO(turnoLogic.getMedico(pTurnoId));
+        if (turno == null) {
             throw new WebApplicationException("La medico no existe", 404);
         }
     }
 */
     public void existsTurno(Long pTurnoId) {
-        TurnoDetailDTO cita = new TurnoDetailDTO(turnoLogic.getTurno(pTurnoId));
-        if (cita == null) {
+        TurnoDetailDTO turno = new TurnoDetailDTO(turnoLogic.getTurno(pTurnoId));
+        if (turno == null) {
             throw new WebApplicationException("El Turno no existe", 404);
         }
     }
