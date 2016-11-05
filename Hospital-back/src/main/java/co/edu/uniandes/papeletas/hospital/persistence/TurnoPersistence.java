@@ -21,13 +21,13 @@ import javax.persistence.TypedQuery;
  */
 @Stateless
 public class TurnoPersistence {
-    private static final Logger LOGGER = Logger.getLogger(PacientePersistence.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(TurnoPersistence.class.getName());
     
     @PersistenceContext(unitName = "PapeletasPU")
     protected EntityManager em;
     
     public TurnoEntity find (Long id){
-        LOGGER.log(Level.INFO, "Consultando el turno con id={0}", id);
+        LOGGER.log(Level.INFO, "Consultando turno con id={0}", id);
         return em.find(TurnoEntity.class, id);
     }
     
@@ -58,8 +58,10 @@ public class TurnoPersistence {
     }
     
     public TurnoEntity create(TurnoEntity entity) {
+        System.out.println("Creando un turno nuevo");
         LOGGER.info("Creando un turno nuevo");
         em.persist(entity);
+        System.out.println("Turno creado");
         LOGGER.info("Turno creado");
         return entity;
     }

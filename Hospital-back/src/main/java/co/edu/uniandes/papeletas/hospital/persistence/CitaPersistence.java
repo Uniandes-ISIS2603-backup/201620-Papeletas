@@ -27,7 +27,7 @@ public class CitaPersistence {
      protected EntityManager em;
     
         public CitaEntity find(Long id) {
-        LOGGER.log(Level.INFO, "Consultando  cita con id={0}", id);
+        LOGGER.log(Level.INFO, "Consultando cita con id={0}", id);
         return em.find(CitaEntity.class, id);
     }
 
