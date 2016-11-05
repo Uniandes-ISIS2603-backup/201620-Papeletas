@@ -121,7 +121,7 @@ public class TurnoResource {
      *
      */
     @POST
-        public TurnoDetailDTO createCita(TurnoDetailDTO dto) throws HospitalLogicException {
+        public TurnoDetailDTO createTurno(TurnoDetailDTO dto) throws HospitalLogicException {
         //existsMedico(medicoId);
         return new TurnoDetailDTO(turnoLogic.createTurno(medicoId, dto.toEntity()));
     }
