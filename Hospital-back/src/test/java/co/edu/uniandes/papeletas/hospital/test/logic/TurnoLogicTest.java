@@ -158,7 +158,7 @@ public class TurnoLogicTest {
      * Prueba para crear un Turno con un nombre que ya existe
      *
      * 
-     *//*
+     */
     @Test(expected = HospitalLogicException.class)
     public void createCitaTest2() throws HospitalLogicException {
         TurnoEntity newEntity = factory.manufacturePojo(TurnoEntity.class);
@@ -168,30 +168,30 @@ public class TurnoLogicTest {
     }
     
      /**
-     * Prueba para crear un Cita con unaduracion menor a 0
+     * Prueba para crear un Turno con una duracion menor a 0
      *
      * 
-     *//*
+     */
     @Test(expected = HospitalLogicException.class)
     public void createCitaTest3() throws HospitalLogicException {
-        CitaEntity newEntity = factory.manufacturePojo(CitaEntity.class);
+        TurnoEntity newEntity = factory.manufacturePojo(TurnoEntity.class);
         newEntity.setDuracion(-5);
-        CitaEntity result = citaLogic.createCita(fatherEntity.getId(),newEntity);
+        TurnoEntity result = turnoLogic.createTurno(fatherEntity.getId(),newEntity);
     }
     
      /**
      * Prueba para crear una Fecha en el pasado
      *
      * 
-     *//*
+     */
     @Test(expected = HospitalLogicException.class)
     public void createTurnoTest4() throws HospitalLogicException {
-        CitaEntity newEntity = factory.manufacturePojo(TurnoEntity.class);
+        TurnoEntity newEntity = factory.manufacturePojo(TurnoEntity.class);
         Date hoy = new Date();
         Date ayer = new Date( hoy.getTime()-86400000);
         newEntity.setFecha(ayer);
         newEntity.setDuracion(5);
-        CitaEntity result = citaLogic.createCita(fatherEntity.getId(),newEntity);
+        TurnoEntity result = turnoLogic.createTurno(fatherEntity.getId(),newEntity);
     }
     /**
      * Prueba para consultar la lista de Turnos

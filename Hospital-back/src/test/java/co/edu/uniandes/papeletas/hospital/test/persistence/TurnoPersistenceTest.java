@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.papeletas.hospital.test.persistence;
 
+import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
 import co.edu.uniandes.papeletas.hospital.entities.TurnoEntity;
 import co.edu.uniandes.papeletas.hospital.persistence.TurnoPersistence;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import uk.co.jemos.podam.api.PodamFactoryImpl;
  */
 @RunWith(Arquillian.class)
 public class TurnoPersistenceTest {
+    
      /**
      * @return el jar que se va a desplegar para la prueba
      */
@@ -39,9 +41,16 @@ public class TurnoPersistenceTest {
         return ShrinkWrap.create(JavaArchive.class)
                 .addPackage(TurnoEntity.class.getPackage())
                 .addPackage(TurnoPersistence.class.getPackage())
+                .addPackage(MedicoEntity.class.getPackage())
                 .addAsManifestResource("META-INF/persistence.xml","persistence.xml")
                 .addAsManifestResource("META-INF/beans.xml","beans.xml");
     }
+    
+    /**
+     * Entidad padre de turno
+     */
+    MedicoEntity fatherEntity;
+    
     
     @Inject
     private TurnoPersistence turnoPersistence;
@@ -77,6 +86,7 @@ public class TurnoPersistenceTest {
     
     private void clearData() {
         em.createQuery("delete from TurnoEntity").executeUpdate();
+        em.createQuery("delete  from MedicoEntity").executeUpdate();
     }
     
     /**
@@ -85,8 +95,11 @@ public class TurnoPersistenceTest {
      */
     private void insertData() {
         PodamFactory factory = new PodamFactoryImpl();
+        fatherEntity = factory.manufacturePojo(MedicoEntity.class);
+        fatherEntity.setId(1L);
         for (int i = 0; i < 3; i++) {
             TurnoEntity entity = factory.manufacturePojo(TurnoEntity.class);
+            entity.setMedico(fatherEntity);
             em.persist(entity);
             data.add(entity);
         }
@@ -108,6 +121,7 @@ public class TurnoPersistenceTest {
         Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
         Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
+        Assert.assertEquals(entity.getDuracionCita(), newEntity.getDuracionCita());
     }
 
     /**
@@ -116,7 +130,7 @@ public class TurnoPersistenceTest {
     @Test
     public void getTurnoByNameTest() throws Exception {
         TurnoEntity entity = data.get(0);
-        TurnoEntity newEntity = turnoPersistence.findByName(entity.getName());
+        TurnoEntity newEntity = turnoPersistence.findByName(fatherEntity.getId(),entity.getName());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
         Calendar c1 = Calendar.getInstance();
@@ -126,8 +140,26 @@ public class TurnoPersistenceTest {
         Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
         Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(entity.getDuracion(), newEntity.getDuracion());
+        Assert.assertEquals(entity.getDuracionCita(), newEntity.getDuracionCita());
     }
 
+    /**
+     * Prueba para consultar la lista de Turnos de un Médico.
+     */
+    @Test
+    public void getCitasInMedicoTest() {
+        List<TurnoEntity> list = turnoPersistence.findAllInMedico(fatherEntity.getId());
+        Assert.assertEquals(data.size(), list.size());
+        for (TurnoEntity ent : list) {
+            boolean found = false;
+            for (TurnoEntity entity : data) {
+                if (ent.getId().equals(entity.getId())) {
+                    found = true;
+                }
+            }
+            Assert.assertTrue(found);
+        }
+    }
     /**
      * Test of findAll method, of class TurnoPersistence.
      */
@@ -153,7 +185,7 @@ public class TurnoPersistenceTest {
     public void createTurnoTest() throws Exception {
         PodamFactory factory = new PodamFactoryImpl();
         TurnoEntity newEntity = factory.manufacturePojo(TurnoEntity.class);
-
+        newEntity.setMedico(fatherEntity);
         TurnoEntity result = turnoPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
@@ -185,6 +217,7 @@ public class TurnoPersistenceTest {
         Assert.assertEquals(c1.get(Calendar.MONTH),c2.get(Calendar.MONTH));
         Assert.assertEquals(c1.get(Calendar.DAY_OF_YEAR),c2.get(Calendar.DAY_OF_YEAR));
         Assert.assertEquals(newEntity.getDuracion(), resp.getDuracion());
+        Assert.assertEquals(newEntity.getDuracionCita(), resp.getDuracionCita());
     }
 
     /**

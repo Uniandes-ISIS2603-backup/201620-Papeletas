@@ -31,12 +31,17 @@ public class TurnoPersistence {
         return em.find(TurnoEntity.class, id);
     }
     
-    public TurnoEntity findByName(String name){
-         LOGGER.log(Level.INFO, "Consultando turno con name = {0}", name);
-        TypedQuery<TurnoEntity> q
-                = em.createQuery("select u from TurnoEntity u where u.name = :name", TurnoEntity.class);
-        q = q.setParameter("name", name); 
-        return q.getSingleResult();
+    public TurnoEntity findByName(Long pMedicoId, String name){
+        LOGGER.log(Level.INFO, "Consultando  turno con name= {0} ", name);
+        TypedQuery<TurnoEntity> q = em.createQuery("select u from TurnoEntity u where u.medico.id = :pMedicoId and u.name = :name", TurnoEntity.class);
+        q = q.setParameter("pMedicoId", pMedicoId);
+        q = q.setParameter("name", name);
+        List<TurnoEntity> turnosSimilarName = q.getResultList();
+        if (turnosSimilarName.isEmpty() ) {
+            return null; 
+        } else {
+            return turnosSimilarName.get(0);
+        }
     }
     
     public List<TurnoEntity> findAll() {
@@ -44,7 +49,14 @@ public class TurnoPersistence {
         Query q = em.createQuery("select u from TurnoEntity u");
         return q.getResultList();
     }
-
+    
+    public List<TurnoEntity> findAllInMedico(Long medicoId) {
+    LOGGER.log(Level.INFO, "Consultando todos los turnos del medico id={0}", medicoId);
+    TypedQuery q = em.createQuery("select d from TurnoEntity d  where d.medico.id = :medicoId", TurnoEntity.class);
+    q = q.setParameter("medicoId", medicoId);
+    return q.getResultList();
+    }
+    
     public TurnoEntity create(TurnoEntity entity) {
         LOGGER.info("Creando un turno nuevo");
         em.persist(entity);

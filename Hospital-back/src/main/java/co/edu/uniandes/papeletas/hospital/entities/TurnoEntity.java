@@ -5,6 +5,7 @@
  */
 package co.edu.uniandes.papeletas.hospital.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -16,7 +17,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  * @author ac.cabezas716
  */
 @Entity
-public class TurnoEntity extends BaseEntity{
+public class TurnoEntity extends BaseEntity implements Serializable{
     private Date fecha;
     private int duracion;
     private int duracionCita;
@@ -67,6 +68,12 @@ public class TurnoEntity extends BaseEntity{
     }
     
     /**
+     * @param duracionCita the duracionCita to set
+     */
+    public void setDuracionCita(int duracionCita) {
+        this.duracionCita = duracionCita;
+    }
+    /**
      * @return the medico
      */
     public MedicoEntity getMedico() {
@@ -80,12 +87,7 @@ public class TurnoEntity extends BaseEntity{
         this.medico = medico;
     }
 
-    /**
-     * @param duracionCita the duracionCita to set
-     */
-    public void setDuracionCita(int duracionCita) {
-        this.duracionCita = duracionCita;
-    }
+    
 
     /**
      * @return the consultorio

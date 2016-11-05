@@ -38,49 +38,52 @@ public class TurnoLogic implements ITurnoLogic {
     @Override
     public List<TurnoEntity> getTurnos(Long pMedicoId) {
         MedicoEntity medico = medicoLogic.getMedico(pMedicoId);
-        return medico.turnos();
+        return medico.getTurnos();
     }
 
     @Override
     public TurnoEntity getTurno(Long pId) {
-        try{
-        return persistence.find(pId);
-          } catch (NoResultException e) {
+        try {
+            return persistence.find(pId);
+        } catch (NoResultException e) {
             throw new IllegalArgumentException("El turno no existe");
         }
     }
 
     @Override
-    public TurnoEntity getTurnoByName(String pName) {
-        return persistence.findByName(pName);
+    public TurnoEntity getTurnoByName(Long pMedicoId, String pName) {
+        return persistence.findByName(pMedicoId, pName);
     }
 
     @Override
-    public TurnoEntity createTurno(Long pMedicoId, TurnoEntity pEntityTurno) throws HospitalLogicException {
-        TurnoEntity alreadyExist = getTurnoByName(pEntityTurno.getName());
+    public TurnoEntity createTurno(Long medicoid, TurnoEntity entity) throws HospitalLogicException
+    {
+        System.out.println("Verificando si existe otro turno");
+        TurnoEntity alreadyExist = getTurnoByName(medicoid, entity.getName());
+        System.out.println("Verificado si existe otro turno con el mismo nombre ");
         Calendar c1 = Calendar.getInstance();
-        c1.setTime(pEntityTurno.getFecha());
+        c1.setTime(entity.getFecha());
         //fecha actual
         Calendar c2 = Calendar.getInstance();
         if (alreadyExist != null) 
         {
-            throw new HospitalLogicException("Ya existe un turno con el mismo nombre en el hospital");
+            throw new HospitalLogicException("Ya existe un turno con ese nombre en la misma hospital");
         } 
         if(c1.before(c2))
         {
-            throw new HospitalLogicException("El turno no puede tener una fecha pasada");
+            throw new HospitalLogicException("El turno no puede ser en el pasado");
         }
-        if(pEntityTurno.getDuracion()<0)
+        if(entity.getDuracion()<0)
         {
-            throw new HospitalLogicException("Ya duracion del turno no puede ser menor a 0 horas.");
+            throw new HospitalLogicException("La duracion no puede ser menor a 0 ");
         }
        
-            MedicoEntity  medico = medicoLogic.getMedico(pMedicoId);
-            pEntityTurno.setMedico(medico);
+            MedicoEntity  medico = medicoLogic.getMedico(medicoid);
+            entity.setMedico(medico);
 
-            pEntityTurno = persistence.create(pEntityTurno);
+            entity = persistence.create(entity);
         
-        return pEntityTurno;
+        return entity;
     }
 
     @Override

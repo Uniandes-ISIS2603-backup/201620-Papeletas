@@ -20,7 +20,7 @@ public interface ITurnoLogic {
     
     public TurnoEntity getTurno(Long pId);
     
-    public TurnoEntity getTurnoByName(String pName);
+    public TurnoEntity getTurnoByName(Long pMedicoId, String pName);
     
     public TurnoEntity createTurno(Long pMedicoId, TurnoEntity pEntityTurno) throws HospitalLogicException; 
     

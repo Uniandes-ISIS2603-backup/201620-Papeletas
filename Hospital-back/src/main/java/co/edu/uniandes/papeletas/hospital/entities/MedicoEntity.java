@@ -38,7 +38,7 @@ public class MedicoEntity extends BaseEntity implements Serializable
     {
         return citas;
     }
-     public List<TurnoEntity> turnos()
+     public List<TurnoEntity> getTurnos()
     {
         return turnos;
 
