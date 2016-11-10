@@ -20,6 +20,7 @@ import uk.co.jemos.podam.common.PodamExclude;
 @Entity
 public class CitaEntity extends BaseEntity implements Serializable {
      //fecha para la cual esta programada la cita
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     
     //tiempo de la cita
@@ -49,7 +50,6 @@ public class CitaEntity extends BaseEntity implements Serializable {
      * cambia la fecha de una cita
      * @param pNuevaFecha  nueva fecha para la cita
      */
-    @Temporal(TemporalType.DATE)
     public void setFecha(Date fecha)
     {
         this.fecha = fecha;

@@ -19,6 +19,7 @@ import uk.co.jemos.podam.common.PodamExclude;
  */
 @Entity
 public class TurnoEntity extends BaseEntity implements Serializable{
+    @Temporal(TemporalType.DATE)
     private Date fecha;
     private int duracion;
     private int duracionCita;
@@ -43,7 +44,6 @@ public class TurnoEntity extends BaseEntity implements Serializable{
     /**
      * @param fecha the fecha to set
      */
-    @Temporal(TemporalType.DATE)
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
