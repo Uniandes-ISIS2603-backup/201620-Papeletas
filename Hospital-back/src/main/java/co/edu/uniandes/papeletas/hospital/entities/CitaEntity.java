@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -47,6 +49,7 @@ public class CitaEntity extends BaseEntity implements Serializable {
      * cambia la fecha de una cita
      * @param pNuevaFecha  nueva fecha para la cita
      */
+    @Temporal(TemporalType.DATE)
     public void setFecha(Date fecha)
     {
         this.fecha = fecha;

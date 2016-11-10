@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import uk.co.jemos.podam.common.PodamExclude;
 
 /**
@@ -41,6 +43,7 @@ public class TurnoEntity extends BaseEntity implements Serializable{
     /**
      * @param fecha the fecha to set
      */
+    @Temporal(TemporalType.DATE)
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
