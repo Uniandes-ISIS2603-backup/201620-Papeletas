@@ -36,9 +36,7 @@ public class CitaLogic implements ICitaLogic {
 
     @Inject
     private IConsultorioLogic consultorioLogic;
-    
-       @Inject
-    private IPacienteLogic pacienteLogic;
+
 
 
     /**

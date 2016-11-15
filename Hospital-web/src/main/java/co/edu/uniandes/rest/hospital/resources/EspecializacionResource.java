@@ -52,9 +52,10 @@ public class EspecializacionResource
     
     @DELETE
     @Path ("{id: \\d+}")
-    public void deleteEspecializacion (@PathParam("id") int id) throws EspecializacionException
+    public void deleteEspecializacion (@PathParam("id") Long id) throws EspecializacionException
     {
-        especialidad.deleteEspecializacion((long)id);
+        
+        especialidad.deleteEspecializacion(id);
     }
     @PUT
     @Path ("{id: \\d+}")
