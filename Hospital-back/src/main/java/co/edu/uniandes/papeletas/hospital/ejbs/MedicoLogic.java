@@ -14,12 +14,14 @@ import co.edu.uniandes.papeletas.hospital.persistence.CitaPersistence;
 import co.edu.uniandes.papeletas.hospital.persistence.MedicoPersistence;
 import co.edu.uniandes.papeletas.hospital.persistence.TurnoPersistence;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 /**
  *
  * @author Nicolas
  */
+@Stateless
 public class MedicoLogic implements IMedicoLogic
 {
 
