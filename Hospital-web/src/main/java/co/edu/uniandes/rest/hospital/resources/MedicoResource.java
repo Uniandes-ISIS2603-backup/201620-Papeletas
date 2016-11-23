@@ -118,7 +118,29 @@ public class MedicoResource {
         return  new MedicoDetailDTO(medico.updateMedico(medicoN.toEntity()));
     }
     
-  
+    
+    
+    @POST
+    @Path("medico/{id: \\ d+}/cita/create)")
+    public CitaDTO createCita(@PathParam("id")Long id,CitaDTO citaN)throws HospitalLogicException
+    {
+        return new CitaDetailDTO(medico.createCita(citaN.toEntity()));
+    }
+    
+    
+    @DELETE
+    @Path("medico/{id: \\ d+}/cita/delete )")
+    public void deleteCita(CitaDTO citaN)throws HospitalLogicException
+    {
+        medico.deleteCita(citaN.getId());
+      
+    }
+
+    
+
+    
+    
+    
     
     
     
