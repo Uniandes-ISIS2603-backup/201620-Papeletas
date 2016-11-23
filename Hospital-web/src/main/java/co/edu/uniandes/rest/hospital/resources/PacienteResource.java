@@ -28,7 +28,7 @@ import javax.ws.rs.PathParam;
  * @author df.castro12
  */
 
-@Path("pacientes")
+@Path("")
 @Produces("application/json")
 public class PacienteResource {
     
@@ -56,6 +56,7 @@ public class PacienteResource {
      * @return lista de pacientes
      */
     @GET
+    @Path("pacientes")
     public List<PacienteDetailDTO> getPacientes() {
         return listEntity2DTO(pacienteLogic.getPacientes());
     }
@@ -70,7 +71,8 @@ public class PacienteResource {
      * suministrado
      */
     @POST
-    public PacienteDetailDTO createPaciente(PacienteDetailDTO paciente) throws co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException{
+    @Path("pacientes")
+    public PacienteDTO createPaciente(PacienteDetailDTO paciente) throws co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException{
         return new PacienteDetailDTO(pacienteLogic.createPaciente(paciente.toEntity()));
     }
     /**
@@ -80,8 +82,8 @@ public class PacienteResource {
      * @return paciente modificada
      */
     @PUT
-    @Path("{id: \\d+}")    
-    public PacienteDetailDTO updatePaciente(@PathParam("id") Long id, PacienteDetailDTO dto) {
+    @Path("pacientes/{pacienteId: \\d+}")    
+    public PacienteDetailDTO updatePaciente(@PathParam("pacienteId") Long id, PacienteDetailDTO dto) {
         PacienteEntity entity = dto.toEntity();
         entity.setId(id);
         return new PacienteDetailDTO(pacienteLogic.updatePaciente(entity));
@@ -92,8 +94,8 @@ public class PacienteResource {
      * @return  boolean si indica si el paciente fue eliminado
      */
     @DELETE
-    @Path("{id: \\d+}") 
-    public void deletePaciente(@PathParam("id") Long id){
+    @Path("pacientes/{pacienteId: \\d+}") 
+    public void deletePaciente(@PathParam("pacienteId") Long id){
         pacienteLogic.deletePaciente(id);
     }
     /**
@@ -102,8 +104,8 @@ public class PacienteResource {
      * @return el paciente deseado
      */
     @GET
-    @Path("{id: \\d+}") 
-    public PacienteDetailDTO getPacienteId(@PathParam("id") Long id){
+    @Path("pacientes/{pacienteId: \\d+}") 
+    public PacienteDTO getPacienteId(@PathParam("pacienteId") Long id){
         return new PacienteDetailDTO(pacienteLogic.getPaciente(id));
     }
 }

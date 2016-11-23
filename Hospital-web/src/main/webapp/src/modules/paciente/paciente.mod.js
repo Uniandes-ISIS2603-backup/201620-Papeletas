@@ -18,7 +18,7 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
             url: '/pacientes',
             views: {
                 'mainView': {
-                    controller: 'pacientesCtrl',
+                    controller: 'pacienteCtrl',
                     controllerAs: 'ctrl',
                     templateUrl: basePath + 'pacientes.list.html'
                 }
@@ -27,19 +27,19 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
             url: '/pacientes/create',
             views: {
                 'mainView': {
-                    controller: 'pacientesCtrl',
+                    controller: 'pacienteCtrl',
                     controllerAs: 'ctrl',
                     templateUrl: basePath + 'paciente.create.html'
                 }
             }
         }).state('pacienteEdit',{
-            url: '/pacientes/:pacienteId',
+            url: '/pacientes/:pacienteId/edit',
             param:{
                 pacienteId: null
             },
             views: {
                 'mainView': {
-                    controller: 'pacientesCtrl',
+                    controller: 'pacienteCtrl',
                     controllerAs: 'ctrl',
                     templateUrl: basePath + 'paciente.create.html'
                 }
@@ -51,7 +51,7 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
             },
             views: {
                 'mainView': {
-                    controller: 'pacientesCtrl',
+                    controller: 'pacienteCtrl',
                     controllerAs: 'ctrl',
                     templateUrl: basePath + 'paciente.delete.html'
                 }
