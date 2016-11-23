@@ -38,7 +38,7 @@ public class CitaResource {
     @Inject
     private IMedicoLogic medicoLogic;
 
-    @PathParam("medicoId")
+    @PathParam("idMedico")
     private Long medicoId;
     /**
      * Convierte una lista de CitaEntity a una lista de

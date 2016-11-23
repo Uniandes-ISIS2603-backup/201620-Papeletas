@@ -59,9 +59,7 @@ public class TurnoPersistence {
     
     public TurnoEntity create(TurnoEntity entity) {
         System.out.println("Creando un turno nuevo");
-        LOGGER.info("Creando un turno nuevo");
         em.persist(entity);
-        System.out.println("Turno creado");
         LOGGER.info("Turno creado");
         return entity;
     }
