@@ -5,9 +5,12 @@
  */
 package co.edu.uniandes.rest.hospital.resources;
 
+import co.edu.uniandes.papeletas.hospital.api.ICitaLogic;
 import co.edu.uniandes.papeletas.hospital.api.IMedicoLogic;
 import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
 import co.edu.uniandes.papeletas.hospital.exceptions.HospitalLogicException;
+import co.edu.uniandes.rest.hospital.dtos.CitaDTO;
+import co.edu.uniandes.rest.hospital.dtos.CitaDetailDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDTO;
 import co.edu.uniandes.rest.hospital.dtos.MedicoDetailDTO;
 import co.edu.uniandes.rest.hospital.exceptions.MedicoException;
@@ -34,6 +37,9 @@ public class MedicoResource {
     
     @Inject
     private IMedicoLogic medico;
+    
+    @Inject
+    private ICitaLogic cita;
     
  
  /**
@@ -111,6 +117,8 @@ public class MedicoResource {
     {
         return  new MedicoDetailDTO(medico.updateMedico(medicoN.toEntity()));
     }
+    
+  
     
     
     

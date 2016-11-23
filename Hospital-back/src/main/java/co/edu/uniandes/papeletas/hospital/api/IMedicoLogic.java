@@ -35,4 +35,8 @@ public interface IMedicoLogic
     
     public Integer getNumberOfMedicos ();
     
+    public CitaEntity createCita(CitaEntity entity);
+    
+    public void deleteCita(Long id);
+    
 }

@@ -6,6 +6,7 @@
 package co.edu.uniandes.papeletas.hospital.persistence;
 
 
+import co.edu.uniandes.papeletas.hospital.entities.CitaEntity;
 import co.edu.uniandes.papeletas.hospital.entities.MedicoEntity;
 import java.util.List;
 import java.util.logging.Level;
@@ -66,5 +67,7 @@ public class MedicoPersistence {
         q = q.setParameter("name", name); 
         return q.getSingleResult();
     }
+      
+      
 
 }
