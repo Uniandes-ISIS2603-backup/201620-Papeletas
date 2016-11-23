@@ -43,6 +43,14 @@ public class PacienteDTO {
             this.lastName = entity.getLastName();
         }
 	}
+    
+    public PacienteDTO(String nombre,String apellido,Long id, Long civil){
+        super();
+        this.name = nombre;
+        this.id = id;
+        this.lastName = apellido;
+        this.identificacionCivil = civil;
+    }
     /**
      * Convierte un objeto PacienteDTO a PacienteEntity.
      *

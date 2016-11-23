@@ -1,12 +1,7 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 (function (ng) {
     var mod = ng.module("pacienteModule");
 
-    mod.controller("pacientesCtrl", ['$scope', '$state', '$stateParams', '$http', 'pacienteContext', function ($scope, $state, $stateParams, $http, context) {
+    mod.controller("pacienteCtrl", ['$scope', '$state', '$stateParams', '$http', 'pacienteContext', function ($scope, $state, $stateParams, $http, context) {
 
             // inicialmente el listado de pacientes está vacio
             $scope.records = {};
@@ -15,8 +10,8 @@
                 $scope.records = response.data;    
             }, responseError);
 
-            // el controlador recibió un Id ??
-            // revisa los parámetros (ver el Id en la definición de la ruta)
+            // el controlador recibió un id?
+            // revisa los parámetros (ver el :pacienteID en la definición de la ruta)
             if ($stateParams.pacienteId !== null && $stateParams.pacienteId !== undefined) {
                 
                 // toma el id del parámetro
@@ -29,16 +24,15 @@
                         $scope.currentRecord = response.data;
                     }, responseError);
 
-            // el controlador no recibió un Id
+            // el controlador no recibió un medicoId
             } else
             {
                 // el registro actual debe estar vacio
                 $scope.currentRecord = {
                     id: undefined /*Tipo Long. El valor se asigna en el backend*/,
-                    name: '' /*Tipo String*/,
-                    lastName: '',
-                    age: undefined,
-                    satisfaction: undefined,
+                    nombre: '' /*Tipo String*/,
+                    apellido: undefined /*Tipo ValorDTO, se asigna en el backend*/,
+                    identificacion: undefined
                 };
               
                 $scope.alerts = [];
@@ -48,45 +42,41 @@
             this.saveRecord = function (id) {
                 currentRecord = $scope.currentRecord;
                 
-                //verifica si el id dado existe
-                var existe = false;
-                for(var i = 0; i < $scope.records.length; i++){
-                    if($scope.records[i].id === id){
-                        existe = true;
-                    }
-                }
-                if (existe === false) {
+                // si el id es null, es un registro nuevo, entonces lo crea
+                if (id == null) {
 
                     // ejecuta POST en el recurso REST
                     return $http.post(context, currentRecord)
-                            .then(function () {
-                                // $http.post es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('pacientesList');
-                            }, responseError);
-
-                    // si el registro existe
+                        .then(function () {
+                            // $http.post es una promesa
+                            // cuando termine bien, cambie de estado
+                            $state.go('pacientesList');
+                        }, responseError);
+                        
+                // si el id no es null, es un registro existente entonces lo actualiza
                 } else {
-
+                    
                     // ejecuta PUT en el recurso REST
                     return $http.put(context + "/" + currentRecord.id, currentRecord)
-                            .then(function () {
-                                // $http.put es una promesa
-                                // cuando termine bien, cambie de estado
-                                $state.go('pacientesList');
-                            }, responseError);
-                }
-                ;
-            };
-            this.deleteRecord = function (id) {
-                currentRecord = $scope.currentRecord;
-                $http.delete(context + "/" + currentRecord.id)
                         .then(function () {
                             // $http.put es una promesa
                             // cuando termine bien, cambie de estado
                             $state.go('pacientesList');
                         }, responseError);
+                };
             };
+            
+            
+            this.deleteRecord = function(currentRecord) {
+                //currentRecord = $scope.currentRecord;
+                $http.delete(context + "/" + currentRecord.id)
+                        .then(function() {
+                            $state.go('pacientesList');
+                }, responseError);
+            };
+
+
+
             // -----------------------------------------------------------------
             // Funciones para manejra los mensajes en la aplicación
 

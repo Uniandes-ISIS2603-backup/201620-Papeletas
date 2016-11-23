@@ -53,9 +53,7 @@ public class PacienteLogic implements IPacienteLogic {
      */
     @Override
     public PacienteEntity getPaciente(Long id){
-       PacienteEntity entity;
-       entity = persistence.find(id);
-       return entity;
+       return persistence.find(id);
     }
     
     /**
@@ -85,10 +83,7 @@ public class PacienteLogic implements IPacienteLogic {
         if(alreadyExist != null){
             throw new HospitalLogicException("El paciente con identificación civil: "+paciente.getIndentificacionCivil()+" ya existe en el sistema");
         }
-        else{
-            persistence.create(paciente);
-        }
-        return paciente;
+            return persistence.create(paciente);
     }
     
     /**

@@ -29,7 +29,7 @@ import javax.ws.rs.core.MediaType;
  * @author df.castro12
  */
 
-@Path("/pacientes/{pacienteId: \\d+}/")
+@Path("")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
 public class PacienteCitaResource {
@@ -87,7 +87,7 @@ public class PacienteCitaResource {
      *
      */
     @GET
-    @Path("citas")
+    @Path("/pacientes/{pacienteId: \\d+}/citas")
     public List<CitaDetailDTO> listCitas(@PathParam("pacienteId") Long pacienteId) {
         existsPaciente(pacienteId);
         return citasListEntity2DTO(pacienteLogic.getCitas(pacienteId));
@@ -102,7 +102,7 @@ public class PacienteCitaResource {
      *
      */
     @GET
-    @Path("citas/{citaId: \\d+}")
+    @Path("/pacientes/{pacienteId: \\d+}/citas/{citaId: \\d+}")
     public CitaDetailDTO getCitas(@PathParam("pacienteId") Long pacienteId, @PathParam("citaId") Long citaId) {
         existsPaciente(pacienteId);
         return new CitaDetailDTO(pacienteLogic.getCita(pacienteId, citaId));
@@ -117,7 +117,7 @@ public class PacienteCitaResource {
      *
      */
     @POST
-    @Path("citas/{citaId: \\d+}")
+    @Path("/pacientes/{pacienteId: \\d+}/citas/{citaId: \\d+}")
     public CitaDetailDTO addCita(@PathParam("pacienteId") Long pacienteId, @PathParam("citaId") Long citaId) throws HospitalLogicException {
         existsPaciente(pacienteId);
         CitaEntity cita = citaLogic.getCita(citaId);
@@ -132,7 +132,7 @@ public class PacienteCitaResource {
      *
      */
     @DELETE
-    @Path("citas/{citaId: \\d+}")
+    @Path("/pacientes/{pacienteId: \\d+}/citas/{citaId: \\d+}")
     public void removeCita(@PathParam("pacienteId") Long pacienteId, @PathParam("citaId") Long citaId) {
         existsPaciente(pacienteId);
         pacienteLogic.removeCita(pacienteId, citaId);

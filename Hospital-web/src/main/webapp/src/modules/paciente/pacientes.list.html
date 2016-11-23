@@ -12,17 +12,13 @@ and open the template in the editor.
                 <th>ID</th>
                 <th>Nombre</th>   
                 <th>Apellido</th>
-                <th>Edad</th> 
-                <th>Satisfaccion</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="record in records">
-                <td id="{{$index}}-id">{{record.id}}</td>
+                <td id="{{$index}}-id">{{record.identificacionCivil}}</td>
                 <td id="{{$index}}-nombre">{{record.name}}</td>
                 <td id="{{$index}}-apellido">{{record.lastName}}</td>
-                <td id="{{$index}}-edad">{{record.age}}</td>
-                <td id="{{$index}}-satisfaccion">{{record.satisfaction}}</td>
                 <td>
                     <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm"ui-sref="pacienteEdit({pacienteId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
                     <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="pacienteDelete({pacienteId : record.id})"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
