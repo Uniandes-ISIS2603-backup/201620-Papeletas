@@ -8,7 +8,9 @@
         <title>Hospital Santander</title>
         
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="bower_components/bootswatch/cerulean/bootstrap.css" />
+
+        <link href="css/business-frontpage.css" rel="stylesheet">
 
         <script src="bower_components/jquery/dist/jquery.js"></script>
         <script src="bower_components/angular/angular.js"></script>
@@ -40,29 +42,46 @@
         
        <!-- <script src="src/modules/listaEspera/listaEspera.mod.js" type="text/javascrip"></script>
         <script src="src/modules/listaEspera/listaEspera.ctrl.js" type="text/javascrip"></script>-->
-        <style>
-            h3{
-                text-align: center;
-                font-family: Consolas;
-            }
-            ul.nav-tabs{
-                background-color: whitesmoke;
-            }
-            body{
-                background: url("http://orlando.reel-scout.com/up_images/3/1377813.jpg");
-                background-size: 1920px 1080px;
-                background-repeat: no-repeat;
-                
-                
-            }
-        </style>
+        
     </head>
+    
     <body style="padding-top: 20px;">
-        <div class="container-fluid col-md-12">   
-            <h1 align="center">Hospital Santander
-               
-            <img class="emoji" draggable="false"  src=https://lh3.googleusercontent.com/-7fjiZARJLu0/AAAAAAAAAAI/AAAAAAAAAC4/Bbd4oroAESY/s46-c-k-no/photo.jpg>
-            </h1>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Hospital Santander</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    
+                    <li>
+                        <a href="#contact"></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+        <header class="business-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="tagline" align="center"></h1>
+                </div>
+            </div>
+        </div>
+        </header>
+        <div class="container">   
+            <hr>
             <ul class="nav nav-tabs">           
                 
                        <li class="dropdown">
