@@ -49,7 +49,7 @@ public class TurnoPersistenceTest {
     /**
      * Entidad padre de turno
      */
-    MedicoEntity fatherEntity;
+    private MedicoEntity fatherEntity = null;
     
     
     @Inject
@@ -99,18 +99,20 @@ public class TurnoPersistenceTest {
         fatherEntity.setId(1L);
         for (int i = 0; i < 3; i++) {
             TurnoEntity entity = factory.manufacturePojo(TurnoEntity.class);
-            entity.setMedico(fatherEntity);
+            //entity.setMedico(fatherEntity);
             em.persist(entity);
             data.add(entity);
+            System.out.println("id: "+ entity.getId());
         }
     }
     
     /**
      * Test of find method, of class TurnoPersistence.
-     *//*
+     */
     @Test
     public void getTurnoTest() throws Exception {
         TurnoEntity entity = data.get(0);
+        System.out.println("get turno test id entity: "+ entity.getId());
         TurnoEntity newEntity =  turnoPersistence.find(entity.getId());
         Assert.assertNotNull(newEntity);
         Assert.assertEquals(entity.getName(), newEntity.getName());
@@ -162,7 +164,7 @@ public class TurnoPersistenceTest {
     }
     /**
      * Test of findAll method, of class TurnoPersistence.
-     *//*
+     */
     @Test
     public void getTurnosTest() throws Exception {
         List<TurnoEntity> list = turnoPersistence.findAll();
@@ -180,12 +182,12 @@ public class TurnoPersistenceTest {
 
     /**
      * Test of create method, of class TurnoPersistence.
-     *//*
+     */
     @Test
     public void createTurnoTest() throws Exception {
         PodamFactory factory = new PodamFactoryImpl();
         TurnoEntity newEntity = factory.manufacturePojo(TurnoEntity.class);
-        newEntity.setMedico(fatherEntity);
+        //newEntity.setMedico(fatherEntity);
         TurnoEntity result = turnoPersistence.create(newEntity);
 
         Assert.assertNotNull(result);
@@ -196,7 +198,7 @@ public class TurnoPersistenceTest {
     
     /**
      * Test of update method, of class TurnoPersistence.
-     *//*
+     */
     @Test
     public void updateTurnoTest() throws Exception {
         TurnoEntity entity = data.get(0);
@@ -222,12 +224,12 @@ public class TurnoPersistenceTest {
 
     /**
      * Test of delete method, of class TurnoPersistence.
-     *//*
+     */
     @Test
     public void deleteTurnoTest() throws Exception {
         TurnoEntity entity = data.get(0);
         turnoPersistence.delete(entity.getId());
         TurnoEntity deleted = em.find(TurnoEntity.class, entity.getId());
         Assert.assertNull(deleted);
-    }*/
+    }
 }

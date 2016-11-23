@@ -26,8 +26,9 @@ public class TurnoEntity extends BaseEntity implements Serializable{
     private Integer duracion;
     private Integer duracionCita;
     
-    @PodamExclude
+    
     @ManyToOne
+    @PodamExclude
     private MedicoEntity medico;
     
     @PodamExclude
@@ -85,10 +86,10 @@ public class TurnoEntity extends BaseEntity implements Serializable{
     }
 
     /**
-     * @param medico the medico to set
+     * @param pMedico the medico to set
      */
-    public void setMedico(MedicoEntity medico) {
-        this.medico = medico;
+    public void setMedico(MedicoEntity pMedico) {
+        medico = pMedico;
     }
 
     
