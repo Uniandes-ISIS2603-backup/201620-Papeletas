@@ -1,28 +1,26 @@
-<div class="container-fluid" >
-    <div class="row">
-            <button class="btn btn-default" ui-sref="citasCreate">Crear Cita</button></div>
-        <div class="row">
-            <style>
-                h2{
-                background-color: #c8e5bc;
-                }
-                table{
-                background-color: #c8e5bc;
-                }
-            </style>
-    <h2>Citas disponibles</h2>
-    <table class="col-md-4">
-        <thead>
-            <tr>
-                <th>Fecha</th>  
+<head>
+    <link href="src/modules/citas/list.css" rel="stylesheet">
+</head> 
+<div class="row">
+<button class="btn btn-default" ui-sref="citasCreate">Crear Cita</button>
+ </div>
+<div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>Fecha</th>  
                 <th>IDP</th>
                 <th>Paciente</th>
                 <th>Consultorio</th>
-                <th>Acciones</th>  
-            </tr>
-        </thead>
-        <tbody>
-            <tr ng-repeat="record in records">
+                <th>Acciones</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr ng-repeat="record in records">
                 <td id="{{$index}}-fecha">{{record.fecha}}</td>
                 <td id="{{$index}}-paciente">{{record.paciente.idPaci}}</td>
                 <td id="{{$index}}-paciente">{{record.paciente.name}}</td>
@@ -34,6 +32,7 @@
                    <button type="button" ng-click="ctrl.deleteRecord(record) "ui-sref='citasList' >Eliminar</button> 
                 </td>
             </tr>
-        </tbody>
+      </tbody>
     </table>
-</div>
+  </div>
+        

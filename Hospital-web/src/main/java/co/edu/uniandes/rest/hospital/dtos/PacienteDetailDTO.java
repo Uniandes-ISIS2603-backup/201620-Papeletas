@@ -21,8 +21,7 @@ public class PacienteDetailDTO extends PacienteDTO {
     
     private List<CitaDTO> citas = new ArrayList<>();
     
-     @PodamExclude
-    private PacienteDTO paciente;
+     
     
     public PacienteDetailDTO(){
         super();
@@ -38,9 +37,6 @@ public class PacienteDetailDTO extends PacienteDTO {
      */
     public PacienteDetailDTO(PacienteEntity entity) {
         super(entity);
-        if(entity!=null){
-            this.paciente = new PacienteDTO();
-        }
         List<CitaEntity> citasList = entity.getCitas();
         for (CitaEntity cita : citasList) {
             this.citas.add(new CitaDTO(cita));
@@ -66,12 +62,6 @@ public class PacienteDetailDTO extends PacienteDTO {
             entity.getCitas().add(cita.toEntity());
         }
         return entity;
-    }
-    public PacienteDTO getPaciente(){
-        return paciente;
-    }
-    public void setPaciente(PacienteDTO pPaciente){
-        this.paciente = pPaciente;
     }
     
     public List<CitaDTO> getCitas(){

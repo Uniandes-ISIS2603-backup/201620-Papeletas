@@ -119,9 +119,8 @@ public class MedicoResource {
     }
     
     
-    
     @POST
-    @Path("medico/{id: \\ d+}/cita/create)")
+    @Path("medico/{id: \\ d+}/cita")
     public CitaDTO createCita(@PathParam("id")Long id,CitaDTO citaN)throws HospitalLogicException
     {
         return new CitaDetailDTO(medico.createCita(citaN.toEntity()));
@@ -129,7 +128,7 @@ public class MedicoResource {
     
     
     @DELETE
-    @Path("medico/{id: \\ d+}/cita/delete )")
+    @Path("medico/{id: \\ d+}/cita/{citaId: \\ d+}")
     public void deleteCita(CitaDTO citaN)throws HospitalLogicException
     {
         medico.deleteCita(citaN.getId());
