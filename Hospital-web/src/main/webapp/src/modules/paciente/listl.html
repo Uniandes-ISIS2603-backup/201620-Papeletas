@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<head>
+    <link href="src/modules/paciente/list.css" rel="stylesheet">
+</head>
+<div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th></th>  
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr ng-repeat="record in records">
+                <td class="avatar"></td>
+                <td id="{{$index}}-id">{{record.identificacionCivil}}</td>
+                <td id="{{$index}}-nombre">{{record.name}}</td>
+                <td id="{{$index}}-apellido">{{record.lastName}}</td>
+                <td>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm"ui-sref="pacienteEdit({pacienteId: record.id})"><span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="pacienteDelete({pacienteId : record.id})"><span class="glyphicon glyphicon-minus"></span> Eliminar</button>
+
+                </td>
+            </tr>
+      </tbody>
+    </table>
+  </div>

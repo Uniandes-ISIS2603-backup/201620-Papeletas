@@ -22,7 +22,7 @@
                     'medicoView': {
                         controller: 'medicoCtrl',
                         controllerAs: 'ctrl',
-                        templateUrl: basePath + 'medico.list.html'
+                        templateUrl: basePath + 'listm.html'
                     }
                 }
             }).state('medicoCreate', {

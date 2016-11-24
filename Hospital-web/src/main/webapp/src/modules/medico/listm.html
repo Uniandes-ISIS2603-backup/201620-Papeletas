@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<head>
+    <link href="src/modules/medico/list.css" rel="stylesheet">
+</head>
+<div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Promedio duracion <br> citas terminadas</th>
+          <th></th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+  <div class="tbl-content">
+    <table cellpadding="0" cellspacing="0" border="0">
+      <tbody>
+        <tr ng-repeat="record in records">
+                <td id="{{$index}}-id">{{record.id}}</td>
+                <td id="{{$index}}-nombre">{{record.nombre}}</td>
+                <td id="{{$index}}-promedio">{{record.promedio}}</td>
+                <td>
+                    <button id="{{$index}}-edit-btn" class="btn btn-default btn-sm"ui-sref="medicoEdit({medicoId:record.id})"> <span class="glyphicon glyphicon-edit"></span> Editar</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="medicoDelete({medicoId:record.id})"><span class="glyphicon glyphicon-minus"></span> Remove</button>
+                    <button id="{{$index}}-delete-btn" class="btn btn-default btn-sm" ui-sref="medicoRegistrar({medicoId:record.id})"><span class="glyphicon glyphicon-minus"></span> Registrar fin cita</button>
+
+               </td>
+            </tr>
+      </tbody>
+    </table>
+  </div>

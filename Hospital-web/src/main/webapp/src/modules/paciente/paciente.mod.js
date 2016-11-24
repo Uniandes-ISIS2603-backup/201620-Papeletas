@@ -20,7 +20,7 @@ mod.config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $ur
                 'mainView': {
                     controller: 'pacienteCtrl',
                     controllerAs: 'ctrl',
-                    templateUrl: basePath + 'pacientes.list.html'
+                    templateUrl: basePath + 'listl.html'
                 }
             }
         }).state('pacienteCreate',{
