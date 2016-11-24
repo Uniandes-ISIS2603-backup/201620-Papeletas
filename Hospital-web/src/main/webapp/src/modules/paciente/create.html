@@ -1,0 +1,27 @@
+<head>
+    <link href="src/modules/paciente/create.css" rel="stylesheet">
+</head>
+
+           <h1 class="avatar"></h1>
+           <div class="divider"></div>
+           <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
+    <form novalidate name="form" id="paciente-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
+	      <div class="input-field col s6">
+              <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
+              <input id="nombre" name="name" class="form-control" placeholder="Nombres "type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+            </div>
+            <div class="input-field col s6">
+                <input id="apellido" name="name" class="form-control" placeholder="Apellidos" type="text" ng-model="currentRecord.lastName" ng-init="currentRecord.lastName" required />
+             </div>
+             <div class="input-field col s6">
+                 <input id="identificacionCivil" name="name" class="form-control" placeholder="Identificación Civil" type="number" ng-model="currentRecord.identificacionCivil" ng-init="currentRecord.identificacionCivil" required />
+             </div>
+              <div class="space-top text-center">
+               <button ng-disabled="form-register.$invalid" class="waves-effect waves-light btn done">
+               <i class="material-icons left">Guardar</i> 
+               </button>
+               <button type="button" class="waves-effect waves-light btn cancel" ui-sref='pacientesList'>
+               <i class="material-icons left">Cancelar</i>
+               </button>
+              </div>
+             </form>

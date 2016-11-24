@@ -1,0 +1,53 @@
+fieldset{
+    height: 300px;
+    width: 600px;
+}
+.nombre{
+    margin: 6px;
+    align-content: center;
+}
+.apellido{
+    margin: 6px;
+    align-content: center;
+}
+.identificacionCivil{
+    margin: 6px;
+    align-content: center;
+}
+.done{
+    width:300px;
+    margin: 6px;
+    align-content: center;
+}
+.cancel{
+    width: 300px;
+    margin: 6px;
+    align-content: center;
+}
+.btn{
+  border-radius: 2px;
+}
+
+.cancel{
+  background-color: #df405a;
+}
+
+.done{
+  background-color: #5CAB7D;
+}
+
+.done:hover{
+  background-color: #6dc793;
+}
+
+.done:focus{
+  background-color: #6dc793;
+}
+
+.cancel:hover{
+  background-color: #f0435f;
+}
+
+.cancel:focus{
+  background-color: #f0435f;
+}

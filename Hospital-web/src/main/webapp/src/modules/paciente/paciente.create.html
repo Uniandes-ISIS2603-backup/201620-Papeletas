@@ -4,12 +4,15 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
-<div class="col-md-6 well">
+<head>
+        <link href="src/modules/paciente/create.css" rel="stylesheet">
+</head>
+<div id="dd" class="col-md-6 well" >
     <alert ng-repeat="alert in alerts" type="{{alert.type}}" close="ctrl.closeAlert($index)" dismiss-on-timeout="5000">{{alert.msg}} </alert>
     <form novalidate name="form" id="paciente-form" role="form" ng-submit="form.$valid && ctrl.saveRecord(currentRecord.id)">
         
         <div ng-messages="form.$error">
-            <div ng-message="required">Agregue los datos del paciente
+            <div id="mss" ng-message="required">Agregue los datos del paciente
             <img class="emoji" draggable="false"  src="http://twemoji.maxcdn.com/36x36/1f464.png">
             </div>
         </div>
@@ -17,23 +20,32 @@ and open the template in the editor.
         <fieldset>
             <input id="id" class="form-control" type="hidden" ng-model="currentRecord.id"/>
             <div class="form-group col-md-12" ng-class="{'has-success': form.name.$valid && form.name.$dirty, 'has-error': form.name.$invalid && (form.name.$dirty || form.$submitted)}" >
-                 <label for="name" class="col-md-2 control-label">Nombre</label>
-                <div class="col-md-10">
-                    <input id="nombre" name="name" class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
+                 
+                <div id="nm" class="col-md-10">
+                    <input id="nombre" name="name" placeholder="Nombres "class="form-control" type="text" ng-model="currentRecord.name" ng-init="currentRecord.name" required />
                 </div>
                 
-                  <label for="name" class="col-md-2 control-label">Apellido</label>
-                <div class="col-md-10">
-                    <input id="apellido" name="name" class="form-control" type="text" ng-model="currentRecord.lastName" ng-init="currentRecord.lastName" required />
-                </div>
                   
-                  <label for="name" class="col-md-2 control-label">Identificación Civil</label>
-                <div class="col-md-10">
-                    <input id="identificacionCivil" name="name" class="form-control" type="number" ng-model="currentRecord.identificacionCivil" ng-init="currentRecord.identificacionCivil" required />
+                <div id="lnm" class="col-md-10">
+                    <input id="apellido" name="name" placeholder="Apellidos" class="form-control" type="text" ng-model="currentRecord.lastName" ng-init="currentRecord.lastName" required />
+                </div>
+                  <h2></h2>
+                  <div id="cvl" class="col-md-10">
+                    <input id="identificacionCivil" name="name" placeholder="Identificación Civil" class="form-control" type="number" ng-model="currentRecord.identificacionCivil" ng-init="currentRecord.identificacionCivil" required />
                 </div>
             </div>
-             <button type="submit" >Guardar</button>   
-            <button type="button" ui-sref='pacientesList'>Cancelar</button> 
+            <div class="space-top text-center">
+                <div id="done">
+               <button ng-disabled="form-register.$invalid" class="waves-effect waves-light btn done">
+               <i class="material-icons left"></i>Guardar
+               </button>
+                    </div>
+                <div id="cancel">
+               <button type="button" class="waves-effect waves-light btn cancel" ui-sref='pacientesList' >
+               <i class="material-icons left"></i>Cancelar
+               </button>
+                    </div>
+              </div>
         </fieldset>
     </form>
 </div>
