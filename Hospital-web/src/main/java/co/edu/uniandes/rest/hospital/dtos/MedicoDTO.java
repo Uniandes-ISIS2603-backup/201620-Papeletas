@@ -82,6 +82,7 @@ public class MedicoDTO {
         promedio=0.0;
         this.nombre=entity.getName();
         this.id=entity.getId();
+        
     }
     /**
      * 

@@ -90,5 +90,17 @@ public class MedicoLogic implements IMedicoLogic
     public List<TurnoEntity> getTurnos() {
         return persistenceTurno.findAll(); 
     }
+
+    @Override
+    public CitaEntity createCita(CitaEntity entity) 
+    {
+      return persistenceCita.create(entity);
+    }
+
+    @Override
+    public void deleteCita(Long id)
+    {
+        persistenceCita.delete(id);
+    }
     
 }
